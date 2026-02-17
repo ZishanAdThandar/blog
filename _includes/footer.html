@@ -1,57 +1,168 @@
-<a href="#" class="back-to-top" id="backToTop">
-    <i class="fas fa-arrow-up"></i>
+<!-- Back to Top Button -->
+<a href="#" class="back-to-top" id="backToTop" aria-label="Back to top">
+  <i class="fas fa-arrow-up"></i>
 </a>
 
-<footer>
-    <div class="footer-links">
-        <a href="{{ site.url }}{{ site.baseurl }}"><i class="fas fa-home"></i> Home</a>
-        <a href="{{ site.main_site }}"><i class="fas fa-globe"></i> Website</a>
-        <a href="{{ site.portfolio }}"><i class="fas fa-briefcase"></i> About Me</a>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">
+          <i class="fas fa-shield-alt"></i>
+          <span>ZISHAN<span class="logo-highlight">HACK</span></span>
+        </div>
+        <p class="footer-description">
+          {{ site.description }}
+        </p>
+        <div class="footer-social">
+          {% if site.github %}
+          <a href="https://github.com/{{ site.github }}" target="_blank" rel="noopener noreferrer" class="social-link">
+            <i class="fab fa-github"></i>
+          </a>
+          {% endif %}
+          {% if site.twitter %}
+          <a href="https://twitter.com/{{ site.twitter }}" target="_blank" rel="noopener noreferrer" class="social-link">
+            <i class="fab fa-twitter"></i>
+          </a>
+          {% endif %}
+          {% if site.linkedin %}
+          <a href="https://linkedin.com/in/{{ site.linkedin }}" target="_blank" rel="noopener noreferrer" class="social-link">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          {% endif %}
+          {% if site.youtube %}
+          <a href="https://youtube.com/@{{ site.youtube }}" target="_blank" rel="noopener noreferrer" class="social-link">
+            <i class="fab fa-youtube"></i>
+          </a>
+          {% endif %}
+          {% if site.linktree %}
+          <a href="{{ site.linktree }}" target="_blank" rel="noopener noreferrer" class="social-link">
+            <i class="fas fa-link"></i>
+          </a>
+          {% endif %}
+        </div>
+      </div>
+      
+      <div class="footer-links">
+        <h3>Categories</h3>
+        <a href="{{ site.baseurl }}/posts/hackthebox/" class="footer-link">
+          <i class="fas fa-cube"></i> HackTheBox
+        </a>
+        <a href="{{ site.baseurl }}/posts/tryhackme/" class="footer-link">
+          <i class="fas fa-tv"></i> TryHackMe
+        </a>
+        <a href="{{ site.baseurl }}/posts/vulnhub/" class="footer-link">
+          <i class="fas fa-server"></i> VulnHub
+        </a>
+        <a href="{{ site.baseurl }}/posts/offsec/" class="footer-link">
+          <i class="fas fa-shield-alt"></i> OffSec
+        </a>
+        <a href="{{ site.baseurl }}/posts/bugbounty/" class="footer-link">
+          <i class="fas fa-bug"></i> Bug Bounty
+        </a>
+        <a href="{{ site.baseurl }}/posts/blog/" class="footer-link">
+          <i class="fas fa-blog"></i> Articles
+        </a>
+      </div>
+      
+      <div class="footer-links">
+        <h3>Premium Resources</h3>
+        <a href="https://zishanhack.com/oscp-bundle" class="footer-link">
+          <i class="fas fa-certificate"></i> OSCP Bundle
+        </a>
+        <a href="https://zishanhack.com/crta-notes" class="footer-link">
+          <i class="fas fa-user-secret"></i> CRTA Notes
+        </a>
+        <a href="https://zishanhack.com/web-checklist" class="footer-link">
+          <i class="fas fa-clipboard-check"></i> Web Checklist
+        </a>
+        <a href="https://zishanhack.com/oswp-notes" class="footer-link">
+          <i class="fas fa-wifi"></i> OSWP Notes
+        </a>
+      </div>
+      
+      <div class="footer-links">
+        <h3>Support</h3>
+        <a href="mailto:{{ site.email }}" class="footer-link">
+          <i class="fas fa-envelope"></i> Contact
+        </a>
+        <a href="{{ site.portfolio }}" class="footer-link">
+          <i class="fas fa-user"></i> About Me
+        </a>
         {% if site.sponsors %}
-        <a href="{{ site.sponsors }}"><i class="fas fa-heart"></i> Sponsor</a>
+        <a href="{{ site.sponsors }}" class="footer-link">
+          <i class="fas fa-heart"></i> Sponsor
+        </a>
         {% endif %}
+        <a href="{{ site.baseurl }}/sitemap.xml" class="footer-link">
+          <i class="fas fa-sitemap"></i> Sitemap
+        </a>
+        <a href="{{ site.baseurl }}/feed.xml" class="footer-link">
+          <i class="fas fa-rss"></i> RSS Feed
+        </a>
+      </div>
     </div>
-    <p style="margin-top: 1.5rem; color: var(--accent-cyan);">
-        <i class="fas fa-terminal"></i> &copy; {{ site.time | date: '%Y' }} {{ site.author }}. All rights reserved.
-    </p>
-    <p style="margin-top: 0.5rem; font-size: 0.9rem;">
-       <i class="fas fa-shield-alt"></i> Built for Infosec Community
-    </p>
     
-    <script>
-    // Back to Top functionality
-    const backToTop = document.getElementById('backToTop');
-    
+    <div class="footer-bottom">
+      <div class="security-badges">
+        <span class="security-badge">
+          <i class="fas fa-lock"></i> SSL SECURE
+        </span>
+        <span class="security-badge">
+          <i class="fas fa-shield-alt"></i> FREE RESOURCES
+        </span>
+        <span class="security-badge">
+          <i class="fas fa-globe"></i> OPEN SOURCE
+        </span>
+        <span class="security-badge">
+          <i class="fas fa-code"></i> JEKYLL
+        </span>
+      </div>
+      <p class="copyright">
+        <i class="fas fa-terminal"></i> &copy; {{ site.time | date: '%Y' }} {{ site.author }}. All rights reserved. | 
+        <a href="{{ site.main_site }}" style="color: var(--primary); text-decoration: none;">Main Site</a>
+      </p>
+      <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--gray);">
+        <i class="fas fa-shield-alt"></i> Built for the Infosec Community
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Back to Top functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const backToTop = document.getElementById('backToTop');
+  
+  if (backToTop) {
     window.addEventListener('scroll', function() {
-        if (window.pageYOffset > 300) {
-            backToTop.classList.add('visible');
-        } else {
-            backToTop.classList.remove('visible');
-        }
+      if (window.pageYOffset > 300) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
     });
     
     backToTop.addEventListener('click', function(e) {
-        e.preventDefault();
-        window.scrollTo({ 
-            top: 0, 
-            behavior: 'smooth' 
-        });
+      e.preventDefault();
+      window.scrollTo({ 
+        top: 0, 
+        behavior: 'smooth' 
+      });
     });
     
-    // Initialize on load
-    document.addEventListener('DOMContentLoaded', function() {
-        // Check initial scroll position
-        if (window.pageYOffset > 300) {
-            backToTop.classList.add('visible');
-        }
-        
-        // Add keyboard navigation for accessibility
-        backToTop.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-        });
+    // Check initial scroll position
+    if (window.pageYOffset > 300) {
+      backToTop.classList.add('visible');
+    }
+    
+    // Keyboard navigation
+    backToTop.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     });
-    </script>
-</footer>
+  }
+});
+</script>

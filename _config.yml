@@ -5,6 +5,7 @@ baseurl: "/blog"
 author: "Zishan Ahamed Thandar"
 email: "support@zishanhack.com"
 description: "Professional cybersecurity writeups, articles, CTF solutions, and bug bounty reports."
+paginate: 9
 
 
 # Defaults
@@ -50,6 +51,5 @@ highlighter: rouge
 permalink: pretty
 timezone: UTC
 
-paginate: 9
 paginate_path: "/page/:num/"
 

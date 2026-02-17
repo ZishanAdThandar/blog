@@ -1,22 +1,51 @@
-<div class="cta-box">
-  <h2>{{ page.product }}</h2>
-  <p>
-    Learn real-world exploitation techniques used in professional Active
-    Directory attacks. Built from hands-on labs and real assessments.
-  </p>
-
-  <ul>
-    <li>Attack paths explained step by step</li>
-    <li>Real tooling & tradecraft</li>
-    <li>Job-focused methodology</li>
-  </ul>
-
-  <div class="cta-price">
-    Price: ${{ page.price }}
+<div class="cta-box sidebar-card" style="background: var(--gradient-dark); border-color: var(--primary);">
+  <div class="cta-badge" style="position: absolute; top: 1rem; right: -2rem; background: var(--gradient-accent); color: white; padding: 0.5rem 2rem; font-weight: 700; font-size: 0.9rem; transform: rotate(45deg);">
+    🔥 90% OFF
   </div>
-
-  <a class="cta-button" href="#">
-    Get Instant Access
+  
+  <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: white;">
+    {% if page.product %}
+      {{ page.product }}
+    {% else %}
+      Premium Cybersecurity Resources
+    {% endif %}
+  </h3>
+  
+  <p style="color: var(--gray); margin-bottom: 1.5rem;">
+    {% if page.description %}
+      {{ page.description }}
+    {% else %}
+      Learn real-world exploitation techniques used in professional Active Directory attacks. Built from hands-on labs and real assessments.
+    {% endif %}
+  </p>
+  
+  <ul style="list-style: none; padding: 0; margin-bottom: 1.5rem;">
+    <li style="margin-bottom: 0.75rem; color: var(--light);">
+      <i class="fas fa-check-circle" style="color: var(--success); margin-right: 0.5rem;"></i> Attack paths explained step by step
+    </li>
+    <li style="margin-bottom: 0.75rem; color: var(--light);">
+      <i class="fas fa-check-circle" style="color: var(--success); margin-right: 0.5rem;"></i> Real tooling & tradecraft
+    </li>
+    <li style="margin-bottom: 0.75rem; color: var(--light);">
+      <i class="fas fa-check-circle" style="color: var(--success); margin-right: 0.5rem;"></i> Job-focused methodology
+    </li>
+  </ul>
+  
+  <div class="product-price" style="margin: 1.5rem 0; padding: 1rem; background: rgba(0,0,0,0.3); border-radius: 12px; text-align: center;">
+    <div class="price-header" style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 0.5rem;">
+      <span class="original-price" style="text-decoration: line-through; color: var(--gray);">${{ page.original_price | default: "997" }}</span>
+      <span class="discount-badge" style="background: var(--gradient-accent); color: white; padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.8rem; font-weight: 700;">90% OFF</span>
+    </div>
+    <div class="current-price" style="font-size: 2rem; font-weight: 900; background: linear-gradient(135deg, #f59e0b, #ef4444); -webkit-background-clip: text; background-clip: text; color: transparent;">
+      ${{ page.price | default: "97" }} USD
+    </div>
+  </div>
+  
+  <a href="https://zishanhack.com/#resources" class="btn btn-premium btn-block btn-sparkle" style="margin-top: 1rem;">
+    <i class="fas fa-bolt"></i> GET INSTANT ACCESS
   </a>
+  
+  <div class="cta-guarantee" style="margin-top: 1rem; font-size: 0.8rem; color: var(--gray); text-align: center;">
+    <i class="fas fa-lock" style="color: var(--success);"></i> Secure Payment • Instant Download • Lifetime Updates
+  </div>
 </div>
-

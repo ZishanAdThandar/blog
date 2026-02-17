@@ -1,98 +1,181 @@
-<aside>
-
-  <!-- About -->
-  <div class="sidebar-section">
-    <h3><i class="fas fa-user-secret"></i> About</h3>
-    <p style="color: var(--text-secondary); line-height: 1.7;">
-      {{ site.description }}
-    </p>
-    <div style="margin-top: 1rem;">
-      <p>
-        <i class="fas fa-user"></i>
-        <strong>Author:</strong> {{ site.author }}
+<aside class="sidebar">
+  
+  <!-- About Card -->
+  <div class="sidebar-card">
+    <h3 class="sidebar-title"><i class="fas fa-user-secret"></i> About</h3>
+    <div class="sidebar-about">
+      <div class="author-avatar">
+        <i class="fas fa-shield-alt"></i>
+      </div>
+      <p style="color: var(--gray); line-height: 1.7; margin-bottom: 1rem;">
+        {{ site.description }}
       </p>
-      <p>
-        <i class="fas fa-envelope"></i>
-        <strong>Email:</strong> {{ site.email }}
-      </p>
+      <div class="author-details">
+        <p><i class="fas fa-user"></i> <strong>Author:</strong> {{ site.author }}</p>
+        <p><i class="fas fa-envelope"></i> <strong>Email:</strong> <a href="mailto:{{ site.email }}" style="color: var(--primary);">{{ site.email }}</a></p>
+      </div>
     </div>
   </div>
 
-  <!-- Connect -->
-  <div class="sidebar-section">
-    <h3><i class="fas fa-link"></i> Connect</h3>
-    <div class="social-links">
+  <!-- Connect Card -->
+  <div class="sidebar-card">
+    <h3 class="sidebar-title"><i class="fas fa-link"></i> Connect</h3>
+    <div class="social-links-grid">
       {% if site.github %}
-      <a href="https://github.com/{{ site.github }}" target="_blank">
+      <a href="https://github.com/{{ site.github }}" target="_blank" rel="noopener noreferrer" class="social-link-item">
         <i class="fab fa-github"></i> GitHub
       </a>
       {% endif %}
       {% if site.twitter %}
-      <a href="https://twitter.com/{{ site.twitter }}" target="_blank">
+      <a href="https://twitter.com/{{ site.twitter }}" target="_blank" rel="noopener noreferrer" class="social-link-item">
         <i class="fab fa-twitter"></i> Twitter
       </a>
       {% endif %}
       {% if site.linkedin %}
-      <a href="https://linkedin.com/in/{{ site.linkedin }}" target="_blank">
+      <a href="https://linkedin.com/in/{{ site.linkedin }}" target="_blank" rel="noopener noreferrer" class="social-link-item">
         <i class="fab fa-linkedin"></i> LinkedIn
+      </a>
+      {% endif %}
+      {% if site.youtube %}
+      <a href="https://youtube.com/@{{ site.youtube }}" target="_blank" rel="noopener noreferrer" class="social-link-item">
+        <i class="fab fa-youtube"></i> YouTube
       </a>
       {% endif %}
     </div>
   </div>
 
-
-
-<!-- Random Article (Blog Sidebar) -->
-<div class="sidebar-section">
-  <h3><i class="fas fa-compass"></i> Discover an Article</h3>
-
-  {% assign blog_posts = site.posts
-     | where_exp: "p", "p.path contains '_posts/blog/'"
-     | shuffle %}
-
-  {% if blog_posts %}
-    <ul class="recent-posts">
-      {% for post in blog_posts %}
-        {% unless post.path contains 'imaginaryctf' %}
-          <li>
-            <a href="{{ post.url | relative_url }}">
-              <i class="fas fa-file-alt"></i>
-              {{ post.title }}
-            </a>
-          </li>
-          {% break %}
-        {% endunless %}
-      {% endfor %}
+  <!-- CTA Card - Premium Resources -->
+  <div class="sidebar-card cta-card">
+    <div class="cta-badge">🔥 90% OFF</div>
+    <h3 class="sidebar-title">Premium Resources</h3>
+    <p style="color: var(--gray); margin-bottom: 1.5rem;">
+      Battle-tested notes, cheatsheets, and bundles used by 2,500+ security professionals.
+    </p>
+    <ul style="list-style: none; padding: 0; margin-bottom: 1.5rem; color: var(--light);">
+      <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: var(--success);"></i> OSCP+ Obsidian Bundle</li>
+      <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: var(--success);"></i> CRTA Copy-Paste Commands</li>
+      <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: var(--success);"></i> Web Security Checklist</li>
+      <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: var(--success);"></i> OSWP Wireless Notes</li>
     </ul>
-  {% endif %}
-</div>
-
-
-
-  <!-- Categories -->
-  <div class="sidebar-section">
-    <h3><i class="fas fa-layer-group"></i> Categories</h3>
-    <div class="social-links">
-      <a href="{{ site.baseurl }}/posts/hackthebox/">
-        <i class="fas fa-cube"></i> HackTheBox
-      </a>
-      <a href="{{ site.baseurl }}/posts/tryhackme/">
-        <i class="fas fa-tv"></i> TryHackMe
-      </a>
-      <a href="{{ site.baseurl }}/posts/offsec/">
-        <i class="fas fa-shield-alt"></i> OffSec
-      </a>
-      <a href="{{ site.baseurl }}/posts/vulnhub/">
-        <i class="fas fa-server"></i> VulnHub
-      </a>
-      <a href="{{ site.baseurl }}/posts/bugbounty/">
-        <i class="fas fa-bug"></i> Bug Bounty
-      </a>
-      <a href="{{ site.baseurl }}/posts/blog/">
-        <i class="fas fa-file-alt"></i> Articles
-      </a>
+    <a href="https://zishanhack.com/#resources" class="btn btn-premium btn-block btn-sparkle">
+      <i class="fas fa-gem"></i> VIEW RESOURCES
+    </a>
+    <div class="cta-guarantee" style="margin-top: 1rem; font-size: 0.8rem; color: var(--gray); text-align: center;">
+      <i class="fas fa-check-circle" style="color: var(--success);"></i> Lifetime updates • Instant access
     </div>
   </div>
 
-</aside>
+  <!-- Random Article Card -->
+  <div class="sidebar-card">
+    <h3 class="sidebar-title"><i class="fas fa-compass"></i> Discover an Article</h3>
+    {% assign blog_posts = site.posts 
+       | where_exp: "p", "p.path contains '_posts/blog/' or p.path contains '_posts/bugbounty/'"
+       | sample: 1 %}
+    {% if blog_posts.size > 0 %}
+      <div class="random-post">
+        {% for post in blog_posts limit:1 %}
+          <div class="random-post-card">
+            <div class="post-icon-large">
+              <i class="fas fa-file-alt"></i>
+            </div>
+            <h4 style="margin: 1rem 0 0.5rem; color: white;">{{ post.title }}</h4>
+            <p style="color: var(--gray); font-size: 0.9rem; margin-bottom: 1rem;">
+              {{ post.date | date: "%B %d, %Y" }}
+            </p>
+            <a href="{{ post.url | relative_url }}" class="btn btn-outline btn-small" style="width: 100%;">
+              Read Article <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
 
+  <!-- Categories Card -->
+  <div class="sidebar-card">
+    <h3 class="sidebar-title"><i class="fas fa-layer-group"></i> Categories</h3>
+    <ul class="sidebar-categories">
+      <li>
+        <a href="{{ site.baseurl }}/posts/hackthebox/">
+          <i class="fas fa-cube"></i> HackTheBox
+          {% assign count = site.posts | where: "categories", "hackthebox" | size %}
+          <span class="category-count">{{ count }}</span>
+        </a>
+      </li>
+      <li>
+        <a href="{{ site.baseurl }}/posts/tryhackme/">
+          <i class="fas fa-tv"></i> TryHackMe
+          {% assign count = site.posts | where: "categories", "tryhackme" | size %}
+          <span class="category-count">{{ count }}</span>
+        </a>
+      </li>
+      <li>
+        <a href="{{ site.baseurl }}/posts/offsec/">
+          <i class="fas fa-shield-alt"></i> OffSec
+          {% assign count = site.posts | where: "categories", "offsec" | size %}
+          <span class="category-count">{{ count }}</span>
+        </a>
+      </li>
+      <li>
+        <a href="{{ site.baseurl }}/posts/vulnhub/">
+          <i class="fas fa-server"></i> VulnHub
+          {% assign count = site.posts | where: "categories", "vulnhub" | size %}
+          <span class="category-count">{{ count }}</span>
+        </a>
+      </li>
+      <li>
+        <a href="{{ site.baseurl }}/posts/bugbounty/">
+          <i class="fas fa-bug"></i> Bug Bounty
+          {% assign count = site.posts | where: "categories", "bugbounty" | size %}
+          <span class="category-count">{{ count }}</span>
+        </a>
+      </li>
+      <li>
+        <a href="{{ site.baseurl }}/posts/blog/">
+          <i class="fas fa-blog"></i> Articles
+          {% assign count = site.posts | where: "categories", "blog" | size %}
+          <span class="category-count">{{ count }}</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Recent Posts Card -->
+  <div class="sidebar-card">
+    <h3 class="sidebar-title"><i class="fas fa-clock"></i> Recent Posts</h3>
+    <ul class="recent-posts">
+      {% for post in site.posts limit:5 %}
+      <li>
+        <a href="{{ post.url | relative_url }}">
+          <span class="post-icon"><i class="fas fa-file-alt"></i></span>
+          <div class="post-info">
+            <span class="post-title">{{ post.title | truncate: 35 }}</span>
+            <span class="post-date"><i class="fas fa-calendar-alt"></i> {{ post.date | date: "%b %d, %Y" }}</span>
+          </div>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <!-- Tags Card (if tags exist) -->
+  {% assign all_tags = "" %}
+  {% for post in site.posts %}
+    {% for tag in post.tags %}
+      {% assign all_tags = all_tags | append: tag | append: "," %}
+    {% endfor %}
+  {% endfor %}
+  {% assign unique_tags = all_tags | split: "," | uniq | sort %}
+  {% if unique_tags.size > 0 %}
+  <div class="sidebar-card">
+    <h3 class="sidebar-title"><i class="fas fa-tags"></i> Popular Tags</h3>
+    <div class="tags-cloud">
+      {% for tag in unique_tags limit: 12 %}
+        {% if tag != "" %}
+          <a href="{{ site.baseurl }}/tags/{{ tag | slugify }}/" class="tag-link">{{ tag }}</a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+</aside>
