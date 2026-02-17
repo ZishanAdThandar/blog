@@ -3,32 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
-  
-  {% seo %}
-  
-  <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/svgs/solid/shield-halved.svg">
-  
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@700;800;900&display=swap" rel="stylesheet">
-  
-  <!-- Theme Color -->
-  <meta name="theme-color" content="#0a0e17">
-  <meta name="msapplication-navbutton-color" content="#0a0e17">
-  <meta name="apple-mobile-web-app-status-bar-style" content="#0a0e17">
-  
-  <!-- Security Meta Tags -->
-  <meta http-equiv="X-Content-Type-Options" content="nosniff">
-  <meta http-equiv="X-Frame-Options" content="DENY">
-  <meta http-equiv="X-XSS-Protection" content="1; mode=block">
-  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
-  
-  <!-- Custom CSS -->
+  <title>{{ page.title }} | {{ site.title }}</title>
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
@@ -37,104 +14,15 @@
 <main class="blog-main">
   <div class="container">
     <div class="blog-layout">
-      
-      <!-- Main Content -->
-      <article class="blog-content {% if page.layout == 'default' and page.date %}post-article{% endif %}">
-        
-        {% if page.layout == "default" and page.title and page.layout != "list" %}
-          <header class="post-header">
-            <h1 class="post-title">{{ page.title }}</h1>
-            {% if page.date %}
-              <div class="post-meta">
-                <span class="post-date">
-                  <i class="fas fa-calendar-alt"></i> {{ page.date | date: "%B %d, %Y" }}
-                </span>
-                {% if page.author %}
-                  <span class="post-author">
-                    <i class="fas fa-user"></i> {{ page.author }}
-                  </span>
-                {% endif %}
-                {% if page.categories %}
-                  <span class="post-categories">
-                    <i class="fas fa-folder"></i> 
-                    {% for category in page.categories %}
-                      <a href="{{ site.baseurl }}/posts/{{ category | slugify }}/">{{ category }}</a>{% unless forloop.last %}, {% endunless %}
-                    {% endfor %}
-                  </span>
-                {% endif %}
-              </div>
-            {% endif %}
-          </header>
-        {% endif %}
-
-        <div class="post-content">
-          {{ content }}
-        </div>
-
-        {% if page.layout == "default" and page.date and page.layout != "list" %}
-          <div class="post-footer">
-            <div class="post-share">
-              <span>Share this post:</span>
-              <a href="https://twitter.com/intent/tweet?text={{ page.title | url_encode }}&url={{ site.url }}{{ site.baseurl }}{{ page.url | url_encode }}" target="_blank" rel="noopener noreferrer" class="share-link">
-                <i class="fab fa-twitter"></i>
-              </a>
-              <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ site.url }}{{ site.baseurl }}{{ page.url | url_encode }}" target="_blank" rel="noopener noreferrer" class="share-link">
-                <i class="fab fa-linkedin"></i>
-              </a>
-              <a href="https://www.facebook.com/sharer/sharer.php?u={{ site.url }}{{ site.baseurl }}{{ page.url | url_encode }}" target="_blank" rel="noopener noreferrer" class="share-link">
-                <i class="fab fa-facebook"></i>
-              </a>
-            </div>
-          </div>
-        {% endif %}
+      <article class="blog-content">
+        {{ content }}
       </article>
-
-      <!-- Sidebar -->
       {% include sidebar.html %}
-      
     </div>
   </div>
 </main>
 
 {% include footer.html %}
-
-<!-- Script for mobile menu -->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  // Mobile menu toggle
-  const navToggle = document.getElementById('navToggle');
-  const navMenu = document.getElementById('navMenu');
-  
-  if (navToggle && navMenu) {
-    navToggle.addEventListener('click', function(e) {
-      e.stopPropagation();
-      navMenu.classList.toggle('show');
-      this.setAttribute('aria-expanded', navMenu.classList.contains('show'));
-    });
-  }
-  
-  // Close mobile menu when clicking outside
-  document.addEventListener('click', function(event) {
-    if (navMenu && navMenu.classList.contains('show') && 
-        !navMenu.contains(event.target) && 
-        !navToggle.contains(event.target)) {
-      navMenu.classList.remove('show');
-      navToggle.setAttribute('aria-expanded', 'false');
-    }
-  });
-  
-  // Add focus styles for accessibility
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Tab') {
-      document.body.classList.add('keyboard-navigation');
-    }
-  });
-  
-  document.addEventListener('mousedown', function() {
-    document.body.classList.remove('keyboard-navigation');
-  });
-});
-</script>
 
 </body>
 </html>
