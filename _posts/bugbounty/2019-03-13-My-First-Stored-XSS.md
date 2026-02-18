@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Hunting methodology and experience of my First Stored XSS on Edmodo.com
-category: bugbounty
+category: Bug Bounty
 ---
 
 # Hunting methodology and experience of my First Stored XSS on Edmodo.com

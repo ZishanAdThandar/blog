@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Just 5 minute to get my 2nd stored XSS on Edmodo.com
-category: bugbounty
+category: Bug Bounty
 ---
 
 # Just 5 minute to get my 2nd stored XSS on Edmodo.com
