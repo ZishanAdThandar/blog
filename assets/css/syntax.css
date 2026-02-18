@@ -4,27 +4,93 @@
 /* Code block container - matching your dark background */
 .highlight,
 pre.highlight {
-    background: #1a1a1a;  /* Matches your post-content pre background */
-    border: 1px solid var(--border);  /* Uses your theme border variable */
-    border-radius: 12px;  /* Matches your theme's border radius */
+    background: #1a1a1a;
+    border: 1px solid var(--border);
+    border-radius: 12px;
     margin: 2rem 0;
-    box-shadow: var(--shadow);  /* Uses your theme shadow */
-    overflow-x: auto;
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Terminal-style header with copy button integrated */
+.highlight::before {
+    content: "⏺ ⏺ ⏺";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #2a2a2a;
+    color: var(--gray);
+    padding: 8px 15px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    border-bottom: 1px solid var(--border);
+    font-family: monospace;
+    border-radius: 12px 12px 0 0;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Copy button integrated in terminal header */
+.highlight .copy-code-btn {
+    position: relative;
+    top: auto;
+    right: auto;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--border);
+    color: var(--gray);
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Inter', sans-serif;
+    margin-left: auto;
+    z-index: 2;
+}
+
+.highlight .copy-code-btn:hover {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+    transform: translateY(-1px);
+}
+
+.highlight .copy-code-btn:active {
+    transform: translateY(0);
+}
+
+.highlight .copy-code-btn.copied {
+    background: var(--success);
+    color: white;
+    border-color: var(--success);
+}
+
+.highlight .copy-code-btn i {
+    font-size: 12px;
 }
 
 .highlight pre {
-    background: transparent;
-    padding: 1.5rem !important;
+    padding: 3.5rem 1.5rem 1.5rem 1.5rem !important;
     margin: 0;
+    overflow-x: auto;
+    background: transparent;
 }
 
 .highlight code {
     background: transparent;
     padding: 0;
-    font-family: 'Courier New', 'Fira Code', monospace; /* Matches your theme */
+    font-family: 'Courier New', 'Fira Code', monospace;
     font-size: 0.95rem;
     line-height: 1.5;
-    color: #f8f8f2;  /* Light text like your theme */
+    color: #f8f8f2;
 }
 
 /* ===== ROUGE SYNTAX CLASSES ===== */
@@ -272,8 +338,8 @@ pre.highlight {
 
 /* ===== INLINE CODE ===== */
 :not(pre) > code {
-    background: #1e1e1e;  /* Matches your theme */
-    color: var(--primary);  /* #6366f1 - purple */
+    background: #1e1e1e;
+    color: var(--primary);
     padding: 0.2rem 0.4rem;
     border-radius: 4px;
     font-size: 0.9rem;
@@ -283,14 +349,49 @@ pre.highlight {
 /* ===== COMMAND PROMPTS ===== */
 .language-console .highlight .gp,
 .language-bash .highlight .gp {  /* $ or # prompt */
-    color: var(--secondary);  /* #10b981 - green */
+    color: var(--secondary);
     font-weight: bold;
 }
 
 /* ===== DIFF HIGHLIGHTING ===== */
 .highlight .gd .x {
-    background-color: rgba(239, 68, 68, 0.1);  /* danger color with opacity */
+    background-color: rgba(239, 68, 68, 0.1);
 }
 .highlight .gi .x {
-    background-color: rgba(16, 185, 129, 0.1);  /* success color with opacity */
+    background-color: rgba(16, 185, 129, 0.1);
+}
+
+/* ===== CODE BLOCK SCROLLBAR ===== */
+.highlight pre::-webkit-scrollbar {
+    height: 8px;
+}
+
+.highlight pre::-webkit-scrollbar-track {
+    background: #2a2a2a;
+    border-radius: 4px;
+}
+
+.highlight pre::-webkit-scrollbar-thumb {
+    background: var(--gray);
+    border-radius: 4px;
+}
+
+.highlight pre::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+}
+
+/* ===== MOBILE RESPONSIVENESS ===== */
+@media (max-width: 768px) {
+    .highlight .copy-code-btn {
+        padding: 3px 8px;
+        font-size: 10px;
+    }
+    
+    .highlight .copy-code-btn i {
+        font-size: 10px;
+    }
+    
+    .highlight pre {
+        padding: 3.5rem 1rem 1rem 1rem !important;
+    }
 }
