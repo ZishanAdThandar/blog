@@ -32,7 +32,6 @@ image: /assets/images/oscp-commands.png
 
 ## 📦 What's Inside
 
-<br>
 
 - **Enumeration** – FTP, SSH, SMB, HTTP, DNS, LDAP, RDP  
 - **Privilege Escalation** – Linux & Windows checks, decision trees  
@@ -41,13 +40,10 @@ image: /assets/images/oscp-commands.png
 - **Post-Exploitation** – Cred dumping, persistence, evidence collection  
 
 
-<br>
-<br>
 
 
 ## ⚡ Why Obsidian
 
-<br>
 
 <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin: 1.5rem 0;">
   <div><i class="fas fa-link" style="color: var(--primary);"></i> Internal links between techniques</div>
@@ -56,36 +52,28 @@ image: /assets/images/oscp-commands.png
   <div><i class="fas fa-pen" style="color: var(--primary);"></i> Easy to extend with your notes</div>
 </div>
 
-<br>
 
 These are **not PDFs**. They're an Obsidian vault you can search, link, and build upon.
 
 
-<br>
-<br>
 
 
 ## 🎁 What You Get
 
-<br>
 
 - OSCP Commands Obsidian Vault  
 - Categorized command notes  
 - Linked attack flows  
 - Lifetime updates · Instant access  
 
-<br>
 
 One-time payment. No subscriptions.
 
 
-<br>
-<br>
 
 
 ## 🚀 Limited-Time Offer
 
-<br>
 
 <div style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(239, 68, 68, 0.1)); border: 1px solid var(--accent); border-radius: 12px; padding: 2.5rem; text-align: center; margin: 2rem 0;">
   
@@ -105,13 +93,10 @@ One-time payment. No subscriptions.
 </div>
 
 
-<br>
-<br>
 
 
 ## 💭 Final Thought
 
-<br>
 
 OSCP tests **execution under pressure**.  
 These notes let you focus on strategy, not syntax.
