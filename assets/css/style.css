@@ -1424,3 +1424,13 @@ input:-webkit-autofill:active {
         font-size: 16px !important;
     }
 }
+
+/* You could add this to your global CSS */
+.post-content h2 {
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.post-content h2 + br {
+  display: none; /* Remove if you want cleaner HTML */
+}

@@ -83,7 +83,7 @@ One-time payment. No subscriptions.
 <br>
 
 
-## 🔥 Limited-Time Offer
+## 🚀 Limited-Time Offer
 
 <br>
 
