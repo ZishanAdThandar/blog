@@ -1,6 +1,7 @@
 ---
 layout: default
 title: FristiLeaks 1.3 vulnhub machine solved using nmap, dirb and netcat
+category: vulnhub
 ---
 
 # FristiLeaks: 1.3
