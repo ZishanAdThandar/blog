@@ -50,6 +50,8 @@ markdown: kramdown
 highlighter: rouge
 permalink: pretty
 timezone: UTC
+kramdown:
+  input: GFM # Use GitHub Flavored Markdown (GFM)
 
 paginate_path: "/page/:num/"
 
