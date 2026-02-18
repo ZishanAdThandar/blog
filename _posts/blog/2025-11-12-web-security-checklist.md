@@ -1,6 +1,7 @@
 ---
 title: Web Security Checklist – Real Bug Hunting, Systematically
 layout: default
+category: blog
 ---
 
 ### BUG BOUNTY · WEB APPLICATION SECURITY

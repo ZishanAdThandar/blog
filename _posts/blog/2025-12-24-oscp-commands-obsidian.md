@@ -1,6 +1,7 @@
 ---
 title: OSCP Commands – Obsidian Notes for Real Exam Execution
 layout: default
+category: blog
 ---
 
 ### OSCP · PRACTICAL COMMAND EXECUTION

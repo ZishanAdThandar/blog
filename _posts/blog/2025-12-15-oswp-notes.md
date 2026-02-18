@@ -1,6 +1,7 @@
 ---
 title: OSWP Notes – Practical Wireless Attacks, Simplified
 layout: default
+category: blog
 ---
 
 ### WIRELESS SECURITY · PRACTICAL OFFENSIVE TRAINING

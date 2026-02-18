@@ -1,6 +1,7 @@
 ---
 title: CRTA Notes – Real-World Active Directory Red Team Playbook
 layout: default
+category: blog
 ---
 
 ### ADVANCED RED TEAM TRAINING
