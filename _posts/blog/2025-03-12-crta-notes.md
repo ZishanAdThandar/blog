@@ -1,135 +1,108 @@
 ---
-title: CRTA Notes – Real-World Active Directory Red Team Playbook
+title: "CRTA Notes – Real-World Active Directory Red Team Playbook"
 layout: default
 category: blog
+description: "A complete Active Directory red team playbook for CRTA certification. Real-world attacks, privilege escalation, and domain dominance strategies."
+author: "Zishan Ahamed Thandar"
+date: 2025-03-12
+tags: [crta, active-directory, red-team, ad-attacks, pentesting, privilege-escalation]
+image: /assets/images/crta-notes.png
 ---
 
-### ADVANCED RED TEAM TRAINING
+<div style="margin-bottom: 2rem;">
+  <span style="background: var(--gradient); color: white; padding: 0.3rem 1rem; border-radius: 50px; font-size: 0.8rem; font-weight: 600;">
+    <i class="fas fa-skull"></i> CRTA · ACTIVE DIRECTORY ATTACKS
+  </span>
+</div>
 
-# CRTA Notes  
-## Real-World Active Directory Attacks, Explained Step-by-Step
+## CRTA Notes
+### Real-World Active Directory Red Team Playbook
 
-If you’re preparing for **CRTA**, **red team roles**, or serious **Active Directory exploitation**, these notes are built to save you **months of confusion and trial-and-error**.
+<div style="background: rgba(99, 102, 241, 0.1); border-left: 4px solid var(--primary); padding: 1.5rem; border-radius: 0 12px 12px 0; margin: 2rem 0 3rem 0;">
+  <p style="font-size: 1.2rem; margin: 0;">
+    CRTA is not about memorizing AD tools.<br>
+    It's about <strong>thinking like an attacker inside Active Directory</strong> — from initial foothold to domain dominance.
+  </p>
+</div>
 
-This is **not theory**.  
-This is exactly how AD attacks work in real environments.
+<p style="color: var(--gray); margin-bottom: 3rem;">
+  No theory. No guesswork. Just attack flows that work in real enterprises.
+</p>
 
----
 
-## What Makes These CRTA Notes Different?
+## 📦 What's Inside
 
-Most AD resources:
-- Explain tools, not **attack logic**
-- Miss real-world edge cases
-- Assume perfect lab conditions
 
-These notes are different.
+- **Initial Enumeration** – LDAP, SMB, Kerberos recon without detection  
+- **Credential Abuse** – NTLM, Kerberos, Pass-the-Hash, Pass-the-Ticket  
+- **Privilege Escalation** – ACL abuse, delegation, GPO attacks, Kerberoasting  
+- **Lateral Movement** – Living-off-the-land, remote execution, PSRemoting  
+- **Persistence** – Shadow credentials, Golden/Silver tickets, backdoors  
+- **OPSEC** – Staying undetected, evasion techniques, real-world tradecraft  
 
-**You get a complete attacker mindset**, from initial foothold to domain dominance.
 
----
 
-## What You’ll Learn Inside
 
-### Initial Access & Enumeration
-- Domain discovery the right way
-- LDAP, SMB, Kerberos enumeration without noise
-- Mapping trust relationships and attack paths
+## ⚡ Why These Notes Work
 
-### Credential Abuse & Lateral Movement
-- NTLM, Kerberos, and cached credential abuse
-- Pass-the-Hash, Pass-the-Ticket, Overpass-the-Hash
-- Living-off-the-land movement techniques
 
-### Privilege Escalation in Active Directory
-- Misconfigured ACLs & delegation abuse
-- GPO attacks explained clearly
-- Service account abuse & Kerberoasting done properly
+<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin: 1.5rem 0;">
+  <div><i class="fas fa-sitemap" style="color: var(--primary);"></i> Attack path decision trees</div>
+  <div><i class="fas fa-bolt" style="color: var(--primary);"></i> Command-ready workflows</div>
+  <div><i class="fas fa-eye-slash" style="color: var(--primary);"></i> Real OPSEC considerations</div>
+  <div><i class="fas fa-building" style="color: var(--primary);"></i> Enterprise-tested techniques</div>
+</div>
 
-### Active Directory Persistence
-- Shadow credentials
-- Golden & Silver tickets (realistic usage)
-- Backdoors defenders often miss
 
-### Real-World Mindset
-- What works in **labs vs real enterprises**
-- OPSEC mistakes to avoid
-- How real red teamers stay undetected
+Most AD resources work in perfect lab conditions.  
+These notes teach you **what actually works when defenders are watching**.
 
----
 
-## Who These Notes Are For
 
-These notes are **not beginner hand-holding**.
 
-They are perfect if you are:
-- Preparing for **CRTA**
-- Already doing **AD labs** but feeling stuck
-- Moving from CTFs to **real pentesting**
-- A pentester who wants **structured AD mastery**
+## 🎁 What You Get
 
-If AD still feels “random” to you — this fixes that.
 
----
+- CRTA Notes (PDF + Markdown)  
+- Complete AD attack playbook  
+- Privilege escalation decision trees  
+- Lateral movement command reference  
+- Persistence techniques defenders miss  
+- Lifetime updates · Instant access  
 
-## How This Will Save You Time
 
-Instead of:
-- Watching 20+ random videos
-- Reading outdated blog posts
-- Guessing attack order
+One-time payment. No subscriptions. No fluff.
 
-You follow:
-- **Clear attack flows**
-- **Command-ready steps**
-- **Decision-making logic**
 
-Most buyers say this replaces **weeks of lab frustration**.
 
----
 
-## What You Get
+## 🚀 Limited-Time Offer
 
-- 📘 Structured CRTA Notes (PDF)
-- 🧠 Attack flow explanations
-- 🧪 Lab-tested techniques
-- ♻️ Lifetime updates
-- ⚡ Instant access after purchase
 
-One-time payment. No subscriptions.
-
----
-
-## Limited-Time Offer
-
-### 🔥 90% OFF – Available Now
-
-This discount is **not permanent**.
-
-If you’re serious about Active Directory and red teaming, this is the **highest ROI purchase** you can make right now.
-
----
-
-## 👉 Get Instant Access
-
-<p style="margin-top: 1.5rem;">
-  <a href="https://zishanhack.com" class="btn-linktree">
-    Access CRTA Notes Now
+<div style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(239, 68, 68, 0.1)); border: 1px solid var(--accent); border-radius: 12px; padding: 2.5rem; text-align: center; margin: 2rem 0;">
+  
+  <div style="margin-bottom: 1.5rem;">
+    <span style="color: var(--gray); text-decoration: line-through; font-size: 1.2rem;">$697</span>
+    <span style="color: var(--accent); font-size: 2.5rem; font-weight: 800;"> $67</span>
+    <span style="background: var(--gradient-accent); color: white; padding: 0.2rem 1rem; border-radius: 50px; font-size: 1rem; margin-left: 1rem;">90% OFF</span>
+  </div>
+  
+  <a href="https://zishanhack.com/#resources" class="btn btn-premium" style="display: inline-block; padding: 1rem 3rem;">
+    GET INSTANT ACCESS
   </a>
-</p>
+  
+  <p style="margin-top: 1.5rem; font-size: 0.8rem; color: var(--gray);">
+    <i class="fas fa-lock"></i> Secure payment · Instant download · Lifetime updates
+  </p>
+</div>
 
-<p style="margin-top: 0.6rem; font-size: 0.85rem; color: #9ca3af;">
-  Instant access · One-time payment · Lifetime updates
-</p>
 
----
 
-## Final Note
 
-CRTA is not about memorizing tools.  
-It’s about **thinking like an attacker inside Active Directory**.
+## 💭 Final Thought
 
-These notes exist so you don’t waste time learning that the hard way.
 
-If you want **clarity, structure, and real-world relevance** — this page is for you.
+Active Directory feels random when you're guessing attack paths.  
+It becomes predictable when you **follow a structured playbook**.
 
+These notes give you the **clarity, structure, and real-world relevance** to dominate any AD environment — from CRTA to real red team engagements.
