@@ -18,7 +18,7 @@ image: /assets/images/oscp-commands.png
 ## OSCP Commands
 ### A Clean, Structured Obsidian Vault Built for the OSCP Exam
 
-<div style="background: rgba(99, 102, 241, 0.1); border-left: 4px solid var(--primary); padding: 1.5rem; border-radius: 0 12px 12px 0; margin-bottom: 2rem;">
+<div style="background: rgba(99, 102, 241, 0.1); border-left: 4px solid var(--primary); padding: 1.5rem; border-radius: 0 12px 12px 0; margin: 2rem 0;">
   <p style="font-size: 1.2rem; margin: 0;">
     OSCP is not about knowing <em>what tool exists</em>.<br>
     It's about <strong>recalling the right command instantly</strong>, under pressure, without panic.
@@ -29,9 +29,8 @@ image: /assets/images/oscp-commands.png
   No scrolling. No guessing. No broken cheatsheets.
 </p>
 
----
 
-## What's Inside
+## 📦 What's Inside
 
 - **Enumeration** – FTP, SSH, SMB, HTTP, DNS, LDAP, RDP  
 - **Privilege Escalation** – Linux & Windows checks, decision trees  
@@ -39,22 +38,20 @@ image: /assets/images/oscp-commands.png
 - **Active Directory** – Domain enum, credential abuse, lateral movement  
 - **Post-Exploitation** – Cred dumping, persistence, evidence collection  
 
----
 
-## Why Obsidian
+## ⚡ Why Obsidian
 
 <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1.5rem 0;">
-  <div><i class="fas fa-link" style="color: var(--primary);"></i> Internal links</div>
-  <div><i class="fas fa-search" style="color: var(--primary);"></i> Instant search</div>
-  <div><i class="fas fa-brain" style="color: var(--primary);"></i> Knowledge graph</div>
-  <div><i class="fas fa-pen" style="color: var(--primary);"></i> Easy to extend</div>
+  <div><i class="fas fa-link" style="color: var(--primary);"></i> Internal links between techniques</div>
+  <div><i class="fas fa-search" style="color: var(--primary);"></i> Instant search across commands</div>
+  <div><i class="fas fa-brain" style="color: var(--primary);"></i> Knowledge graph for connections</div>
+  <div><i class="fas fa-pen" style="color: var(--primary);"></i> Easy to extend with your notes</div>
 </div>
 
 These are **not PDFs**. They're an Obsidian vault you can search, link, and build upon.
 
----
 
-## What You Get
+## 🎁 What You Get
 
 - OSCP Commands Obsidian Vault  
 - Categorized command notes  
@@ -63,9 +60,8 @@ These are **not PDFs**. They're an Obsidian vault you can search, link, and buil
 
 One-time payment. No subscriptions.
 
----
 
-## Limited-Time Offer
+## 🚀 Limited-Time Offer
 
 <div style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(239, 68, 68, 0.1)); border: 1px solid var(--accent); border-radius: 12px; padding: 2rem; text-align: center; margin: 2rem 0;">
   
@@ -84,7 +80,8 @@ One-time payment. No subscriptions.
   </p>
 </div>
 
----
+
+## 💭 Final Thought
 
 OSCP tests **execution under pressure**.  
 These notes let you focus on strategy, not syntax.
