@@ -1,0 +1,254 @@
+/* ===== SYNTAX HIGHLIGHTING ===== */
+/* Based on your dark theme with cyberpunk/terminal vibes */
+
+/* Code block container */
+.highlight,
+pre.highlight {
+    background: #1a1a1a;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin: 2rem 0;
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Add a pseudo-element for a terminal-like header */
+.highlight::before {
+    content: "⏺ ⏺ ⏺";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #2a2a2a;
+    color: var(--gray);
+    padding: 8px 15px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    border-bottom: 1px solid var(--border);
+    font-family: monospace;
+}
+
+.highlight pre {
+    padding: 2.5rem 1.5rem 1.5rem 1.5rem !important;
+    margin: 0;
+    overflow-x: auto;
+    background: transparent;
+}
+
+.highlight code {
+    background: transparent;
+    padding: 0;
+    font-family: 'Fira Code', 'Courier New', monospace;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #f8f8f2;
+}
+
+/* Line numbers (if enabled) */
+.highlight .lineno {
+    color: var(--gray);
+    padding-right: 15px;
+    text-align: right;
+    user-select: none;
+    border-right: 1px solid var(--border);
+    margin-right: 10px;
+}
+
+/* ===== ROUGE SYNTAX CLASSES ===== */
+.highlight .c, .highlight .c1, .highlight .cm { color: #6272a4; font-style: italic; } /* Comments */
+.highlight .cp { color: #ff79c6; } /* Preprocessor */
+.highlight .cs { color: #ff79c6; font-style: italic; } /* Special Comment */
+
+.highlight .k, .highlight .kd, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kt { color: #ff79c6; } /* Keywords */
+.highlight .kc { color: #bd93f9; } /* Keyword Constant */
+.highlight .kv { color: #ff79c6; } /* Keyword Variable */
+
+.highlight .o, .highlight .ow { color: #ff79c6; } /* Operators */
+
+.highlight .p { color: #f8f8f2; } /* Punctuation */
+
+.highlight .ge { font-style: italic; } /* Generic Emph */
+.highlight .gs { font-weight: bold; } /* Generic Strong */
+
+/* Names */
+.highlight .na { color: #50fa7b; } /* Name Attribute */
+.highlight .nb { color: #8be9fd; } /* Name Builtin */
+.highlight .nc { color: #50fa7b; } /* Name Class */
+.highlight .no { color: #bd93f9; } /* Name Constant */
+.highlight .nd { color: #50fa7b; } /* Name Decorator */
+.highlight .ni { color: #ff79c6; } /* Name Entity */
+.highlight .ne { color: #ff5555; } /* Name Exception */
+.highlight .nf, .highlight .nx { color: #50fa7b; } /* Name Function */
+.highlight .nl { color: #8be9fd; } /* Name Label */
+.highlight .nn { color: #f8f8f2; } /* Name Namespace */
+.highlight .nt { color: #ff79c6; } /* Name Tag */
+.highlight .nv, .highlight .vc, .highlight .vg, .highlight .vi { color: #f8f8f2; } /* Name Variable */
+.highlight .vm { color: #f8f8f2; } /* Name Variable Magic */
+
+/* Literals */
+.highlight .l { color: #bd93f9; } /* Literal */
+.highlight .ld { color: #f1fa8c; } /* Literal Date */
+
+/* Strings */
+.highlight .s, .highlight .sa, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .se, .highlight .sh, .highlight .si, .highlight .sx, .highlight .sr, .highlight .s1, .highlight .ss { 
+    color: #f1fa8c; 
+} /* Strings */
+
+/* Numbers */
+.highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .mo, .highlight .il { 
+    color: #bd93f9; 
+} /* Numbers */
+
+/* Generic */
+.highlight .gd { color: #ff5555; } /* Deleted */
+.highlight .gi { color: #50fa7b; } /* Inserted */
+
+/* Error */
+.highlight .gr { color: #ff5555; } /* Error */
+.highlight .gt { color: #ff5555; } /* Traceback */
+
+/* ===== LANGUAGE-SPECIFIC ENHANCEMENTS ===== */
+/* JSON */
+.language-json .highlight .s2 { color: #f1fa8c; }
+.language-json .highlight .mi { color: #bd93f9; }
+.language-json .highlight .kc { color: #ff79c6; }
+
+/* YAML */
+.language-yaml .highlight .nt { color: #50fa7b; }
+.language-yaml .highlight .s { color: #f1fa8c; }
+
+/* Markdown */
+.language-markdown .highlight .gh { color: #ff79c6; font-weight: bold; }
+.language-markdown .highlight .gs { font-weight: bold; }
+.language-markdown .highlight .ge { font-style: italic; }
+.language-markdown .highlight .go { color: #6272a4; }
+
+/* Bash/Shell */
+.language-bash .highlight .nb { color: #50fa7b; }
+.language-bash .highlight .s2 { color: #f1fa8c; }
+.language-bash .highlight .nv { color: #8be9fd; }
+
+/* Python */
+.language-python .highlight .k { color: #ff79c6; }
+.language-python .highlight .nf { color: #50fa7b; }
+.language-python .highlight .nc { color: #8be9fd; }
+
+/* JavaScript */
+.language-javascript .highlight .k { color: #ff79c6; }
+.language-javascript .highlight .nx { color: #8be9fd; }
+.language-javascript .highlight .s2 { color: #f1fa8c; }
+
+/* HTML */
+.language-html .highlight .nt { color: #ff79c6; }
+.language-html .highlight .na { color: #50fa7b; }
+.language-html .highlight .s { color: #f1fa8c; }
+
+/* CSS */
+.language-css .highlight .k { color: #ff79c6; }
+.language-css .highlight .nf { color: #50fa7b; }
+.language-css .highlight .m { color: #bd93f9; }
+.language-css .highlight .nb { color: #8be9fd; }
+
+/* SQL */
+.language-sql .highlight .k { color: #ff79c6; }
+.language-sql .highlight .n { color: #f8f8f2; }
+.language-sql .highlight .s { color: #f1fa8c; }
+
+/* Ruby */
+.language-ruby .highlight .k { color: #ff79c6; }
+.language-ruby .highlight .nf { color: #50fa7b; }
+.language-ruby .highlight .ss { color: #f1fa8c; }
+
+/* ===== CODE BLOCK TOOLBAR ===== */
+.code-toolbar {
+    position: relative;
+}
+
+.code-toolbar .toolbar {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    z-index: 10;
+}
+
+.code-toolbar .toolbar button {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--border);
+    color: var(--gray);
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.code-toolbar .toolbar button:hover {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+/* ===== CODE BLOCK SCROLLBAR ===== */
+.highlight pre::-webkit-scrollbar {
+    height: 8px;
+}
+
+.highlight pre::-webkit-scrollbar-track {
+    background: #2a2a2a;
+    border-radius: 4px;
+}
+
+.highlight pre::-webkit-scrollbar-thumb {
+    background: var(--gray);
+    border-radius: 4px;
+}
+
+.highlight pre::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+}
+
+/* ===== INLINE CODE ===== */
+:not(pre) > code {
+    background: #2a2a2a;
+    color: #ff79c6;
+    padding: 0.2rem 0.4rem;
+    border-radius: 6px;
+    font-size: 0.9em;
+    border: 1px solid var(--border);
+}
+
+/* ===== DIFF HIGHLIGHTING ===== */
+.highlight .gd .x { background-color: rgba(255, 85, 85, 0.2); } /* Deleted specific */
+.highlight .gi .x { background-color: rgba(80, 250, 123, 0.2); } /* Inserted specific */
+
+/* ===== COMMAND LINE PROMPTS ===== */
+.language-console .highlight .gp,
+.language-bash .highlight .gp {
+    color: #50fa7b;
+    font-weight: bold;
+}
+
+.language-console .highlight .go,
+.language-bash .highlight .go {
+    color: var(--gray);
+}
+
+/* ===== TERMINAL OUTPUT ===== */
+.terminal-output {
+    color: #f8f8f2;
+}
+
+/* ===== ERROR MESSAGES ===== */
+.highlight .err {
+    color: #ff5555;
+    background-color: transparent;
+}
+
+/* ===== HIGHLIGHTED LINES ===== */
+.highlight .hll {
+    background-color: rgba(255, 255, 255, 0.1);
+    display: block;
+    margin: 0 -1.5rem;
+    padding: 0 1.5rem;
+}
