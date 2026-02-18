@@ -1427,8 +1427,8 @@ input:-webkit-autofill:active {
 
 /* You could add this to your global CSS */
 .post-content h2 {
-  margin-top: 2rem;
-  margin-bottom: 0.5rem;
+  margin-top: 4rem;
+  margin-bottom: 1rem;
 }
 
 .post-content h2 + br {
