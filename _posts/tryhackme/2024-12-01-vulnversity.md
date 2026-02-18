@@ -1,6 +1,7 @@
 ---
 layout: default
 title: VulnUniversity THM - A detailed Writeup
+category: tryhackme
 ---
 
 # VulnUniversity

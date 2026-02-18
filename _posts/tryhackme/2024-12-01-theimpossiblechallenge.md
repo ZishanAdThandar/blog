@@ -1,6 +1,7 @@
 ---
 layout: default
 title: The Impossible Challenge - TryHackMe room Writeup
+category: tryhackme
 ---
 
 # The Impossible Challenge

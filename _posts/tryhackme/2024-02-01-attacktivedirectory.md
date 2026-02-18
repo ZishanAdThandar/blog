@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Attacktive Directory -TryHackMe Active Directory Lab Solution
+category: tryhackme
 ---
 
 # Attacktive Directory

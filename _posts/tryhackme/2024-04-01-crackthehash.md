@@ -1,6 +1,7 @@
 ---
 layout: default
 title: CrackTheHash Writeup - TryHackMe room to learn hash cracking
+category: tryhackme
 ---
 
 # CrackTheHash
