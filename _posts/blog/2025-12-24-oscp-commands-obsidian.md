@@ -61,40 +61,13 @@ image: /assets/images/oscp-commands.png
 </p>
 
 
-
-
-
 ## What These Obsidian Notes Contain
 
-### 🔍 Enumeration Commands (Structured by Service)
-- FTP, SSH, SMB, HTTP, DNS, LDAP, RDP
-- Commands grouped by **what you're trying to achieve**
-- Clear indicators for next steps
-
-### ⚡ Privilege Escalation
-- Linux & Windows privesc commands
-- File permission checks
-- Kernel, service, and misconfiguration checks
-- Commands arranged as **decision trees**
-
-### 🌐 Web Exploitation Commands
-- SQL injection helpers
-- File upload testing
-- LFI / RFI workflows
-- Common bypass techniques
-
-### 🏢 Active Directory (OSCP-Relevant)
-- Domain enumeration
-- Credential abuse commands
-- Lateral movement basics (OSCP-safe scope)
-
-### 💰 Post-Exploitation & Looting
-- Credential dumping
-- Persistence-safe techniques
-- Clean evidence collection
-
-
-
+- ### 🔍 Enumeration Commands (Structured by Service)
+- ### ⚡ Privilege Escalation
+- ### 🌐 Web Exploitation Commands
+- ### 🏢 Active Directory (OSCP-Relevant)
+- ### 💰 Post-Exploitation & Looting
 
 
 ## Why Obsidian Changes Everything
