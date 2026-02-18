@@ -13,9 +13,9 @@ pre.highlight {
     overflow: hidden;
 }
 
-/* Terminal-style header with copy button integrated */
+/* Terminal-style header with copy button on right */
 .highlight::before {
-    content: "⏺ ⏺ ⏺";
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -23,22 +23,30 @@ pre.highlight {
     background: #2a2a2a;
     color: var(--gray);
     padding: 8px 15px;
-    font-size: 10px;
-    letter-spacing: 2px;
     border-bottom: 1px solid var(--border);
     font-family: monospace;
     border-radius: 12px 12px 0 0;
     z-index: 1;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    height: 35px;
 }
 
-/* Copy button integrated in terminal header */
+/* Three dots (terminal style) */
+.highlight::after {
+    content: "⏺ ⏺ ⏺";
+    position: absolute;
+    top: 8px;
+    left: 15px;
+    color: var(--gray);
+    font-size: 10px;
+    letter-spacing: 2px;
+    z-index: 2;
+}
+
+/* Copy button positioned on top right */
 .highlight .copy-code-btn {
-    position: relative;
-    top: auto;
-    right: auto;
+    position: absolute;
+    top: 6px;
+    right: 10px;
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid var(--border);
     color: var(--gray);
@@ -52,8 +60,7 @@ pre.highlight {
     align-items: center;
     gap: 6px;
     font-family: 'Inter', sans-serif;
-    margin-left: auto;
-    z-index: 2;
+    z-index: 3;
 }
 
 .highlight .copy-code-btn:hover {
@@ -94,241 +101,193 @@ pre.highlight {
 }
 
 /* ===== ROUGE SYNTAX CLASSES ===== */
-/* Using your theme's exact colors from :root */
-.highlight .c,      /* Comment */
-.highlight .c1,     /* Comment.Single */
-.highlight .cm {    /* Comment.Multiline */
-    color: var(--gray);  /* #94a3b8 - using your gray */
+.highlight .c, .highlight .c1, .highlight .cm {
+    color: var(--gray);
     font-style: italic;
 }
 
-.highlight .cp {     /* Comment.Preproc */
-    color: var(--accent);  /* #f59e0b - your accent color */
+.highlight .cp {
+    color: var(--accent);
 }
 
-.highlight .cs {     /* Comment.Special */
-    color: var(--gray-dark);  /* #475569 - your dark gray */
+.highlight .cs {
+    color: var(--gray-dark);
     font-style: italic;
 }
 
-/* Keywords */
-.highlight .k,      /* Keyword */
-.highlight .kd,     /* Keyword.Declaration */
-.highlight .kn,     /* Keyword.Namespace */
-.highlight .kp,     /* Keyword.Pseudo */
-.highlight .kr,     /* Keyword.Reserved */
-.highlight .kt {    /* Keyword.Type */
-    color: var(--primary);  /* #6366f1 - your primary purple */
+.highlight .k, .highlight .kd, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kt {
+    color: var(--primary);
     font-weight: bold;
 }
 
-.highlight .kc {     /* Keyword.Constant */
-    color: var(--secondary);  /* #10b981 - your secondary green */
+.highlight .kc {
+    color: var(--secondary);
 }
 
-.highlight .kv {     /* Keyword.Variable */
-    color: var(--primary-dark);  /* #4f46e5 - darker purple */
+.highlight .kv {
+    color: var(--primary-dark);
 }
 
-/* Operators */
-.highlight .o,      /* Operator */
-.highlight .ow {    /* Operator.Word */
-    color: var(--accent);  /* #f59e0b - your accent orange */
+.highlight .o, .highlight .ow {
+    color: var(--accent);
 }
 
-/* Names */
-.highlight .na {     /* Name.Attribute */
-    color: var(--secondary);  /* #10b981 - green */
+.highlight .na {
+    color: var(--secondary);
 }
 
-.highlight .nb {     /* Name.Builtin */
-    color: var(--primary);  /* #6366f1 - purple */
+.highlight .nb {
+    color: var(--primary);
 }
 
-.highlight .nc {     /* Name.Class */
-    color: var(--accent);  /* #f59e0b - orange */
+.highlight .nc {
+    color: var(--accent);
     font-weight: bold;
 }
 
-.highlight .no {     /* Name.Constant */
-    color: var(--danger);  /* #ef4444 - red */
+.highlight .no {
+    color: var(--danger);
 }
 
-.highlight .nd {     /* Name.Decorator */
-    color: var(--secondary);  /* #10b981 - green */
+.highlight .nd {
+    color: var(--secondary);
 }
 
-.highlight .ni {     /* Name.Entity */
-    color: var(--accent);  /* #f59e0b - orange */
+.highlight .ni {
+    color: var(--accent);
 }
 
-.highlight .ne {     /* Name.Exception */
-    color: var(--danger);  /* #ef4444 - red */
+.highlight .ne {
+    color: var(--danger);
     font-weight: bold;
 }
 
-.highlight .nf {     /* Name.Function */
-    color: var(--secondary);  /* #10b981 - green */
+.highlight .nf {
+    color: var(--secondary);
     font-weight: bold;
 }
 
-.highlight .nl {     /* Name.Label */
-    color: var(--primary);  /* #6366f1 - purple */
+.highlight .nl {
+    color: var(--primary);
 }
 
-.highlight .nn {     /* Name.Namespace */
-    color: var(--light);  /* #ffffff - white */
+.highlight .nn {
+    color: var(--light);
     font-weight: bold;
 }
 
-.highlight .nt {     /* Name.Tag */
-    color: var(--primary);  /* #6366f1 - purple */
+.highlight .nt {
+    color: var(--primary);
 }
 
-.highlight .nv,      /* Name.Variable */
-.highlight .vc,      /* Name.Variable.Class */
-.highlight .vg,      /* Name.Variable.Global */
-.highlight .vi {     /* Name.Variable.Instance */
-    color: var(--light);  /* #ffffff - white */
+.highlight .nv, .highlight .vc, .highlight .vg, .highlight .vi {
+    color: var(--light);
 }
 
-/* Strings */
-.highlight .s,       /* Literal.String */
-.highlight .sa,      /* Literal.String.Affix */
-.highlight .sb,      /* Literal.String.Backtick */
-.highlight .sc,      /* Literal.String.Char */
-.highlight .dl,      /* Literal.String.Delimiter */
-.highlight .sd,      /* Literal.String.Doc */
-.highlight .s2,      /* Literal.String.Double */
-.highlight .se,      /* Literal.String.Escape */
-.highlight .sh,      /* Literal.String.Heredoc */
-.highlight .si,      /* Literal.String.Interpol */
-.highlight .sx,      /* Literal.String.Other */
-.highlight .sr,      /* Literal.String.Regex */
-.highlight .s1,      /* Literal.String.Single */
-.highlight .ss {     /* Literal.String.Symbol */
-    color: var(--accent);  /* #f59e0b - orange */
+.highlight .s, .highlight .sa, .highlight .sb, .highlight .sc, .highlight .dl,
+.highlight .sd, .highlight .s2, .highlight .se, .highlight .sh, .highlight .si,
+.highlight .sx, .highlight .sr, .highlight .s1, .highlight .ss {
+    color: var(--accent);
 }
 
-/* Numbers */
-.highlight .m,       /* Literal.Number */
-.highlight .mb,      /* Literal.Number.Bin */
-.highlight .mf,      /* Literal.Number.Float */
-.highlight .mh,      /* Literal.Number.Hex */
-.highlight .mi,      /* Literal.Number.Integer */
-.highlight .mo,      /* Literal.Number.Oct */
-.highlight .il {     /* Literal.Number.Integer.Long */
-    color: var(--secondary);  /* #10b981 - green */
+.highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi,
+.highlight .mo, .highlight .il {
+    color: var(--secondary);
 }
 
-/* Generic */
-.highlight .ge {     /* Generic.Emph */
+.highlight .ge {
     font-style: italic;
 }
 
-.highlight .gs {     /* Generic.Strong */
+.highlight .gs {
     font-weight: bold;
 }
 
-.highlight .gd {     /* Generic.Deleted */
-    color: var(--danger);  /* #ef4444 - red */
+.highlight .gd {
+    color: var(--danger);
 }
 
-.highlight .gi {     /* Generic.Inserted */
-    color: var(--success);  /* #10b981 - green */
+.highlight .gi {
+    color: var(--success);
 }
 
-/* Error */
-.highlight .gr {     /* Generic.Error */
-    color: var(--danger);  /* #ef4444 - red */
+.highlight .gr, .highlight .gt {
+    color: var(--danger);
 }
 
-.highlight .gt {     /* Generic.Traceback */
-    color: var(--danger);  /* #ef4444 - red */
-}
-
-/* Punctuation */
-.highlight .p {      /* Punctuation */
-    color: var(--gray);  /* #94a3b8 - your gray */
+.highlight .p {
+    color: var(--gray);
 }
 
 /* ===== LANGUAGE-SPECIFIC TWEAKS ===== */
-/* Bash/Shell */
-.language-bash .highlight .nb {  /* Built-in commands */
-    color: var(--primary);  /* #6366f1 - purple */
+.language-bash .highlight .nb {
+    color: var(--primary);
 }
 
-/* Python */
-.language-python .highlight .k {  /* def, class, etc */
-    color: var(--primary);  /* #6366f1 - purple */
+.language-python .highlight .k {
+    color: var(--primary);
 }
-.language-python .highlight .nf {  /* function names */
-    color: var(--secondary);  /* #10b981 - green */
-}
-
-/* JavaScript */
-.language-javascript .highlight .k {  /* function, const, etc */
-    color: var(--primary);  /* #6366f1 - purple */
-}
-.language-javascript .highlight .nx {  /* object properties */
-    color: var(--light);  /* #ffffff - white */
+.language-python .highlight .nf {
+    color: var(--secondary);
 }
 
-/* HTML */
-.language-html .highlight .nt {  /* tags */
-    color: var(--primary);  /* #6366f1 - purple */
+.language-javascript .highlight .k {
+    color: var(--primary);
 }
-.language-html .highlight .na {  /* attributes */
-    color: var(--secondary);  /* #10b981 - green */
-}
-.language-html .highlight .s {   /* attribute values */
-    color: var(--accent);  /* #f59e0b - orange */
+.language-javascript .highlight .nx {
+    color: var(--light);
 }
 
-/* CSS */
-.language-css .highlight .k {     /* properties */
-    color: var(--primary);  /* #6366f1 - purple */
+.language-html .highlight .nt {
+    color: var(--primary);
 }
-.language-css .highlight .nf {    /* function names */
-    color: var(--secondary);  /* #10b981 - green */
+.language-html .highlight .na {
+    color: var(--secondary);
 }
-.language-css .highlight .m {     /* numbers */
-    color: var(--secondary);  /* #10b981 - green */
-}
-.language-css .highlight .nb {    /* units (px, em) */
-    color: var(--accent);  /* #f59e0b - orange */
+.language-html .highlight .s {
+    color: var(--accent);
 }
 
-/* SQL */
-.language-sql .highlight .k {     /* keywords */
-    color: var(--primary);  /* #6366f1 - purple */
+.language-css .highlight .k {
+    color: var(--primary);
 }
-.language-sql .highlight .s {     /* strings */
-    color: var(--accent);  /* #f59e0b - orange */
+.language-css .highlight .nf {
+    color: var(--secondary);
 }
-
-/* YAML */
-.language-yaml .highlight .nt {   /* keys */
-    color: var(--secondary);  /* #10b981 - green */
+.language-css .highlight .m {
+    color: var(--secondary);
 }
-.language-yaml .highlight .s {    /* string values */
-    color: var(--accent);  /* #f59e0b - orange */
+.language-css .highlight .nb {
+    color: var(--accent);
 }
 
-/* JSON */
-.language-json .highlight .s2 {   /* property names */
-    color: var(--secondary);  /* #10b981 - green */
+.language-sql .highlight .k {
+    color: var(--primary);
 }
-.language-json .highlight .mi {   /* numbers */
-    color: var(--accent);  /* #f59e0b - orange */
-}
-.language-json .highlight .kc {   /* true/false/null */
-    color: var(--primary);  /* #6366f1 - purple */
+.language-sql .highlight .s {
+    color: var(--accent);
 }
 
-/* ===== LINE NUMBERS (if enabled) ===== */
+.language-yaml .highlight .nt {
+    color: var(--secondary);
+}
+.language-yaml .highlight .s {
+    color: var(--accent);
+}
+
+.language-json .highlight .s2 {
+    color: var(--secondary);
+}
+.language-json .highlight .mi {
+    color: var(--accent);
+}
+.language-json .highlight .kc {
+    color: var(--primary);
+}
+
+/* ===== LINE NUMBERS ===== */
 .highlight .lineno {
-    color: var(--gray);  /* #94a3b8 */
+    color: var(--gray);
     padding-right: 15px;
     text-align: right;
     user-select: none;
@@ -348,7 +307,7 @@ pre.highlight {
 
 /* ===== COMMAND PROMPTS ===== */
 .language-console .highlight .gp,
-.language-bash .highlight .gp {  /* $ or # prompt */
+.language-bash .highlight .gp {
     color: var(--secondary);
     font-weight: bold;
 }
@@ -385,6 +344,8 @@ pre.highlight {
     .highlight .copy-code-btn {
         padding: 3px 8px;
         font-size: 10px;
+        top: 8px;
+        right: 8px;
     }
     
     .highlight .copy-code-btn i {
