@@ -65,50 +65,7 @@
     </div>
   </div>
 
- <!-- Random Article Card - FIXED to show any random post -->
-<div class="sidebar-card">
-  <h3 class="sidebar-title"><i class="fas fa-compass"></i> Discover an Article</h3>
-  
-  {% comment %}
-    Get a random post from ALL posts
-  {% endcomment %}
-  
-  {% assign all_posts = site.posts %}
-  {% assign random_post = all_posts | sample: 1 %}
-  
-  {% if random_post.size > 0 %}
-    <div class="random-post">
-      {% for post in random_post %}
-        <div class="random-post-card">
-          <div class="post-icon-large">
-            <i class="fas fa-file-alt"></i>
-          </div>
-          <h4 style="margin: 1rem 0 0.5rem; color: white;">{{ post.title | truncate: 40 }}</h4>
-          <p style="color: var(--gray); font-size: 0.9rem; margin-bottom: 1rem;">
-            <i class="fas fa-calendar-alt"></i> {{ post.date | date: "%B %d, %Y" }}
-          </p>
-          {% if post.categories.size > 0 %}
-            <p style="color: var(--primary); font-size: 0.8rem; margin-bottom: 1rem;">
-              <i class="fas fa-folder"></i> {{ post.categories | first | capitalize }}
-            </p>
-          {% endif %}
-          <a href="{{ post.url | relative_url }}" class="btn btn-outline btn-small" style="width: 100%;">
-            Read Article <i class="fas fa-arrow-right"></i>
-          </a>
-        </div>
-      {% endfor %}
-    </div>
-  {% else %}
-    <div class="random-post-card">
-      <div class="post-icon-large">
-        <i class="fas fa-file-alt"></i>
-      </div>
-      <p style="color: var(--gray); margin: 1rem 0;">No articles yet</p>
-      <p style="color: var(--gray); font-size: 0.85rem;">Check back soon for new content!</p>
-    </div>
-  {% endif %}
-</div>
-
+ 
   <!-- Categories Card - FIXED -->
   <div class="sidebar-card">
     <h3 class="sidebar-title"><i class="fas fa-layer-group"></i> Categories</h3>
