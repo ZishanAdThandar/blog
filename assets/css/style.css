@@ -479,27 +479,71 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1.1rem;
 }
 
+/* ===== FIXED HEADING SPACING ===== */
 .post-content h1,
 .post-content h2,
 .post-content h3,
 .post-content h4,
 .post-content h5,
 .post-content h6 {
-    margin-top: 2.5rem;
-    margin-bottom: 1rem;
     color: white;
     font-weight: 700;
 }
 
-.post-content h1 { font-size: 2.2rem; }
-.post-content h2 { font-size: 1.8rem; }
-.post-content h3 { font-size: 1.5rem; }
-.post-content h4 { font-size: 1.2rem; }
+.post-content h1 { 
+    font-size: 2.2rem; 
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+}
 
+.post-content h2 { 
+    font-size: 1.8rem; 
+    margin-top: 5rem;
+    margin-bottom: 1.5rem;
+}
+
+.post-content h2:first-of-type {
+    margin-top: 2rem;
+}
+
+.post-content h3 { 
+    font-size: 1.5rem; 
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+}
+
+.post-content h4 { 
+    font-size: 1.2rem; 
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+/* Remove extra spacing after headings */
+.post-content h1 + *,
+.post-content h2 + *,
+.post-content h3 + *,
+.post-content h4 + * {
+    margin-top: 0;
+}
+
+/* Style for emoji headers */
+.post-content h2:has(> emoji),
+.post-content h2:has(.emoji) {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* ===== PARAGRAPH SPACING ===== */
 .post-content p {
     margin-bottom: 1.5rem;
 }
 
+.post-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* ===== LINK STYLES ===== */
 .post-content a {
     color: var(--primary);
     text-decoration: none;
@@ -511,6 +555,7 @@ h1, h2, h3, h4, h5, h6 {
     border-bottom-style: solid;
 }
 
+/* ===== CODE BLOCKS ===== */
 .post-content code {
     background: rgba(255, 255, 255, 0.1);
     padding: 0.2rem 0.4rem;
@@ -526,7 +571,7 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 12px;
     padding: 1.5rem;
     overflow-x: auto;
-    margin: 1.5rem 0;
+    margin: 2rem 0;
 }
 
 .post-content pre code {
@@ -535,35 +580,53 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--light);
 }
 
+/* ===== BLOCKQUOTES ===== */
 .post-content blockquote {
     border-left: 4px solid var(--primary);
-    padding: 1rem 1.5rem;
-    margin: 1.5rem 0;
+    padding: 1.5rem 2rem;
+    margin: 2rem 0;
     background: rgba(99, 102, 241, 0.1);
     border-radius: 0 12px 12px 0;
     font-style: italic;
 }
 
+/* ===== IMAGES ===== */
 .post-content img {
     max-width: 100%;
     border-radius: 12px;
     border: 1px solid var(--border);
-    margin: 1.5rem 0;
+    margin: 2rem 0;
 }
 
+/* ===== LISTS ===== */
 .post-content ul,
 .post-content ol {
-    margin: 1.5rem 0;
+    margin: 1.5rem 0 2rem 0;
     padding-left: 1.5rem;
 }
 
 .post-content li {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.post-content li:last-child {
+    margin-bottom: 0;
+}
+
+/* ===== GRID LAYOUTS ===== */
+.post-content .feature-grid,
+.post-content div[style*="grid-template-columns"] {
+    margin: 2rem 0 3rem 0;
+}
+
+/* ===== CTA BOXES ===== */
+.post-content div[style*="background: linear-gradient(135deg, rgba(245, 158, 11"] {
+    margin: 3rem 0 2rem 0;
 }
 
 /* ===== POST FOOTER ===== */
 .post-footer {
-    margin-top: 3rem;
+    margin-top: 4rem;
     padding-top: 2rem;
     border-top: 1px solid var(--border);
 }
@@ -1251,6 +1314,11 @@ h1, h2, h3, h4, h5, h6 {
         gap: 0.5rem;
     }
     
+    /* Post content mobile spacing */
+    .post-content h2 {
+        margin-top: 3rem;
+    }
+    
     /* Footer */
     .footer-grid {
         grid-template-columns: 1fr;
@@ -1315,6 +1383,12 @@ h1, h2, h3, h4, h5, h6 {
     .btn {
         padding: 0.8rem 1.2rem;
         font-size: 0.9rem;
+    }
+    
+    /* Post content mobile spacing */
+    .post-content h2 {
+        margin-top: 2.5rem;
+        margin-bottom: 1rem;
     }
 }
 
@@ -1423,14 +1497,4 @@ input:-webkit-autofill:active {
     select {
         font-size: 16px !important;
     }
-}
-
-/* You could add this to your global CSS */
-.post-content h2 {
-  margin-top: 4rem;
-  margin-bottom: 1rem;
-}
-
-.post-content h2 + br {
-  display: none; /* Remove if you want cleaner HTML */
 }
