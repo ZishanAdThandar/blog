@@ -9,6 +9,7 @@ tags: [oscp, obsidian, commands, cheatsheet, penetration-testing]
 image: /assets/images/oscp-commands.png
 ---
 
+
 <div class="post-category-badge" style="margin-bottom: 1rem;">
   <span style="background: var(--gradient); color: white; padding: 0.3rem 1rem; border-radius: 50px; font-size: 0.8rem; font-weight: 600;">
     <i class="fas fa-certificate"></i> OSCP · PRACTICAL COMMAND EXECUTION
@@ -30,7 +31,9 @@ image: /assets/images/oscp-commands.png
   No scrolling. No guessing. No broken cheatsheets.
 </p>
 
----
+
+
+
 
 ## Why Most OSCP Candidates Fail Command Recall
 
@@ -57,7 +60,9 @@ image: /assets/images/oscp-commands.png
   In the OSCP exam, <span style="color: var(--accent);">time is your real enemy</span>.
 </p>
 
----
+
+
+
 
 ## What These Obsidian Notes Contain
 
@@ -88,7 +93,9 @@ image: /assets/images/oscp-commands.png
 - Persistence-safe techniques
 - Clean evidence collection
 
----
+
+
+
 
 ## Why Obsidian Changes Everything
 
@@ -124,7 +131,9 @@ image: /assets/images/oscp-commands.png
   You think less. You execute faster.
 </p>
 
----
+
+
+
 
 ## How These Notes Are Used in the Exam
 
@@ -151,7 +160,9 @@ image: /assets/images/oscp-commands.png
   Many users report saving <strong>hours during labs and exam</strong>.
 </p>
 
----
+
+
+
 
 ## Who This Is For
 
@@ -168,7 +179,9 @@ image: /assets/images/oscp-commands.png
   </p>
 </div>
 
----
+
+
+
 
 ## What You Get
 
@@ -194,7 +207,9 @@ image: /assets/images/oscp-commands.png
   One-time payment. No subscriptions.
 </p>
 
----
+
+
+
 
 ## Limited-Time Offer
 
@@ -218,7 +233,9 @@ image: /assets/images/oscp-commands.png
   </p>
 </div>
 
----
+
+
+
 
 ## Final Thought
 
