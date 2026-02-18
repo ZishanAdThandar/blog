@@ -3,7 +3,7 @@ layout: default
 title: Home
 ---
 
-<img src="{{ site.baseurl }}/assets/images/banner.png" alt="ZishanHack Banner" style="width:100%;max-height:260px;object-fit:cover;margin-bottom:2rem;border-radius:12px;" />
+<img src="{{ site.baseurl }}/banner.png" alt="ZishanHack Banner" style="width:100%;max-height:260px;object-fit:cover;margin-bottom:2rem;border-radius:12px;" />
 
 ## About This Space
 
@@ -11,8 +11,6 @@ This site is a curated knowledge base focused on practical offensive security, r
 Content here prioritizes clarity, repeatability, and methodology over noise or trend-driven material.
 
 Everything published is written from hands-on experience and intended to be usable as reference material during active learning or real engagements.
-
----
 
 ## Start Here
 
