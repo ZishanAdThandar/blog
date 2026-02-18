@@ -67,6 +67,24 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.2;
     margin-bottom: 1rem;
     letter-spacing: -0.5px;
+    color: var(--light);
+}
+
+/* FIXED: Header spacing */
+h1 { margin-top: 2rem; }
+h2 { margin-top: 3rem; }
+h3 { margin-top: 2.5rem; }
+h4 { margin-top: 2rem; }
+h5 { margin-top: 1.5rem; }
+h6 { margin-top: 1.5rem; }
+
+h1:first-child, 
+h2:first-child, 
+h3:first-child, 
+h4:first-child, 
+h5:first-child, 
+h6:first-child {
+    margin-top: 0;
 }
 
 .text-gradient {
@@ -447,6 +465,7 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 1rem;
     color: white;
     line-height: 1.2;
+    margin-top: 0;
 }
 
 .post-meta {
@@ -479,7 +498,7 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1.1rem;
 }
 
-/* ===== FIXED HEADING SPACING ===== */
+/* FIXED: Better heading spacing in post content */
 .post-content h1,
 .post-content h2,
 .post-content h3,
@@ -498,7 +517,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .post-content h2 { 
     font-size: 1.8rem; 
-    margin-top: 5rem;
+    margin-top: 3.5rem;
     margin-bottom: 1.5rem;
 }
 
@@ -508,7 +527,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .post-content h3 { 
     font-size: 1.5rem; 
-    margin-top: 3rem;
+    margin-top: 2.5rem;
     margin-bottom: 1rem;
 }
 
@@ -543,11 +562,12 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 0;
 }
 
-/* ===== LINK STYLES ===== */
+/* ===== FIXED: LINK STYLES ===== */
 .post-content a {
     color: var(--primary);
     text-decoration: none;
     border-bottom: 1px dashed var(--primary);
+    transition: all 0.3s ease;
 }
 
 .post-content a:hover {
@@ -555,30 +575,54 @@ h1, h2, h3, h4, h5, h6 {
     border-bottom-style: solid;
 }
 
-/* ===== CODE BLOCKS ===== */
+/* Override browser default blue links */
+a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--primary-dark);
+}
+
+/* ===== FIXED: CODE BLOCKS ===== */
 .post-content code {
-    background: rgba(255, 255, 255, 0.1);
+    background: #1e1e1e;
     padding: 0.2rem 0.4rem;
     border-radius: 4px;
-    font-family: 'Courier New', monospace;
+    font-family: 'Courier New', 'Fira Code', monospace;
     font-size: 0.9rem;
-    color: var(--accent);
+    color: #f8f8f2;
+    border: 1px solid var(--border);
 }
 
 .post-content pre {
-    background: rgba(0, 0, 0, 0.3);
+    background: #1a1a1a;
     border: 1px solid var(--border);
     border-radius: 12px;
     padding: 1.5rem;
     overflow-x: auto;
     margin: 2rem 0;
+    box-shadow: var(--shadow);
 }
 
 .post-content pre code {
-    background: none;
+    background: transparent;
     padding: 0;
-    color: var(--light);
+    border: none;
+    color: #f8f8f2;
+    display: block;
+    line-height: 1.5;
+    font-size: 0.95rem;
 }
+
+/* Syntax highlighting for code blocks */
+.post-content pre code .keyword { color: #ff79c6; }
+.post-content pre code .string { color: #f1fa8c; }
+.post-content pre code .comment { color: #6272a4; }
+.post-content pre code .function { color: #50fa7b; }
+.post-content pre code .number { color: #bd93f9; }
+.post-content pre code .operator { color: #ff79c6; }
 
 /* ===== BLOCKQUOTES ===== */
 .post-content blockquote {
@@ -588,6 +632,7 @@ h1, h2, h3, h4, h5, h6 {
     background: rgba(99, 102, 241, 0.1);
     border-radius: 0 12px 12px 0;
     font-style: italic;
+    color: #e0e0e0;
 }
 
 /* ===== IMAGES ===== */
@@ -949,6 +994,7 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 800;
     color: white;
     margin-bottom: 1rem;
+    margin-top: 0;
 }
 
 .list-description {
@@ -981,6 +1027,7 @@ h1, h2, h3, h4, h5, h6 {
 .post-item h2 {
     margin-bottom: 0.75rem;
     font-size: 1.8rem;
+    margin-top: 0;
 }
 
 .post-item h2 a {
