@@ -3,8 +3,6 @@ layout: default
 title: Home
 ---
 
-<img src="{{ site.baseurl }}/banner.png" alt="ZishanHack Banner" style="width:100%;max-height:260px;object-fit:cover;margin-bottom:2rem;border-radius:12px;" />
-
 ## About This Space
 
 This site is a curated knowledge base focused on practical offensive security, real-world bug bounty workflows, and structured certification-oriented notes.  
