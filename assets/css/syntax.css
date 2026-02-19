@@ -353,3 +353,13 @@ pre.highlight {
         padding: 3.5rem 1rem 1rem 1rem !important;
     }
 }
+
+/* ===== REMOVE CHROME NATIVE COPY BUTTON ===== */
+pre > button,
+code > button {
+    display: none !important;
+}
+
+pre::-webkit-scrollbar-button {
+    display: none !important;
+}
