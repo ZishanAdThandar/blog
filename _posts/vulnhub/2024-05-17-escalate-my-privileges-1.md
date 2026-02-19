@@ -35,4 +35,3 @@ Machine: [https://www.vulnhub.com/entry/escalate-my-privileges-1,448/](https://w
 - Used `sudo /bin/bash` command to `root`.
 - We can get flag inside `/root/flag.txt` by using command.`cat /root/flag.txt` The flag is  `628435356e49f976bab2c04948d22fe4`.
 
-Author: [Zishan Ahamed Thandar](https://ZishanAdThandar.github.io)

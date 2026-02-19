@@ -232,4 +232,3 @@ TryHackMe{4ctive*****toryM4st3r}
 - Question `administrator` Answer `TryHackMe{4ctiv******M4st3r}`
 
    
-Author: [Zishan Ahamed Thandar](https://ZishanAdThandar.github.io)

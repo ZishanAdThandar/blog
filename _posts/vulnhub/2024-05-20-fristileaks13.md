@@ -39,5 +39,4 @@ Machine: [https://www.vulnhub.com/entry/fristileaks-13,133/](https://www.vulnhub
 - Now we can simply get a `tty shell` to make the shell interactive with `python -c 'import pty; pty.spawn("/bin/bash")'` and login as root user `firefart` with `su firefart`.
 - Now we can simply got to root directory and find a file with name `fristileaks_secrets.txt`. Inside that file we have the flag `Y0u_kn0w_y0u_l0ve_fr1st1`. 
 
-Author: [Zishan Ahamed Thandar](https://ZishanAdThandar.github.io)
 

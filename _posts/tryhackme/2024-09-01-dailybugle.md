@@ -210,4 +210,3 @@ sh-4.2# cat /root/root.txt
 
 - We already completed the machine, just click on completed.
 
-Author: [Zishan Ahamed Thandar](https://ZishanAdThandar.github.io)

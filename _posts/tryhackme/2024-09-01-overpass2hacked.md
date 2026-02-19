@@ -111,4 +111,3 @@ uid=1000(james) gid=1000(james) euid=0(root) egid=0(root) groups=0(root),4(adm),
 thm{***************************}
 ```
 
-Author: [Zishan Ahamed Thandar](https://ZishanAdThandar.github.io)
