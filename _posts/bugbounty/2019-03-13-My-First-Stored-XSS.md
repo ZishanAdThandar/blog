@@ -51,15 +51,22 @@ I used this payload initially then removed unnecessary parts while making PoC vi
 
 <h2>Twitter Status</h2>
 
-
-{% twitter https://twitter.com/ZishanAdThandar/status/1045959846535856128 %}
+<blockquote class="twitter-tweet">
+  <a href="https://twitter.com/ZishanAdThandar/status/1045959846535856128"></a>
+</blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 <h2>Experience with Edmodo</h2>
 Edmodo is very secure platform and very serious about security. I have great experience with edmodo. There response is quick and communication is clear. Thanks edmodo (Specially Chip Benson).
 
 <h2>Video PoC (also follow my youtube channel for updates)</h2> 
 
-{% youtube izeXqGpYEx8 %}
+<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/izeXqGpYEx8" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  allowfullscreen>
+</iframe>
 
 
 <h2>Timeline</h2>

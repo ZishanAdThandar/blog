@@ -25,11 +25,19 @@ Notification is not sanitized. Got another swag.
 
 <h2>PoC Video</h2>
 
-{% youtube qsRTDMfzD24 %}
+<iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/qsRTDMfzD24" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  allowfullscreen>
+</iframe>
 
 <h2>Twitter Status</h2>
 
-{% twitter https://x.com/ZishanAdThandar/status/1095650287065260032 %}
+<blockquote class="twitter-tweet">
+  <a href="https://twitter.com/ZishanAdThandar/status/1095650287065260032"></a>
+</blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 <h2>Timeline:</h2>
 <p>Reported on 31st January, 2019<br>
