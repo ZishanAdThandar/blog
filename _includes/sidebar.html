@@ -1,49 +1,5 @@
 <aside class="sidebar">
   
-  <!-- About Card -->
-  <div class="sidebar-card">
-    <h3 class="sidebar-title"><i class="fas fa-user-secret"></i> About</h3>
-    <div class="sidebar-about">
-      <div class="author-avatar">
-        <i class="fas fa-shield-alt"></i>
-      </div>
-      <p style="color: var(--gray); line-height: 1.7; margin-bottom: 1rem;">
-        {{ site.description }}
-      </p>
-      <div class="author-details">
-        <p><i class="fas fa-user"></i> <strong>Author:</strong> {{ site.author }}</p>
-        <p><i class="fas fa-envelope"></i> <strong>Email:</strong> <a href="mailto:{{ site.email }}" style="color: var(--primary);">{{ site.email }}</a></p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Connect Card -->
-  <div class="sidebar-card">
-    <h3 class="sidebar-title"><i class="fas fa-link"></i> Connect</h3>
-    <div class="social-links-grid">
-      {% if site.github %}
-      <a href="https://github.com/{{ site.github }}" target="_blank" rel="noopener noreferrer" class="social-link-item">
-        <i class="fab fa-github"></i> GitHub
-      </a>
-      {% endif %}
-      {% if site.twitter %}
-      <a href="https://twitter.com/{{ site.twitter }}" target="_blank" rel="noopener noreferrer" class="social-link-item">
-        <i class="fab fa-twitter"></i> Twitter
-      </a>
-      {% endif %}
-      {% if site.linkedin %}
-      <a href="https://linkedin.com/in/{{ site.linkedin }}" target="_blank" rel="noopener noreferrer" class="social-link-item">
-        <i class="fab fa-linkedin"></i> LinkedIn
-      </a>
-      {% endif %}
-      {% if site.youtube %}
-      <a href="https://youtube.com/@{{ site.youtube }}" target="_blank" rel="noopener noreferrer" class="social-link-item">
-        <i class="fab fa-youtube"></i> YouTube
-      </a>
-      {% endif %}
-    </div>
-  </div>
-
   <!-- CTA Card - Premium Resources -->
   <div class="sidebar-card cta-card">
     <div class="cta-badge">🔥 90% OFF</div>
@@ -65,8 +21,7 @@
     </div>
   </div>
 
- 
-  <!-- Categories Card - FIXED -->
+  <!-- Categories Card -->
   <div class="sidebar-card">
     <h3 class="sidebar-title"><i class="fas fa-layer-group"></i> Categories</h3>
     <ul class="sidebar-categories">
@@ -112,7 +67,7 @@
     </ul>
   </div>
 
-  <!-- Recent Posts Card - FIXED -->
+  <!-- Recent Posts Card -->
   <div class="sidebar-card">
     <h3 class="sidebar-title"><i class="fas fa-clock"></i> Recent Posts</h3>
     <ul class="recent-posts">
@@ -131,7 +86,7 @@
     </ul>
   </div>
 
-  <!-- Tags Card - FIXED -->
+  <!-- Tags Card -->
   {% assign all_tags_array = "" | split: "" %}
   {% for post in site.posts %}
     {% for tag in post.tags %}
