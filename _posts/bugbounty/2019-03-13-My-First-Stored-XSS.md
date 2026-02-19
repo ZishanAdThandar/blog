@@ -51,8 +51,10 @@ I used this payload initially then removed unnecessary parts while making PoC vi
 
 <h2>Twitter Status</h2>
 
-<blockquote class="twitter-tweet">
-  <a href="https://twitter.com/ZishanAdThandar/status/1045959846535856128"></a>
+<blockquote class="twitter-tweet" data-dnt="true" data-theme="dark">
+    <p lang="en" dir="ltr">
+        <a href="https://twitter.com/ZishanAdThandar/status/1045959846535856128"></a>
+    </p>
 </blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 

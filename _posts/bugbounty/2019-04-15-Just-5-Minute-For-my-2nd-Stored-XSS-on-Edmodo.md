@@ -34,8 +34,10 @@ Notification is not sanitized. Got another swag.
 
 <h2>Twitter Status</h2>
 
-<blockquote class="twitter-tweet">
-  <a href="https://twitter.com/ZishanAdThandar/status/1095650287065260032"></a>
+<blockquote class="twitter-tweet" data-dnt="true" data-theme="dark">
+    <p lang="en" dir="ltr">
+        <a href="https://twitter.com/ZishanAdThandar/status/1095650287065260032"></a>
+    </p>
 </blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
