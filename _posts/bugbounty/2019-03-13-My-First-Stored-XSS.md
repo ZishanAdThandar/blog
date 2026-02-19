@@ -60,6 +60,7 @@ Edmodo is very secure platform and very serious about security. I have great exp
 <h2>Video PoC (also follow my youtube channel for updates)</h2> 
 
 https://www.youtube.com/embed/izeXqGpYEx8
+[![Edmodo Cross Site Scripting Bug PoC](https://img.youtube.com/vi/izeXqGpYEx8/0.jpg)](https://www.youtube.com/watch?v=izeXqGpYEx8)
 
 <h2>Timeline</h2>
 XSS Reported on 16 September, 2018<br>
