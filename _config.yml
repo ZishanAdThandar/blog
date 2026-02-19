@@ -27,6 +27,8 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
+  - jekyll-twitter-plugin
+  - jekyll-youtube-lazyloading
 
 # Exclude
 exclude:

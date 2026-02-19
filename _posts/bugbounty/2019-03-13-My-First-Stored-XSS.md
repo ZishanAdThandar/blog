@@ -51,15 +51,15 @@ I used this payload initially then removed unnecessary parts while making PoC vi
 
 <h2>Twitter Status</h2>
 
-https://twitter.com/ZishanAdThandar/status/1045959846535856128
 
-[![Twitter Status]({{ site.baseurl }}/bugbounty/img/1b.png)](https://twitter.com/ZishanAdThandar/status/1045959846535856128)
+{% twitter https://twitter.com/ZishanAdThandar/status/1045959846535856128 %}
 
 <h2>Experience with Edmodo</h2>
 Edmodo is very secure platform and very serious about security. I have great experience with edmodo. There response is quick and communication is clear. Thanks edmodo (Specially Chip Benson).
 <h2>Video PoC (also follow my youtube channel for updates)</h2> 
 
-[![Edmodo Cross Site Scripting Bug PoC](https://img.youtube.com/vi/izeXqGpYEx8/0.jpg)](https://www.youtube.com/watch?v=izeXqGpYEx8)
+{% youtube izeXqGpYEx8 %}
+
 https://www.youtube.com/watch?v=izeXqGpYEx8
 
 <h2>Timeline</h2>
