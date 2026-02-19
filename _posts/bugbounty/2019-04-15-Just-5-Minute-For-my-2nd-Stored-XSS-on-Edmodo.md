@@ -6,7 +6,7 @@ category: bugbounty
 
 # Just 5 minute to get my 2nd stored XSS on Edmodo.com
 
-- [How I Got the Bug?](#how-i-got-the-bug?)
+- [How I Got the Bug?](#how-i-got-the-bug)
 - [PoC Video](#poc-video)
 - [Twitter Status](#twitter-status)
 - [Timeline](#timeline)
@@ -17,7 +17,7 @@ category: bugbounty
 My overall experience with edmodo is good. They give quick response + cool swag + lots of input fields to test.
 This time it was not planned. I was trying on many programs. 
 Suddenly I opened edmodo and this time it redirected to new.edmodo.com. 
-I posted my xss polyglot (as described on <a href="./1.html">my first write up</a>) on created school. 
+I posted my xss polyglot on new school creation. 
 This time I posted payloads on poll. 
 Then I clicked on my dp to open my profile and it redirected me to <a href="www.edmodo.com">www.edmodo.com/*</a>. 
 On this domain, there was some notification. When, I clicked notification and boom. It’s there.
