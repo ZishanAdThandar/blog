@@ -3,14 +3,21 @@
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
     
+    // Flag to prevent multiple initializations
+    let copyButtonsInitialized = false;
+    
     // ===== COPY BUTTON FOR CODE BLOCKS =====
     // Add a single copy button to the top right of each code block
     function initCopyButtons() {
+        // Prevent multiple initializations
+        if (copyButtonsInitialized) return;
+        
         const codeBlocks = document.querySelectorAll('.highlight');
         
         codeBlocks.forEach((block) => {
-            // Skip if button already exists
-            if (block.querySelector('.copy-code-btn')) return;
+            // Remove any existing duplicate buttons first
+            const existingButtons = block.querySelectorAll('.copy-code-btn');
+            existingButtons.forEach(btn => btn.remove());
             
             // Create copy button
             const button = document.createElement('button');
@@ -25,6 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Add click event
             button.addEventListener('click', async (e) => {
                 e.stopPropagation();
+                e.preventDefault(); // Prevent any default behavior
                 
                 // Get the code content
                 const codeElement = block.querySelector('pre code') || block.querySelector('pre');
@@ -60,6 +68,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         });
+        
+        // Set flag to true after initialization
+        copyButtonsInitialized = true;
     }
     
     // Fallback copy method for older browsers
@@ -188,20 +199,55 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
+    // ===== CLEANUP FUNCTION FOR DUPLICATE BUTTONS =====
+    function cleanupDuplicateButtons() {
+        const codeBlocks = document.querySelectorAll('.highlight');
+        codeBlocks.forEach((block) => {
+            const buttons = block.querySelectorAll('.copy-code-btn');
+            // If there's more than one button, keep only the last one
+            if (buttons.length > 1) {
+                for (let i = 0; i < buttons.length - 1; i++) {
+                    buttons[i].remove();
+                }
+            }
+        });
+    }
+    
     // ===== INITIALIZE ALL FUNCTIONS =====
+    // Clean up any existing duplicates first
+    cleanupDuplicateButtons();
+    
+    // Initialize copy buttons
     initCopyButtons();
+    
+    // Initialize other functions
     initMobileNav();
     initDropdowns();
     initBackToTop();
     initKeyboardNav();
     
-    // ===== OBSERVE DYNAMIC CONTENT =====
+    // ===== OBSERVE DYNAMIC CONTENT WITH DEBOUNCE =====
+    let timeout;
     const observer = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-            if (mutation.addedNodes.length) {
+        // Check if new code blocks were added
+        const hasNewCodeBlocks = Array.from(mutations).some(mutation => 
+            Array.from(mutation.addedNodes).some(node => 
+                node.nodeType === 1 && (node.classList?.contains('highlight') || node.querySelector?.('.highlight'))
+            )
+        );
+        
+        if (hasNewCodeBlocks) {
+            // Clear any existing timeout
+            clearTimeout(timeout);
+            
+            // Set a new timeout to initialize after mutations stop
+            timeout = setTimeout(() => {
+                // Reset flag to allow reinitialization for new content
+                copyButtonsInitialized = false;
+                cleanupDuplicateButtons();
                 initCopyButtons();
-            }
-        });
+            }, 100);
+        }
     });
     
     observer.observe(document.body, {
