@@ -53,14 +53,14 @@ I used this payload initially then removed unnecessary parts while making PoC vi
 
 https://twitter.com/ZishanAdThandar/status/1045959846535856128
 
-[![Twitter Status](./img/1b.png?raw=true)](https://twitter.com/ZishanAdThandar/status/1045959846535856128)
+[![Twitter Status]({{ site.baseurl }}/bugbounty/img/1b.png)](https://twitter.com/ZishanAdThandar/status/1045959846535856128)
 
 <h2>Experience with Edmodo</h2>
 Edmodo is very secure platform and very serious about security. I have great experience with edmodo. There response is quick and communication is clear. Thanks edmodo (Specially Chip Benson).
 <h2>Video PoC (also follow my youtube channel for updates)</h2> 
 
-https://www.youtube.com/embed/izeXqGpYEx8
 [![Edmodo Cross Site Scripting Bug PoC](https://img.youtube.com/vi/izeXqGpYEx8/0.jpg)](https://www.youtube.com/watch?v=izeXqGpYEx8)
+https://www.youtube.com/watch?v=izeXqGpYEx8
 
 <h2>Timeline</h2>
 XSS Reported on 16 September, 2018<br>
