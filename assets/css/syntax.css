@@ -13,9 +13,9 @@ pre.highlight {
     overflow: hidden;
 }
 
-/* Terminal-style header with copy button on right */
+/* Terminal-style header - single pseudo-element for the dots */
 .highlight::before {
-    content: "";
+    content: "⏺ ⏺ ⏺";
     position: absolute;
     top: 0;
     left: 0;
@@ -23,23 +23,20 @@ pre.highlight {
     background: #2a2a2a;
     color: var(--gray);
     padding: 8px 15px;
+    font-size: 10px;
+    letter-spacing: 2px;
     border-bottom: 1px solid var(--border);
     font-family: monospace;
     border-radius: 12px 12px 0 0;
     z-index: 1;
     height: 35px;
+    display: flex;
+    align-items: center;
 }
 
-/* Three dots (terminal style) */
+/* Remove the after pseudo-element completely */
 .highlight::after {
-    content: "⏺ ⏺ ⏺";
-    position: absolute;
-    top: 8px;
-    left: 15px;
-    color: var(--gray);
-    font-size: 10px;
-    letter-spacing: 2px;
-    z-index: 2;
+    display: none;
 }
 
 /* Copy button positioned on top right */
@@ -60,7 +57,7 @@ pre.highlight {
     align-items: center;
     gap: 6px;
     font-family: 'Inter', sans-serif;
-    z-index: 3;
+    z-index: 2;
 }
 
 .highlight .copy-code-btn:hover {
@@ -100,7 +97,7 @@ pre.highlight {
     color: #f8f8f2;
 }
 
-/* ===== ROUGE SYNTAX CLASSES ===== */
+/* Rest of your syntax classes remain the same */
 .highlight .c, .highlight .c1, .highlight .cm {
     color: var(--gray);
     font-style: italic;
