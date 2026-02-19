@@ -67,154 +67,107 @@
     </div>
   </div>
 
-  <!-- RECOMMENDED READS - Dynamically based on tags & title -->
-  <div class="sidebar-card">
-    <h3 class="sidebar-title">
-      <i class="fas fa-bookmark"></i> 
-      {% if page.layout == "post" %}
-        You Might Also Like
-      {% elsif page.layout == "list" %}
-        <i class="fas fa-fire"></i> Popular in {{ page.title }}
-      {% else %}
-        Recommended Reads
-      {% endif %}
-    </h3>
+
+
+<!-- RECOMMENDED POSTS - Simplified -->
+<div class="sidebar-card">
+  <h3 class="sidebar-title">
+    <i class="fas fa-bookmark"></i>
+    {% if page.layout == "post" %}
+      Similar Posts
+    {% elsif page.layout == "list" %}
+      Latest in {{ page.title }}
+    {% else %}
+      Recent Posts
+    {% endif %}
+  </h3>
+  
+  <ul class="recent-posts">
+    {% assign max_posts = 5 %}
+    {% assign display_posts = "" | split: "" %}
     
-    <ul class="recent-posts recommended-posts">
-      {% assign recommended_posts = "" | split: "" %}
-      {% assign current_post_url = page.url %}
-      
-      {% if page.layout == "post" and page.tags.size > 0 %}
-        <!-- Method 1: Find posts with matching tags (weighted by tag matches) -->
-        {% assign tagged_posts = "" | split: "" %}
-        {% assign scored_posts = "" | split: "" %}
-        
-        <!-- First pass: collect all posts that share at least one tag -->
-        {% for tag in page.tags %}
-          {% for post in site.posts %}
-            {% if post.url != current_post_url and post.tags contains tag %}
-              {% assign tagged_posts = tagged_posts | push: post %}
-            {% endif %}
-          {% endfor %}
-        {% endfor %}
-        
-        <!-- Remove duplicates and count tag matches -->
-        {% assign unique_posts = "" | split: "" %}
-        {% for post in tagged_posts %}
-          {% assign post_url = post.url %}
-          {% unless unique_posts contains post_url %}
-            {% assign unique_posts = unique_posts | push: post_url %}
-            
-            <!-- Count how many tags match -->
-            {% assign match_count = 0 %}
+    {% if page.layout == "post" %}
+      <!-- Try same category first -->
+      {% if page.categories.size > 0 %}
+        {% assign category = page.categories[0] %}
+        {% assign category_posts = site.categories[category] | where_exp: "post", "post.url != page.url" %}
+        {% if category_posts.size >= max_posts %}
+          {% assign display_posts = category_posts | slice: 0, max_posts %}
+        {% else %}
+          {% assign display_posts = category_posts %}
+          
+          <!-- Fill remaining with tag-matched posts -->
+          {% assign remaining = max_posts | minus: display_posts.size %}
+          {% if remaining > 0 and page.tags.size > 0 %}
+            {% assign tag_posts = "" | split: "" %}
             {% for tag in page.tags %}
-              {% if post.tags contains tag %}
-                {% assign match_count = match_count | plus: 1 %}
-              {% endif %}
-            {% endfor %}
-            
-            <!-- Create scored item (we'll sort later) -->
-            {% assign score_item = post_url | append: "||" | append: match_count | append: "||" | append: post.date %}
-            {% assign scored_posts = scored_posts | push: score_item %}
-          {% endunless %}
-        {% endfor %}
-        
-        <!-- Sort by match count (desc) then date (desc) and get top posts -->
-        {% assign sorted_scored = scored_posts | sort | reverse %}
-        {% for score_item in sorted_scored limit:5 %}
-          {% assign parts = score_item | split: "||" %}
-          {% assign post_url = parts[0] %}
-          {% for post in site.posts %}
-            {% if post.url == post_url %}
-              {% assign recommended_posts = recommended_posts | push: post %}
-            {% endif %}
-          {% endfor %}
-        {% endfor %}
-        
-      {% elsif page.layout == "post" and page.categories.size > 0 %}
-        <!-- Method 2: Fallback to same category if no tags -->
-        {% assign current_category = page.categories[0] %}
-        {% assign same_category_posts = site.categories[current_category] | where_exp: "post", "post.url != page.url" %}
-        {% assign recommended_posts = same_category_posts %}
-        
-      {% elsif page.layout == "list" %}
-        <!-- For category pages: show latest posts in that category -->
-        {% assign category_posts = site.categories[page.category] %}
-        {% assign recommended_posts = category_posts %}
-        
-      {% else %}
-        <!-- For homepage/other: show latest posts overall -->
-        {% assign recommended_posts = site.posts %}
-      {% endif %}
-      
-      <!-- Final fallback if still no posts -->
-      {% if recommended_posts.size == 0 %}
-        {% assign recommended_posts = site.posts | where_exp: "post", "post.url != page.url" %}
-      {% endif %}
-      
-      <!-- Display recommended posts -->
-      {% for post in recommended_posts limit:5 %}
-      <li>
-        <a href="{{ post.url | relative_url }}">
-          <span class="post-icon">
-            {% if post.categories contains "hackthebox" %}
-              <i class="fas fa-cube"></i>
-            {% elsif post.categories contains "tryhackme" %}
-              <i class="fas fa-tv"></i>
-            {% elsif post.categories contains "offsec" %}
-              <i class="fas fa-shield-alt"></i>
-            {% elsif post.categories contains "vulnhub" %}
-              <i class="fas fa-server"></i>
-            {% elsif post.categories contains "bugbounty" %}
-              <i class="fas fa-bug"></i>
-            {% else %}
-              <i class="fas fa-file-alt"></i>
-            {% endif %}
-          </span>
-          <div class="post-info">
-            <span class="post-title">{{ post.title | truncate: 40 }}</span>
-            <span class="post-meta">
-              <i class="fas fa-calendar-alt"></i> {{ post.date | date: "%b %d, %Y" }}
-              {% if post.tags.size > 0 %}
-                • <i class="fas fa-tags"></i> 
-                {% for tag in post.tags limit:1 %}
-                  {{ tag }}
-                {% endfor %}
-              {% endif %}
-            </span>
-            {% if page.layout == "post" and post.tags.size > 0 %}
-              <!-- Show relevance indicator for tag-based matches -->
-              {% assign common_tags = 0 %}
-              {% for tag in page.tags %}
-                {% if post.tags contains tag %}
-                  {% assign common_tags = common_tags | plus: 1 %}
+              {% for post in site.posts %}
+                {% if post.url != page.url and post.tags contains tag %}
+                  {% unless display_posts contains post %}
+                    {% assign tag_posts = tag_posts | push: post %}
+                  {% endunless %}
                 {% endif %}
               {% endfor %}
-              {% if common_tags > 1 %}
-                <span class="relevance-badge" style="display: inline-block; margin-top: 0.3rem; font-size: 0.7rem; background: rgba(0,255,0,0.1); color: #4ade80; padding: 0.1rem 0.5rem; border-radius: 50px;">
-                  <i class="fas fa-tag"></i> {{ common_tags }} matching {{ common_tags | pluralize: 'tag', 'tags' }}
-                </span>
-              {% endif %}
-            {% endif %}
-          </div>
-        </a>
-      </li>
-      {% endfor %}
-    </ul>
-    
-    <!-- View all link based on context -->
-    {% if page.layout == "post" and page.categories.size > 0 %}
-      <div style="margin-top: 1rem; text-align: center;">
-        <a href="{{ site.baseurl }}/posts/{{ page.categories[0] | slugify }}/" class="btn btn-outline btn-small">
-          <i class="fas fa-layer-group"></i> More in {{ page.categories[0] }}
-        </a>
-      </div>
-    {% elsif page.layout == "post" and page.tags.size > 0 %}
-      <div style="margin-top: 1rem; text-align: center;">
-        <a href="{{ site.baseurl }}/tags/{{ page.tags[0] | slugify }}/" class="btn btn-outline btn-small">
-          <i class="fas fa-tags"></i> More #{{ page.tags[0] }}
-        </a>
-      </div>
+            {% endfor %}
+            {% assign unique_tag_posts = tag_posts | uniq | slice: 0, remaining %}
+            {% assign display_posts = display_posts | concat: unique_tag_posts %}
+          {% endif %}
+        {% endif %}
+      {% endif %}
+      
+      <!-- Final fallback to latest posts -->
+      {% if display_posts.size < max_posts %}
+        {% assign latest = site.posts | where_exp: "post", "post.url != page.url" | slice: 0, max_posts %}
+        {% assign display_posts = latest %}
+      {% endif %}
+      
+    {% elsif page.layout == "list" and page.category %}
+      <!-- Category page -->
+      {% assign display_posts = site.categories[page.category] | slice: 0, max_posts %}
+    {% else %}
+      <!-- Default: latest posts -->
+      {% assign display_posts = site.posts | slice: 0, max_posts %}
     {% endif %}
+    
+    <!-- Display posts -->
+    {% for post in display_posts limit: max_posts %}
+    <li>
+      <a href="{{ post.url | relative_url }}">
+        <span class="post-icon">
+          {% if post.categories contains "hackthebox" %}
+            <i class="fas fa-cube"></i>
+          {% elsif post.categories contains "tryhackme" %}
+            <i class="fas fa-tv"></i>
+          {% elsif post.categories contains "offsec" %}
+            <i class="fas fa-shield-alt"></i>
+          {% elsif post.categories contains "vulnhub" %}
+            <i class="fas fa-server"></i>
+          {% elsif post.categories contains "bugbounty" %}
+            <i class="fas fa-bug"></i>
+          {% else %}
+            <i class="fas fa-file-alt"></i>
+          {% endif %}
+        </span>
+        <div class="post-info">
+          <span class="post-title">{{ post.title | truncate: 45 }}</span>
+          <span class="post-date">
+            <i class="fas fa-calendar-alt"></i> {{ post.date | date: "%b %d, %Y" }}
+          </span>
+        </div>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+  
+  <!-- "More" link for post pages -->
+  {% if page.layout == "post" and page.categories.size > 0 %}
+  <div style="margin-top: 1rem; text-align: center;">
+    <a href="{{ site.baseurl }}/posts/{{ page.categories[0] | slugify }}/" style="color: var(--primary); font-size: 0.9rem; text-decoration: none;">
+      <i class="fas fa-arrow-right"></i> More in {{ page.categories[0] }}
+    </a>
   </div>
+  {% endif %}
+</div>
+
+
 </aside>
