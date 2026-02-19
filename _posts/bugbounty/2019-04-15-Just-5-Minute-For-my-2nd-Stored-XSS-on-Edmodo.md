@@ -11,7 +11,7 @@ category: bugbounty
 - [Twitter Status](#twitter-status)
 - [Timeline](#timeline)
 
-<img src="./img/2a.jpeg?raw=true" width="80%" alt="1 cool T-shirt + 1 shaker + 10 badges + 3 i love edmodo magnets">
+<img src="https://raw.githubusercontent.com/ZishanAdThandar/blog/refs/heads/main/_posts/bugbounty/img/2a.png" width="80%" alt="1 cool T-shirt + 1 shaker + 10 badges + 3 i love edmodo magnets">
 
 ## How I Got the Bug?
 My overall experience with edmodo is good. They give quick response + cool swag + lots of input fields to test.
@@ -34,12 +34,7 @@ Notification is not sanitized. Got another swag.
 
 ## Twitter Status
 
-<blockquote class="twitter-tweet" data-dnt="true" data-theme="dark">
-    <p lang="en" dir="ltr">
-        <a href="https://twitter.com/ZishanAdThandar/status/1095650287065260032"></a>
-    </p>
-</blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+[![Twitter Status](https://raw.githubusercontent.com/ZishanAdThandar/blog/refs/heads/main/_posts/bugbounty/img/2b.png)](https://twitter.com/ZishanAdThandar/status/1095650287065260032)
 
 ## Timeline
 
@@ -48,4 +43,3 @@ Rewarded on 4th February, 2019<br>
 Swag received on 13th February, 2019</p>
 
 
-Author: [Zishan Ahamed Thandar](https://ZishanAdThandar.github.io)

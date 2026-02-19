@@ -16,7 +16,7 @@ category: bugbounty
 
 There are many people sharing images of Edmodo swag. It looks cool and everyone says that, it is cross site scripting bug. So, I assumed there is lots of XSS. Edmodo is a very secure platform and edmodo is very serious about security, so I decided to hunt . Even leet hunter Prial Islam Khan shared image of his edmodo swag, that inspired me a lot.
 
-<img src="./img/1a.png" alt="Screenshot from https://prial.me/acknowledgements.html">
+<img src="https://raw.githubusercontent.com/ZishanAdThandar/blog/refs/heads/main/_posts/bugbounty/img/1a.png" alt="Screenshot from https://prial.me/acknowledgements.html">
 
 So, I decided to test Edmodo. But, I am a newbie. How can I find the bug? yeah, I can. If I can that means anyone can.
 
@@ -51,14 +51,10 @@ I used this payload initially then removed unnecessary parts while making PoC vi
 
 <h2>Twitter Status</h2>
 
-<blockquote class="twitter-tweet" data-dnt="true" data-theme="dark">
-    <p lang="en" dir="ltr">
-        <a href="https://twitter.com/ZishanAdThandar/status/1045959846535856128"></a>
-    </p>
-</blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+[![Twitter Status](https://raw.githubusercontent.com/ZishanAdThandar/blog/refs/heads/main/_posts/bugbounty/img/1b.png)]()https://x.com/ZishanAdThandar/status/1045959846535856128")
 
-<h2>Experience with Edmodo</h2>
+## Experience with Edmodo
+
 Edmodo is very secure platform and very serious about security. I have great experience with edmodo. There response is quick and communication is clear. Thanks edmodo (Specially Chip Benson).
 
 <h2>Video PoC (also follow my youtube channel for updates)</h2> 
@@ -71,12 +67,10 @@ Edmodo is very secure platform and very serious about security. I have great exp
 </iframe>
 
 
-<h2>Timeline</h2>
+## Timeline
+
 XSS Reported on 16 September, 2018<br>
 Triaged and rewarded on 17 September, 2018<br>
 Swag received on 29 September, 2018
 
 
-Read my <a href="./2.md">2nd XSS on edmodo writeup</a>.
-    
-Author: [Zishan Ahamed Thandar](https://ZishanAdThandar.github.io)
