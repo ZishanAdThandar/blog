@@ -21,12 +21,12 @@
       
       <div class="nav-menu" id="navMenu">
         
-        <!-- CTF Dropdown -->
-        <div class="nav-dropdown" id="ctfDropdown">
-          <button class="nav-link dropdown-btn" id="ctfBtn">
-            <i class="fas fa-flag"></i> CTF <i class="fas fa-chevron-down"></i>
-          </button>
-          <div class="dropdown-content">
+        <!-- CTF Dropdown - Fixed -->
+        <div class="nav-dropdown">
+          <a href="#" class="nav-link dropdown-toggle" id="ctfDropdownToggle">
+            <i class="fas fa-flag"></i> CTF <i class="fas fa-chevron-down dropdown-arrow"></i>
+          </a>
+          <div class="dropdown-menu" id="ctfDropdownMenu">
             <a href="{{ site.baseurl }}/posts/hackthebox/"><i class="fas fa-cube"></i> HackTheBox</a>
             <a href="{{ site.baseurl }}/posts/tryhackme/"><i class="fas fa-tv"></i> TryHackMe</a>
             <a href="{{ site.baseurl }}/posts/offsec/"><i class="fas fa-shield-alt"></i> OffSec</a>
@@ -53,7 +53,7 @@
   </div>
 </header>
 
-<!-- Navigation Script -->
+<!-- Navigation Script - Simplified -->
 <script>
 document.addEventListener("DOMContentLoaded", function() {
   // Mobile menu toggle
@@ -64,67 +64,65 @@ document.addEventListener("DOMContentLoaded", function() {
     navToggle.addEventListener("click", function(e) {
       e.stopPropagation();
       navMenu.classList.toggle("show");
-      this.setAttribute("aria-expanded", navMenu.classList.contains("show"));
     });
   }
   
-  // Dropdown functionality
-  const dropdownBtn = document.getElementById("ctfBtn");
-  const dropdown = document.getElementById("ctfDropdown");
+  // Dropdown functionality - Simplified
+  const dropdownToggle = document.getElementById("ctfDropdownToggle");
+  const dropdownMenu = document.getElementById("ctfDropdownMenu");
   
-  if (dropdownBtn && dropdown) {
-    dropdownBtn.addEventListener("click", function(e) {
+  if (dropdownToggle && dropdownMenu) {
+    // Toggle on click
+    dropdownToggle.addEventListener("click", function(e) {
+      e.preventDefault();
       e.stopPropagation();
-      dropdown.classList.toggle("open");
       
-      // Close other dropdowns if any
-      const icon = this.querySelector('.fa-chevron-down');
-      if (icon) {
-        icon.style.transform = dropdown.classList.contains("open") ? 'rotate(180deg)' : 'rotate(0)';
+      // Close other dropdowns first
+      document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
+        if (menu !== dropdownMenu) {
+          menu.classList.remove('show');
+        }
+      });
+      
+      // Toggle current dropdown
+      dropdownMenu.classList.toggle("show");
+      
+      // Rotate arrow
+      const arrow = this.querySelector('.dropdown-arrow');
+      if (arrow) {
+        arrow.style.transform = dropdownMenu.classList.contains("show") ? 'rotate(180deg)' : 'rotate(0)';
       }
     });
-  }
-  
-  // Close dropdown when clicking outside
-  document.addEventListener("click", function(e) {
-    if (dropdown && !dropdown.contains(e.target) && !dropdownBtn?.contains(e.target)) {
-      dropdown.classList.remove("open");
-      const icon = dropdownBtn?.querySelector('.fa-chevron-down');
-      if (icon) icon.style.transform = 'rotate(0)';
-    }
     
-    // Close mobile menu when clicking outside on mobile
-    if (window.innerWidth <= 768 && navMenu && navToggle && 
-        !navMenu.contains(e.target) && !navToggle.contains(e.target) && 
-        navMenu.classList.contains('show')) {
-      navMenu.classList.remove('show');
-      navToggle.setAttribute('aria-expanded', 'false');
-    }
-  });
-  
-  // Close dropdown when clicking a link inside it
-  if (dropdown) {
-    dropdown.querySelectorAll('a').forEach(function(link) {
+    // Close when clicking outside
+    document.addEventListener("click", function(e) {
+      if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
+        dropdownMenu.classList.remove("show");
+        const arrow = dropdownToggle.querySelector('.dropdown-arrow');
+        if (arrow) arrow.style.transform = 'rotate(0)';
+      }
+    });
+    
+    // Close when clicking a dropdown link
+    dropdownMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', function() {
-        dropdown.classList.remove("open");
-        const icon = dropdownBtn?.querySelector('.fa-chevron-down');
-        if (icon) icon.style.transform = 'rotate(0)';
+        dropdownMenu.classList.remove("show");
+        const arrow = dropdownToggle.querySelector('.dropdown-arrow');
+        if (arrow) arrow.style.transform = 'rotate(0)';
         
-        // Close mobile menu too if open
+        // Close mobile menu if open
         if (window.innerWidth <= 768 && navMenu && navMenu.classList.contains('show')) {
           navMenu.classList.remove('show');
-          navToggle?.setAttribute('aria-expanded', 'false');
         }
       });
     });
   }
   
-  // Close mobile menu when clicking any nav link
-  document.querySelectorAll('.nav-menu a').forEach(function(link) {
+  // Close mobile menu when clicking a nav link
+  document.querySelectorAll('.nav-menu a:not(.dropdown-toggle)').forEach(link => {
     link.addEventListener('click', function() {
       if (window.innerWidth <= 768 && navMenu && navMenu.classList.contains('show')) {
         navMenu.classList.remove('show');
-        navToggle?.setAttribute('aria-expanded', 'false');
       }
     });
   });
@@ -133,19 +131,14 @@ document.addEventListener("DOMContentLoaded", function() {
   window.addEventListener('resize', function() {
     if (window.innerWidth > 768 && navMenu && navMenu.classList.contains('show')) {
       navMenu.classList.remove('show');
-      navToggle?.setAttribute('aria-expanded', 'false');
     }
-  });
-  
-  // Add focus styles for accessibility
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Tab') {
-      document.body.classList.add('keyboard-navigation');
+    
+    // Reset dropdown on resize
+    if (dropdownMenu && dropdownMenu.classList.contains('show')) {
+      dropdownMenu.classList.remove('show');
+      const arrow = document.querySelector('.dropdown-arrow');
+      if (arrow) arrow.style.transform = 'rotate(0)';
     }
-  });
-  
-  document.addEventListener('mousedown', function() {
-    document.body.classList.remove('keyboard-navigation');
   });
 });
 </script>
