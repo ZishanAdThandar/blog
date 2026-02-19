@@ -53,9 +53,7 @@ I used this payload initially then removed unnecessary parts while making PoC vi
 
 https://twitter.com/ZishanAdThandar/status/1045959846535856128
 
-<a href="https://twitter.com/ZishanAdThandar/status/1045959846535856128"><img src="./img/1b.png?raw=true" width="80%" alt="Twitter Status"></a>
-
-Note: This is my first medium post. So, feel free to comment to give advice about this write up and correct me (even grammar mistakes). btw, the bug was found long time ago, so I described methodology from my memory.
+[![Twitter Status](./img/1b.png?raw=true)](https://twitter.com/ZishanAdThandar/status/1045959846535856128)
 
 <h2>Experience with Edmodo</h2>
 Edmodo is very secure platform and very serious about security. I have great experience with edmodo. There response is quick and communication is clear. Thanks edmodo (Specially Chip Benson).
