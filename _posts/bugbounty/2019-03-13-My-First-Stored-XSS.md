@@ -26,13 +26,13 @@ Even elite hunter **Prial Islam Khan** shared an image of his Edmodo swag, which
 
 So, I decided to test Edmodo. But I'm a newbie. How can I find the bug? If I can, that means anyone can! 
 
-## What is my methodology?
+## What is my methodology
 
 Is it simple steps or any l33t automation tool? Nope, it's just manual... **too manual**.
 
 As a newbie, I tried a very noob way to hunt: I filled all fields with XSS payloads, hoping to get a popup and cool swag ❤️.
 
-## How I got the bug?
+## How I got the bug
 
 I filled every field with XSS payloads, hoping for a popup, but got nothing. But **hope** (and believe) is always with me.
 
@@ -54,6 +54,7 @@ python sublist3r.py -d edmodo.com
 ```
 
 🔗 **Tool Link:** [Sublist3r on GitHub](https://github.com/aboul3la/Sublist3r)
+
 
 Then? Then I just opened **beta.edmodo.com** and... **BOOM!** 💥 XSS popped! I started investigating and found the injection point was in the **status post** feature.
 

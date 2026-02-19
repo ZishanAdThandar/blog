@@ -1,29 +1,73 @@
 ---
 layout: default
-title: Just 5 minute to get my 2nd stored XSS on Edmodo.com
-category: bugbounty
+title: "Just 5 Minutes to My 2nd Stored XSS on Edmodo.com"
+date: 2019-04-15
+categories: [bugbounty, xss, writeup]
+tags: [edmodo, xss, bug-bounty, swag, notification-xss]
+description: "How I found my second stored XSS on Edmodo.com in just 5 minutes by testing notification systems"
+author: Zishan Ahamed Thandar
 ---
 
-# Just 5 minute to get my 2nd stored XSS on Edmodo.com
+# Just 5 Minutes to My 2nd Stored XSS on Edmodo.com
 
-- [How I Got the Bug?](#how-i-got-the-bug)
-- [PoC Video](#poc-video)
+- [How I Got the Bug?](#how-i-found-the-bug)
+    - [The Accidental Discovery](#the-accidental-discovery)
+    - [The Testing Process](#the-testing-process)
+    - [The Vulnerability](#the-vulnerability)
+- [Key Takeaways for Bug Hunters](#key-takeaways-for-bug-hunters)
+- [First Bug vs Second Bug](#first-bug-vs-second-bug)
+- [Video Proof of Concept](#video-proof-of-concept)
 - [Twitter Status](#twitter-status)
 - [Timeline](#timeline)
 
 <img src="https://raw.githubusercontent.com/ZishanAdThandar/blog/refs/heads/main/_posts/bugbounty/img/2a.png" width="80%" alt="1 cool T-shirt + 1 shaker + 10 badges + 3 i love edmodo magnets">
 
-## How I Got the Bug?
-My overall experience with edmodo is good. They give quick response + cool swag + lots of input fields to test.
-This time it was not planned. I was trying on many programs. 
-Suddenly I opened edmodo and this time it redirected to new.edmodo.com. 
-I posted my xss polyglot on new school creation. 
-This time I posted payloads on poll. 
-Then I clicked on my dp to open my profile and it redirected me to <a href="www.edmodo.com">www.edmodo.com/*</a>. 
-On this domain, there was some notification. When, I clicked notification and boom. It’s there.
-Notification is not sanitized. Got another swag.
+## How I Found the Bug
 
-## PoC Video
+My overall experience with Edmodo has been excellent. They provide:
+- ⚡ **Quick responses** to security reports
+- 🎁 **Cool swag** (just look at that haul!)
+- 🔍 **Lots of input fields** to test (perfect for hunters)
+
+### The Accidental Discovery
+
+This time, it wasn't planned. I was bouncing between different bug bounty programs when I decided to check Edmodo again. 
+
+Suddenly, I noticed something different - I was redirected to **new.edmodo.com**. A new subdomain means new attack surface! 🎯
+
+### The Testing Process
+
+1. **Posted my XSS polyglot** on new school creation
+2. **Tested the poll feature** with various payloads
+3. **Clicked my profile picture** - redirected to `www.edmodo.com/*`
+4. **Noticed notifications** on this domain
+5. **Clicked a notification** and... **BOOM!** 💥
+
+### The Vulnerability
+
+The notification system wasn't sanitizing user input. When I clicked on a notification containing my payload, it executed in the context of `www.edmodo.com`.
+
+> 💡 **Key Takeaway:** Always test notification systems, profile views, and cross-subdomain interactions!
+
+## Key Takeaways for Bug Hunters
+
+1. **Test new subdomains immediately** - new.edmodo.com led to this find
+2. **Don't ignore notification features** - they often handle user input poorly
+3. **Cross-subdomain testing** - my payload worked across different edmodo domains
+4. **Re-use successful payloads** - that same polyglot worked twice!
+
+## First Bug vs Second Bug
+
+| Aspect | First Bug | Second Bug |
+|--------|-----------|------------|
+| **Time taken** | Days of testing | 5 minutes |
+| **Location** | Status posts | Notifications |
+| **Subdomain** | beta.edmodo.com | new.edmodo.com |
+| **Swag** | T-shirt + stickers | T-shirt + shaker + badges + magnets |
+
+Both bugs, one polyglot! 🎯
+
+## Video Proof of Concept
 
 <iframe width="560" height="315" 
   src="https://www.youtube.com/embed/qsRTDMfzD24" 
@@ -38,8 +82,8 @@ Notification is not sanitized. Got another swag.
 
 ## Timeline
 
-<p>Reported on 31st January, 2019<br>
-Rewarded on 4th February, 2019<br>
-Swag received on 13th February, 2019</p>
+- 🐛 XSS Reported to Edmodo on 31st January, 2019
+- ✅ Triaged and rewarded on 4th February, 2019
+- 🎁 Swag received on 13th February, 2019
 
 
