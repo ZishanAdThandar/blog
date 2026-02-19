@@ -24,10 +24,12 @@ On this domain, there was some notification. When, I clicked notification and bo
 Notification is not sanitized. Got another swag.
 
 <h2>PoC Video</h2>
-https://www.youtube.com/embed/qsRTDMfzD24
+
+{% youtube qsRTDMfzD24 %}
 
 <h2>Twitter Status</h2>
-<a href="https://twitter.com/ZishanAdThandar/status/1045959846535856128"><img src="./img/2b.png?raw=true" width="80%" alt="Twitter Status"></a>
+
+{% twitter https://x.com/ZishanAdThandar/status/1095650287065260032 %}
 
 <h2>Timeline:</h2>
 <p>Reported on 31st January, 2019<br>

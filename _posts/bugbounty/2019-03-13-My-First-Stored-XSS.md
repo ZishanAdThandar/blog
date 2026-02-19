@@ -56,11 +56,11 @@ I used this payload initially then removed unnecessary parts while making PoC vi
 
 <h2>Experience with Edmodo</h2>
 Edmodo is very secure platform and very serious about security. I have great experience with edmodo. There response is quick and communication is clear. Thanks edmodo (Specially Chip Benson).
+
 <h2>Video PoC (also follow my youtube channel for updates)</h2> 
 
 {% youtube izeXqGpYEx8 %}
 
-https://www.youtube.com/watch?v=izeXqGpYEx8
 
 <h2>Timeline</h2>
 XSS Reported on 16 September, 2018<br>
