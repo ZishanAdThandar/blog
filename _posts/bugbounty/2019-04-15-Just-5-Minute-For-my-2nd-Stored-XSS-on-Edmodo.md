@@ -15,7 +15,6 @@ author: Zishan Ahamed Thandar
     - [The Testing Process](#the-testing-process)
     - [The Vulnerability](#the-vulnerability)
 - [Key Takeaways for Bug Hunters](#key-takeaways-for-bug-hunters)
-- [First Bug vs Second Bug](#first-bug-vs-second-bug)
 - [Video Proof of Concept](#video-proof-of-concept)
 - [Twitter Status](#twitter-status)
 - [Timeline](#timeline)
@@ -56,16 +55,6 @@ The notification system wasn't sanitizing user input. When I clicked on a notifi
 3. **Cross-subdomain testing** - my payload worked across different edmodo domains
 4. **Re-use successful payloads** - that same polyglot worked twice!
 
-## First Bug vs Second Bug
-
-| Aspect | First Bug | Second Bug |
-|--------|-----------|------------|
-| **Time taken** | Days of testing | 5 minutes |
-| **Location** | Status posts | Notifications |
-| **Subdomain** | beta.edmodo.com | new.edmodo.com |
-| **Swag** | T-shirt + stickers | T-shirt + shaker + badges + magnets |
-
-Both bugs, one polyglot! 🎯
 
 ## Video Proof of Concept
 
