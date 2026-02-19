@@ -21,12 +21,13 @@
       
       <div class="nav-menu" id="navMenu">
         
-        <!-- CTF Dropdown - Fixed -->
+        <!-- CTF Dropdown - Fully Responsive -->
         <div class="nav-dropdown">
-          <a href="#" class="nav-link dropdown-toggle" id="ctfDropdownToggle">
-            <i class="fas fa-flag"></i> CTF <i class="fas fa-chevron-down dropdown-arrow"></i>
+          <a href="#" class="nav-link dropdown-toggle" id="ctfToggle">
+            <i class="fas fa-flag"></i> CTF 
+            <i class="fas fa-chevron-down dropdown-arrow"></i>
           </a>
-          <div class="dropdown-menu" id="ctfDropdownMenu">
+          <div class="dropdown-menu" id="ctfMenu">
             <a href="{{ site.baseurl }}/posts/hackthebox/"><i class="fas fa-cube"></i> HackTheBox</a>
             <a href="{{ site.baseurl }}/posts/tryhackme/"><i class="fas fa-tv"></i> TryHackMe</a>
             <a href="{{ site.baseurl }}/posts/offsec/"><i class="fas fa-shield-alt"></i> OffSec</a>
@@ -53,72 +54,81 @@
   </div>
 </header>
 
-<!-- Navigation Script - Simplified -->
+<!-- Responsive Navigation Script -->
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-  // Mobile menu toggle
   const navToggle = document.getElementById("navToggle");
   const navMenu = document.getElementById("navMenu");
+  const ctfToggle = document.getElementById("ctfToggle");
+  const ctfMenu = document.getElementById("ctfMenu");
+  let isMobile = window.innerWidth <= 768;
   
+  // Mobile menu toggle
   if (navToggle && navMenu) {
     navToggle.addEventListener("click", function(e) {
       e.stopPropagation();
       navMenu.classList.toggle("show");
+      
+      // Close dropdown when closing mobile menu
+      if (!navMenu.classList.contains("show") && ctfMenu) {
+        ctfMenu.classList.remove("show");
+        updateArrow(false);
+      }
     });
   }
   
-  // Dropdown functionality - Simplified
-  const dropdownToggle = document.getElementById("ctfDropdownToggle");
-  const dropdownMenu = document.getElementById("ctfDropdownMenu");
-  
-  if (dropdownToggle && dropdownMenu) {
-    // Toggle on click
-    dropdownToggle.addEventListener("click", function(e) {
+  // Dropdown functionality - responsive
+  if (ctfToggle && ctfMenu) {
+    ctfToggle.addEventListener("click", function(e) {
       e.preventDefault();
       e.stopPropagation();
       
-      // Close other dropdowns first
-      document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
-        if (menu !== dropdownMenu) {
-          menu.classList.remove('show');
-        }
-      });
-      
-      // Toggle current dropdown
-      dropdownMenu.classList.toggle("show");
-      
-      // Rotate arrow
-      const arrow = this.querySelector('.dropdown-arrow');
-      if (arrow) {
-        arrow.style.transform = dropdownMenu.classList.contains("show") ? 'rotate(180deg)' : 'rotate(0)';
+      if (isMobile) {
+        // Mobile: Simple toggle
+        ctfMenu.classList.toggle("show");
+        updateArrow(ctfMenu.classList.contains("show"));
+      } else {
+        // Desktop: Close other dropdowns first
+        document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
+          if (menu !== ctfMenu) menu.classList.remove('show');
+        });
+        
+        ctfMenu.classList.toggle("show");
+        updateArrow(ctfMenu.classList.contains("show"));
       }
     });
     
+    // Update arrow helper
+    function updateArrow(show) {
+      const arrow = ctfToggle.querySelector('.dropdown-arrow');
+      if (arrow) {
+        arrow.style.transform = show ? 'rotate(180deg)' : 'rotate(0)';
+      }
+    }
+    
     // Close when clicking outside
     document.addEventListener("click", function(e) {
-      if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
-        dropdownMenu.classList.remove("show");
-        const arrow = dropdownToggle.querySelector('.dropdown-arrow');
-        if (arrow) arrow.style.transform = 'rotate(0)';
+      if (!ctfToggle.contains(e.target) && !ctfMenu.contains(e.target)) {
+        ctfMenu.classList.remove("show");
+        updateArrow(false);
       }
     });
     
     // Close when clicking a dropdown link
-    dropdownMenu.querySelectorAll('a').forEach(link => {
+    ctfMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', function() {
-        dropdownMenu.classList.remove("show");
-        const arrow = dropdownToggle.querySelector('.dropdown-arrow');
-        if (arrow) arrow.style.transform = 'rotate(0)';
+        ctfMenu.classList.remove("show");
+        updateArrow(false);
         
         // Close mobile menu if open
-        if (window.innerWidth <= 768 && navMenu && navMenu.classList.contains('show')) {
+        if (isMobile && navMenu && navMenu.classList.contains('show')) {
           navMenu.classList.remove('show');
         }
       });
     });
   }
   
-  // Close mobile menu when clicking a nav link
+  // Close mobile menu when clicking any nav link
   document.querySelectorAll('.nav-menu a:not(.dropdown-toggle)').forEach(link => {
     link.addEventListener('click', function() {
       if (window.innerWidth <= 768 && navMenu && navMenu.classList.contains('show')) {
@@ -129,15 +139,16 @@ document.addEventListener("DOMContentLoaded", function() {
   
   // Handle window resize
   window.addEventListener('resize', function() {
+    isMobile = window.innerWidth <= 768;
+    
     if (window.innerWidth > 768 && navMenu && navMenu.classList.contains('show')) {
       navMenu.classList.remove('show');
     }
     
     // Reset dropdown on resize
-    if (dropdownMenu && dropdownMenu.classList.contains('show')) {
-      dropdownMenu.classList.remove('show');
-      const arrow = document.querySelector('.dropdown-arrow');
-      if (arrow) arrow.style.transform = 'rotate(0)';
+    if (ctfMenu && ctfMenu.classList.contains('show')) {
+      ctfMenu.classList.remove('show');
+      updateArrow(false);
     }
   });
 });
