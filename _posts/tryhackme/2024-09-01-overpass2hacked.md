@@ -1,17 +1,19 @@
 ---
 layout: default
-title: Overpass 2 - Hacked TryHackMe room Writeup
-category: tryhackme
+title: Overpass 2 - Hacked | TryHackMe Walkthrough
+date: 2024-09-01
+categories: [tryhackme, forensics, penetration-testing]
+tags: [wireshark, john, hashcat, ssh-backdoor, privilege-escalation]
 ---
 
-# Overpass 2 - Hacked
+# Overpass 2 - Hacked: TryHackMe Walkthrough
 
 - [Tools](#tools)
 - [Forensics - Analyse the PCAP](#forensics---analyse-the-pcap)
 - [Research - Analyse the code](#research---analyse-the-code)
 - [Attack - Get back in!](#attack---get-back-in)
 
-Room Link: [https://tryhackme.com/room/overpass2hacked](https://tryhackme.com/room/overpass2hacked)
+Room: [https://tryhackme.com/room/overpass2hacked](https://tryhackme.com/room/overpass2hacked)
 
 ## Tools 
 
