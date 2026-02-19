@@ -32,6 +32,7 @@ pre.highlight {
     height: 35px;
     display: flex;
     align-items: center;
+    pointer-events: none; /* Allow clicks to pass through to button */
 }
 
 /* Remove the after pseudo-element completely */
@@ -44,7 +45,7 @@ pre.highlight {
     position: absolute;
     top: 6px;
     right: 10px;
-    background: rgba(255, 255, 255, 0.1);
+    background: #2a2a2a; /* Solid background matching header */
     border: 1px solid var(--border);
     color: var(--gray);
     padding: 4px 12px;
@@ -53,11 +54,16 @@ pre.highlight {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    display: inline-flex;
+    display: flex !important; /* Force display */
     align-items: center;
     gap: 6px;
     font-family: 'Inter', sans-serif;
-    z-index: 2;
+    z-index: 10; /* Higher than header */
+    opacity: 1;
+    pointer-events: auto;
+    line-height: 1;
+    box-shadow: none;
+    text-shadow: none;
 }
 
 .highlight .copy-code-btn:hover {
@@ -81,6 +87,16 @@ pre.highlight {
     font-size: 12px;
 }
 
+/* Hide any potential duplicate buttons */
+.highlight .copy-code-btn ~ .copy-code-btn {
+    display: none !important;
+}
+
+/* Ensure only one button is visible */
+.highlight .copy-code-btn:first-of-type {
+    display: flex !important;
+}
+
 .highlight pre {
     padding: 3.5rem 1.5rem 1.5rem 1.5rem !important;
     margin: 0;
@@ -95,6 +111,33 @@ pre.highlight {
     font-size: 0.95rem;
     line-height: 1.5;
     color: #f8f8f2;
+}
+
+/* ===== REMOVE CHROME NATIVE COPY BUTTON ===== */
+/* Target any browser-native copy buttons */
+pre::-webkit-copy-button,
+code::-webkit-copy-button,
+pre::-webkit-copy-button-wrapper,
+[class*="copy"] button:not(.copy-code-btn) {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    width: 0 !important;
+    height: 0 !important;
+    pointer-events: none !important;
+}
+
+/* Hide any buttons that are not our copy button */
+.highlight button:not(.copy-code-btn) {
+    display: none !important;
+}
+
+/* Hide any pseudo-elements that might look like buttons */
+.highlight pre::before,
+.highlight pre::after,
+.highlight code::before,
+.highlight code::after {
+    display: none !important;
 }
 
 /* Rest of your syntax classes remain the same */
@@ -352,14 +395,4 @@ pre.highlight {
     .highlight pre {
         padding: 3.5rem 1rem 1rem 1rem !important;
     }
-}
-
-/* ===== REMOVE CHROME NATIVE COPY BUTTON ===== */
-pre > button,
-code > button {
-    display: none !important;
-}
-
-pre::-webkit-scrollbar-button {
-    display: none !important;
 }
