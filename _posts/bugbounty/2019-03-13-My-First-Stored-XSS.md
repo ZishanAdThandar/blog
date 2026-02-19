@@ -3,7 +3,7 @@ layout: default
 title: "My First Stored XSS on Edmodo.com - Hunting Methodology"
 date: 2019-03-13
 description: "How I found my first stored XSS vulnerability on Edmodo.com using manual testing and subdomain enumeration. A beginner's journey to bug bounty."
-categories: [bugbounty, xss, writeup]
+categories: bugbounty
 tags: [edmodo, xss, bug-bounty, writeup]
 ---
 
