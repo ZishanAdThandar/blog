@@ -1301,9 +1301,6 @@ a:hover {
         border-radius: 0 0 12px 12px;
         box-shadow: var(--shadow-lg);
         z-index: 999;
-        display: flex !important;
-        opacity: 1;
-        transform: none;
     }
     
     .nav-menu.show {
@@ -1325,7 +1322,7 @@ a:hover {
         background: rgba(255, 255, 255, 0.02);
     }
     
-    /* Mobile dropdown */
+    /* Mobile dropdown - FIXED */
     .nav-dropdown {
         width: 100%;
     }
@@ -1338,11 +1335,12 @@ a:hover {
         border-bottom: 1px solid var(--border);
     }
     
+    /* Critical fix - remove conflicting desktop styles */
     .dropdown-menu {
-        position: static;
-        opacity: 1;
-        visibility: visible;
-        transform: none;
+        position: static !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
         box-shadow: none;
         border: none;
         border-radius: 0;
@@ -1352,6 +1350,7 @@ a:hover {
         padding: 0;
         margin: 0;
         transition: max-height 0.3s ease;
+        width: 100%;
     }
     
     .dropdown-menu.show {
@@ -1362,6 +1361,8 @@ a:hover {
     .dropdown-menu a {
         padding: 0.75rem 3rem;
         color: var(--gray);
+        white-space: normal;
+        word-break: break-word;
     }
     
     .dropdown-menu a:hover {
@@ -1370,7 +1371,7 @@ a:hover {
         padding-left: 3.5rem;
     }
     
-    /* Blog layout */
+    /* Rest of your mobile styles... */
     .blog-layout {
         grid-template-columns: 1fr;
         gap: 2rem;
@@ -1393,12 +1394,10 @@ a:hover {
         gap: 0.5rem;
     }
     
-    /* Post content mobile spacing */
     .post-content h2 {
         margin-top: 3rem;
     }
     
-    /* Footer */
     .footer-grid {
         grid-template-columns: 1fr;
         gap: 2rem;
