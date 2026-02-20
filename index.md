@@ -50,6 +50,19 @@ Everything published is written from hands-on experience and intended to be usab
 
 ## Recent Notes
 
+<style>
+.post-meta i {
+    vertical-align: middle;
+    display: inline-block;
+    line-height: 1;
+    margin-top: -2px; /* Fine-tune adjustment if needed */
+}
+
+.post-meta .fa-calendar-alt,
+.post-meta .fa-folder {
+    font-size: 0.9rem; /* Slightly smaller icons can help alignment */
+}
+</style>
 <div class="post-grid">
 {% for post in site.posts limit:6 %}
   <article class="post-card">
