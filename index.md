@@ -53,8 +53,8 @@ Everything published is written from hands-on experience and intended to be usab
 <div class="post-grid">
 {% for post in site.posts limit:6 %}
   <article class="post-card">
-    <div class="post-meta" style="font-size: 0.8rem; color: var(--gray); margin-bottom: 0.5rem;">
-      🗓️ {{ post.date | date: "%b %d, %Y" }} • 🗂️ {{ post.categories | first | capitalize }}
+    <div class="post-meta" style="font-size: 0.8rem; color: var(--gray); margin-top: 0.5rem;">
+      <i class="fas fa-calendar-alt"></i> {{ post.date | date: "%b %d, %Y" }} • <i class="fas fa-folder"></i> {{ post.categories | first | capitalize }}
     </div>
     <h3>
       <a href="{{ post.url | relative_url }}">
