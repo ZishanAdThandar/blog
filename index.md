@@ -54,7 +54,7 @@ Everything published is written from hands-on experience and intended to be usab
 {% for post in site.posts limit:6 %}
   <article class="post-card">
     <div class="post-meta" style="font-size: 0.8rem; color: var(--gray); margin-bottom: 0.5rem;">
-      <span style="color: transparent; text-shadow: 0 0 0 #94a3b8;">📅</span>{{ post.date | date: "%b %d, %Y" }} • <span style="color: transparent; text-shadow: 0 0 0 #94a3b8;">📁</span>{{ post.categories | first | capitalize }}
+      <span style="color: transparent; text-shadow: 0 0 0 #94a3b8;">📅 {{ post.date | date: "%b %d, %Y" }} • 📁 {{ post.categories | first | capitalize }}</span>
     </div>
     <h3>
       <a href="{{ post.url | relative_url }}">
