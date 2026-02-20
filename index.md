@@ -50,23 +50,10 @@ Everything published is written from hands-on experience and intended to be usab
 
 ## Recent Notes
 
-<style>
-.post-meta i {
-    vertical-align: middle;
-    display: inline-block;
-    line-height: 1;
-    margin-top: -2px; /* Fine-tune adjustment if needed */
-}
-
-.post-meta .fa-calendar-alt,
-.post-meta .fa-folder {
-    font-size: 0.9rem; /* Slightly smaller icons can help alignment */
-}
-</style>
 <div class="post-grid">
 {% for post in site.posts limit:6 %}
   <article class="post-card">
-    <div class="post-meta" style="font-size: 0.8rem; color: var(--gray); margin-bottom: 0.5rem;">
+    <div class="post-meta" style="font-size: 0.8rem; color: var(--gray); margin-bottom: 0rem;">
       <i class="fas fa-calendar-alt"></i> {{ post.date | date: "%b %d, %Y" }}
       {% if post.categories %}
         • <i class="fas fa-folder"></i> {{ post.categories | first | capitalize }}
