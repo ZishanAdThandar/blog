@@ -53,7 +53,7 @@ Everything published is written from hands-on experience and intended to be usab
 <div class="post-grid">
 {% for post in site.posts limit:6 %}
   <article class="post-card">
-    <div class="post-meta" style="font-size: 0.8rem; margin-bottom: 0.5rem;">
+    <div class="post-meta" style="">
       <i class="fas fa-calendar-alt"></i> {{ post.date | date: "%b %d, %Y" }}
       {% if post.categories %}
         • <i class="fas fa-folder"></i> {{ post.categories | first | capitalize }}
