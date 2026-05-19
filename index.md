@@ -44,8 +44,38 @@ and real-world technical research.
 
 </p>
 
-<div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap;">
+<div
+style="
+margin-top:2rem;
+display:flex;
+gap:1rem;
+flex-wrap:wrap;
+"
+>
 
+<a
+href="/blog/research/"
+class="btn btn-premium"
+>
+
+<i class="fas fa-book"></i>
+
+Research
+
+</a>
+
+<a
+href="/blog/labs/"
+class="btn"
+>
+
+<i class="fas fa-terminal"></i>
+
+Labs
+
+</a>
+
+</div>
 
 </section>
 
@@ -280,8 +310,10 @@ Research Notes
 
 <div class="post-excerpt">
 
-Technical methodologies, Active Directory research,
-Windows internals, privilege escalation,
+Technical methodologies,
+Active Directory research,
+Windows internals,
+privilege escalation,
 and offensive security workflows.
 
 </div>
@@ -353,7 +385,7 @@ Labs
 
 <h2>
 
-<a href="/blog/labs/htb/">
+<a href="/blog/labs/">
 
 Labs & Walkthroughs
 
@@ -367,12 +399,13 @@ Hack The Box,
 TryHackMe,
 OffSec,
 and VulnHub walkthroughs
-focused on methodology and exploitation.
+focused on methodology
+and exploitation.
 
 </div>
 
 <a
-href="/blog/labs/htb/"
+href="/blog/labs/"
 class="read-more"
 >
 
