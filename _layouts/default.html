@@ -1,67 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
-  
-  {% seo %}
-  
-  <!-- ===== CUSTOM OG IMAGE ===== -->
-  <!-- Default OG image for all pages -->
-  <meta property="og:image" content="{{ site.url }}{{ site.baseurl }}/assets/images/og-image.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:type" content="image/png">
-  <meta property="og:image:alt" content="ZishanHack - Cybersecurity Blog">
-  
-  <!-- Twitter Card (uses same image) -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="{{ site.url }}{{ site.baseurl }}/assets/images/og-image.png">
-  
-  <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/svgs/solid/shield-halved.svg">
-  
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@700;800;900&display=swap" rel="stylesheet">
-  
-  <!-- Theme Color -->
-  <meta name="theme-color" content="#0a0e17">
-  <meta name="msapplication-navbutton-color" content="#0a0e17">
-  <meta name="apple-mobile-web-app-status-bar-style" content="#0a0e17">
-  
-  <!-- Security Meta Tags -->
-  <meta http-equiv="X-Content-Type-Options" content="nosniff">
-  <meta http-equiv="X-Frame-Options" content="DENY">
-  <meta http-equiv="X-XSS-Protection" content="1; mode=block">
-  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
-  
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
-  <link rel="stylesheet" href="{{ '/assets/css/blog.css' | relative_url }}">
-  <link rel="stylesheet" href="{{ '/assets/css/syntax.css' | relative_url }}">
-</head>
 
-<body>
-
-{% include header.html %}
-
-<main class="blog-main">
-  <div class="container">
-    <div class="blog-layout">
       <article class="blog-content">
+
+        {% if page.layout == 'post' %}
+
+        <header class="article-header">
+
+          <div class="article-category">
+            {% for category in page.categories %}
+              <span>{{ category }}</span>
+            {% endfor %}
+          </div>
+
+          <h1>{{ page.title }}</h1>
+
+          <div class="article-meta">
+            <span>
+              <i class="fas fa-calendar"></i>
+              {{ page.date | date: "%B %d, %Y" }}
+            </span>
+
+            <span>
+              <i class="fas fa-clock"></i>
+              {{ content | number_of_words | divided_by: 180 }} min read
+            </span>
+          </div>
+
+        </header>
+
+        {% endif %}
+
         {{ content }}
+
       </article>
+
       {% include sidebar.html %}
+
     </div>
+
   </div>
 </main>
 
 {% include footer.html %}
 
-    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="/pagefind/pagefind-ui.js"></script>
+
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+  new PagefindUI({
+    element: "#search",
+    showSubResults: true,
+    showImages: false,
+    resetStyles: false
+  });
+});
+</script>
+
 </body>
 </html>
