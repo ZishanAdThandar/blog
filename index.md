@@ -26,11 +26,23 @@ Web Exploitation
 
 </div>
 
-# Offensive Security Research, Methodologies & Practical Cybersecurity Notes
+<h1 class="hero-title">
 
-Active Directory tradecraft, web exploitation methodologies,
-offensive security workflows, practical lab writeups,
+Offensive Security Research,
+Methodologies &
+Practical Cybersecurity Notes
+
+</h1>
+
+<p class="hero-description">
+
+Active Directory tradecraft,
+web exploitation methodologies,
+offensive security workflows,
+practical lab writeups,
 and real-world technical research.
+
+</p>
 
 <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap;">
 
