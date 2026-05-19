@@ -1083,3 +1083,176 @@ code {
     width: 100%;
   }
 }
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.sidebar {
+
+  position: sticky;
+
+  top: 72px;
+
+  padding-top: 0.3rem;
+}
+
+/* =========================================================
+   SIDEBAR CARDS
+========================================================= */
+
+.sidebar-card {
+
+  background:
+    rgba(255,255,255,0.045);
+
+  border:
+    1px solid rgba(255,255,255,0.08);
+
+  backdrop-filter: blur(12px);
+
+  border-radius: 14px;
+
+  padding: 0.9rem;
+
+  margin-bottom: 0.8rem;
+
+  box-shadow:
+    0 4px 20px rgba(0,0,0,0.16);
+
+  transition:
+    0.18s ease;
+}
+
+.sidebar-card:hover {
+
+  border-color:
+    rgba(99,102,241,0.22);
+
+  box-shadow:
+    0 0 24px rgba(99,102,241,0.12);
+}
+
+.sidebar-title {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 0.5rem;
+
+  font-size: 0.88rem;
+
+  font-weight: 700;
+
+  margin-bottom: 0.8rem;
+
+  color: white;
+}
+
+.sidebar-title i {
+  color: var(--primary);
+}
+
+/* =========================================================
+   TABLE OF CONTENTS
+========================================================= */
+
+#table-of-contents {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 0.22rem;
+}
+
+#table-of-contents a {
+
+  display: block;
+
+  color: var(--muted);
+
+  font-size: 0.82rem;
+
+  line-height: 1.5;
+
+  padding:
+    0.45rem 0.58rem;
+
+  border-radius: 10px;
+
+  transition: 0.18s ease;
+}
+
+#table-of-contents a:hover {
+
+  background:
+    rgba(255,255,255,0.04);
+
+  color: white;
+}
+
+#table-of-contents a.active {
+
+  background:
+    rgba(99,102,241,0.12);
+
+  color: #c4b5fd;
+}
+
+#table-of-contents .toc-h3 {
+
+  padding-left: 1rem;
+
+  font-size: 0.77rem;
+
+  opacity: 0.9;
+}
+
+/* =========================================================
+   MINI BRAND CARD
+========================================================= */
+
+.mini-brand-logo {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 0.55rem;
+
+  font-weight: 800;
+
+  font-size: 0.92rem;
+
+  margin-bottom: 0.7rem;
+}
+
+.mini-brand-logo i {
+  color: var(--primary);
+}
+
+.mini-brand p {
+
+  color: var(--muted);
+
+  font-size: 0.82rem;
+
+  line-height: 1.6;
+
+  margin: 0;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 1100px) {
+
+  .sidebar {
+    display: none;
+  }
+}
+

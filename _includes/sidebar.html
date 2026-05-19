@@ -1,326 +1,48 @@
 <aside class="sidebar">
 
   <!-- =========================================================
-       CATEGORIES
+       TABLE OF CONTENTS
   ========================================================= -->
 
-  <div class="sidebar-card">
+  <div class="sidebar-card toc-card">
 
     <h3 class="sidebar-title">
 
-      <i class="fas fa-layer-group"></i>
+      <i class="fas fa-stream"></i>
 
-      Categories
+      On This Page
 
     </h3>
 
-    <ul class="sidebar-categories">
-
-      <!-- RESEARCH -->
-
-      <li>
-
-        <a href="{{ site.baseurl }}/research/">
-
-          <span>
-
-            <i class="fas fa-book"></i>
-
-            Research
-
-          </span>
-
-          <span class="category-count">
-
-            {{ site.categories.research.size }}
-
-          </span>
-
-        </a>
-
-      </li>
-
-      <!-- BUG BOUNTY -->
-
-      <li>
-
-        <a href="{{ site.baseurl }}/bug-bounty/">
-
-          <span>
-
-            <i class="fas fa-bug"></i>
-
-            Bug Bounty
-
-          </span>
-
-          <span class="category-count">
-
-            {{ site.categories['bug-bounty'].size }}
-
-          </span>
-
-        </a>
-
-      </li>
-
-      <!-- HTB -->
-
-      <li>
-
-        <a href="{{ site.baseurl }}/labs/htb/">
-
-          <span>
-
-            <i class="fas fa-cube"></i>
-
-            Hack The Box
-
-          </span>
-
-          <span class="category-count">
-
-            {{ site.categories.htb.size }}
-
-          </span>
-
-        </a>
-
-      </li>
-
-      <!-- THM -->
-
-      <li>
-
-        <a href="{{ site.baseurl }}/labs/thm/">
-
-          <span>
-
-            <i class="fas fa-network-wired"></i>
-
-            TryHackMe
-
-          </span>
-
-          <span class="category-count">
-
-            {{ site.categories.thm.size }}
-
-          </span>
-
-        </a>
-
-      </li>
-
-      <!-- OFFSEC -->
-
-      <li>
-
-        <a href="{{ site.baseurl }}/labs/offsec/">
-
-          <span>
-
-            <i class="fas fa-user-secret"></i>
-
-            OffSec
-
-          </span>
-
-          <span class="category-count">
-
-            {{ site.categories.offsec.size }}
-
-          </span>
-
-        </a>
-
-      </li>
-
-      <!-- VULNHUB -->
-
-      <li>
-
-        <a href="{{ site.baseurl }}/labs/vulnhub/">
-
-          <span>
-
-            <i class="fas fa-server"></i>
-
-            VulnHub
-
-          </span>
-
-          <span class="category-count">
-
-            {{ site.categories.vulnhub.size }}
-
-          </span>
-
-        </a>
-
-      </li>
-
-    </ul>
+    <nav id="table-of-contents"></nav>
 
   </div>
 
   <!-- =========================================================
-       FEATURED RESOURCES
+       MINI BRAND CARD
   ========================================================= -->
 
-  <div class="sidebar-card">
+  <div class="sidebar-card mini-brand">
 
-    <h3 class="sidebar-title">
+    <div class="mini-brand-logo">
 
-      <i class="fas fa-book-open"></i>
-
-      Resources
-
-    </h3>
-
-    <p
-      style="
-        color: var(--muted);
-        margin-bottom: 1rem;
-      "
-    >
-
-      Curated offensive security notes,
-      methodologies, workflows,
-      and practical resources.
-
-    </p>
-
-    <a
-      href="https://zishanhack.com/#resources"
-      class="btn btn-premium"
-      style="width: 100%;"
-    >
-
-      Explore Resources
-
-    </a>
-
-  </div>
-
-  <!-- =========================================================
-       RECENT POSTS
-  ========================================================= -->
-
-  <div class="sidebar-card">
-
-    <h3 class="sidebar-title">
-
-      <i class="fas fa-clock"></i>
-
-      Recent Notes
-
-    </h3>
-
-    <ul class="recent-posts">
-
-      {% for post in site.posts limit:6 %}
-
-      <li>
-
-        <a href="{{ post.url | relative_url }}">
-
-          <!-- ICON -->
-
-          <span class="post-icon">
-
-            {% if post.categories contains "htb" %}
-
-              <i class="fas fa-cube"></i>
-
-            {% elsif post.categories contains "thm" %}
-
-              <i class="fas fa-network-wired"></i>
-
-            {% elsif post.categories contains "offsec" %}
-
-              <i class="fas fa-user-secret"></i>
-
-            {% elsif post.categories contains "vulnhub" %}
-
-              <i class="fas fa-server"></i>
-
-            {% elsif post.categories contains "bug-bounty" %}
-
-              <i class="fas fa-bug"></i>
-
-            {% elsif post.categories contains "research" %}
-
-              <i class="fas fa-book"></i>
-
-            {% else %}
-
-              <i class="fas fa-file-alt"></i>
-
-            {% endif %}
-
-          </span>
-
-          <!-- INFO -->
-
-          <div class="post-info">
-
-            <span class="post-title">
-
-              {{ post.title | truncate: 42 }}
-
-            </span>
-
-            <span class="post-date">
-
-              {{ post.date | date: "%b %d, %Y" }}
-
-            </span>
-
-          </div>
-
-        </a>
-
-      </li>
-
-      {% endfor %}
-
-    </ul>
-
-  </div>
-
-  <!-- =========================================================
-       TRENDING TAGS
-  ========================================================= -->
-
-  <div class="sidebar-card">
-
-    <h3 class="sidebar-title">
-
-      <i class="fas fa-tags"></i>
-
-      Trending Tags
-
-    </h3>
-
-    <div
-      class="article-category"
-      style="margin-bottom: 0;"
-    >
-
-      {% assign tags = site.tags | sort %}
-
-      {% for tag in tags limit:12 %}
+      <i class="fas fa-shield-alt"></i>
 
       <span>
 
-        #{{ tag[0] }}
+        ZISHAN <span class="logo-highlight">HACK</span>
 
       </span>
 
-      {% endfor %}
-
     </div>
+
+    <p>
+
+      Offensive security research,
+      methodologies, practical labs,
+      and cybersecurity notes.
+
+    </p>
 
   </div>
 
