@@ -46,29 +46,6 @@ and real-world technical research.
 
 <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap;">
 
-<a
-href="/blog/research/"
-class="btn btn-premium"
->
-
-<i class="fas fa-book"></i>
-
-Research
-
-</a>
-
-<a
-href="/blog/labs/htb/"
-class="btn"
->
-
-<i class="fas fa-terminal"></i>
-
-Labs
-
-</a>
-
-</div>
 
 </section>
 
