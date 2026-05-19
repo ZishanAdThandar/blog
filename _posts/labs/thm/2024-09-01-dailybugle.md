@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Daily Bugle - TryHackMe room writeup
-category: tryhackme
+category: thm
 ---
 
 # Daily Bugle
@@ -11,7 +11,7 @@ category: tryhackme
 - [Obtain user and root](#obtain-user-and-root)
 - [Credits](#credits)
  
-Room Link: [https://tryhackme.com/room/dailybugle](https://tryhackme.com/room/dailybugle)
+Room Link: [https://thm.com/room/dailybugle](https://thm.com/room/dailybugle)
 
 ## Tools 
 
@@ -87,7 +87,7 @@ It shows result like that,
 +-----+------------+----------+---------------------+--------------------------------------------------------------+
 | id  | name       | username | email               | password                                                     |
 +-----+------------+----------+---------------------+--------------------------------------------------------------+
-| 811 | Super User | jonah    | jonah@tryhackme.com | $2y$10$0veO/JSFh4389Lluc4Xya.dfy2MF.bZhz0jVMw.V.d3p12kBtZutm |
+| 811 | Super User | jonah    | jonah@thm.com | $2y$10$0veO/JSFh4389Lluc4Xya.dfy2MF.bZhz0jVMw.V.d3p12kBtZutm |
 +-----+------------+----------+---------------------+--------------------------------------------------------------+
 ```
 

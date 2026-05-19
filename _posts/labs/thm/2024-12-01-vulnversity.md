@@ -1,7 +1,7 @@
 ---
 layout: default
 title: VulnUniversity THM - A detailed Writeup
-category: tryhackme
+category: thm
 ---
 
 # VulnUniversity
@@ -12,7 +12,7 @@ category: tryhackme
 - [Locating directories using Gobuster](#locating-directories-using-gobuster)
 - [Privilege Escalation](#privilege-escalation)
 
-Room Link: [https://tryhackme.com/room/vulnversity](https://tryhackme.com/room/vulnversity)
+Room Link: [https://thm.com/room/vulnversity](https://thm.com/room/vulnversity)
 
 ## Tools 
 

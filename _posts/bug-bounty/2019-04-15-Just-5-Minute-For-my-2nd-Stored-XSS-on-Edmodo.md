@@ -2,7 +2,7 @@
 layout: default
 title: "Just 5 Minutes to My 2nd Stored XSS on Edmodo.com"
 date: 2019-04-15
-categories: bugbounty
+categories: bug-bounty
 tags: [edmodo, xss, bug-bounty, swag, notification-xss]
 description: "How I found my second stored XSS on Edmodo.com in just 5 minutes by testing notification systems"
 author: Zishan Ahamed Thandar
@@ -19,7 +19,7 @@ author: Zishan Ahamed Thandar
 - [Twitter Status](#twitter-status)
 - [Timeline](#timeline)
 
-<img src="https://raw.githubusercontent.com/ZishanAdThandar/blog/refs/heads/main/_posts/bugbounty/img/2a.png" width="80%" alt="1 cool T-shirt + 1 shaker + 10 badges + 3 i love edmodo magnets">
+<img src="https://raw.githubusercontent.com/ZishanAdThandar/blog/refs/heads/main/_posts/bug-bounty/img/2a.png" width="80%" alt="1 cool T-shirt + 1 shaker + 10 badges + 3 i love edmodo magnets">
 
 ## How I Found the Bug
 
@@ -67,7 +67,7 @@ The notification system wasn't sanitizing user input. When I clicked on a notifi
 
 ## Twitter Status
 
-[![Twitter Status](https://raw.githubusercontent.com/ZishanAdThandar/blog/refs/heads/main/_posts/bugbounty/img/2b.png)](https://twitter.com/ZishanAdThandar/status/1095650287065260032)
+[![Twitter Status](https://raw.githubusercontent.com/ZishanAdThandar/blog/refs/heads/main/_posts/bug-bounty/img/2b.png)](https://twitter.com/ZishanAdThandar/status/1095650287065260032)
 
 ## Timeline
 

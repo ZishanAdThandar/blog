@@ -2,7 +2,7 @@
 layout: default
 title: Overpass 2 - Hacked | TryHackMe Walkthrough
 date: 2024-09-01
-categories: tryhackme
+categories: thm
 tags: [wireshark, john, hashcat, ssh-backdoor, privilege-escalation]
 ---
 
@@ -13,7 +13,7 @@ tags: [wireshark, john, hashcat, ssh-backdoor, privilege-escalation]
 - [Research - Analyse the code](#research---analyse-the-code)
 - [Attack - Get back in!](#attack---get-back-in)
 
-Room: [https://tryhackme.com/room/overpass2hacked](https://tryhackme.com/room/overpass2hacked)
+Room: [https://thm.com/room/overpass2hacked](https://thm.com/room/overpass2hacked)
 
 ## Tools 
 

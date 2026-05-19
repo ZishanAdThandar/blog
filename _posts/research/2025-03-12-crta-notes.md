@@ -1,7 +1,7 @@
 ---
 title: "CRTA Notes – Real-World Active Directory Red Team Playbook"
 layout: default
-category: blog
+category: research
 description: "A complete Active Directory red team playbook for CRTA certification. Real-world attacks, privilege escalation, and domain dominance strategies."
 author: "Zishan Ahamed Thandar"
 date: 2025-03-12

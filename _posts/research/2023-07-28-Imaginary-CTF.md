@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Imaginary CTF 2023 WriteUps
-category: blog
+category: research
 ---
 
 <h2>WEB</h2>

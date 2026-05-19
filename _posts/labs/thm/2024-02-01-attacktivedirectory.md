@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Attacktive Directory -TryHackMe Active Directory Lab Solution
-category: tryhackme
+category: thm
 ---
 
 # Attacktive Directory
@@ -16,7 +16,7 @@ category: tryhackme
 - [Elevating Privileges within the Domain](#elevating-privileges-within-the-domain)
 - [Flag Submission Panel](#flag-submission-panel)
 
-Room Link: [https://tryhackme.com/r/room/attacktivedirectory](https://tryhackme.com/r/room/attacktivedirectory)
+Room Link: [https://thm.com/r/room/attacktivedirectory](https://thm.com/r/room/attacktivedirectory)
 
 ## Tools
 
@@ -29,7 +29,7 @@ Room Link: [https://tryhackme.com/r/room/attacktivedirectory](https://tryhackme.
 
 ## Deploy The Machine
 
-- Goto Access and get ovpn file to connect https://tryhackme.com/access Or, Start attackbox for testing.
+- Goto Access and get ovpn file to connect https://thm.com/access Or, Start attackbox for testing.
 - `Start Machine` and get Target IP from "Target Machine Information".
 - Now, Click on all four Completes.
 

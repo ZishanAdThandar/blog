@@ -1,7 +1,7 @@
 ---
 title: "OSWP Notes – Practical Wireless Attacks, Simplified"
 layout: default
-category: blog
+category: research
 description: "A clean, structured guide to wireless penetration testing. OSWP exam-ready commands and workflows for reliable attack execution."
 author: "Zishan Ahamed Thandar"
 date: 2025-12-15

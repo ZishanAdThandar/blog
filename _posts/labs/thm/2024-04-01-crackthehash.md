@@ -1,7 +1,7 @@
 ---
 layout: default
 title: CrackTheHash Writeup - TryHackMe room to learn hash cracking
-category: tryhackme
+category: thm
 ---
 
 # CrackTheHash
@@ -10,9 +10,9 @@ category: tryhackme
 - [Level 1](#level-1)
 - [level 2](#level-2)
 
-Room Link: [https://tryhackme.com/room/crackthehash](https://tryhackme.com/room/crackthehash)
+Room Link: [https://thm.com/room/crackthehash](https://thm.com/room/crackthehash)
 
-Badges: [https://tryhackme.com/ZishanAdThandar/badges/hash-cracker](https://tryhackme.com/ZishanAdThandar/badges/hash-cracker)
+Badges: [https://thm.com/ZishanAdThandar/badges/hash-cracker](https://thm.com/ZishanAdThandar/badges/hash-cracker)
 
 ## Tools 
 
@@ -34,6 +34,6 @@ Badges: [https://tryhackme.com/ZishanAdThandar/badges/hash-cracker](https://tryh
 - Again same method shows SHA256 and used hashcat with `-m 1400` shows hash `F09EDCB1FCEFC6DFB23DC3505A882655FF77375ED8AA2D1C13F640FCCC2D0C85` is encrypted from the asnwer.
 - `hash-identifier` shows that hash cold be NTLM. So, used hashcat with `-m 1000` gives answer.
 - As it is strating with `$6$`, so hash is `SHA512crypt`. So, it's decrypted with hashcat with `-m 1800` and the cracked hash is the answer.
-- hashid shows hash `e5d8870e5bdd26602cab8dbe07a942c8669e56d6` is SHA1 with salt. So, decrypted "e5d8870e5bdd26602cab8dbe07a942c8669e56d6:tryhackme" with salt SHA1 gives us the answer.
+- hashid shows hash `e5d8870e5bdd26602cab8dbe07a942c8669e56d6` is SHA1 with salt. So, decrypted "e5d8870e5bdd26602cab8dbe07a942c8669e56d6:thm" with salt SHA1 gives us the answer.
 
 

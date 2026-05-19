@@ -1,7 +1,7 @@
 ---
 layout: default
 title: The Impossible Challenge - TryHackMe room Writeup
-category: tryhackme
+category: thm
 ---
 
 # The Impossible Challenge
@@ -9,7 +9,7 @@ category: tryhackme
 - [Tools](#tools)
 - [Task](#task-1)
 
-Room Link: [https://tryhackme.com/room/theimpossiblechallenge](https://tryhackme.com/room/theimpossiblechallenge)
+Room Link: [https://thm.com/room/theimpossiblechallenge](https://thm.com/room/theimpossiblechallenge)
 
 ## Tools 
 

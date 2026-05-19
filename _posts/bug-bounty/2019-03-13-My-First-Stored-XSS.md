@@ -3,7 +3,7 @@ layout: default
 title: "My First Stored XSS on Edmodo.com - Hunting Methodology"
 date: 2019-03-13
 description: "How I found my first stored XSS vulnerability on Edmodo.com using manual testing and subdomain enumeration. A beginner's journey to bug bounty."
-categories: bugbounty
+categories: bug-bounty
 tags: [edmodo, xss, bug-bounty, writeup]
 ---
 
@@ -22,7 +22,7 @@ There are many people sharing images of Edmodo swag. It looks cool and everyone 
 
 Even elite hunter **Prial Islam Khan** shared an image of his Edmodo swag, which inspired me a lot.
 
-<img src="https://raw.githubusercontent.com/ZishanAdThandar/blog/refs/heads/main/_posts/bugbounty/img/1a.png" alt="Screenshot from https://prial.me/acknowledgements.html">
+<img src="https://raw.githubusercontent.com/ZishanAdThandar/blog/refs/heads/main/_posts/bug-bounty/img/1a.png" alt="Screenshot from https://prial.me/acknowledgements.html">
 
 So, I decided to test Edmodo. But I'm a newbie. How can I find the bug? If I can, that means anyone can! 
 
@@ -72,7 +72,7 @@ Here's the payload I used:
 
 ## Twitter Status
 
-[![Twitter Status](https://raw.githubusercontent.com/ZishanAdThandar/blog/refs/heads/main/_posts/bugbounty/img/1b.png)](https://x.com/ZishanAdThandar/status/1045959846535856128")
+[![Twitter Status](https://raw.githubusercontent.com/ZishanAdThandar/blog/refs/heads/main/_posts/bug-bounty/img/1b.png)](https://x.com/ZishanAdThandar/status/1045959846535856128")
 
 🔗 **Direct Link:** [View on X/Twitter](https://x.com/ZishanAdThandar/status/1045959846535856128)
 
