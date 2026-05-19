@@ -1,63 +1,355 @@
 <!DOCTYPE html>
+<html lang="en">
 
-      <article class="blog-content">
+<head>
 
-        {% if page.layout == 'post' %}
+  <meta charset="UTF-8">
 
-        <header class="article-header">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-          <div class="article-category">
-            {% for category in page.categories %}
-              <span>{{ category }}</span>
-            {% endfor %}
-          </div>
+  <title>
+    {% if page.title %}
+      {{ page.title }} |
+    {% endif %}
+    {{ site.title }}
+  </title>
 
-          <h1>{{ page.title }}</h1>
+  {% seo %}
 
-          <div class="article-meta">
-            <span>
-              <i class="fas fa-calendar"></i>
-              {{ page.date | date: "%B %d, %Y" }}
-            </span>
+  <!-- Open Graph -->
 
-            <span>
-              <i class="fas fa-clock"></i>
-              {{ content | number_of_words | divided_by: 180 }} min read
-            </span>
-          </div>
+  <meta
+    property="og:image"
+    content="{{ site.url }}{{ site.baseurl }}/assets/images/og-image.png"
+  >
 
-        </header>
+  <meta
+    property="og:type"
+    content="article"
+  >
 
-        {% endif %}
+  <meta
+    property="og:site_name"
+    content="{{ site.title }}"
+  >
 
-        {{ content }}
+  <!-- Twitter -->
 
-      </article>
+  <meta
+    name="twitter:card"
+    content="summary_large_image"
+  >
 
-      {% include sidebar.html %}
+  <!-- Theme Color -->
+
+  <meta
+    name="theme-color"
+    content="#080b12"
+  >
+
+  <!-- Font Awesome -->
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  >
+
+  <!-- Main CSS -->
+
+  <link
+    rel="stylesheet"
+    href="{{ '/assets/css/style.css' | relative_url }}"
+  >
+
+</head>
+
+<body>
+
+  {% include header.html %}
+
+  <main class="blog-main">
+
+    <div class="container">
+
+      <div class="blog-layout">
+
+        <!-- MAIN CONTENT -->
+
+        <article class="blog-content">
+
+          {% if page.layout == 'post' %}
+
+          <header class="article-header">
+
+            <!-- Categories -->
+
+            {% if page.categories %}
+
+            <div class="article-category">
+
+              {% for category in page.categories %}
+
+                <span>
+                  {{ category }}
+                </span>
+
+              {% endfor %}
+
+            </div>
+
+            {% endif %}
+
+            <!-- TITLE -->
+
+            <h1>
+              {{ page.title }}
+            </h1>
+
+            <!-- DESCRIPTION -->
+
+            {% if page.description %}
+
+            <p class="article-description">
+              {{ page.description }}
+            </p>
+
+            {% endif %}
+
+            <!-- META -->
+
+            <div class="article-meta">
+
+              <span>
+                <i class="fas fa-calendar"></i>
+                {{ page.date | date: "%B %d, %Y" }}
+              </span>
+
+              <span>
+
+                <i class="fas fa-clock"></i>
+
+                {% assign words = content | number_of_words %}
+                {% assign readtime = words | divided_by: 180 %}
+
+                {% if readtime < 1 %}
+                  1 min read
+                {% else %}
+                  {{ readtime }} min read
+                {% endif %}
+
+              </span>
+
+            </div>
+
+            <!-- TAGS -->
+
+            {% if page.tags %}
+
+            <div
+              class="article-category"
+              style="margin-top: 1.5rem;"
+            >
+
+              {% for tag in page.tags %}
+
+                <span>
+                  #{{ tag }}
+                </span>
+
+              {% endfor %}
+
+            </div>
+
+            {% endif %}
+
+          </header>
+
+          {% endif %}
+
+          <!-- CONTENT -->
+
+          {{ content }}
+
+        </article>
+
+        <!-- SIDEBAR -->
+
+        {% include sidebar.html %}
+
+      </div>
 
     </div>
 
-  </div>
-</main>
+  </main>
 
-{% include footer.html %}
+  {% include footer.html %}
 
-<script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+  <!-- SEARCH -->
 
-<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
-<script src="/pagefind/pagefind-ui.js"></script>
+  <script>
 
-<script>
-window.addEventListener('DOMContentLoaded', () => {
-  new PagefindUI({
-    element: "#search",
-    showSubResults: true,
-    showImages: false,
-    resetStyles: false
-  });
-});
-</script>
+    document.addEventListener(
+      "DOMContentLoaded",
+      async () => {
+
+        const searchInput =
+          document.getElementById(
+            "search-input"
+          );
+
+        const resultsContainer =
+          document.getElementById(
+            "search-results"
+          );
+
+        if (
+          !searchInput ||
+          !resultsContainer
+        ) return;
+
+        let posts = [];
+
+        try {
+
+          const response =
+            await fetch(
+              "/search.json"
+            );
+
+          posts =
+            await response.json();
+
+        } catch (err) {
+
+          console.error(
+            "Search failed:",
+            err
+          );
+
+        }
+
+        searchInput.addEventListener(
+          "input",
+          () => {
+
+            const query =
+              searchInput.value
+              .toLowerCase()
+              .trim();
+
+            resultsContainer.innerHTML = "";
+
+            if (
+              query.length < 2
+            ) return;
+
+            const results =
+              posts.filter(post => {
+
+                return (
+
+                  post.title
+                    .toLowerCase()
+                    .includes(query)
+
+                  ||
+
+                  post.content
+                    .toLowerCase()
+                    .includes(query)
+
+                  ||
+
+                  post.tags
+                    .toLowerCase()
+                    .includes(query)
+
+                  ||
+
+                  post.category
+                    .toLowerCase()
+                    .includes(query)
+
+                );
+
+              }).slice(0, 8);
+
+            if (
+              results.length === 0
+            ) {
+
+              resultsContainer.innerHTML = `
+                <div class="search-result-item">
+                  No results found.
+                </div>
+              `;
+
+              return;
+            }
+
+            results.forEach(post => {
+
+              const item =
+                document.createElement("a");
+
+              item.href =
+                post.url;
+
+              item.className =
+                "search-result-item";
+
+              item.innerHTML = `
+
+                <div class="search-result-title">
+                  ${post.title}
+                </div>
+
+                <div class="search-result-meta">
+                  ${post.category}
+                </div>
+
+              `;
+
+              resultsContainer.appendChild(
+                item
+              );
+
+            });
+
+          }
+        );
+
+        document.addEventListener(
+          "click",
+          (e) => {
+
+            if (
+              !e.target.closest(
+                ".search-container"
+              )
+            ) {
+
+              resultsContainer.innerHTML = "";
+
+            }
+
+          }
+        );
+
+      }
+    );
+
+  </script>
+
+  <!-- MAIN JS -->
+
+  <script
+    src="{{ '/assets/js/main.js' | relative_url }}"
+  ></script>
 
 </body>
+
 </html>
