@@ -15,13 +15,10 @@
   --primary-light: #8b5cf6;
 
   --bg: #0a0e17;
-  --bg-light: #0f172a;
 
-  --card:
-    rgba(255,255,255,0.045);
+  --text: #ffffff;
 
-  --card-hover:
-    rgba(255,255,255,0.07);
+  --muted: #94a3b8;
 
   --border:
     rgba(255,255,255,0.08);
@@ -29,29 +26,12 @@
   --border-hover:
     rgba(99,102,241,0.28);
 
-  --text: #ffffff;
-
-  --muted: #94a3b8;
-
   --gradient:
     linear-gradient(
       135deg,
       #6366f1,
       #8b5cf6
     );
-
-  --gradient-dark:
-    linear-gradient(
-      135deg,
-      #0f172a,
-      #1e1b4b
-    );
-
-  --shadow:
-    0 10px 30px rgba(0,0,0,0.28);
-
-  --shadow-glow:
-    0 0 30px rgba(99,102,241,0.18);
 
   --radius: 14px;
 
@@ -99,15 +79,11 @@ body {
     'Inter',
     sans-serif;
 
-  font-size: 16px;
-
   line-height: 1.7;
 
-  -webkit-font-smoothing: antialiased;
-
-  text-rendering: optimizeLegibility;
-
   overflow-x: hidden;
+
+  -webkit-font-smoothing: antialiased;
 }
 
 img {
@@ -146,31 +122,9 @@ h6 {
   margin-bottom: 0.7rem;
 }
 
-h1 {
-
-  font-size:
-    clamp(
-      1.9rem,
-      3vw,
-      2.35rem
-    );
-}
-
-h2 {
-
-  font-size: 1.35rem;
-}
-
-h3 {
-
-  font-size: 1.05rem;
-}
-
 p {
 
   color: #dbe4ee;
-
-  line-height: 1.72;
 
   margin-bottom: 0.8rem;
 }
@@ -190,29 +144,15 @@ p {
   padding: 0 1rem;
 }
 
-.blog-main {
-
-  padding: 1rem 0 3rem;
-}
-
 .blog-layout {
 
   display: grid;
 
   grid-template-columns:
-    minmax(0, 1fr)
+    minmax(0,1fr)
     285px;
 
   gap: 1.2rem;
-
-  align-items: start;
-}
-
-.blog-content {
-
-  width: 100%;
-
-  min-width: 0;
 }
 
 .blog-content article {
@@ -232,12 +172,12 @@ p {
 
   top: 0;
 
-  z-index: 999;
-
-  backdrop-filter: blur(20px);
+  z-index: 9999;
 
   background:
     rgba(15,23,42,0.88);
+
+  backdrop-filter: blur(20px);
 
   border-bottom:
     1px solid rgba(255,255,255,0.06);
@@ -253,9 +193,9 @@ p {
 
   justify-content: space-between;
 
-  gap: 0.8rem;
+  min-height: 60px;
 
-  min-height: 58px;
+  gap: 1rem;
 }
 
 /* =========================================================
@@ -273,8 +213,6 @@ p {
   font-size: 1rem;
 
   font-weight: 900;
-
-  letter-spacing: -0.5px;
 }
 
 .logo i {
@@ -312,17 +250,18 @@ p {
 
   align-items: center;
 
-  gap: 0.35rem;
+  gap: 0.4rem;
+
+  padding:
+    0.6rem 0.8rem;
+
+  border-radius: 10px;
 
   color: var(--muted);
 
   font-size: 0.87rem;
 
   font-weight: 600;
-
-  padding: 0.55rem 0.7rem;
-
-  border-radius: 10px;
 }
 
 .nav-link:hover {
@@ -334,7 +273,7 @@ p {
 }
 
 /* =========================================================
-   MOBILE TOGGLE
+   NAV TOGGLE
 ========================================================= */
 
 .nav-toggle {
@@ -349,10 +288,10 @@ p {
 
   height: 42px;
 
-  border-radius: 10px;
-
   border:
     1px solid rgba(255,255,255,0.08);
+
+  border-radius: 10px;
 
   background:
     rgba(255,255,255,0.04);
@@ -360,14 +299,41 @@ p {
   color: white;
 
   cursor: pointer;
-
-  transition: 0.18s ease;
 }
 
-.nav-toggle:hover {
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.search-container {
+
+  position: relative;
+}
+
+#search-input {
+
+  width: 190px;
+
+  padding:
+    0.65rem 0.8rem;
+
+  border:
+    1px solid rgba(255,255,255,0.08);
+
+  border-radius: 10px;
 
   background:
-    rgba(255,255,255,0.08);
+    rgba(255,255,255,0.05);
+
+  color: white;
+
+  outline: none;
+}
+
+#search-input:focus {
+
+  border-color:
+    rgba(99,102,241,0.35);
 }
 
 /* =========================================================
@@ -379,42 +345,44 @@ p {
   position: relative;
 }
 
+/* FIX HOVER GAP */
+
 .dropdown-menu {
 
   position: absolute;
 
-  top: calc(100% + 10px);
+  top: 100%;
 
   left: 0;
 
   min-width: 220px;
 
+  padding-top: 10px;
+
+  display: none;
+
+  z-index: 9999;
+}
+
+.dropdown-menu-inner {
+
   background:
     rgba(15,23,42,0.96);
 
   border:
-    1px solid var(--border);
+    1px solid rgba(255,255,255,0.08);
 
   border-radius: 12px;
 
   padding: 0.45rem;
 
-  display: none;
-
-  z-index: 999;
-
   backdrop-filter: blur(18px);
 
   box-shadow:
-    var(--shadow);
+    0 10px 30px rgba(0,0,0,0.35);
 
   animation:
     dropdownFade 0.18s ease;
-}
-
-.dropdown-menu.show {
-
-  display: block !important;
 }
 
 .dropdown-menu a {
@@ -430,9 +398,9 @@ p {
 
   border-radius: 10px;
 
-  font-size: 0.84rem;
-
   color: var(--muted);
+
+  font-size: 0.84rem;
 }
 
 .dropdown-menu a:hover {
@@ -451,109 +419,8 @@ p {
 
   .nav-dropdown:hover .dropdown-menu {
 
-    display: block !important;
+    display: block;
   }
-}
-
-/* =========================================================
-   SEARCH
-========================================================= */
-
-.search-container {
-
-  position: relative;
-}
-
-#search-input {
-
-  width: 190px;
-
-  background:
-    rgba(255,255,255,0.05);
-
-  border:
-    1px solid var(--border);
-
-  border-radius: 10px;
-
-  padding:
-    0.62rem 0.8rem;
-
-  color: white;
-
-  font-size: 0.86rem;
-
-  outline: none;
-
-  backdrop-filter: blur(12px);
-}
-
-#search-input:focus {
-
-  border-color:
-    rgba(99,102,241,0.35);
-
-  box-shadow:
-    0 0 0 3px rgba(99,102,241,0.15);
-}
-
-#search-results {
-
-  position: absolute;
-
-  top: calc(100% + 8px);
-
-  width: 100%;
-
-  background:
-    rgba(15,23,42,0.96);
-
-  border:
-    1px solid var(--border);
-
-  border-radius: 12px;
-
-  overflow: hidden;
-
-  z-index: 999;
-
-  backdrop-filter: blur(18px);
-}
-
-/* =========================================================
-   HERO
-========================================================= */
-
-.hero-section {
-
-  padding: 1.7rem 0 1rem;
-}
-
-.hero-title {
-
-  max-width: 680px;
-
-  font-size:
-    clamp(
-      1.7rem,
-      2.7vw,
-      2.15rem
-    );
-
-  line-height: 1.05;
-
-  margin-bottom: 0.8rem;
-}
-
-.hero-description {
-
-  max-width: 720px;
-
-  font-size: 0.94rem;
-
-  color: var(--muted);
-
-  line-height: 1.7;
 }
 
 /* =========================================================
@@ -566,35 +433,20 @@ p {
 
   align-items: center;
 
+  justify-content: center;
+
   gap: 0.5rem;
 
   padding:
-    0.7rem 0.95rem;
+    0.7rem 1rem;
 
   border-radius: 10px;
-
-  border:
-    1px solid var(--border);
-
-  background:
-    rgba(255,255,255,0.04);
-
-  color: white;
 
   font-size: 0.84rem;
 
   font-weight: 600;
 
-  backdrop-filter: blur(12px);
-}
-
-.btn:hover {
-
-  transform:
-    translateY(-1px);
-
-  border-color:
-    var(--border-hover);
+  color: white;
 }
 
 .btn-premium {
@@ -605,17 +457,10 @@ p {
       #6366f1,
       #8b5cf6
     );
-
-  color: white;
-
-  border: none;
-
-  box-shadow:
-    0 8px 24px rgba(99,102,241,0.28);
 }
 
 /* =========================================================
-   POSTS GRID
+   POSTS
 ========================================================= */
 
 .posts-list {
@@ -625,17 +470,11 @@ p {
   grid-template-columns:
     repeat(
       auto-fill,
-      minmax(290px, 1fr)
+      minmax(290px,1fr)
     );
 
   gap: 1rem;
-
-  margin-top: 1rem;
 }
-
-/* =========================================================
-   POST CARD
-========================================================= */
 
 .post-item {
 
@@ -645,36 +484,21 @@ p {
   border:
     1px solid rgba(255,255,255,0.08);
 
-  backdrop-filter: blur(12px);
-
-  box-shadow:
-    0 4px 20px rgba(0,0,0,0.16);
-
   border-radius:
     var(--radius);
 
   padding: 1rem;
 
-  transition:
-    0.18s ease;
-
-  display: flex;
-
-  flex-direction: column;
-
-  height: 100%;
+  transition: 0.18s ease;
 }
 
 .post-item:hover {
 
-  border-color:
-    rgba(99,102,241,0.22);
-
-  box-shadow:
-    0 0 25px rgba(99,102,241,0.12);
-
   transform:
     translateY(-2px);
+
+  border-color:
+    rgba(99,102,241,0.22);
 }
 
 /* =========================================================
@@ -702,19 +526,10 @@ p {
   border:
     1px solid rgba(255,255,255,0.08);
 
-  backdrop-filter: blur(12px);
-
   border-radius: 14px;
 
   padding: 0.9rem;
-
-  box-shadow:
-    0 4px 20px rgba(0,0,0,0.16);
 }
-
-/* =========================================================
-   SIDEBAR HEADING
-========================================================= */
 
 .sidebar-heading {
 
@@ -724,13 +539,11 @@ p {
 
   gap: 0.55rem;
 
+  margin-bottom: 0.8rem;
+
   font-size: 0.86rem;
 
   font-weight: 700;
-
-  margin-bottom: 0.8rem;
-
-  color: white;
 }
 
 /* =========================================================
@@ -743,7 +556,7 @@ p {
 
   flex-direction: column;
 
-  gap: 0.15rem;
+  gap: 0.2rem;
 }
 
 #table-of-contents a {
@@ -751,15 +564,13 @@ p {
   display: block;
 
   padding:
-    0.42rem 0.55rem;
+    0.45rem 0.6rem;
 
   border-radius: 10px;
 
   color: var(--muted);
 
-  font-size: 0.81rem;
-
-  line-height: 1.45;
+  font-size: 0.82rem;
 }
 
 #table-of-contents a:hover {
@@ -860,6 +671,8 @@ pre {
 
 @media (max-width: 900px) {
 
+  /* LAYOUT */
+
   .blog-layout {
 
     grid-template-columns:
@@ -871,6 +684,8 @@ pre {
     max-width:
       100% !important;
   }
+
+  /* HIDE SIDEBAR */
 
   aside.sidebar,
   .sidebar,
@@ -884,21 +699,19 @@ pre {
       none !important;
   }
 
+  /* NAVBAR */
+
   .navbar {
 
     position: relative;
-
-    min-height: 64px;
   }
 
   .nav-toggle {
 
-    display: flex !important;
-
-    align-items: center;
-
-    justify-content: center;
+    display: flex;
   }
+
+  /* MOBILE MENU */
 
   .nav-menu {
 
@@ -941,6 +754,8 @@ pre {
     display: flex;
   }
 
+  /* SEARCH */
+
   .search-container {
 
     width: 100%;
@@ -950,6 +765,8 @@ pre {
 
     width: 100%;
   }
+
+  /* LINKS */
 
   .nav-link {
 
@@ -961,14 +778,11 @@ pre {
 
     justify-content: space-between;
 
-    padding:
-      0.85rem 1rem;
-
-    border-radius: 12px;
-
     background:
       rgba(255,255,255,0.03);
   }
+
+  /* MOBILE DROPDOWN */
 
   .nav-dropdown {
 
@@ -977,17 +791,17 @@ pre {
 
   .dropdown-menu {
 
-    position: static !important;
-
-    display: none;
+    position: static;
 
     width: 100%;
 
     min-width: 100%;
 
+    padding-top: 0;
+
     margin-top: 0.5rem;
 
-    box-shadow: none;
+    display: none;
   }
 
   .dropdown-menu.show {
@@ -995,19 +809,28 @@ pre {
     display: block !important;
   }
 
+  .dropdown-menu-inner {
+
+    box-shadow: none;
+  }
+
+  /* BUTTON */
+
   .btn,
   .btn-premium {
 
     width: 100%;
-
-    justify-content: center;
   }
+
+  /* POSTS */
 
   .posts-list {
 
     grid-template-columns:
       1fr;
   }
+
+  /* FOOTER */
 
   .footer-inline {
 
@@ -1018,7 +841,7 @@ pre {
 }
 
 /* =========================================================
-   DROPDOWN ANIMATION
+   ANIMATION
 ========================================================= */
 
 @keyframes dropdownFade {

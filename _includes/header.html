@@ -98,37 +98,41 @@
             id="labsMenu"
           >
 
-            <a href="{{ site.baseurl }}/labs/htb/">
+            <div class="dropdown-menu-inner">
 
-              <i class="fas fa-cube"></i>
+              <a href="{{ site.baseurl }}/labs/htb/">
 
-              Hack The Box
+                <i class="fas fa-cube"></i>
 
-            </a>
+                Hack The Box
 
-            <a href="{{ site.baseurl }}/labs/thm/">
+              </a>
 
-              <i class="fas fa-network-wired"></i>
+              <a href="{{ site.baseurl }}/labs/thm/">
 
-              TryHackMe
+                <i class="fas fa-network-wired"></i>
 
-            </a>
+                TryHackMe
 
-            <a href="{{ site.baseurl }}/labs/offsec/">
+              </a>
 
-              <i class="fas fa-user-secret"></i>
+              <a href="{{ site.baseurl }}/labs/offsec/">
 
-              OffSec
+                <i class="fas fa-user-secret"></i>
 
-            </a>
+                OffSec
 
-            <a href="{{ site.baseurl }}/labs/vulnhub/">
+              </a>
 
-              <i class="fas fa-server"></i>
+              <a href="{{ site.baseurl }}/labs/vulnhub/">
 
-              VulnHub
+                <i class="fas fa-server"></i>
 
-            </a>
+                VulnHub
+
+              </a>
+
+            </div>
 
           </div>
 
@@ -203,7 +207,7 @@
 </header>
 
 <!-- =========================================================
-     HEADER SCRIPT
+     NAVBAR SCRIPT
 ========================================================= -->
 
 <script>
@@ -236,83 +240,73 @@ document.addEventListener(
          MOBILE MENU
     ========================================================= */
 
-    if (
-      navToggle &&
-      navMenu
-    ) {
+    navToggle.addEventListener(
+      "click",
+      function () {
 
-      navToggle.addEventListener(
-        "click",
-        function () {
+        navMenu.classList.toggle(
+          "show"
+        );
 
-          navMenu.classList.toggle(
+      }
+    );
+
+    /* =========================================================
+         MOBILE DROPDOWN
+    ========================================================= */
+
+    labsToggle.addEventListener(
+      "click",
+      function (e) {
+
+        if (
+          window.innerWidth <= 900
+        ) {
+
+          e.preventDefault();
+
+          e.stopPropagation();
+
+          labsMenu.classList.toggle(
             "show"
           );
 
         }
-      );
 
-    }
+      }
+    );
 
     /* =========================================================
-         LABS DROPDOWN
+         CLOSE DROPDOWN
     ========================================================= */
 
-    if (
-      labsToggle &&
-      labsMenu
-    ) {
+    document.addEventListener(
+      "click",
+      function (e) {
 
-      labsToggle.addEventListener(
-        "click",
-        function (e) {
+        if (
+          window.innerWidth <= 900
+        ) {
 
           if (
-            window.innerWidth <= 900
+            !labsToggle.contains(
+              e.target
+            ) &&
+            !labsMenu.contains(
+              e.target
+            )
           ) {
 
-            e.preventDefault();
-
-            e.stopPropagation();
-
-            labsMenu.classList.toggle(
+            labsMenu.classList.remove(
               "show"
             );
 
           }
 
         }
-      );
 
-      document.addEventListener(
-        "click",
-        function (e) {
-
-          if (
-            window.innerWidth <= 900
-          ) {
-
-            if (
-              !labsToggle.contains(
-                e.target
-              ) &&
-              !labsMenu.contains(
-                e.target
-              )
-            ) {
-
-              labsMenu.classList.remove(
-                "show"
-              );
-
-            }
-
-          }
-
-        }
-      );
-
-    }
+      }
+    );
 
   }
 );
