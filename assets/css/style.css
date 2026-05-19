@@ -414,7 +414,7 @@ p {
 
 .dropdown-menu.show {
 
-  display: block;
+  display: block !important;
 }
 
 .dropdown-menu a {
@@ -444,14 +444,14 @@ p {
 }
 
 /* =========================================================
-   DESKTOP HOVER
+   DESKTOP DROPDOWN
 ========================================================= */
 
 @media (min-width: 901px) {
 
   .nav-dropdown:hover .dropdown-menu {
 
-    display: block;
+    display: block !important;
   }
 }
 
@@ -713,6 +713,64 @@ p {
 }
 
 /* =========================================================
+   SIDEBAR HEADING
+========================================================= */
+
+.sidebar-heading {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 0.55rem;
+
+  font-size: 0.86rem;
+
+  font-weight: 700;
+
+  margin-bottom: 0.8rem;
+
+  color: white;
+}
+
+/* =========================================================
+   TABLE OF CONTENTS
+========================================================= */
+
+#table-of-contents {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 0.15rem;
+}
+
+#table-of-contents a {
+
+  display: block;
+
+  padding:
+    0.42rem 0.55rem;
+
+  border-radius: 10px;
+
+  color: var(--muted);
+
+  font-size: 0.81rem;
+
+  line-height: 1.45;
+}
+
+#table-of-contents a:hover {
+
+  background:
+    rgba(255,255,255,0.04);
+
+  color: white;
+}
+
+/* =========================================================
    CONTENT
 ========================================================= */
 
@@ -721,11 +779,6 @@ p {
 
   margin:
     0.9rem 0 0.9rem 1.3rem;
-}
-
-.blog-content li {
-
-  margin-bottom: 0.38rem;
 }
 
 blockquote {
@@ -742,8 +795,6 @@ blockquote {
     rgba(99,102,241,0.08);
 
   border-radius: 10px;
-
-  line-height: 1.7;
 }
 
 /* =========================================================
@@ -773,11 +824,6 @@ pre {
   overflow-x: auto;
 
   margin: 1.2rem 0;
-}
-
-code {
-
-  font-size: 0.84rem;
 }
 
 /* =========================================================
@@ -814,10 +860,6 @@ code {
 
 @media (max-width: 900px) {
 
-  /* =========================================================
-     LAYOUT
-  ========================================================= */
-
   .blog-layout {
 
     grid-template-columns:
@@ -830,20 +872,17 @@ code {
       100% !important;
   }
 
-  /* =========================================================
-     HIDE SIDEBAR
-  ========================================================= */
-
+  aside.sidebar,
   .sidebar,
+  .sidebar-card,
+  .toc-card,
+  .mini-brand,
+  .sidebar-heading,
   #table-of-contents {
 
     display:
       none !important;
   }
-
-  /* =========================================================
-     NAVBAR
-  ========================================================= */
 
   .navbar {
 
@@ -852,18 +891,14 @@ code {
     min-height: 64px;
   }
 
-  /* =========================================================
-     TOGGLE BUTTON
-  ========================================================= */
-
   .nav-toggle {
 
     display: flex !important;
-  }
 
-  /* =========================================================
-     MOBILE MENU
-  ========================================================= */
+    align-items: center;
+
+    justify-content: center;
+  }
 
   .nav-menu {
 
@@ -906,10 +941,6 @@ code {
     display: flex;
   }
 
-  /* =========================================================
-     SEARCH
-  ========================================================= */
-
   .search-container {
 
     width: 100%;
@@ -919,10 +950,6 @@ code {
 
     width: 100%;
   }
-
-  /* =========================================================
-     LINKS
-  ========================================================= */
 
   .nav-link {
 
@@ -943,10 +970,6 @@ code {
       rgba(255,255,255,0.03);
   }
 
-  /* =========================================================
-     DROPDOWN
-  ========================================================= */
-
   .nav-dropdown {
 
     width: 100%;
@@ -954,7 +977,7 @@ code {
 
   .dropdown-menu {
 
-    position: static;
+    position: static !important;
 
     display: none;
 
@@ -969,12 +992,8 @@ code {
 
   .dropdown-menu.show {
 
-    display: block;
+    display: block !important;
   }
-
-  /* =========================================================
-     BUTTON
-  ========================================================= */
 
   .btn,
   .btn-premium {
@@ -984,19 +1003,11 @@ code {
     justify-content: center;
   }
 
-  /* =========================================================
-     POSTS
-  ========================================================= */
-
   .posts-list {
 
     grid-template-columns:
       1fr;
   }
-
-  /* =========================================================
-     FOOTER
-  ========================================================= */
 
   .footer-inline {
 
