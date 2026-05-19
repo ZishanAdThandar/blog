@@ -375,13 +375,22 @@ document.addEventListener(
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  const toc = document.getElementById("table-of-contents");
+  const toc =
+    document.getElementById("table-of-contents");
 
   if (!toc) return;
 
-  const headings = document.querySelectorAll(
-    ".blog-content h2, .blog-content h3"
-  );
+  /* =========================================================
+     TARGET REAL ARTICLE CONTENT
+  ========================================================= */
+
+  const content =
+    document.querySelector("article");
+
+  if (!content) return;
+
+  const headings =
+    content.querySelectorAll("h2, h3");
 
   if (!headings.length) {
 
@@ -391,17 +400,24 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
+  /* =========================================================
+     BUILD TOC
+  ========================================================= */
+
   headings.forEach((heading, index) => {
 
     if (!heading.id) {
       heading.id = `section-${index}`;
     }
 
-    const link = document.createElement("a");
+    const link =
+      document.createElement("a");
 
-    link.href = `#${heading.id}`;
+    link.href =
+      `#${heading.id}`;
 
-    link.textContent = heading.textContent;
+    link.textContent =
+      heading.textContent;
 
     if (heading.tagName === "H3") {
       link.classList.add("toc-h3");
@@ -411,11 +427,13 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* =========================================================
-     ACTIVE SECTION HIGHLIGHT
+     ACTIVE LINK HIGHLIGHT
   ========================================================= */
 
   const tocLinks =
-    document.querySelectorAll("#table-of-contents a");
+    document.querySelectorAll(
+      "#table-of-contents a"
+    );
 
   const observer =
     new IntersectionObserver(
@@ -444,7 +462,8 @@ document.addEventListener("DOMContentLoaded", () => {
       },
 
       {
-        rootMargin: "-20% 0px -70% 0px"
+        rootMargin:
+          "-20% 0px -70% 0px"
       }
     );
 
@@ -453,3 +472,4 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
+
