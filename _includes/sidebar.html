@@ -1,399 +1,327 @@
 <aside class="sidebar">
 
-<!-- =====================================================
-     SEARCH
-===================================================== -->
+  <!-- =========================================================
+       CATEGORIES
+  ========================================================= -->
 
-<div class="sidebar-card">
+  <div class="sidebar-card">
 
-<h3 class="sidebar-title">
+    <h3 class="sidebar-title">
 
-Search
+      <i class="fas fa-layer-group"></i>
 
-</h3>
+      Categories
 
-<div class="search-container" style="width:100%;margin:0;">
+    </h3>
 
-<input
-type="text"
-id="search-input"
-placeholder="Search research, labs, notes..."
-autocomplete="off"
->
+    <ul class="sidebar-categories">
 
-<div id="search-results"></div>
+      <!-- RESEARCH -->
 
-</div>
+      <li>
 
-</div>
+        <a href="{{ site.baseurl }}/research/">
 
-<!-- =====================================================
-     TABLE OF CONTENTS
-===================================================== -->
+          <span>
 
-{% if page.layout == "post" %}
+            <i class="fas fa-book"></i>
 
-<div class="sidebar-card toc-card">
+            Research
 
-<h3 class="sidebar-title">
+          </span>
 
-On This Page
+          <span class="category-count">
 
-</h3>
+            {{ site.categories.research.size }}
 
-<nav id="toc"></nav>
+          </span>
 
-</div>
+        </a>
 
-{% endif %}
+      </li>
 
-<!-- =====================================================
-     CATEGORIES
-===================================================== -->
+      <!-- BUG BOUNTY -->
 
-<div class="sidebar-card">
+      <li>
 
-<h3 class="sidebar-title">
+        <a href="{{ site.baseurl }}/bug-bounty/">
 
-Research Areas
+          <span>
 
-</h3>
+            <i class="fas fa-bug"></i>
 
-<ul class="sidebar-categories">
+            Bug Bounty
 
-<li>
+          </span>
 
-<a href="/blog/research/">
+          <span class="category-count">
 
-<span>
+            {{ site.categories['bug-bounty'].size }}
 
-Research
+          </span>
 
-</span>
+        </a>
 
-<span class="category-count">
+      </li>
 
-{{ site.categories.research.size }}
+      <!-- HTB -->
 
-</span>
+      <li>
 
-</a>
+        <a href="{{ site.baseurl }}/labs/htb/">
 
-</li>
+          <span>
 
-<li>
+            <i class="fas fa-cube"></i>
 
-<a href="/blog/bug-bounty/">
+            Hack The Box
 
-<span>
+          </span>
 
-Bug Bounty
+          <span class="category-count">
 
-</span>
+            {{ site.categories.htb.size }}
 
-<span class="category-count">
+          </span>
 
-{{ site.categories.bug-bounty.size }}
+        </a>
 
-</span>
+      </li>
 
-</a>
+      <!-- THM -->
 
-</li>
+      <li>
 
-<li>
+        <a href="{{ site.baseurl }}/labs/thm/">
 
-<a href="/blog/labs/htb/">
+          <span>
 
-<span>
+            <i class="fas fa-network-wired"></i>
 
-Hack The Box
+            TryHackMe
 
-</span>
+          </span>
 
-<span class="category-count">
+          <span class="category-count">
 
-{{ site.categories.htb.size }}
+            {{ site.categories.thm.size }}
 
-</span>
+          </span>
 
-</a>
+        </a>
 
-</li>
+      </li>
 
-<li>
+      <!-- OFFSEC -->
 
-<a href="/blog/labs/thm/">
+      <li>
 
-<span>
+        <a href="{{ site.baseurl }}/labs/offsec/">
 
-TryHackMe
+          <span>
 
-</span>
+            <i class="fas fa-user-secret"></i>
 
-<span class="category-count">
+            OffSec
 
-{{ site.categories.thm.size }}
+          </span>
 
-</span>
+          <span class="category-count">
 
-</a>
+            {{ site.categories.offsec.size }}
 
-</li>
+          </span>
 
-<li>
+        </a>
 
-<a href="/blog/labs/offsec/">
+      </li>
 
-<span>
+      <!-- VULNHUB -->
 
-OffSec
+      <li>
 
-</span>
+        <a href="{{ site.baseurl }}/labs/vulnhub/">
 
-<span class="category-count">
+          <span>
 
-{{ site.categories.offsec.size }}
+            <i class="fas fa-server"></i>
 
-</span>
+            VulnHub
 
-</a>
+          </span>
 
-</li>
+          <span class="category-count">
 
-<li>
+            {{ site.categories.vulnhub.size }}
 
-<a href="/blog/labs/vulnhub/">
+          </span>
 
-<span>
+        </a>
 
-VulnHub
+      </li>
 
-</span>
+    </ul>
 
-<span class="category-count">
+  </div>
 
-{{ site.categories.vulnhub.size }}
+  <!-- =========================================================
+       FEATURED RESOURCES
+  ========================================================= -->
 
-</span>
+  <div class="sidebar-card">
 
-</a>
+    <h3 class="sidebar-title">
 
-</li>
+      <i class="fas fa-book-open"></i>
 
-</ul>
+      Resources
 
-</div>
+    </h3>
 
-<!-- =====================================================
-     RECENT POSTS
-===================================================== -->
+    <p
+      style="
+        color: var(--muted);
+        margin-bottom: 1rem;
+      "
+    >
 
-<div class="sidebar-card">
+      Curated offensive security notes,
+      methodologies, workflows,
+      and practical resources.
 
-<h3 class="sidebar-title">
+    </p>
 
-Latest Research
+    <a
+      href="https://zishanhack.com/#resources"
+      class="btn btn-premium"
+      style="width: 100%;"
+    >
 
-</h3>
+      Explore Resources
 
-<ul class="recent-posts">
+    </a>
 
-{% for post in site.posts limit:5 %}
+  </div>
 
-<li>
+  <!-- =========================================================
+       RECENT POSTS
+  ========================================================= -->
 
-<a href="{{ post.url | relative_url }}">
+  <div class="sidebar-card">
 
-<div class="post-icon">
+    <h3 class="sidebar-title">
 
-<i class="fas fa-file-code"></i>
+      <i class="fas fa-clock"></i>
 
-</div>
+      Recent Notes
 
-<div>
+    </h3>
 
-<span class="post-title">
+    <ul class="recent-posts">
 
-{{ post.title }}
+      {% for post in site.posts limit:6 %}
 
-</span>
+      <li>
 
-<span class="post-date">
+        <a href="{{ post.url | relative_url }}">
 
-{{ post.date | date: "%b %d, %Y" }}
+          <!-- ICON -->
 
-</span>
+          <span class="post-icon">
 
-</div>
+            {% if post.categories contains "htb" %}
 
-</a>
+              <i class="fas fa-cube"></i>
 
-</li>
+            {% elsif post.categories contains "thm" %}
 
-{% endfor %}
+              <i class="fas fa-network-wired"></i>
 
-</ul>
+            {% elsif post.categories contains "offsec" %}
 
-</div>
+              <i class="fas fa-user-secret"></i>
 
-<!-- =====================================================
-     POPULAR TAGS
-===================================================== -->
+            {% elsif post.categories contains "vulnhub" %}
 
-<div class="sidebar-card">
+              <i class="fas fa-server"></i>
 
-<h3 class="sidebar-title">
+            {% elsif post.categories contains "bug-bounty" %}
 
-Popular Topics
+              <i class="fas fa-bug"></i>
 
-</h3>
+            {% elsif post.categories contains "research" %}
 
-<div class="article-category">
+              <i class="fas fa-book"></i>
 
-{% assign tags = site.tags | sort %}
+            {% else %}
 
-{% for tag in tags limit:12 %}
+              <i class="fas fa-file-alt"></i>
 
-<span>
+            {% endif %}
 
-#{{ tag[0] }}
+          </span>
 
-</span>
+          <!-- INFO -->
 
-{% endfor %}
+          <div class="post-info">
 
-</div>
+            <span class="post-title">
 
-</div>
+              {{ post.title | truncate: 42 }}
+
+            </span>
+
+            <span class="post-date">
+
+              {{ post.date | date: "%b %d, %Y" }}
+
+            </span>
+
+          </div>
+
+        </a>
+
+      </li>
+
+      {% endfor %}
+
+    </ul>
+
+  </div>
+
+  <!-- =========================================================
+       TRENDING TAGS
+  ========================================================= -->
+
+  <div class="sidebar-card">
+
+    <h3 class="sidebar-title">
+
+      <i class="fas fa-tags"></i>
+
+      Trending Tags
+
+    </h3>
+
+    <div
+      class="article-category"
+      style="margin-bottom: 0;"
+    >
+
+      {% assign tags = site.tags | sort %}
+
+      {% for tag in tags limit:12 %}
+
+      <span>
+
+        #{{ tag[0] }}
+
+      </span>
+
+      {% endfor %}
+
+    </div>
+
+  </div>
 
 </aside>
-
-<!-- =====================================================
-     TOC SCRIPT
-===================================================== -->
-
-{% if page.layout == "post" %}
-
-<script>
-
-document.addEventListener(
-"DOMContentLoaded",
-() => {
-
-    const toc =
-    document.getElementById("toc");
-
-    if (!toc) return;
-
-    const headings =
-    document.querySelectorAll(
-        ".blog-content h2, .blog-content h3"
-    );
-
-    if (headings.length === 0) {
-
-        toc.innerHTML = `
-        <p style="color:var(--muted);font-size:0.92rem;">
-
-            No sections available.
-
-        </p>
-        `;
-
-        return;
-    }
-
-    const ul =
-    document.createElement("ul");
-
-    ul.className = "toc-list";
-
-    headings.forEach(heading => {
-
-        if (!heading.id) {
-
-            heading.id =
-            heading.innerText
-            .toLowerCase()
-            .replace(/[^\w\s]/g, "")
-            .replace(/\s+/g, "-");
-
-        }
-
-        const li =
-        document.createElement("li");
-
-        li.className =
-        heading.tagName.toLowerCase();
-
-        const a =
-        document.createElement("a");
-
-        a.href =
-        "#" + heading.id;
-
-        a.innerText =
-        heading.innerText;
-
-        li.appendChild(a);
-
-        ul.appendChild(li);
-
-    });
-
-    toc.appendChild(ul);
-
-    const observer =
-    new IntersectionObserver(
-
-        entries => {
-
-            entries.forEach(entry => {
-
-                const id =
-                entry.target.id;
-
-                const link =
-                toc.querySelector(
-                    `a[href="#${id}"]`
-                );
-
-                if (!link) return;
-
-                if (entry.isIntersecting) {
-
-                    toc
-                    .querySelectorAll("a")
-                    .forEach(a =>
-                        a.classList.remove(
-                            "active"
-                        )
-                    );
-
-                    link.classList.add(
-                        "active"
-                    );
-
-                }
-
-            });
-
-        },
-
-        {
-            rootMargin:
-            "-30% 0px -60% 0px"
-        }
-
-    );
-
-    headings.forEach(
-        heading =>
-        observer.observe(heading)
-    );
-
-});
-</script>
-
-{% endif %}
