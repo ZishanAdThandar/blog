@@ -1,8 +1,7 @@
 ---
 layout: default
-title: Labs
-description: Hands-on offensive security labs, walkthroughs, exploitation methodologies, and practical cybersecurity training environments.
-permalink: /labs/
+title: Offensive Security Research
+description: Offensive security research, Active Directory methodologies, bug bounty workflows, practical lab writeups, and hands-on cybersecurity notes.
 ---
 
 <section class="hero-section">
@@ -10,210 +9,68 @@ permalink: /labs/
 <div class="article-category">
 
 <span>
-Hack The Box
+Offensive Security
 </span>
 
 <span>
-TryHackMe
+Active Directory
 </span>
 
 <span>
-OffSec
+Bug Bounty
 </span>
 
 <span>
-VulnHub
+Web Exploitation
 </span>
 
 </div>
 
 <h1 class="hero-title">
 
-Hands-On Offensive Security Labs
+Offensive Security Research,
+Methodologies &
+Practical Cybersecurity Notes
 
 </h1>
 
 <p class="hero-description">
 
-Practical exploitation walkthroughs,
-privilege escalation methodologies,
-Active Directory labs,
-and real-world attack path practice
-across multiple offensive security platforms.
+Active Directory tradecraft,
+web exploitation methodologies,
+offensive security workflows,
+practical lab writeups,
+and real-world technical research.
 
 </p>
 
-</section>
+<div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap;">
 
-<div class="posts-list">
+<a
+href="/blog/research/"
+class="btn btn-premium"
+>
 
-<article class="post-item">
+<i class="fas fa-book"></i>
 
-<div class="article-category">
-
-<span>
-HTB
-</span>
-
-</div>
-
-<h2>
-
-<a href="/blog/labs/htb/">
-
-Hack The Box
+Research
 
 </a>
-
-</h2>
-
-<div class="post-excerpt">
-
-Windows and Linux machine walkthroughs,
-enumeration methodologies,
-privilege escalation,
-and exploitation workflows.
-
-</div>
 
 <a
 href="/blog/labs/htb/"
-class="read-more"
+class="btn"
 >
 
-Explore HTB
+<i class="fas fa-terminal"></i>
 
-<i class="fas fa-arrow-right"></i>
-
-</a>
-
-</article>
-
-<article class="post-item">
-
-<div class="article-category">
-
-<span>
-THM
-</span>
-
-</div>
-
-<h2>
-
-<a href="/blog/labs/thm/">
-
-TryHackMe
+Labs
 
 </a>
 
-</h2>
-
-<div class="post-excerpt">
-
-Learning-focused offensive security labs,
-web exploitation,
-Active Directory,
-and foundational cybersecurity exercises.
-
 </div>
 
-<a
-href="/blog/labs/thm/"
-class="read-more"
->
-
-Explore THM
-
-<i class="fas fa-arrow-right"></i>
-
-</a>
-
-</article>
-
-<article class="post-item">
-
-<div class="article-category">
-
-<span>
-OffSec
-</span>
-
-</div>
-
-<h2>
-
-<a href="/blog/labs/offsec/">
-
-OffSec Labs
-
-</a>
-
-</h2>
-
-<div class="post-excerpt">
-
-OSCP-style methodologies,
-advanced exploitation workflows,
-and offensive security certification preparation.
-
-</div>
-
-<a
-href="/blog/labs/offsec/"
-class="read-more"
->
-
-Explore OffSec
-
-<i class="fas fa-arrow-right"></i>
-
-</a>
-
-</article>
-
-<article class="post-item">
-
-<div class="article-category">
-
-<span>
-VulnHub
-</span>
-
-</div>
-
-<h2>
-
-<a href="/blog/labs/vulnhub/">
-
-VulnHub
-
-</a>
-
-</h2>
-
-<div class="post-excerpt">
-
-Classic vulnerable machines,
-manual exploitation methodologies,
-and practical penetration testing exercises.
-
-</div>
-
-<a
-href="/blog/labs/vulnhub/"
-class="read-more"
->
-
-Explore VulnHub
-
-<i class="fas fa-arrow-right"></i>
-
-</a>
-
-</article>
-
-</div>
+</section>
 
 ---
 
