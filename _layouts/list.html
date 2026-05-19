@@ -34,11 +34,21 @@ layout: default
 
   <div class="posts-list">
 
-    {% assign category_posts = site.posts | where: "categories", page.category %}
+    {% assign filtered_posts = "" | split: "" %}
 
-    {% if category_posts.size > 0 %}
+    {% for post in site.posts %}
 
-      {% for post in category_posts %}
+      {% if post.categories contains page.category %}
+
+        {% assign filtered_posts = filtered_posts | push: post %}
+
+      {% endif %}
+
+    {% endfor %}
+
+    {% if filtered_posts.size > 0 %}
+
+      {% for post in filtered_posts %}
 
       <article class="post-item">
 
