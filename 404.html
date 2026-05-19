@@ -1,140 +1,440 @@
+---
+layout: null
+permalink: /404.html
+---
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>404 | Not Found</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex, nofollow">
 
-  <style>
-    :root {
-      --bg: #070b11;
-      --panel: #0c121a;
-      --fg: #dfe6ee;
-      --muted: #8b97a8;
-      --accent: #4da3ff;
-      --border: #1a2433;
-      --glow: rgba(77,163,255,0.15);
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+>
+
+<title>
+404 — Resource Not Found
+</title>
+
+<link
+rel="stylesheet"
+href="{{ '/assets/css/style.css' | relative_url }}"
+>
+
+<link
+rel="preconnect"
+href="https://fonts.googleapis.com"
+>
+
+<link
+rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin
+>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap"
+rel="stylesheet"
+>
+
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+>
+
+<style>
+
+body {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 2rem;
+}
+
+.error-container {
+
+    width: 100%;
+
+    max-width: 880px;
+}
+
+.error-card {
+
+    background: rgba(255,255,255,0.03);
+
+    border: 1px solid rgba(255,255,255,0.06);
+
+    border-radius: 28px;
+
+    padding: 3rem;
+
+    box-shadow: var(--shadow);
+}
+
+.error-code {
+
+    font-size: 6rem;
+
+    font-weight: 900;
+
+    line-height: 1;
+
+    margin-bottom: 1rem;
+
+    background: var(--gradient);
+
+    -webkit-background-clip: text;
+
+    color: transparent;
+}
+
+.error-title {
+
+    font-size: 2rem;
+
+    margin-bottom: 1rem;
+}
+
+.error-description {
+
+    color: var(--muted);
+
+    font-size: 1.05rem;
+
+    line-height: 1.9;
+
+    max-width: 700px;
+
+    margin-bottom: 2rem;
+}
+
+.url-box {
+
+    background: rgba(255,255,255,0.03);
+
+    border: 1px solid rgba(255,255,255,0.05);
+
+    border-radius: 16px;
+
+    padding: 1rem 1.2rem;
+
+    font-family: 'JetBrains Mono', monospace;
+
+    color: #93c5fd;
+
+    margin-bottom: 2rem;
+
+    overflow-x: auto;
+}
+
+.actions {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 1rem;
+
+    margin-bottom: 3rem;
+}
+
+.suggestions {
+
+    margin-top: 2rem;
+}
+
+.suggestions h2 {
+
+    margin-bottom: 1.5rem;
+}
+
+.suggestion-list {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 1rem;
+}
+
+.suggestion-item {
+
+    display: block;
+
+    background: rgba(255,255,255,0.03);
+
+    border: 1px solid rgba(255,255,255,0.05);
+
+    border-radius: 18px;
+
+    padding: 1.3rem;
+
+    transition: 0.2s ease;
+}
+
+.suggestion-item:hover {
+
+    transform: translateY(-2px);
+
+    border-color: rgba(99,102,241,0.25);
+}
+
+.suggestion-title {
+
+    color: white;
+
+    font-weight: 700;
+
+    margin-bottom: 0.4rem;
+}
+
+.suggestion-meta {
+
+    color: var(--muted);
+
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+
+    .error-card {
+
+        padding: 2rem;
     }
 
-    * {
-      box-sizing: border-box;
+    .error-code {
+
+        font-size: 4rem;
     }
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background:
-        radial-gradient(800px 400px at 50% -20%, var(--glow), transparent 60%),
-        var(--bg);
-      color: var(--fg);
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      line-height: 1.65;
-    }
+    .error-title {
 
-    .terminal {
-      width: 100%;
-      max-width: 760px;
-      background: var(--panel);
-      border: 1px solid var(--border);
-      padding: 2.5rem;
-      box-shadow: 0 0 0 1px rgba(255,255,255,0.02);
+        font-size: 1.5rem;
     }
+}
 
-    .prompt {
-      color: var(--accent);
-    }
+</style>
 
-    h1 {
-      margin: 0 0 1.2rem 0;
-      font-size: 1.6rem;
-      font-weight: 600;
-    }
-
-    p {
-      margin: 0 0 1.2rem 0;
-      color: var(--muted);
-    }
-
-    .path {
-      margin: 1.5rem 0;
-      padding: 0.75rem 1rem;
-      border: 1px solid var(--border);
-      background: #060a10;
-      color: var(--fg);
-      overflow-x: auto;
-      font-size: 0.95rem;
-    }
-
-    a {
-      color: var(--accent);
-      text-decoration: none;
-      border-bottom: 1px solid transparent;
-    }
-
-    a:hover {
-      border-bottom-color: var(--accent);
-    }
-
-    footer {
-      margin-top: 2rem;
-      font-size: 0.85rem;
-      color: var(--muted);
-    }
-
-    .cursor::after {
-      content: "_";
-      animation: blink 1.1s steps(2, start) infinite;
-    }
-
-    @keyframes blink {
-      to { visibility: hidden; }
-    }
-  </style>
 </head>
 
 <body>
-  <main class="terminal">
-    <h1><span class="prompt">$</span> 404 — resource not found<span class="cursor"></span></h1>
 
-    <p>
-      The path you tried to access does not map to any published document.
-      This environment exposes only intentional entry points and indexed resources.
-      Everything else fails closed by design.
-    </p>
+<div class="error-container">
 
-    <div class="path" id="path"></div>
+<div class="error-card">
 
-    <p>
-      If you are looking for verified content, tools, or documentation,
-      start from the main site at
-      <a href="https://zishanhack.com" rel="noopener">zishanhack.com</a>.
-    </p>
+<div class="error-code">
 
-    <p>
-      For quick navigation to all official destinations,
-      use the central link hub at
-      <a href="https://go.zishanhack.com/" rel="noopener">go.zishanhack.com</a>.
-    </p>
+404
 
-    <p>
-      Professional background, selected work, and public presence
-      are available at
-      <a href="https://linktree.zishanhack.com" rel="noopener">linktree.zishanhack.com</a>.
-    </p>
+</div>
 
-    <footer>
-      Status: isolated environment · Access: restricted · Mode: read-only
-    </footer>
-  </main>
+<h1 class="error-title">
 
-  <script>
-    document.getElementById("path").textContent =
-      "requested_path = \"" + window.location.pathname + "\"";
-  </script>
+Resource Not Found
+
+</h1>
+
+<p class="error-description">
+
+The requested resource does not exist,
+may have been moved,
+or the URL may be incorrect.
+
+You may have been looking for one of the related articles below.
+
+</p>
+
+<div
+class="url-box"
+id="broken-url"
+>
+
+</div>
+
+<div class="actions">
+
+<a
+href="/blog/"
+class="btn btn-premium"
+>
+
+<i class="fas fa-house"></i>
+
+Home
+
+</a>
+
+<a
+href="/blog/research/"
+class="btn"
+>
+
+<i class="fas fa-book"></i>
+
+Research
+
+</a>
+
+<a
+href="/blog/labs/"
+class="btn"
+>
+
+<i class="fas fa-terminal"></i>
+
+Labs
+
+</a>
+
+</div>
+
+<div class="suggestions">
+
+<h2>
+
+Maybe you were looking for…
+
+</h2>
+
+<div
+class="suggestion-list"
+id="suggestions"
+>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const currentPath =
+window.location.pathname
+.toLowerCase();
+
+document.getElementById(
+"broken-url"
+).innerText = currentPath;
+
+const pathTokens =
+currentPath
+.replace(/[^a-z0-9\/-]/g, "")
+.split(/[-\/]+/)
+.filter(Boolean);
+
+fetch("/blog/search.json")
+.then(response => response.json())
+.then(posts => {
+
+    const scored = posts.map(post => {
+
+        let score = 0;
+
+        const haystack = `
+            ${post.title}
+            ${post.category}
+            ${post.tags}
+            ${post.content}
+        `.toLowerCase();
+
+        pathTokens.forEach(token => {
+
+            if (haystack.includes(token)) {
+
+                score += 1;
+
+            }
+
+        });
+
+        return {
+            ...post,
+            score
+        };
+
+    });
+
+    const matches =
+    scored
+    .filter(post => post.score > 0)
+    .sort((a,b) => b.score - a.score)
+    .slice(0,5);
+
+    const container =
+    document.getElementById(
+        "suggestions"
+    );
+
+    if (matches.length === 0) {
+
+        container.innerHTML = `
+        <div class="suggestion-item">
+
+            <div class="suggestion-title">
+
+                No closely related resources found.
+
+            </div>
+
+            <div class="suggestion-meta">
+
+                Try exploring the research or labs sections.
+
+            </div>
+
+        </div>
+        `;
+
+        return;
+    }
+
+    matches.forEach(post => {
+
+        const item =
+        document.createElement("a");
+
+        item.href = post.url;
+
+        item.className =
+        "suggestion-item";
+
+        item.innerHTML = `
+
+        <div class="suggestion-title">
+
+            ${post.title}
+
+        </div>
+
+        <div class="suggestion-meta">
+
+            ${post.category}
+
+        </div>
+
+        `;
+
+        container.appendChild(item);
+
+    });
+
+});
+
+</script>
+
 </body>
-</html>
 
+</html>
