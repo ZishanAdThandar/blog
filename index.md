@@ -1,137 +1,369 @@
 ---
 layout: default
-title: Home
+title: Offensive Security Research
+description: Offensive security research, Active Directory methodologies, bug bounty workflows, practical lab writeups, and hands-on cybersecurity notes.
 ---
 
-## About This Space
+<section class="hero-section">
 
-This site is a curated knowledge base focused on practical offensive security, real-world bug bounty workflows, and structured certification-oriented notes.  
-Content here prioritizes clarity, repeatability, and methodology over noise or trend-driven material.
+<div class="article-category">
 
-Everything published is written from hands-on experience and intended to be usable as reference material during active learning or real engagements.
+<span>
+Offensive Security
+</span>
 
-## Start Here
+<span>
+Research
+</span>
 
-<div class="post-grid">
+<span>
+Bug Bounty
+</span>
 
-<article class="post-card">
-  <h3><a href="{{ site.baseurl }}/posts/blog/">Technical Blog</a></h3>
-  <p>Long-form explanations, deep dives, and structured notes on security concepts, tooling, and workflows.</p>
-</article>
-
-<article class="post-card">
-  <h3><a href="{{ site.baseurl }}/posts/bugbounty/">Bug Bounty Notes</a></h3>
-  <p>Realistic bug hunting notes, checklists, and patterns focused on modern web applications.</p>
-</article>
-
-<article class="post-card">
-  <h3><a href="{{ site.baseurl }}/posts/hackthebox/">Hack The Box</a></h3>
-  <p>Machine walkthroughs and methodology-driven approaches for labs and CTF-style environments.</p>
-</article>
-
-<article class="post-card">
-  <h3><a href="{{ site.baseurl }}/posts/tryhackme/">TryHackMe</a></h3>
-  <p>Room walkthroughs and guided learning paths for beginners and intermediates.</p>
-</article>
-
-<article class="post-card">
-  <h3><a href="{{ site.baseurl }}/posts/offsec/">OffSec</a></h3>
-  <p>PG Practice machines and certification preparation notes.</p>
-</article>
-
-<article class="post-card">
-  <h3><a href="{{ site.baseurl }}/posts/vulnhub/">VulnHub</a></h3>
-  <p>Vulnerable VM walkthroughs for practice and skill development.</p>
-</article>
+<span>
+Active Directory
+</span>
 
 </div>
 
+# Offensive Security Research & Practical Cybersecurity Notes
+
+Practical offensive security methodologies, Active Directory research,
+bug bounty workflows, hands-on lab writeups, and real-world technical notes.
+
+<div style="margin-top: 2rem; display:flex; gap:1rem; flex-wrap:wrap;">
+
+<a href="/blog/research/" class="btn btn-premium">
+
+<i class="fas fa-book"></i>
+
+Research
+
+</a>
+
+<a href="/blog/labs/htb/" class="btn">
+
+<i class="fas fa-terminal"></i>
+
+Labs
+
+</a>
+
+</div>
+
+</section>
+
 ---
 
-## Recent Notes
+## Featured Research
 
-<div class="post-grid">
-{% for post in site.posts limit:6 %}
-  <article class="post-card">
-    <div class="post-meta" style="font-size: 0.8rem; color: var(--gray); margin-bottom: 0.5rem;">
-      <span style="color: transparent; text-shadow: 0 0 0 #94a3b8;">📅 {{ post.date | date: "%b %d, %Y" }} • 📁 {{ post.categories | first | capitalize }}</span>
-    </div>
-    <h3>
-      <a href="{{ post.url | relative_url }}">
-        {{ post.title }}
-      </a>
-    </h3>
-    {% if post.description %}
-      <p>{{ post.description }}</p>
-    {% elsif post.excerpt %}
-      <p>{{ post.excerpt | strip_html | truncate: 120 }}</p>
-    {% endif %}
-  </article>
+<div class="posts-list">
+
+{% assign featured_posts =
+site.posts | where: "pinned", true %}
+
+{% for post in featured_posts limit:3 %}
+
+<article class="post-item">
+
+<div class="article-category">
+
+{% for category in post.categories %}
+
+<span>
+
+{{ category }}
+
+</span>
+
 {% endfor %}
+
+</div>
+
+<h2>
+
+<a href="{{ post.url | relative_url }}">
+
+{{ post.title }}
+
+</a>
+
+</h2>
+
+<div class="post-excerpt">
+
+{% if post.description %}
+
+{{ post.description }}
+
+{% else %}
+
+{{ post.excerpt
+| strip_html
+| truncate: 220 }}
+
+{% endif %}
+
+</div>
+
+<div class="post-meta">
+
+<span>
+
+<i class="fas fa-calendar"></i>
+
+{{ post.date | date: "%B %d, %Y" }}
+
+</span>
+
+<span>
+
+<i class="fas fa-clock"></i>
+
+{% assign words =
+post.content | number_of_words %}
+
+{% assign readtime =
+words | divided_by: 180 %}
+
+{% if readtime < 1 %}
+
+1 min read
+
+{% else %}
+
+{{ readtime }} min read
+
+{% endif %}
+
+</span>
+
+</div>
+
+<a
+href="{{ post.url | relative_url }}"
+class="read-more"
+>
+
+Read Article
+
+<i class="fas fa-arrow-right"></i>
+
+</a>
+
+</article>
+
+{% endfor %}
+
 </div>
 
 ---
 
-<div style="background: rgba(99, 102, 241, 0.1); border: 1px solid var(--primary); border-radius: 12px; padding: 1.5rem; margin: 2rem 0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
-  <div>
-    <h3 style="margin: 0; color: white;">🚀 Premium Cybersecurity Resources</h3>
-    <p style="margin: 0.5rem 0 0; color: var(--gray);">Battle-tested notes with 90% OFF • Used by 2,500+ professionals</p>
-  </div>
-  <a href="https://zishanhack.com/#resources" class="btn btn-premium">
-    View Resources <i class="fas fa-arrow-right"></i>
-  </a>
+## Research Categories
+
+<div class="posts-list">
+
+<article class="post-item">
+
+<h2>
+
+<a href="/blog/research/">
+
+Research
+
+</a>
+
+</h2>
+
+<div class="post-excerpt">
+
+Technical research notes, methodologies,
+Active Directory techniques, Windows internals,
+web security, and offensive security workflows.
+
 </div>
 
-## Navigation
+<a
+href="/blog/research/"
+class="read-more"
+>
 
-You can browse all content through the category sections above or access specific notes directly if you already know what you're looking for.  
-This site is intentionally minimal and optimized for long-term reference rather than feed-style consumption.
+Explore Research
 
-<div style="text-align: center; margin-top: 2rem;">
-  <a href="{{ site.baseurl }}/feed.xml" class="btn btn-outline btn-small">
-    <i class="fas fa-rss"></i> Subscribe to RSS
-  </a>
+<i class="fas fa-arrow-right"></i>
+
+</a>
+
+</article>
+
+<article class="post-item">
+
+<h2>
+
+<a href="/blog/bug-bounty/">
+
+Bug Bounty
+
+</a>
+
+</h2>
+
+<div class="post-excerpt">
+
+Practical web exploitation notes,
+reconnaissance methodologies,
+real-world findings,
+and bug bounty workflows.
+
 </div>
 
-<style>
-.post-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-  margin: 2rem 0;
-}
+<a
+href="/blog/bug-bounty/"
+class="read-more"
+>
 
-.post-card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 1.5rem;
-  transition: all 0.3s ease;
-}
+Explore Bug Bounty
 
-.post-card:hover {
-  transform: translateY(-5px);
-  border-color: var(--primary);
-  box-shadow: var(--shadow);
-}
+<i class="fas fa-arrow-right"></i>
 
-.post-card h3 {
-  margin-top: 0;
-  margin-bottom: 0.75rem;
-}
+</a>
 
-.post-card h3 a {
-  color: white;
-  text-decoration: none;
-}
+</article>
 
-.post-card h3 a:hover {
-  color: var(--primary);
-}
+<article class="post-item">
 
-.post-card p {
-  color: var(--gray);
-  margin: 0;
-  line-height: 1.5;
-}
-</style>
+<h2>
+
+<a href="/blog/labs/htb/">
+
+Labs
+
+</a>
+
+</h2>
+
+<div class="post-excerpt">
+
+Hands-on Hack The Box,
+TryHackMe,
+OffSec,
+and VulnHub walkthroughs
+focused on methodology and exploitation.
+
+</div>
+
+<a
+href="/blog/labs/htb/"
+class="read-more"
+>
+
+Explore Labs
+
+<i class="fas fa-arrow-right"></i>
+
+</a>
+
+</article>
+
+</div>
+
+---
+
+## Latest Technical Notes
+
+<div class="posts-list">
+
+{% for post in site.posts limit:6 %}
+
+<article class="post-item">
+
+<div class="article-category">
+
+{% for category in post.categories %}
+
+<span>
+
+{{ category }}
+
+</span>
+
+{% endfor %}
+
+</div>
+
+<h2>
+
+<a href="{{ post.url | relative_url }}">
+
+{{ post.title }}
+
+</a>
+
+</h2>
+
+<div class="post-excerpt">
+
+{% if post.description %}
+
+{{ post.description }}
+
+{% else %}
+
+{{ post.excerpt
+| strip_html
+| truncate: 220 }}
+
+{% endif %}
+
+</div>
+
+<div class="post-meta">
+
+<span>
+
+<i class="fas fa-calendar"></i>
+
+{{ post.date | date: "%B %d, %Y" }}
+
+</span>
+
+<span>
+
+<i class="fas fa-clock"></i>
+
+{% assign words =
+post.content | number_of_words %}
+
+{% assign readtime =
+words | divided_by: 180 %}
+
+{% if readtime < 1 %}
+
+1 min read
+
+{% else %}
+
+{{ readtime }} min read
+
+{% endif %}
+
+</span>
+
+</div>
+
+<a
+href="{{ post.url | relative_url }}"
+class="read-more"
+>
+
+Read Article
+
+<i class="fas fa-arrow-right"></i>
+
+</a>
+
+</article>
+
+{% endfor %}
+
+</div>

@@ -1,160 +1,368 @@
-// ===== MAIN JAVASCRIPT FOR BLOG =====
+/* =========================================================
+   ZISHANHACK MAIN JS
+========================================================= */
 
-// Prevent multiple executions globally
-if (!window.copyButtonsInitialized) {
-    window.copyButtonsInitialized = true;
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
 
-    document.addEventListener('DOMContentLoaded', function () {
+    /* =====================================================
+       READING PROGRESS BAR
+    ===================================================== */
 
-        // ===== COPY BUTTON FOR CODE BLOCKS =====
-        function initCopyButtons() {
+    const progressBar =
+      document.createElement("div");
 
-            // Target ONLY top-level highlight blocks (avoid nested Rouge wrappers)
-            const codeBlocks = document.querySelectorAll(
-                '.highlight:not(.highlight .highlight)'
-            );
+    progressBar.id =
+      "reading-progress";
 
-            codeBlocks.forEach((block) => {
+    progressBar.style.position =
+      "fixed";
 
-                // Remove existing buttons safely
-                block.querySelectorAll('.copy-code-btn').forEach(btn => btn.remove());
+    progressBar.style.top =
+      "0";
 
-                // Ensure block is positioned correctly
-                block.style.position = 'relative';
+    progressBar.style.left =
+      "0";
 
-                // Create button
-                const button = document.createElement('button');
-                button.className = 'copy-code-btn';
-                button.innerHTML = '<i class="fas fa-copy"></i> Copy';
-                button.setAttribute('aria-label', 'Copy code to clipboard');
-                button.setAttribute('title', 'Copy to clipboard');
+    progressBar.style.height =
+      "3px";
 
-                block.appendChild(button);
+    progressBar.style.width =
+      "0%";
 
-                // Click handler
-                button.addEventListener('click', async (e) => {
-                    e.stopPropagation();
-                    e.preventDefault();
+    progressBar.style.zIndex =
+      "99999";
 
-                    const codeElement =
-                        block.querySelector('pre code') ||
-                        block.querySelector('pre');
+    progressBar.style.background =
+      "linear-gradient(90deg,#6366f1,#8b5cf6)";
 
-                    const code = codeElement ? codeElement.textContent : '';
+    document.body.appendChild(
+      progressBar
+    );
 
-                    try {
-                        await navigator.clipboard.writeText(code);
+    window.addEventListener(
+      "scroll",
+      () => {
 
-                        button.innerHTML = '<i class="fas fa-check"></i> Copied!';
-                        button.classList.add('copied');
+        const scrollTop =
+          document.documentElement
+            .scrollTop;
 
-                        setTimeout(() => {
-                            button.innerHTML = '<i class="fas fa-copy"></i> Copy';
-                            button.classList.remove('copied');
-                        }, 2000);
+        const scrollHeight =
+          document.documentElement
+            .scrollHeight
+          -
+          document.documentElement
+            .clientHeight;
 
-                    } catch (err) {
-                        fallbackCopy(code, button);
-                    }
-                });
-            });
+        const progress =
+          (scrollTop / scrollHeight)
+          * 100;
+
+        progressBar.style.width =
+          progress + "%";
+
+      }
+    );
+
+    /* =====================================================
+       HEADING ANCHORS
+    ===================================================== */
+
+    const headings =
+      document.querySelectorAll(
+        ".blog-content h2, .blog-content h3"
+      );
+
+    headings.forEach(
+      heading => {
+
+        if (!heading.id) {
+
+          heading.id =
+            heading.innerText
+              .toLowerCase()
+              .replace(/[^\w\s]/g, "")
+              .replace(/\s+/g, "-");
+
         }
 
-        // Fallback method
-        function fallbackCopy(text, button) {
-            const textarea = document.createElement('textarea');
-            textarea.value = text;
-            textarea.style.position = 'fixed';
-            textarea.style.opacity = '0';
-            document.body.appendChild(textarea);
+        const anchor =
+          document.createElement("a");
+
+        anchor.href =
+          "#" + heading.id;
+
+        anchor.className =
+          "heading-anchor";
+
+        anchor.innerHTML =
+          '<i class="fas fa-link"></i>';
+
+        anchor.style.marginLeft =
+          "10px";
+
+        anchor.style.opacity =
+          "0";
+
+        anchor.style.transition =
+          "0.2s ease";
+
+        heading.appendChild(anchor);
+
+        heading.addEventListener(
+          "mouseenter",
+          () => {
+
+            anchor.style.opacity =
+              "1";
+
+          }
+        );
+
+        heading.addEventListener(
+          "mouseleave",
+          () => {
+
+            anchor.style.opacity =
+              "0";
+
+          }
+        );
+
+      }
+    );
+
+    /* =====================================================
+       COPY BUTTONS
+    ===================================================== */
+
+    const codeBlocks =
+      document.querySelectorAll(
+        "pre"
+      );
+
+    codeBlocks.forEach(
+      block => {
+
+        const wrapper =
+          document.createElement("div");
+
+        wrapper.style.position =
+          "relative";
+
+        block.parentNode.insertBefore(
+          wrapper,
+          block
+        );
+
+        wrapper.appendChild(block);
+
+        const button =
+          document.createElement(
+            "button"
+          );
+
+        button.className =
+          "copy-button";
+
+        button.innerHTML =
+          '<i class="fas fa-copy"></i>';
+
+        button.style.position =
+          "absolute";
+
+        button.style.top =
+          "12px";
+
+        button.style.right =
+          "12px";
+
+        button.style.background =
+          "#1e293b";
+
+        button.style.border =
+          "1px solid rgba(255,255,255,0.08)";
+
+        button.style.color =
+          "#cbd5e1";
+
+        button.style.padding =
+          "8px 10px";
+
+        button.style.borderRadius =
+          "8px";
+
+        button.style.cursor =
+          "pointer";
+
+        button.style.transition =
+          "0.2s ease";
+
+        wrapper.appendChild(
+          button
+        );
+
+        button.addEventListener(
+          "click",
+          async () => {
+
+            const code =
+              block.innerText;
 
             try {
-                textarea.select();
-                document.execCommand('copy');
 
-                button.innerHTML = '<i class="fas fa-check"></i> Copied!';
-                button.classList.add('copied');
+              await navigator
+                .clipboard
+                .writeText(code);
 
-                setTimeout(() => {
-                    button.innerHTML = '<i class="fas fa-copy"></i> Copy';
-                    button.classList.remove('copied');
-                }, 2000);
+              button.innerHTML =
+                '<i class="fas fa-check"></i>';
 
-            } catch (err) {
-                button.innerHTML = '<i class="fas fa-times"></i> Failed';
+              setTimeout(
+                () => {
+
+                  button.innerHTML =
+                    '<i class="fas fa-copy"></i>';
+
+                },
+                1500
+              );
+
+            } catch {
+
+              button.innerHTML =
+                "Error";
+
             }
 
-            document.body.removeChild(textarea);
+          }
+        );
+
+      }
+    );
+
+    /* =====================================================
+       EXTERNAL LINKS
+    ===================================================== */
+
+    const links =
+      document.querySelectorAll(
+        'a[href^="http"]'
+      );
+
+    links.forEach(
+      link => {
+
+        if (
+          !link.href.includes(
+            window.location.hostname
+          )
+        ) {
+
+          link.setAttribute(
+            "target",
+            "_blank"
+          );
+
+          link.setAttribute(
+            "rel",
+            "noopener noreferrer"
+          );
+
         }
 
-        // Run once
-        initCopyButtons();
+      }
+    );
 
+    /* =====================================================
+       SMOOTH IMAGE LOADING
+    ===================================================== */
 
-        // ===== MOBILE NAV =====
-        function initMobileNav() {
-            const navToggle = document.querySelector('.nav-toggle');
-            const navMenu = document.querySelector('.nav-menu');
+    const images =
+      document.querySelectorAll(
+        ".blog-content img"
+      );
 
-            if (navToggle && navMenu) {
-                navToggle.addEventListener('click', () => {
-                    navMenu.classList.toggle('show');
+    images.forEach(
+      img => {
 
-                    const icon = navToggle.querySelector('i');
-                    if (!icon) return;
+        img.loading =
+          "lazy";
 
-                    icon.classList.toggle('fa-bars');
-                    icon.classList.toggle('fa-times');
-                });
+        img.decoding =
+          "async";
+
+      }
+    );
+
+    /* =====================================================
+       ACTIVE NAVIGATION
+    ===================================================== */
+
+    const currentPath =
+      window.location.pathname;
+
+    const navLinks =
+      document.querySelectorAll(
+        ".nav-link"
+      );
+
+    navLinks.forEach(
+      link => {
+
+        if (
+          currentPath ===
+          new URL(
+            link.href
+          ).pathname
+        ) {
+
+          link.style.color =
+            "#ffffff";
+
+        }
+
+      }
+    );
+
+    /* =====================================================
+       MOBILE MENU CLOSE
+    ===================================================== */
+
+    const navMenu =
+      document.getElementById(
+        "navMenu"
+      );
+
+    const navLinksMobile =
+      document.querySelectorAll(
+        ".nav-menu a"
+      );
+
+    navLinksMobile.forEach(
+      link => {
+
+        link.addEventListener(
+          "click",
+          () => {
+
+            if (
+              window.innerWidth < 768
+            ) {
+
+              navMenu.classList.remove(
+                "show"
+              );
+
             }
-        }
 
-        // ===== DROPDOWNS =====
-        function initDropdowns() {
-            const dropdowns = document.querySelectorAll('.nav-dropdown');
+          }
+        );
 
-            dropdowns.forEach((dropdown) => {
-                const btn = dropdown.querySelector('.dropdown-btn');
+      }
+    );
 
-                if (btn) {
-                    btn.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        dropdown.classList.toggle('open');
-                    });
-                }
-            });
-
-            document.addEventListener('click', () => {
-                dropdowns.forEach((dropdown) => {
-                    dropdown.classList.remove('open');
-                });
-            });
-        }
-
-        // ===== BACK TO TOP =====
-        function initBackToTop() {
-            const backToTop = document.querySelector('.back-to-top');
-
-            if (backToTop) {
-                window.addEventListener('scroll', () => {
-                    backToTop.classList.toggle('visible', window.scrollY > 300);
-                });
-
-                backToTop.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                });
-            }
-        }
-
-        // Initialize other UI
-        initMobileNav();
-        initDropdowns();
-        initBackToTop();
-
-    });
-}
+  }
+);

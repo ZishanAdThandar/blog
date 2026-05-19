@@ -4,7 +4,9 @@
 
     <div class="footer-grid">
 
-      <!-- BRAND -->
+      <!-- =========================================================
+           BRAND
+      ========================================================= -->
 
       <div>
 
@@ -17,139 +19,199 @@
           <i class="fas fa-shield-halved"></i>
 
           <span>
+
             ZISHAN
+
             <span class="logo-highlight">
+
               HACK
+
             </span>
+
           </span>
 
         </a>
 
         <p class="footer-description">
 
-          Offensive security research, practical methodologies,
-          bug bounty workflows, and hands-on technical notes.
+          Offensive security research,
+          practical methodologies,
+          bug bounty workflows,
+          Active Directory notes,
+          and hands-on cybersecurity writeups.
 
         </p>
 
       </div>
 
-      <!-- RESEARCH -->
+      <!-- =========================================================
+           RESEARCH
+      ========================================================= -->
 
       <div class="footer-links">
 
         <h3>
+
           Research
+
         </h3>
 
         <a
           href="{{ site.baseurl }}/research/"
           class="footer-link"
         >
+
           Technical Notes
+
         </a>
 
         <a
           href="{{ site.baseurl }}/bug-bounty/"
           class="footer-link"
         >
+
           Bug Bounty
+
         </a>
 
         <a
-          href="{{ site.baseurl }}/feed.xml"
+          href="{{ '/feed.xml' | relative_url }}"
           class="footer-link"
         >
+
           RSS Feed
+
+        </a>
+
+        <a
+          href="{{ '/sitemap.xml' | relative_url }}"
+          class="footer-link"
+        >
+
+          Sitemap
+
         </a>
 
       </div>
 
-      <!-- LABS -->
+      <!-- =========================================================
+           LABS
+      ========================================================= -->
 
       <div class="footer-links">
 
         <h3>
+
           Labs
+
         </h3>
 
         <a
           href="{{ site.baseurl }}/labs/htb/"
           class="footer-link"
         >
+
           Hack The Box
+
         </a>
 
         <a
           href="{{ site.baseurl }}/labs/thm/"
           class="footer-link"
         >
+
           TryHackMe
+
         </a>
 
         <a
           href="{{ site.baseurl }}/labs/offsec/"
           class="footer-link"
         >
+
           OffSec
+
         </a>
 
         <a
           href="{{ site.baseurl }}/labs/vulnhub/"
           class="footer-link"
         >
+
           VulnHub
+
         </a>
 
       </div>
 
-      <!-- LINKS -->
+      <!-- =========================================================
+           QUICK LINKS
+      ========================================================= -->
 
       <div class="footer-links">
 
         <h3>
-          Links
+
+          Quick Links
+
         </h3>
 
         <a
           href="{{ site.portfolio }}"
           class="footer-link"
         >
+
           About
+
         </a>
 
         <a
-          href="https://zishanhack.com/#resources"
+          href="https://github.com/ZishanAdThandar"
           class="footer-link"
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          Resources
+
+          GitHub
+
         </a>
 
         <a
-          href="{{ site.baseurl }}/sitemap.xml"
+          href="https://x.com/ZishanAdThandar"
           class="footer-link"
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          Sitemap
+
+          X / Twitter
+
         </a>
 
         <a
-          href="mailto:{{ site.email }}"
+          href="https://linkedin.com/in/ZishanAdThandar"
           class="footer-link"
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          Contact
+
+          LinkedIn
+
         </a>
 
       </div>
 
     </div>
 
-    <!-- FOOTER BOTTOM -->
+    <!-- =========================================================
+         FOOTER BOTTOM
+    ========================================================= -->
 
     <div class="footer-bottom">
 
       <p class="copyright">
 
         © {{ site.time | date: '%Y' }}
+
         {{ site.author }}
 
       </p>

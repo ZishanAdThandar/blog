@@ -4,35 +4,45 @@ layout: default
 
 <section class="list-page">
 
-  <!-- PAGE HEADER -->
+  <!-- =========================================================
+       PAGE HEADER
+  ========================================================= -->
 
   <header class="article-header">
+
+    <!-- CATEGORY BADGE -->
 
     <div class="article-category">
 
       <span>
+
         {{ page.title }}
+
       </span>
 
     </div>
 
+    <!-- TITLE -->
+
     <h1>
+
       {{ page.title }}
+
     </h1>
+
+    <!-- DESCRIPTION -->
 
     {% if page.description %}
 
     <p class="article-description">
+
       {{ page.description }}
+
     </p>
 
     {% endif %}
 
-  </header>
-
-  <!-- POSTS -->
-
-  <div class="posts-list">
+    <!-- POST COUNT -->
 
     {% assign filtered_posts = "" | split: "" %}
 
@@ -46,13 +56,35 @@ layout: default
 
     {% endfor %}
 
+    <div class="article-meta">
+
+      <span>
+
+        <i class="fas fa-file-alt"></i>
+
+        {{ filtered_posts.size }} Articles
+
+      </span>
+
+    </div>
+
+  </header>
+
+  <!-- =========================================================
+       POSTS GRID
+  ========================================================= -->
+
+  <div class="posts-list">
+
     {% if filtered_posts.size > 0 %}
 
       {% for post in filtered_posts %}
 
       <article class="post-item">
 
-        <!-- CATEGORY -->
+        <!-- =========================================================
+             CATEGORY TAGS
+        ========================================================= -->
 
         {% if post.categories %}
 
@@ -64,7 +96,9 @@ layout: default
           {% for category in post.categories %}
 
           <span>
+
             {{ category }}
+
           </span>
 
           {% endfor %}
@@ -73,7 +107,9 @@ layout: default
 
         {% endif %}
 
-        <!-- TITLE -->
+        <!-- =========================================================
+             TITLE
+        ========================================================= -->
 
         <h2>
 
@@ -85,36 +121,9 @@ layout: default
 
         </h2>
 
-        <!-- META -->
-
-        <div class="post-meta">
-
-          <span>
-
-            <i class="fas fa-calendar"></i>
-
-            {{ post.date | date: "%B %d, %Y" }}
-
-          </span>
-
-          <span>
-
-            <i class="fas fa-clock"></i>
-
-            {% assign words = post.content | number_of_words %}
-            {% assign readtime = words | divided_by: 180 %}
-
-            {% if readtime < 1 %}
-              1 min read
-            {% else %}
-              {{ readtime }} min read
-            {% endif %}
-
-          </span>
-
-        </div>
-
-        <!-- DESCRIPTION -->
+        <!-- =========================================================
+             DESCRIPTION
+        ========================================================= -->
 
         {% if post.description %}
 
@@ -128,13 +137,59 @@ layout: default
 
         <div class="post-excerpt">
 
-          {{ post.excerpt | strip_html | truncate: 260 }}
+          {{ post.excerpt
+            | strip_html
+            | truncate: 260 }}
 
         </div>
 
         {% endif %}
 
-        <!-- TAGS -->
+        <!-- =========================================================
+             META
+        ========================================================= -->
+
+        <div class="post-meta">
+
+          <!-- DATE -->
+
+          <span>
+
+            <i class="fas fa-calendar"></i>
+
+            {{ post.date | date: "%B %d, %Y" }}
+
+          </span>
+
+          <!-- READING TIME -->
+
+          <span>
+
+            <i class="fas fa-clock"></i>
+
+            {% assign words =
+              post.content | number_of_words %}
+
+            {% assign readtime =
+              words | divided_by: 180 %}
+
+            {% if readtime < 1 %}
+
+              1 min read
+
+            {% else %}
+
+              {{ readtime }} min read
+
+            {% endif %}
+
+          </span>
+
+        </div>
+
+        <!-- =========================================================
+             TAGS
+        ========================================================= -->
 
         {% if post.tags %}
 
@@ -146,7 +201,9 @@ layout: default
           {% for tag in post.tags limit: 5 %}
 
           <span>
+
             #{{ tag }}
+
           </span>
 
           {% endfor %}
@@ -155,7 +212,9 @@ layout: default
 
         {% endif %}
 
-        <!-- BUTTON -->
+        <!-- =========================================================
+             READ MORE
+        ========================================================= -->
 
         <a
           href="{{ post.url | relative_url }}"
@@ -174,17 +233,26 @@ layout: default
 
     {% else %}
 
-      <div class="post-item">
+      <!-- =========================================================
+           EMPTY STATE
+      ========================================================= -->
+
+      <article class="post-item">
 
         <h2>
+
           No posts yet
+
         </h2>
 
         <p>
-          New research and writeups will appear here soon.
+
+          New technical notes and writeups
+          will appear here soon.
+
         </p>
 
-      </div>
+      </article>
 
     {% endif %}
 

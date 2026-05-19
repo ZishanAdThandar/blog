@@ -1,57 +1,115 @@
-title: "Zishan Hack"
-tagline: "Cybersecurity CTF & Bug Bounty Solutions"
-url: "https://zishanhack.com"
+title: ZishanHack
+email: contact@zishanhack.com
+description: >-
+  Offensive security research, practical methodologies,
+  bug bounty workflows, Active Directory notes,
+  and hands-on cybersecurity writeups.
+
 baseurl: "/blog"
-author: "Zishan Ahamed Thandar"
-email: "support@zishanhack.com"
-description: "Professional cybersecurity writeups, articles, CTF solutions, and bug bounty reports."
-paginate: 9
+url: "https://zishanhack.com"
 
+author: Zishan Ahamed Thandar
 
-# Defaults
-defaults:
-  - scope:
-      path: ""
-      type: "pages"
-    values:
-      layout: "default"
+portfolio: "https://zishanhack.com"
 
-  - scope:
-      path: ""
-      type: "posts"
-    values:
-      layout: "default"
+timezone: Asia/Kolkata
+lang: en
 
-# Plugins
+# =========================================================
+# BUILD
+# =========================================================
+
+markdown: kramdown
+highlighter: rouge
+
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: false
+
+permalink: /:categories/:title/
+
+future: false
+
+# =========================================================
+# PLUGINS
+# =========================================================
+
 plugins:
-  - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
+  - jekyll-feed
 
-# Exclude
+# =========================================================
+# DEFAULTS
+# =========================================================
+
+defaults:
+
+  # POSTS
+
+  -
+    scope:
+      path: ""
+      type: posts
+
+    values:
+      layout: post
+      author: Zishan Ahamed Thandar
+
+      image: /assets/images/og-image.png
+
+      toc: true
+
+  # PAGES
+
+  -
+    scope:
+      path: ""
+
+    values:
+      image: /assets/images/og-image.png
+
+# =========================================================
+# EXCLUDE
+# =========================================================
+
 exclude:
-  - CNAME
-  - node_modules/
+  - README.md
+  - vendor
   - Gemfile
   - Gemfile.lock
 
-# Social
-github: "ZishanAdThandar"
-twitter: "zishanadthandar"
-linkedin: "zishanadthandar"
-youtube: "ZishanAdThandar"
-linktree: "https://zishanhack.com/links"
-portfolio: "https://zishanhack.com/about"
-main_site: "https://zishanhack.com"
-sponsors: "https://github.com/sponsors/ZishanAdThandar"
+# =========================================================
+# SEO
+# =========================================================
 
-# Build
-markdown: kramdown
-highlighter: rouge
-permalink: pretty
-timezone: UTC
-kramdown:
-  input: GFM # Use GitHub Flavored Markdown (GFM)
+twitter:
+  username: ZishanAdThandar
 
+social:
+  name: ZishanHack
+
+  links:
+    - https://github.com/ZishanAdThandar
+    - https://x.com/ZishanAdThandar
+    - https://linkedin.com/in/ZishanAdThandar
+
+logo: /assets/images/og-image.png
+
+# =========================================================
+# FEED
+# =========================================================
+
+feed:
+  posts_limit: 20
+
+# =========================================================
+# PAGINATION READY
+# =========================================================
+
+paginate: 8
 paginate_path: "/page/:num/"
 
