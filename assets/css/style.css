@@ -1181,3 +1181,87 @@ code {
     justify-content: center;
   }
 }
+
+
+
+
+/* =========================================================
+   MOBILE RESPONSIVE FIX
+========================================================= */
+
+@media (max-width: 900px) {
+
+  /* MAIN LAYOUT */
+  .blog-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .blog-content article {
+    max-width: 100%;
+  }
+
+  /* HIDE SIDEBAR / TOC */
+  .sidebar {
+    display: none;
+  }
+
+  /* NAVBAR */
+  .navbar {
+    flex-wrap: wrap;
+    min-height: auto;
+    padding: 0.7rem 0;
+  }
+
+  .nav-menu {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
+
+    padding-top: 0.7rem;
+  }
+
+  .nav-link {
+    width: 100%;
+    padding: 0.7rem 0;
+  }
+
+  /* SEARCH */
+  .search-container {
+    width: 100%;
+  }
+
+  #search-input {
+    width: 100%;
+  }
+
+  /* HERO */
+  .hero-section {
+    padding-top: 1rem;
+  }
+
+  .hero-title {
+    font-size: 1.6rem;
+    line-height: 1.15;
+  }
+
+  .hero-description {
+    font-size: 0.9rem;
+  }
+
+  /* POSTS */
+  .posts-list {
+    grid-template-columns: 1fr;
+  }
+
+  /* FOOTER */
+  .footer-inline {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-links,
+  .footer-socials {
+    justify-content: center;
+  }
+}
