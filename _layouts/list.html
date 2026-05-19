@@ -1,54 +1,55 @@
 ---
-layout: default
----
+  <header class="article-header">
+    <div class="article-category">
+      <span>{{ page.title }}</span>
+    </div>
 
-<section class="list-page">
-  <header class="list-header">
-    <h1 class="list-title">{{ page.title }}</h1>
+    <h1>{{ page.title }}</h1>
+
     {% if page.description %}
       <p class="list-description">{{ page.description }}</p>
     {% endif %}
   </header>
 
   <div class="posts-list">
+
     {% assign category_posts = site.posts | where: "categories", page.category %}
-    
-    {% if category_posts.size > 0 %}
-      {% for post in category_posts %}
-        <article class="post-item">
-          <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
-          
-          <div class="post-meta">
-            <span class="post-date">
-              <i class="fas fa-calendar-alt"></i> {{ post.date | date: "%B %d, %Y" }}
-            </span>
-            {% if post.categories.size > 0 %}
-              <span class="post-categories">
-                <i class="fas fa-folder"></i>
-                {% for category in post.categories %}
-                  <a href="{{ site.baseurl }}/posts/{{ category | slugify }}/">{{ category }}</a>{% unless forloop.last %}, {% endunless %}
-                {% endfor %}
-              </span>
-            {% endif %}
-          </div>
-          
-          {% if post.excerpt %}
-            <div class="post-excerpt">
-              {{ post.excerpt | strip_html | truncate: 300 }}
-            </div>
-          {% endif %}
-          
-          <a href="{{ post.url | relative_url }}" class="read-more">
-            Read More <i class="fas fa-arrow-right"></i>
-          </a>
-        </article>
-      {% endfor %}
-    {% else %}
-      <div class="no-posts">
-        <i class="fas fa-folder-open fa-3x" style="color: var(--gray); margin-bottom: 1rem;"></i>
-        <h3>No posts yet</h3>
-        <p style="color: var(--gray);">Check back soon for new content in this category.</p>
+
+    {% for post in category_posts %}
+
+    <article class="post-item">
+
+      <h2>
+        <a href="{{ post.url | relative_url }}">
+          {{ post.title }}
+        </a>
+      </h2>
+
+      <div class="post-meta">
+        <span>
+          <i class="fas fa-calendar"></i>
+          {{ post.date | date: "%B %d, %Y" }}
+        </span>
+
+        <span>
+          <i class="fas fa-clock"></i>
+          {{ post.content | number_of_words | divided_by: 180 }} min read
+        </span>
       </div>
-    {% endif %}
+
+      <div class="post-excerpt">
+        {{ post.excerpt | strip_html | truncate: 280 }}
+      </div>
+
+      <a href="{{ post.url | relative_url }}" class="read-more">
+        Read Article
+        <i class="fas fa-arrow-right"></i>
+      </a>
+
+    </article>
+
+    {% endfor %}
+
   </div>
+
 </section>
