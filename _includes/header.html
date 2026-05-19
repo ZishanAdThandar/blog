@@ -1,153 +1,287 @@
-<!-- Trust Bar -->
-<div class="trust-bar">
-  <div class="container">
-    <i class="fas fa-terminal"></i>
-    Offensive Security Research • Writeups • Labs • Methodologies
-  </div>
-</div>
+<!-- =========================
+     HEADER
+========================= -->
 
-<!-- Header -->
 <header class="header">
+
   <div class="container">
+
     <nav class="navbar">
+
+      <!-- LOGO -->
+
       <div class="nav-brand">
-        <a href="{{ site.baseurl }}/" class="logo">
-          <i class="fas fa-shield-alt"></i>
-          <span>ZISHAN<span class="logo-highlight">HACK</span></span>
+
+        <a
+          href="{{ site.baseurl }}/"
+          class="logo"
+        >
+
+          <i class="fas fa-shield-halved"></i>
+
+          <span>
+            ZISHAN
+            <span class="logo-highlight">
+              HACK
+            </span>
+          </span>
+
         </a>
+
       </div>
-      
-      <div class="nav-menu" id="navMenu">
-        
-        <!-- CTF Dropdown - Fully Responsive -->
-        <div class="nav-dropdown">
-          <a href="#" class="nav-link dropdown-toggle" id="ctfToggle">
-            <i class="fas fa-flag"></i> CTF 
-            <i class="fas fa-chevron-down dropdown-arrow"></i>
-          </a>
-          <div class="dropdown-menu" id="ctfMenu">
-            <a href="{{ site.baseurl }}/posts/hackthebox/"><i class="fas fa-cube"></i> HackTheBox</a>
-            <a href="{{ site.baseurl }}/posts/tryhackme/"><i class="fas fa-tv"></i> TryHackMe</a>
-            <a href="{{ site.baseurl }}/posts/offsec/"><i class="fas fa-shield-alt"></i> OffSec</a>
-            <a href="{{ site.baseurl }}/posts/vulnhub/"><i class="fas fa-server"></i> VulnHub</a>
-          </div>
-        </div>
-        
-        <a href="{{ site.baseurl }}/posts/bugbounty/" class="nav-link"><i class="fas fa-bug"></i> BUG BOUNTY</a>
-        <a href="{{ site.baseurl }}/posts/blog/" class="nav-link"><i class="fas fa-blog"></i> ARTICLES</a>
-        <a href="{{ site.portfolio }}" class="nav-link"><i class="fas fa-user"></i> ABOUT</a>
-      </div>
-      <div id="search"></div>
-      <div class="auth-section">
-        <a href="https://zishanhack.com" class="btn btn-premium btn-small">
-          <i class="fas fa-gem"></i>
-          GET RESOURCES
-        </a>
-      </div>
-      
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu">
+
+      <!-- MOBILE TOGGLE -->
+
+      <button
+        class="nav-toggle"
+        id="navToggle"
+        aria-label="Toggle navigation"
+      >
+
         <i class="fas fa-bars"></i>
+
       </button>
+
+      <!-- NAVIGATION -->
+
+      <div
+        class="nav-menu"
+        id="navMenu"
+      >
+
+        <!-- SEARCH -->
+
+        <div class="search-container">
+
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Search techniques, payloads, writeups..."
+            autocomplete="off"
+          >
+
+          <div id="search-results"></div>
+
+        </div>
+
+        <!-- CTF DROPDOWN -->
+
+        <div class="nav-dropdown">
+
+          <a
+            href="#"
+            class="nav-link dropdown-toggle"
+            id="ctfToggle"
+          >
+
+            <i class="fas fa-terminal"></i>
+
+            Labs
+
+            <i class="fas fa-chevron-down"></i>
+
+          </a>
+
+          <div
+            class="dropdown-menu"
+            id="ctfMenu"
+          >
+
+            <a href="{{ site.baseurl }}/posts/hackthebox/">
+
+              <i class="fas fa-cube"></i>
+
+              HackTheBox
+
+            </a>
+
+            <a href="{{ site.baseurl }}/posts/tryhackme/">
+
+              <i class="fas fa-network-wired"></i>
+
+              TryHackMe
+
+            </a>
+
+            <a href="{{ site.baseurl }}/posts/offsec/">
+
+              <i class="fas fa-user-secret"></i>
+
+              OffSec
+
+            </a>
+
+            <a href="{{ site.baseurl }}/posts/vulnhub/">
+
+              <i class="fas fa-server"></i>
+
+              VulnHub
+
+            </a>
+
+          </div>
+
+        </div>
+
+        <!-- ARTICLES -->
+
+        <a
+          href="{{ site.baseurl }}/posts/blog/"
+          class="nav-link"
+        >
+
+          <i class="fas fa-book"></i>
+
+          Research
+
+        </a>
+
+        <!-- BUG BOUNTY -->
+
+        <a
+          href="{{ site.baseurl }}/posts/bugbounty/"
+          class="nav-link"
+        >
+
+          <i class="fas fa-bug"></i>
+
+          Bug Bounty
+
+        </a>
+
+        <!-- ABOUT -->
+
+        <a
+          href="{{ site.portfolio }}"
+          class="nav-link"
+        >
+
+          <i class="fas fa-user"></i>
+
+          About
+
+        </a>
+
+        <!-- CTA -->
+
+        <a
+          href="https://zishanhack.com/#resources"
+          class="btn btn-premium"
+        >
+
+          <i class="fas fa-book-open"></i>
+
+          Resources
+
+        </a>
+
+      </div>
+
     </nav>
+
   </div>
+
 </header>
 
-<!-- Responsive Navigation Script -->
+<!-- =========================
+     HEADER SCRIPT
+========================= -->
+
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-  const navToggle = document.getElementById("navToggle");
-  const navMenu = document.getElementById("navMenu");
-  const ctfToggle = document.getElementById("ctfToggle");
-  const ctfMenu = document.getElementById("ctfMenu");
-  let isMobile = window.innerWidth <= 768;
-  
-  // Mobile menu toggle
-  if (navToggle && navMenu) {
-    navToggle.addEventListener("click", function(e) {
-      e.stopPropagation();
-      navMenu.classList.toggle("show");
-      
-      // Close dropdown when closing mobile menu
-      if (!navMenu.classList.contains("show") && ctfMenu) {
-        ctfMenu.classList.remove("show");
-        updateArrow(false);
-      }
-    });
-  }
-  
-  // Dropdown functionality - responsive
-  if (ctfToggle && ctfMenu) {
-    ctfToggle.addEventListener("click", function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      
-      if (isMobile) {
-        // Mobile: Simple toggle
-        ctfMenu.classList.toggle("show");
-        updateArrow(ctfMenu.classList.contains("show"));
-      } else {
-        // Desktop: Close other dropdowns first
-        document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
-          if (menu !== ctfMenu) menu.classList.remove('show');
-        });
-        
-        ctfMenu.classList.toggle("show");
-        updateArrow(ctfMenu.classList.contains("show"));
-      }
-    });
-    
-    // Update arrow helper
-    function updateArrow(show) {
-      const arrow = ctfToggle.querySelector('.dropdown-arrow');
-      if (arrow) {
-        arrow.style.transform = show ? 'rotate(180deg)' : 'rotate(0)';
-      }
-    }
-    
-    // Close when clicking outside
-    document.addEventListener("click", function(e) {
-      if (!ctfToggle.contains(e.target) && !ctfMenu.contains(e.target)) {
-        ctfMenu.classList.remove("show");
-        updateArrow(false);
-      }
-    });
-    
-    // Close when clicking a dropdown link
-    ctfMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', function() {
-        ctfMenu.classList.remove("show");
-        updateArrow(false);
-        
-        // Close mobile menu if open
-        if (isMobile && navMenu && navMenu.classList.contains('show')) {
-          navMenu.classList.remove('show');
+
+document.addEventListener(
+  "DOMContentLoaded",
+  function () {
+
+    const navToggle =
+      document.getElementById(
+        "navToggle"
+      );
+
+    const navMenu =
+      document.getElementById(
+        "navMenu"
+      );
+
+    const ctfToggle =
+      document.getElementById(
+        "ctfToggle"
+      );
+
+    const ctfMenu =
+      document.getElementById(
+        "ctfMenu"
+      );
+
+    /* =========================
+       MOBILE MENU
+    ========================= */
+
+    if (
+      navToggle &&
+      navMenu
+    ) {
+
+      navToggle.addEventListener(
+        "click",
+        function () {
+
+          navMenu.classList.toggle(
+            "show"
+          );
+
         }
-      });
-    });
+      );
+
+    }
+
+    /* =========================
+       DROPDOWN
+    ========================= */
+
+    if (
+      ctfToggle &&
+      ctfMenu
+    ) {
+
+      ctfToggle.addEventListener(
+        "click",
+        function (e) {
+
+          e.preventDefault();
+
+          ctfMenu.classList.toggle(
+            "show"
+          );
+
+        }
+      );
+
+      document.addEventListener(
+        "click",
+        function (e) {
+
+          if (
+            !ctfToggle.contains(
+              e.target
+            ) &&
+            !ctfMenu.contains(
+              e.target
+            )
+          ) {
+
+            ctfMenu.classList.remove(
+              "show"
+            );
+
+          }
+
+        }
+      );
+
+    }
+
   }
-  
-  // Close mobile menu when clicking any nav link
-  document.querySelectorAll('.nav-menu a:not(.dropdown-toggle)').forEach(link => {
-    link.addEventListener('click', function() {
-      if (window.innerWidth <= 768 && navMenu && navMenu.classList.contains('show')) {
-        navMenu.classList.remove('show');
-      }
-    });
-  });
-  
-  // Handle window resize
-  window.addEventListener('resize', function() {
-    isMobile = window.innerWidth <= 768;
-    
-    if (window.innerWidth > 768 && navMenu && navMenu.classList.contains('show')) {
-      navMenu.classList.remove('show');
-    }
-    
-    // Reset dropdown on resize
-    if (ctfMenu && ctfMenu.classList.contains('show')) {
-      ctfMenu.classList.remove('show');
-      updateArrow(false);
-    }
-  });
-});
+);
+
 </script>
