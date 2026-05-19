@@ -4,190 +4,106 @@
 
     <nav class="navbar">
 
-      <!-- =========================================================
-           LOGO
-      ========================================================= -->
+      <!-- LOGO -->
 
-      <a
-        href="/"
-        class="logo"
-      >
+      <a href="/" class="logo">
 
         <i class="fas fa-shield-halved"></i>
 
         <span>
-
           ZISHAN
-
           <span class="logo-highlight">
-
             HACK
-
           </span>
-
         </span>
 
       </a>
 
-      <!-- =========================================================
-           MOBILE TOGGLE
-      ========================================================= -->
+      <!-- MOBILE TOGGLE -->
 
-      <button
+      <input
+        type="checkbox"
+        id="nav-check"
+        class="nav-check"
+      >
+
+      <label
+        for="nav-check"
         class="nav-toggle"
-        id="navToggle"
-        aria-label="Toggle navigation"
       >
 
         <i class="fas fa-bars"></i>
 
-      </button>
+      </label>
 
-      <!-- =========================================================
-           NAV MENU
-      ========================================================= -->
+      <!-- MENU -->
 
-      <div
-        class="nav-menu"
-        id="navMenu"
-      >
+      <div class="nav-menu">
 
-        <!-- =========================================================
-             SEARCH
-        ========================================================= -->
+        <!-- SEARCH -->
 
         <div class="search-container">
 
           <input
             type="text"
             id="search-input"
-            placeholder="Search techniques, payloads, writeups..."
-            autocomplete="off"
+            placeholder="Search..."
           >
-
-          <div id="search-results"></div>
 
         </div>
 
-        <!-- =========================================================
-             LABS
-        ========================================================= -->
+        <!-- DROPDOWN -->
 
         <div class="nav-dropdown">
 
-          <a
-            href="#"
-            class="nav-link dropdown-toggle"
-            id="labsToggle"
+          <input
+            type="checkbox"
+            id="labs-check"
+            class="dropdown-check"
           >
 
-            <i class="fas fa-terminal"></i>
+          <label
+            for="labs-check"
+            class="nav-link dropdown-label"
+          >
 
-            Labs
+            <span>
+              <i class="fas fa-terminal"></i>
+              Labs
+            </span>
 
             <i class="fas fa-chevron-down"></i>
 
-          </a>
+          </label>
 
-          <div
-            class="dropdown-menu"
-            id="labsMenu"
-          >
+          <div class="dropdown-menu">
 
-            <a href="{{ site.baseurl }}/labs/htb/">
+            <a href="#">Hack The Box</a>
 
-              <i class="fas fa-cube"></i>
+            <a href="#">TryHackMe</a>
 
-              Hack The Box
+            <a href="#">OffSec</a>
 
-            </a>
-
-            <a href="{{ site.baseurl }}/labs/thm/">
-
-              <i class="fas fa-network-wired"></i>
-
-              TryHackMe
-
-            </a>
-
-            <a href="{{ site.baseurl }}/labs/offsec/">
-
-              <i class="fas fa-user-secret"></i>
-
-              OffSec
-
-            </a>
-
-            <a href="{{ site.baseurl }}/labs/vulnhub/">
-
-              <i class="fas fa-server"></i>
-
-              VulnHub
-
-            </a>
+            <a href="#">VulnHub</a>
 
           </div>
 
         </div>
 
-        <!-- =========================================================
-             RESEARCH
-        ========================================================= -->
-
-        <a
-          href="{{ site.baseurl }}/research/"
-          class="nav-link"
-        >
-
-          <i class="fas fa-book"></i>
-
+        <a href="#" class="nav-link">
           Research
-
         </a>
 
-        <!-- =========================================================
-             BUG BOUNTY
-        ========================================================= -->
-
-        <a
-          href="{{ site.baseurl }}/bug-bounty/"
-          class="nav-link"
-        >
-
-          <i class="fas fa-bug"></i>
-
+        <a href="#" class="nav-link">
           Bug Bounty
-
         </a>
 
-        <!-- =========================================================
-             ABOUT
-        ========================================================= -->
-
-        <a
-          href="{{ site.portfolio }}"
-          class="nav-link"
-        >
-
-          <i class="fas fa-user"></i>
-
+        <a href="#" class="nav-link">
           About
-
         </a>
 
-        <!-- =========================================================
-             CTA
-        ========================================================= -->
-
-        <a
-          href="https://zishanhack.com/#resources"
-          class="btn btn-premium"
-        >
-
-          <i class="fas fa-book-open"></i>
-
+        <a href="#" class="btn btn-premium">
           Resources
-
         </a>
 
       </div>
@@ -197,107 +113,3 @@
   </div>
 
 </header>
-
-<!-- =========================================================
-     HEADER SCRIPT
-========================================================= -->
-
-<script>
-
-document.addEventListener(
-  "DOMContentLoaded",
-  function () {
-
-    const navToggle =
-      document.getElementById(
-        "navToggle"
-      );
-
-    const navMenu =
-      document.getElementById(
-        "navMenu"
-      );
-
-    const labsToggle =
-      document.getElementById(
-        "labsToggle"
-      );
-
-    const labsMenu =
-      document.getElementById(
-        "labsMenu"
-      );
-
-    /* =========================================================
-         MOBILE MENU
-    ========================================================= */
-
-    if (
-      navToggle &&
-      navMenu
-    ) {
-
-      navToggle.addEventListener(
-        "click",
-        function () {
-
-          navMenu.classList.toggle(
-            "show"
-          );
-
-        }
-      );
-
-    }
-
-    /* =========================================================
-         LABS DROPDOWN
-    ========================================================= */
-
-    if (
-      labsToggle &&
-      labsMenu
-    ) {
-
-      labsToggle.addEventListener(
-        "click",
-        function (e) {
-
-          e.preventDefault();
-
-          labsMenu.classList.toggle(
-            "show"
-          );
-
-        }
-      );
-
-      document.addEventListener(
-        "click",
-        function (e) {
-
-          if (
-            !labsToggle.contains(
-              e.target
-            ) &&
-            !labsMenu.contains(
-              e.target
-            )
-          ) {
-
-            labsMenu.classList.remove(
-              "show"
-            );
-
-          }
-
-        }
-      );
-
-    }
-
-  }
-);
-
-</script>
-
