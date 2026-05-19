@@ -10,8 +10,8 @@
   --card: rgba(255,255,255,0.03);
   --card-hover: rgba(255,255,255,0.05);
 
-  --border: rgba(255,255,255,0.06);
-  --border-hover: rgba(99,102,241,0.22);
+  --border: rgba(255,255,255,0.05);
+  --border-hover: rgba(99,102,241,0.18);
 
   --text: #f8fafc;
   --muted: #94a3b8;
@@ -26,13 +26,13 @@
       #8b5cf6 100%
     );
 
-  --shadow:
-    0 10px 35px rgba(0,0,0,0.28);
+  --radius: 14px;
 
-  --radius: 16px;
+  --shadow:
+    0 8px 30px rgba(0,0,0,0.25);
 
   --content-width: 760px;
-  --container-width: 1380px;
+  --container-width: 1360px;
 }
 
 /* =========================================================
@@ -59,9 +59,9 @@ body {
     "Inter",
     sans-serif;
 
-  line-height: 1.7;
-
   font-size: 16px;
+
+  line-height: 1.7;
 
   -webkit-font-smoothing: antialiased;
 
@@ -95,36 +95,32 @@ h6 {
 
   font-weight: 800;
 
-  line-height: 1.2;
+  line-height: 1.18;
 
   letter-spacing: -0.03em;
 
-  margin-bottom: 0.9rem;
+  margin-bottom: 0.75rem;
 }
 
 h1 {
-  font-size: clamp(1.9rem, 3.2vw, 2.5rem);
+  font-size: clamp(1.9rem, 3vw, 2.45rem);
 }
 
 h2 {
-  font-size: 1.45rem;
+  font-size: 1.38rem;
 }
 
 h3 {
-  font-size: 1.12rem;
+  font-size: 1.08rem;
 }
 
 p {
 
   color: #dbe4ee;
 
-  margin-bottom: 1rem;
+  line-height: 1.72;
 
-  line-height: 1.75;
-}
-
-small {
-  color: var(--muted);
+  margin-bottom: 0.8rem;
 }
 
 /* =========================================================
@@ -139,11 +135,11 @@ small {
 
   margin: auto;
 
-  padding: 0 1.15rem;
+  padding: 0 1rem;
 }
 
 .blog-main {
-  padding: 2rem 0 4rem;
+  padding: 1.2rem 0 3rem;
 }
 
 .blog-layout {
@@ -152,9 +148,9 @@ small {
 
   grid-template-columns:
     minmax(0, 1fr)
-    300px;
+    285px;
 
-  gap: 1.5rem;
+  gap: 1.2rem;
 
   align-items: start;
 }
@@ -184,13 +180,13 @@ small {
 
   z-index: 999;
 
-  backdrop-filter: blur(16px);
+  backdrop-filter: blur(14px);
 
   background:
-    rgba(8,11,18,0.82);
+    rgba(8,11,18,0.88);
 
   border-bottom:
-    1px solid var(--border);
+    1px solid rgba(255,255,255,0.05);
 }
 
 .navbar {
@@ -201,9 +197,9 @@ small {
 
   justify-content: space-between;
 
-  gap: 1rem;
+  gap: 0.8rem;
 
-  min-height: 68px;
+  min-height: 58px;
 }
 
 .logo {
@@ -212,9 +208,9 @@ small {
 
   align-items: center;
 
-  gap: 0.65rem;
+  gap: 0.55rem;
 
-  font-size: 1rem;
+  font-size: 0.95rem;
 
   font-weight: 800;
 }
@@ -223,22 +219,34 @@ small {
   color: #8b5cf6;
 }
 
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
 .nav-menu {
 
   display: flex;
 
   align-items: center;
 
-  gap: 0.85rem;
+  gap: 0.7rem;
 }
 
 .nav-link {
 
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 0.35rem;
+
   color: var(--muted);
 
-  font-size: 0.92rem;
+  font-size: 0.88rem;
 
   font-weight: 600;
+
+  padding: 0.35rem 0.45rem;
 }
 
 .nav-link:hover {
@@ -250,33 +258,168 @@ small {
 }
 
 /* =========================================================
+   DROPDOWN
+========================================================= */
+
+.nav-dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+
+  position: absolute;
+
+  top: 110%;
+
+  left: 0;
+
+  min-width: 220px;
+
+  background:
+    #0f1724;
+
+  border:
+    1px solid var(--border);
+
+  border-radius: 12px;
+
+  padding: 0.45rem;
+
+  display: none;
+
+  z-index: 999;
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+.dropdown-menu a {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 0.55rem;
+
+  padding:
+    0.65rem 0.7rem;
+
+  border-radius: 10px;
+
+  font-size: 0.86rem;
+
+  color: var(--muted);
+}
+
+.dropdown-menu a:hover {
+
+  background:
+    rgba(255,255,255,0.04);
+
+  color: white;
+}
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.search-container {
+  position: relative;
+}
+
+#search-input {
+
+  width: 220px;
+
+  background:
+    rgba(255,255,255,0.04);
+
+  border:
+    1px solid var(--border);
+
+  border-radius: 10px;
+
+  padding:
+    0.62rem 0.85rem;
+
+  color: white;
+
+  font-size: 0.88rem;
+
+  outline: none;
+}
+
+#search-input:focus {
+  border-color: rgba(99,102,241,0.35);
+}
+
+#search-results {
+
+  position: absolute;
+
+  top: 108%;
+
+  width: 100%;
+
+  background:
+    #111827;
+
+  border:
+    1px solid var(--border);
+
+  border-radius: 12px;
+
+  overflow: hidden;
+
+  z-index: 999;
+}
+
+.search-result-item {
+
+  display: block;
+
+  padding:
+    0.75rem 0.85rem;
+
+  border-bottom:
+    1px solid rgba(255,255,255,0.04);
+
+  font-size: 0.84rem;
+}
+
+.search-result-item:hover {
+
+  background:
+    rgba(255,255,255,0.03);
+}
+
+/* =========================================================
    HERO
 ========================================================= */
 
 .hero-section {
-
-  padding:
-    2.8rem 0 1.4rem;
+  padding: 2rem 0 1rem;
 }
 
 .hero-title {
 
-  max-width: 850px;
+  max-width: 820px;
 
   line-height: 1.08;
 
-  margin-bottom: 1rem;
+  margin-bottom: 0.8rem;
 }
 
 .hero-description {
 
   max-width: 720px;
 
-  font-size: 0.98rem;
+  font-size: 0.95rem;
 
   color: var(--muted);
 
-  line-height: 1.75;
+  line-height: 1.7;
 }
 
 /* =========================================================
@@ -289,12 +432,12 @@ small {
 
   align-items: center;
 
-  gap: 0.55rem;
+  gap: 0.5rem;
 
   padding:
-    0.78rem 1rem;
+    0.7rem 0.95rem;
 
-  border-radius: 12px;
+  border-radius: 10px;
 
   border:
     1px solid var(--border);
@@ -304,7 +447,7 @@ small {
 
   color: white;
 
-  font-size: 0.9rem;
+  font-size: 0.86rem;
 
   font-weight: 600;
 }
@@ -327,7 +470,84 @@ small {
 }
 
 /* =========================================================
-   GRID
+   ARTICLE HEADER
+========================================================= */
+
+.article-header {
+
+  margin-bottom: 1rem;
+}
+
+.article-header h1 {
+
+  line-height: 1.08;
+
+  margin-bottom: 0.45rem;
+}
+
+.article-description {
+
+  font-size: 0.96rem;
+
+  line-height: 1.65;
+
+  color: var(--muted);
+
+  margin-bottom: 0.8rem;
+}
+
+.article-meta {
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 0.9rem;
+
+  font-size: 0.82rem;
+
+  color: var(--muted);
+
+  margin-top: 0.7rem;
+}
+
+/* =========================================================
+   CATEGORY TAGS
+========================================================= */
+
+.article-category {
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 0.38rem;
+
+  margin-bottom: 0.7rem;
+}
+
+.article-category span {
+
+  padding:
+    0.32rem 0.58rem;
+
+  border-radius: 999px;
+
+  background:
+    rgba(99,102,241,0.12);
+
+  border:
+    1px solid rgba(99,102,241,0.15);
+
+  color: #c4b5fd;
+
+  font-size: 0.7rem;
+
+  font-weight: 700;
+}
+
+/* =========================================================
+   POSTS GRID
 ========================================================= */
 
 .posts-list {
@@ -342,11 +562,11 @@ small {
 
   gap: 1rem;
 
-  margin-top: 1.2rem;
+  margin-top: 1rem;
 }
 
 /* =========================================================
-   POST CARDS
+   POST CARD
 ========================================================= */
 
 .post-item {
@@ -360,7 +580,7 @@ small {
   border-radius:
     var(--radius);
 
-  padding: 1.1rem;
+  padding: 1rem;
 
   transition:
     0.18s ease;
@@ -386,16 +606,16 @@ small {
 
 .post-item h2 {
 
-  font-size: 1.12rem;
+  font-size: 1.05rem;
 
   line-height: 1.35;
 
-  margin-bottom: 0.7rem;
+  margin-bottom: 0.6rem;
 }
 
 .post-item h3 {
 
-  font-size: 1rem;
+  font-size: 0.98rem;
 
   margin-bottom: 0.5rem;
 }
@@ -404,11 +624,11 @@ small {
 
   color: var(--muted);
 
-  font-size: 0.92rem;
+  font-size: 0.9rem;
 
-  line-height: 1.65;
+  line-height: 1.62;
 
-  margin-bottom: 0.85rem;
+  margin-bottom: 0.8rem;
 
   display: -webkit-box;
 
@@ -425,15 +645,15 @@ small {
 
   flex-wrap: wrap;
 
-  gap: 0.9rem;
+  gap: 0.8rem;
 
   color: var(--muted);
 
-  font-size: 0.8rem;
+  font-size: 0.78rem;
 
   margin-top: auto;
 
-  margin-bottom: 0.9rem;
+  margin-bottom: 0.8rem;
 }
 
 .read-more {
@@ -442,83 +662,13 @@ small {
 
   align-items: center;
 
-  gap: 0.45rem;
+  gap: 0.4rem;
 
   color: #c4b5fd;
 
-  font-size: 0.88rem;
+  font-size: 0.84rem;
 
   font-weight: 700;
-}
-
-/* =========================================================
-   ARTICLE HEADER
-========================================================= */
-
-.article-header {
-
-  margin-bottom: 1.5rem;
-}
-
-.article-description {
-
-  color: var(--muted);
-
-  font-size: 1rem;
-
-  max-width: 720px;
-
-  line-height: 1.75;
-}
-
-.article-meta {
-
-  display: flex;
-
-  flex-wrap: wrap;
-
-  gap: 1rem;
-
-  margin-top: 1rem;
-
-  color: var(--muted);
-
-  font-size: 0.85rem;
-}
-
-/* =========================================================
-   CATEGORY TAGS
-========================================================= */
-
-.article-category {
-
-  display: flex;
-
-  flex-wrap: wrap;
-
-  gap: 0.45rem;
-
-  margin-bottom: 0.9rem;
-}
-
-.article-category span {
-
-  padding:
-    0.38rem 0.68rem;
-
-  border-radius: 999px;
-
-  background:
-    rgba(99,102,241,0.12);
-
-  border:
-    1px solid rgba(99,102,241,0.16);
-
-  color: #c4b5fd;
-
-  font-size: 0.74rem;
-
-  font-weight: 600;
 }
 
 /* =========================================================
@@ -529,7 +679,7 @@ small {
 
   position: sticky;
 
-  top: 88px;
+  top: 72px;
 }
 
 .sidebar-card {
@@ -543,9 +693,9 @@ small {
   border-radius:
     var(--radius);
 
-  padding: 1rem;
+  padding: 0.85rem;
 
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.7rem;
 }
 
 .sidebar-title {
@@ -554,11 +704,11 @@ small {
 
   align-items: center;
 
-  gap: 0.6rem;
+  gap: 0.55rem;
 
-  font-size: 0.96rem;
+  font-size: 0.9rem;
 
-  margin-bottom: 0.9rem;
+  margin-bottom: 0.7rem;
 }
 
 .sidebar-categories,
@@ -570,7 +720,7 @@ small {
 .sidebar-categories li,
 .recent-posts li {
 
-  margin-bottom: 0.55rem;
+  margin-bottom: 0.45rem;
 }
 
 .sidebar-categories a,
@@ -582,16 +732,16 @@ small {
 
   justify-content: space-between;
 
-  gap: 0.65rem;
+  gap: 0.55rem;
+
+  padding:
+    0.5rem 0.55rem;
+
+  border-radius: 10px;
 
   color: var(--muted);
 
-  font-size: 0.88rem;
-
-  padding:
-    0.6rem 0.65rem;
-
-  border-radius: 10px;
+  font-size: 0.84rem;
 }
 
 .sidebar-categories a:hover,
@@ -605,81 +755,9 @@ small {
 
 .category-count {
 
-  font-size: 0.76rem;
+  font-size: 0.74rem;
 
   opacity: 0.7;
-}
-
-/* =========================================================
-   SEARCH
-========================================================= */
-
-.search-container {
-  position: relative;
-}
-
-#search-input {
-
-  width: 240px;
-
-  background:
-    rgba(255,255,255,0.04);
-
-  border:
-    1px solid var(--border);
-
-  border-radius: 12px;
-
-  padding:
-    0.75rem 0.95rem;
-
-  color: white;
-
-  outline: none;
-
-  font-size: 0.9rem;
-}
-
-#search-input:focus {
-  border-color: rgba(99,102,241,0.4);
-}
-
-#search-results {
-
-  position: absolute;
-
-  top: 110%;
-
-  width: 100%;
-
-  background:
-    #111827;
-
-  border:
-    1px solid var(--border);
-
-  border-radius: 12px;
-
-  overflow: hidden;
-
-  z-index: 999;
-}
-
-.search-result-item {
-
-  display: block;
-
-  padding:
-    0.8rem 0.9rem;
-
-  border-bottom:
-    1px solid rgba(255,255,255,0.04);
-}
-
-.search-result-item:hover {
-
-  background:
-    rgba(255,255,255,0.03);
 }
 
 /* =========================================================
@@ -690,29 +768,29 @@ small {
 .blog-content ol {
 
   margin:
-    1rem 0 1rem 1.4rem;
+    0.9rem 0 0.9rem 1.3rem;
 }
 
 .blog-content li {
-  margin-bottom: 0.45rem;
+  margin-bottom: 0.4rem;
 }
 
-.blog-content blockquote {
+blockquote {
 
   border-left:
     3px solid #6366f1;
 
   padding:
-    0.8rem 1rem;
+    0.9rem 1rem;
 
-  margin: 1.5rem 0;
+  margin: 1rem 0;
 
   background:
     rgba(99,102,241,0.06);
 
   border-radius: 10px;
 
-  color: #dbe4ee;
+  line-height: 1.7;
 }
 
 /* =========================================================
@@ -735,17 +813,17 @@ pre {
   border:
     1px solid rgba(255,255,255,0.05);
 
-  border-radius: 14px;
+  border-radius: 12px;
 
-  padding: 1rem;
+  padding: 0.95rem;
 
   overflow-x: auto;
 
-  margin: 1.4rem 0;
+  margin: 1.2rem 0;
 }
 
 code {
-  font-size: 0.88rem;
+  font-size: 0.86rem;
 }
 
 /* =========================================================
@@ -754,13 +832,13 @@ code {
 
 .footer {
 
-  margin-top: 4rem;
+  margin-top: 3rem;
 
   border-top:
     1px solid var(--border);
 
   padding:
-    2.5rem 0 2rem;
+    2rem 0 1.5rem;
 }
 
 .footer-grid {
@@ -770,16 +848,16 @@ code {
   grid-template-columns:
     repeat(auto-fit, minmax(220px, 1fr));
 
-  gap: 1.8rem;
+  gap: 1.5rem;
 }
 
 .footer-description {
 
   color: var(--muted);
 
-  max-width: 320px;
+  font-size: 0.88rem;
 
-  font-size: 0.92rem;
+  max-width: 300px;
 }
 
 .footer-links {
@@ -788,14 +866,14 @@ code {
 
   flex-direction: column;
 
-  gap: 0.6rem;
+  gap: 0.5rem;
 }
 
 .footer-link {
 
   color: var(--muted);
 
-  font-size: 0.88rem;
+  font-size: 0.84rem;
 }
 
 .footer-link:hover {
@@ -804,16 +882,16 @@ code {
 
 .footer-bottom {
 
-  margin-top: 2rem;
+  margin-top: 1.5rem;
 
-  padding-top: 1.3rem;
+  padding-top: 1rem;
 
   border-top:
     1px solid rgba(255,255,255,0.05);
 
   color: var(--muted);
 
-  font-size: 0.82rem;
+  font-size: 0.78rem;
 }
 
 /* =========================================================
@@ -839,7 +917,7 @@ code {
   }
 
   .navbar {
-    min-height: 64px;
+    min-height: 56px;
   }
 
   .nav-toggle {
@@ -850,7 +928,7 @@ code {
 
     position: absolute;
 
-    top: 68px;
+    top: 58px;
 
     left: 0;
 
@@ -860,9 +938,9 @@ code {
 
     align-items: stretch;
 
-    gap: 0.7rem;
+    gap: 0.6rem;
 
-    padding: 1rem;
+    padding: 0.9rem;
 
     background:
       #0f1724;
@@ -877,12 +955,8 @@ code {
     display: flex;
   }
 
-  .hero-section {
-    padding-top: 2rem;
-  }
-
   .hero-title {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 
   .posts-list {
@@ -890,11 +964,11 @@ code {
   }
 
   .post-item {
-    padding: 1rem;
+    padding: 0.95rem;
   }
 
   .sidebar-card {
-    padding: 0.95rem;
+    padding: 0.85rem;
   }
 
   #search-input {
