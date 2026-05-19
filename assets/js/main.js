@@ -381,7 +381,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!toc) return;
 
   /* =========================================================
-     TARGET REAL ARTICLE CONTENT
+     ARTICLE CONTENT
   ========================================================= */
 
   const content =
@@ -427,7 +427,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* =========================================================
-     ACTIVE LINK HIGHLIGHT
+     ACTIVE SECTION
   ========================================================= */
 
   const tocLinks =
@@ -472,4 +472,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
+
+
 

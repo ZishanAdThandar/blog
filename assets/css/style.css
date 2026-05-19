@@ -1020,20 +1020,6 @@ code {
 
   top: 72px;
 
-  padding-top: 0.3rem;
-}
-
-```css
-/* =========================================================
-   SIDEBAR
-========================================================= */
-
-.sidebar {
-
-  position: sticky;
-
-  top: 72px;
-
   display: flex;
 
   flex-direction: column;
@@ -1061,10 +1047,22 @@ code {
 
   box-shadow:
     0 4px 20px rgba(0,0,0,0.16);
+
+  transition:
+    0.18s ease;
+}
+
+.sidebar-card:hover {
+
+  border-color:
+    rgba(99,102,241,0.22);
+
+  box-shadow:
+    0 0 24px rgba(99,102,241,0.12);
 }
 
 /* =========================================================
-   SIDEBAR TITLE
+   SIDEBAR HEADING
 ========================================================= */
 
 .sidebar-heading {
@@ -1089,7 +1087,7 @@ code {
 }
 
 /* =========================================================
-   TOC
+   TABLE OF CONTENTS
 ========================================================= */
 
 #table-of-contents {
@@ -1188,5 +1186,4 @@ code {
     display: none;
   }
 }
-```
 
