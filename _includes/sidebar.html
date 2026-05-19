@@ -1,167 +1,195 @@
 <aside class="sidebar">
-  
-  <!-- Categories Card - First -->
+
+  <!-- CATEGORIES -->
+
   <div class="sidebar-card">
-    <h3 class="sidebar-title"><i class="fas fa-layer-group"></i> Categories</h3>
+
+    <h3 class="sidebar-title">
+
+      <i class="fas fa-layer-group"></i>
+
+      Categories
+
+    </h3>
+
     <ul class="sidebar-categories">
-      {% assign category_list = "hackthebox|tryhackme|offsec|vulnhub|bugbounty|blog" | split: "|" %}
-      {% for category_slug in category_list %}
-        {% assign posts_in_category = site.categories[category_slug] %}
-        {% if posts_in_category.size > 0 %}
-          <li>
-            <a href="{{ site.baseurl }}/posts/{{ category_slug }}/">
-              {% if category_slug == "hackthebox" %}
-                <i class="fas fa-cube"></i>
-              {% elsif category_slug == "tryhackme" %}
-                <i class="fas fa-tv"></i>
-              {% elsif category_slug == "offsec" %}
-                <i class="fas fa-shield-alt"></i>
-              {% elsif category_slug == "vulnhub" %}
-                <i class="fas fa-server"></i>
-              {% elsif category_slug == "bugbounty" %}
-                <i class="fas fa-bug"></i>
-              {% elsif category_slug == "blog" %}
-                <i class="fas fa-blog"></i>
-              {% endif %}
-              {% if category_slug == "hackthebox" %}
-                HackTheBox
-              {% elsif category_slug == "tryhackme" %}
-                TryHackMe
-              {% elsif category_slug == "offsec" %}
-                OffSec
-              {% elsif category_slug == "vulnhub" %}
-                VulnHub
-              {% elsif category_slug == "bugbounty" %}
-                Bug Bounty
-              {% elsif category_slug == "blog" %}
-                Articles
-              {% else %}
-                {{ category_slug | capitalize }}
-              {% endif %}
-              <span class="category-count">{{ posts_in_category.size }}</span>
-            </a>
-          </li>
-        {% endif %}
-      {% endfor %}
-    </ul>
-  </div>
 
-  <!-- CTA Card - Premium Resources (Second) -->
-<div class="sidebar-card">
-  <h3 class="sidebar-title">
-    <i class="fas fa-book"></i>
-    Offensive Security Resources
-  </h3>
-
-  <p style="color: var(--gray); margin-bottom: 1rem;">
-    Practical methodologies, notes, and offensive security workflows.
-  </p>
-
-  <a href="https://zishanhack.com/#resources" class="btn btn-premium btn-block">
-    Explore Resources
-  </a>
-</div>
-
-
-<!-- RECOMMENDED POSTS - Simplified -->
-<div class="sidebar-card">
-  <h3 class="sidebar-title">
-    <i class="fas fa-bookmark"></i>
-    {% if page.layout == "post" %}
-      Similar Posts
-    {% elsif page.layout == "list" %}
-      Latest in {{ page.title }}
-    {% else %}
-      Recent Posts
-    {% endif %}
-  </h3>
-  
-  <ul class="recent-posts">
-    {% assign max_posts = 5 %}
-    {% assign display_posts = "" | split: "" %}
-    
-    {% if page.layout == "post" %}
-      <!-- Try same category first -->
-      {% if page.categories.size > 0 %}
-        {% assign category = page.categories[0] %}
-        {% assign category_posts = site.categories[category] | where_exp: "post", "post.url != page.url" %}
-        {% if category_posts.size >= max_posts %}
-          {% assign display_posts = category_posts | slice: 0, max_posts %}
-        {% else %}
-          {% assign display_posts = category_posts %}
-          
-          <!-- Fill remaining with tag-matched posts -->
-          {% assign remaining = max_posts | minus: display_posts.size %}
-          {% if remaining > 0 and page.tags.size > 0 %}
-            {% assign tag_posts = "" | split: "" %}
-            {% for tag in page.tags %}
-              {% for post in site.posts %}
-                {% if post.url != page.url and post.tags contains tag %}
-                  {% unless display_posts contains post %}
-                    {% assign tag_posts = tag_posts | push: post %}
-                  {% endunless %}
-                {% endif %}
-              {% endfor %}
-            {% endfor %}
-            {% assign unique_tag_posts = tag_posts | uniq | slice: 0, remaining %}
-            {% assign display_posts = display_posts | concat: unique_tag_posts %}
-          {% endif %}
-        {% endif %}
-      {% endif %}
-      
-      <!-- Final fallback to latest posts -->
-      {% if display_posts.size < max_posts %}
-        {% assign latest = site.posts | where_exp: "post", "post.url != page.url" | slice: 0, max_posts %}
-        {% assign display_posts = latest %}
-      {% endif %}
-      
-    {% elsif page.layout == "list" and page.category %}
-      <!-- Category page -->
-      {% assign display_posts = site.categories[page.category] | slice: 0, max_posts %}
-    {% else %}
-      <!-- Default: latest posts -->
-      {% assign display_posts = site.posts | slice: 0, max_posts %}
-    {% endif %}
-    
-    <!-- Display posts -->
-    {% for post in display_posts limit: max_posts %}
-    <li>
-      <a href="{{ post.url | relative_url }}">
-        <span class="post-icon">
-          {% if post.categories contains "hackthebox" %}
-            <i class="fas fa-cube"></i>
-          {% elsif post.categories contains "tryhackme" %}
-            <i class="fas fa-tv"></i>
-          {% elsif post.categories contains "offsec" %}
-            <i class="fas fa-shield-alt"></i>
-          {% elsif post.categories contains "vulnhub" %}
-            <i class="fas fa-server"></i>
-          {% elsif post.categories contains "bugbounty" %}
-            <i class="fas fa-bug"></i>
-          {% else %}
-            <i class="fas fa-file-alt"></i>
-          {% endif %}
-        </span>
-        <div class="post-info">
-          <span class="post-title">{{ post.title | truncate: 45 }}</span>
-          <span class="post-date">
-            <i class="fas fa-calendar-alt"></i> {{ post.date | date: "%b %d, %Y" }}
+      <li>
+        <a href="{{ site.baseurl }}/research/">
+          <span>
+            <i class="fas fa-book"></i>
+            Research
           </span>
-        </div>
-      </a>
-    </li>
-    {% endfor %}
-  </ul>
-  
-  <!-- "More" link for post pages -->
-  {% if page.layout == "post" and page.categories.size > 0 %}
-  <div style="margin-top: 1rem; text-align: center;">
-    <a href="{{ site.baseurl }}/posts/{{ page.categories[0] | slugify }}/" style="color: var(--primary); font-size: 0.9rem; text-decoration: none;">
-      <i class="fas fa-arrow-right"></i> More in {{ page.categories[0] }}
-    </a>
-  </div>
-  {% endif %}
-</div>
+          <span class="category-count">
+            {{ site.categories.blog.size }}
+          </span>
+        </a>
+      </li>
 
+      <li>
+        <a href="{{ site.baseurl }}/bug-bounty/">
+          <span>
+            <i class="fas fa-bug"></i>
+            Bug Bounty
+          </span>
+          <span class="category-count">
+            {{ site.categories.bugbounty.size }}
+          </span>
+        </a>
+      </li>
+
+      <li>
+        <a href="{{ site.baseurl }}/labs/htb/">
+          <span>
+            <i class="fas fa-cube"></i>
+            Hack The Box
+          </span>
+          <span class="category-count">
+            {{ site.categories.hackthebox.size }}
+          </span>
+        </a>
+      </li>
+
+      <li>
+        <a href="{{ site.baseurl }}/labs/thm/">
+          <span>
+            <i class="fas fa-network-wired"></i>
+            TryHackMe
+          </span>
+          <span class="category-count">
+            {{ site.categories.tryhackme.size }}
+          </span>
+        </a>
+      </li>
+
+      <li>
+        <a href="{{ site.baseurl }}/labs/offsec/">
+          <span>
+            <i class="fas fa-user-secret"></i>
+            OffSec
+          </span>
+          <span class="category-count">
+            {{ site.categories.offsec.size }}
+          </span>
+        </a>
+      </li>
+
+      <li>
+        <a href="{{ site.baseurl }}/labs/vulnhub/">
+          <span>
+            <i class="fas fa-server"></i>
+            VulnHub
+          </span>
+          <span class="category-count">
+            {{ site.categories.vulnhub.size }}
+          </span>
+        </a>
+      </li>
+
+    </ul>
+
+  </div>
+
+  <!-- RESOURCES -->
+
+  <div class="sidebar-card">
+
+    <h3 class="sidebar-title">
+
+      <i class="fas fa-book-open"></i>
+
+      Resources
+
+    </h3>
+
+    <p style="color: var(--muted); margin-bottom: 1rem;">
+
+      Curated offensive security notes, workflows,
+      and practical methodologies.
+
+    </p>
+
+    <a
+      href="https://zishanhack.com/#resources"
+      class="btn btn-premium"
+      style="width: 100%;"
+    >
+
+      Explore Resources
+
+    </a>
+
+  </div>
+
+  <!-- RECENT POSTS -->
+
+  <div class="sidebar-card">
+
+    <h3 class="sidebar-title">
+
+      <i class="fas fa-clock"></i>
+
+      Recent Notes
+
+    </h3>
+
+    <ul class="recent-posts">
+
+      {% for post in site.posts limit:5 %}
+
+      <li>
+
+        <a href="{{ post.url | relative_url }}">
+
+          <span class="post-icon">
+
+            {% if post.categories contains "hackthebox" %}
+              <i class="fas fa-cube"></i>
+
+            {% elsif post.categories contains "tryhackme" %}
+              <i class="fas fa-network-wired"></i>
+
+            {% elsif post.categories contains "offsec" %}
+              <i class="fas fa-user-secret"></i>
+
+            {% elsif post.categories contains "vulnhub" %}
+              <i class="fas fa-server"></i>
+
+            {% elsif post.categories contains "bugbounty" %}
+              <i class="fas fa-bug"></i>
+
+            {% else %}
+              <i class="fas fa-file-alt"></i>
+
+            {% endif %}
+
+          </span>
+
+          <div class="post-info">
+
+            <span class="post-title">
+
+              {{ post.title | truncate: 42 }}
+
+            </span>
+
+            <span class="post-date">
+
+              {{ post.date | date: "%b %d, %Y" }}
+
+            </span>
+
+          </div>
+
+        </a>
+
+      </li>
+
+      {% endfor %}
+
+    </ul>
+
+  </div>
 
 </aside>
+

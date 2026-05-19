@@ -1,7 +1,3 @@
-<!-- =========================
-     HEADER
-========================= -->
-
 <header class="header">
 
   <div class="container">
@@ -10,25 +6,21 @@
 
       <!-- LOGO -->
 
-      <div class="nav-brand">
+      <a
+        href="{{ site.baseurl }}/"
+        class="logo"
+      >
 
-        <a
-          href="{{ site.baseurl }}/"
-          class="logo"
-        >
+        <i class="fas fa-shield-halved"></i>
 
-          <i class="fas fa-shield-halved"></i>
-
-          <span>
-            ZISHAN
-            <span class="logo-highlight">
-              HACK
-            </span>
+        <span>
+          ZISHAN
+          <span class="logo-highlight">
+            HACK
           </span>
+        </span>
 
-        </a>
-
-      </div>
+      </a>
 
       <!-- MOBILE TOGGLE -->
 
@@ -56,7 +48,7 @@
           <input
             type="text"
             id="search-input"
-            placeholder="Search techniques, payloads, writeups..."
+            placeholder="Search techniques, writeups, payloads..."
             autocomplete="off"
           >
 
@@ -64,14 +56,14 @@
 
         </div>
 
-        <!-- CTF DROPDOWN -->
+        <!-- LABS -->
 
         <div class="nav-dropdown">
 
           <a
             href="#"
             class="nav-link dropdown-toggle"
-            id="ctfToggle"
+            id="labsToggle"
           >
 
             <i class="fas fa-terminal"></i>
@@ -84,18 +76,18 @@
 
           <div
             class="dropdown-menu"
-            id="ctfMenu"
+            id="labsMenu"
           >
 
-            <a href="{{ site.baseurl }}/posts/hackthebox/">
+            <a href="{{ site.baseurl }}/labs/htb/">
 
               <i class="fas fa-cube"></i>
 
-              HackTheBox
+              Hack The Box
 
             </a>
 
-            <a href="{{ site.baseurl }}/posts/tryhackme/">
+            <a href="{{ site.baseurl }}/labs/thm/">
 
               <i class="fas fa-network-wired"></i>
 
@@ -103,7 +95,7 @@
 
             </a>
 
-            <a href="{{ site.baseurl }}/posts/offsec/">
+            <a href="{{ site.baseurl }}/labs/offsec/">
 
               <i class="fas fa-user-secret"></i>
 
@@ -111,7 +103,7 @@
 
             </a>
 
-            <a href="{{ site.baseurl }}/posts/vulnhub/">
+            <a href="{{ site.baseurl }}/labs/vulnhub/">
 
               <i class="fas fa-server"></i>
 
@@ -123,10 +115,10 @@
 
         </div>
 
-        <!-- ARTICLES -->
+        <!-- RESEARCH -->
 
         <a
-          href="{{ site.baseurl }}/posts/blog/"
+          href="{{ site.baseurl }}/research/"
           class="nav-link"
         >
 
@@ -139,7 +131,7 @@
         <!-- BUG BOUNTY -->
 
         <a
-          href="{{ site.baseurl }}/posts/bugbounty/"
+          href="{{ site.baseurl }}/bug-bounty/"
           class="nav-link"
         >
 
@@ -183,10 +175,6 @@
 
 </header>
 
-<!-- =========================
-     HEADER SCRIPT
-========================= -->
-
 <script>
 
 document.addEventListener(
@@ -203,19 +191,17 @@ document.addEventListener(
         "navMenu"
       );
 
-    const ctfToggle =
+    const labsToggle =
       document.getElementById(
-        "ctfToggle"
+        "labsToggle"
       );
 
-    const ctfMenu =
+    const labsMenu =
       document.getElementById(
-        "ctfMenu"
+        "labsMenu"
       );
 
-    /* =========================
-       MOBILE MENU
-    ========================= */
+    /* MOBILE MENU */
 
     if (
       navToggle &&
@@ -235,22 +221,20 @@ document.addEventListener(
 
     }
 
-    /* =========================
-       DROPDOWN
-    ========================= */
+    /* DROPDOWN */
 
     if (
-      ctfToggle &&
-      ctfMenu
+      labsToggle &&
+      labsMenu
     ) {
 
-      ctfToggle.addEventListener(
+      labsToggle.addEventListener(
         "click",
         function (e) {
 
           e.preventDefault();
 
-          ctfMenu.classList.toggle(
+          labsMenu.classList.toggle(
             "show"
           );
 
@@ -262,15 +246,15 @@ document.addEventListener(
         function (e) {
 
           if (
-            !ctfToggle.contains(
+            !labsToggle.contains(
               e.target
             ) &&
-            !ctfMenu.contains(
+            !labsMenu.contains(
               e.target
             )
           ) {
 
-            ctfMenu.classList.remove(
+            labsMenu.classList.remove(
               "show"
             );
 

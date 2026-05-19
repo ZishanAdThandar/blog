@@ -1,54 +1,182 @@
 ---
+layout: default
+---
+
+<section class="list-page">
+
+  <!-- PAGE HEADER -->
+
   <header class="article-header">
+
     <div class="article-category">
-      <span>{{ page.title }}</span>
+
+      <span>
+        {{ page.title }}
+      </span>
+
     </div>
 
-    <h1>{{ page.title }}</h1>
+    <h1>
+      {{ page.title }}
+    </h1>
 
     {% if page.description %}
-      <p class="list-description">{{ page.description }}</p>
+
+    <p class="article-description">
+      {{ page.description }}
+    </p>
+
     {% endif %}
+
   </header>
+
+  <!-- POSTS -->
 
   <div class="posts-list">
 
     {% assign category_posts = site.posts | where: "categories", page.category %}
 
-    {% for post in category_posts %}
+    {% if category_posts.size > 0 %}
 
-    <article class="post-item">
+      {% for post in category_posts %}
 
-      <h2>
-        <a href="{{ post.url | relative_url }}">
-          {{ post.title }}
+      <article class="post-item">
+
+        <!-- CATEGORY -->
+
+        {% if post.categories %}
+
+        <div
+          class="article-category"
+          style="margin-bottom: 1rem;"
+        >
+
+          {% for category in post.categories %}
+
+          <span>
+            {{ category }}
+          </span>
+
+          {% endfor %}
+
+        </div>
+
+        {% endif %}
+
+        <!-- TITLE -->
+
+        <h2>
+
+          <a href="{{ post.url | relative_url }}">
+
+            {{ post.title }}
+
+          </a>
+
+        </h2>
+
+        <!-- META -->
+
+        <div class="post-meta">
+
+          <span>
+
+            <i class="fas fa-calendar"></i>
+
+            {{ post.date | date: "%B %d, %Y" }}
+
+          </span>
+
+          <span>
+
+            <i class="fas fa-clock"></i>
+
+            {% assign words = post.content | number_of_words %}
+            {% assign readtime = words | divided_by: 180 %}
+
+            {% if readtime < 1 %}
+              1 min read
+            {% else %}
+              {{ readtime }} min read
+            {% endif %}
+
+          </span>
+
+        </div>
+
+        <!-- DESCRIPTION -->
+
+        {% if post.description %}
+
+        <div class="post-excerpt">
+
+          {{ post.description }}
+
+        </div>
+
+        {% else %}
+
+        <div class="post-excerpt">
+
+          {{ post.excerpt | strip_html | truncate: 260 }}
+
+        </div>
+
+        {% endif %}
+
+        <!-- TAGS -->
+
+        {% if post.tags %}
+
+        <div
+          class="article-category"
+          style="margin-top: 1.5rem;"
+        >
+
+          {% for tag in post.tags limit: 5 %}
+
+          <span>
+            #{{ tag }}
+          </span>
+
+          {% endfor %}
+
+        </div>
+
+        {% endif %}
+
+        <!-- BUTTON -->
+
+        <a
+          href="{{ post.url | relative_url }}"
+          class="read-more"
+        >
+
+          Read Article
+
+          <i class="fas fa-arrow-right"></i>
+
         </a>
-      </h2>
 
-      <div class="post-meta">
-        <span>
-          <i class="fas fa-calendar"></i>
-          {{ post.date | date: "%B %d, %Y" }}
-        </span>
+      </article>
 
-        <span>
-          <i class="fas fa-clock"></i>
-          {{ post.content | number_of_words | divided_by: 180 }} min read
-        </span>
+      {% endfor %}
+
+    {% else %}
+
+      <div class="post-item">
+
+        <h2>
+          No posts yet
+        </h2>
+
+        <p>
+          New research and writeups will appear here soon.
+        </p>
+
       </div>
 
-      <div class="post-excerpt">
-        {{ post.excerpt | strip_html | truncate: 280 }}
-      </div>
-
-      <a href="{{ post.url | relative_url }}" class="read-more">
-        Read Article
-        <i class="fas fa-arrow-right"></i>
-      </a>
-
-    </article>
-
-    {% endfor %}
+    {% endif %}
 
   </div>
 
