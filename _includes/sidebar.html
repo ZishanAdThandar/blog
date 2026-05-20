@@ -86,13 +86,37 @@ document.addEventListener(
     ) return;
 
     /* =====================================================
-       ONLY ARTICLE HEADINGS
+       FIND VALID ARTICLE HEADINGS ONLY
     ===================================================== */
 
     const headings =
-      article.querySelectorAll(
-        "h1, h2, h3, h4"
+      Array.from(
+
+        article.querySelectorAll(
+          "h1, h2, h3, h4"
+        )
+
+      ).filter(
+        (heading) => {
+
+          return !heading.closest(
+            `
+            .post-item,
+            .sidebar-card,
+            .hero-section,
+            .posts-list,
+            .card,
+            .notice,
+            .callout
+            `
+          );
+
+        }
       );
+
+    /* =====================================================
+       HIDE EMPTY TOC
+    ===================================================== */
 
     if (
       headings.length === 0
@@ -123,7 +147,7 @@ document.addEventListener(
         ) return;
 
         /* ===============================================
-           AUTO ID
+           AUTO GENERATE IDS
         =============================================== */
 
         if (
@@ -135,7 +159,7 @@ document.addEventListener(
         }
 
         /* ===============================================
-           CREATE LINK
+           CREATE TOC LINK
         =============================================== */
 
         const link =
@@ -150,7 +174,7 @@ document.addEventListener(
           heading.textContent.trim();
 
         /* ===============================================
-           HEADING LEVEL
+           HEADING LEVEL CLASS
         =============================================== */
 
         const level =
@@ -177,7 +201,7 @@ document.addEventListener(
       );
 
     /* =====================================================
-       ACTIVE LINK
+       SET ACTIVE LINK
     ===================================================== */
 
     const setActiveLink =
@@ -208,7 +232,7 @@ document.addEventListener(
       };
 
     /* =====================================================
-       OBSERVER
+       ACTIVE SECTION OBSERVER
     ===================================================== */
 
     const observer =
@@ -274,7 +298,7 @@ document.addEventListener(
     );
 
     /* =====================================================
-       INITIAL ACTIVE
+       INITIAL ACTIVE STATE
     ===================================================== */
 
     setTimeout(
