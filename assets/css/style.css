@@ -628,6 +628,9 @@ p {
 /* =========================================================
    TOC
 ========================================================= */
+/* =========================================================
+   TOC
+========================================================= */
 
 #table-of-contents {
 
@@ -635,24 +638,91 @@ p {
 
   flex-direction: column;
 
-  gap: 0.3rem;
+  gap: 0.35rem;
+
+  max-height:
+    calc(100vh - 220px);
+
+  overflow-y: auto;
+
+  padding-right: 0.25rem;
 }
 
+/* =========================================================
+   TOC SCROLLBAR
+========================================================= */
+
+#table-of-contents::-webkit-scrollbar {
+
+  width: 4px;
+}
+
+#table-of-contents::-webkit-scrollbar-thumb {
+
+  background:
+    rgba(255,255,255,0.08);
+
+  border-radius: 999px;
+}
+
+/* =========================================================
+   TOC LINKS
+========================================================= */
+
 #table-of-contents a {
+
+  position: relative;
 
   display: block;
 
   padding:
-    0.55rem 0.7rem;
+    0.62rem 0.8rem;
 
-  border-radius: 10px;
+  border-radius: 12px;
 
   color: var(--muted);
 
   font-size: 0.82rem;
 
-  line-height: 1.4;
+  line-height: 1.45;
+
+  transition:
+    background 0.18s ease,
+    color 0.18s ease,
+    border-color 0.18s ease;
+
+  overflow: hidden;
 }
+
+/* =========================================================
+   LEFT ACTIVE BAR
+========================================================= */
+
+#table-of-contents a::before {
+
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+
+  top: 10px;
+
+  bottom: 10px;
+
+  width: 3px;
+
+  border-radius: 999px;
+
+  background:
+    transparent;
+
+  transition: 0.18s ease;
+}
+
+/* =========================================================
+   HOVER
+========================================================= */
 
 #table-of-contents a:hover {
 
@@ -662,36 +732,62 @@ p {
   color: white;
 }
 
+/* =========================================================
+   ACTIVE
+========================================================= */
+
 #table-of-contents a.active {
 
   background:
-    rgba(99,102,241,0.14);
+    rgba(99,102,241,0.12);
 
   border:
-    1px solid rgba(99,102,241,0.22);
+    1px solid rgba(99,102,241,0.2);
 
   color: white;
 }
 
+#table-of-contents a.active::before {
+
+  background:
+    linear-gradient(
+      180deg,
+      #6366f1,
+      #8b5cf6
+    );
+}
+
+/* =========================================================
+   TOC LEVELS
+========================================================= */
+
+#table-of-contents .toc-h1 {
+
+  font-weight: 700;
+}
+
 #table-of-contents .toc-h2 {
 
-  padding-left: 1rem;
+  padding-left: 1.1rem;
 }
 
 #table-of-contents .toc-h3 {
 
-  padding-left: 1.8rem;
+  padding-left: 2rem;
 
   font-size: 0.78rem;
+
+  opacity: 0.96;
 }
 
 #table-of-contents .toc-h4 {
 
-  padding-left: 2.5rem;
+  padding-left: 2.8rem;
 
   font-size: 0.76rem;
-}
 
+  opacity: 0.85;
+}
 /* =========================================================
    FOOTER
 ========================================================= */

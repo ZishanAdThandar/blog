@@ -63,7 +63,6 @@
 <!-- =========================================================
      TOC SCRIPT
 ========================================================= -->
-
 <script>
 
 document.addEventListener(
@@ -95,10 +94,11 @@ document.addEventListener(
       );
 
     if (
-      !headings.length
+      headings.length === 0
     ) {
 
-      toc.style.display = "none";
+      toc.parentElement.style.display =
+        "none";
 
       return;
     }
@@ -147,13 +147,44 @@ document.addEventListener(
     );
 
     /* =====================================================
-       ACTIVE SECTION
+       ACTIVE EFFECT
     ===================================================== */
 
     const tocLinks =
       toc.querySelectorAll(
         "a"
       );
+
+    const setActiveLink =
+      (id) => {
+
+        tocLinks.forEach(
+          (link) => {
+
+            link.classList.remove(
+              "active"
+            );
+
+            if (
+              link.getAttribute(
+                "href"
+              ) === `#${id}`
+            ) {
+
+              link.classList.add(
+                "active"
+              );
+
+            }
+
+          }
+        );
+
+      };
+
+    /* =====================================================
+       INTERSECTION OBSERVER
+    ===================================================== */
 
     const observer =
       new IntersectionObserver(
@@ -163,30 +194,12 @@ document.addEventListener(
           entries.forEach(
             (entry) => {
 
-              const id =
-                entry.target.id;
-
-              const activeLink =
-                toc.querySelector(
-                  `a[href="#${id}"]`
-                );
-
               if (
                 entry.isIntersecting
               ) {
 
-                tocLinks.forEach(
-                  (link) => {
-
-                    link.classList.remove(
-                      "active"
-                    );
-
-                  }
-                );
-
-                activeLink?.classList.add(
-                  "active"
+                setActiveLink(
+                  entry.target.id
                 );
 
               }
@@ -199,9 +212,9 @@ document.addEventListener(
         {
 
           rootMargin:
-            "-20% 0px -70% 0px",
+            "-18% 0px -70% 0px",
 
-          threshold: 0
+          threshold: 0.15
         }
 
       );
