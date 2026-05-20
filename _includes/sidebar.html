@@ -207,16 +207,10 @@ document.addEventListener(
               tocBottom
             ) {
 
-              toc.scrollTo({
-
-                top:
-                  linkBottom -
-                  toc.clientHeight +
-                  20,
-
-                behavior: "smooth"
-
-              });
+              toc.scrollTop =
+  linkBottom -
+  toc.clientHeight +
+  20;
 
             }
 
@@ -225,14 +219,8 @@ document.addEventListener(
               tocTop
             ) {
 
-              toc.scrollTo({
-
-                top:
-                  linkTop - 20,
-
-                behavior: "smooth"
-
-              });
+              toc.scrollTop =
+  linkTop - 20;
 
             }
 
