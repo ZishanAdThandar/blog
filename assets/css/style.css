@@ -851,7 +851,7 @@ p {
   flex-wrap: wrap;
 }
 
-.footer-social {
+.footer-socials {
 
   display: flex;
 
@@ -860,7 +860,7 @@ p {
   gap: 0.7rem;
 }
 
-.footer-social a {
+.footer-socials a {
 
   display: inline-flex;
 
@@ -868,11 +868,11 @@ p {
 
   justify-content: center;
 
-  width: 42px;
+  width: 46px;
 
-  height: 42px;
+  height: 46px;
 
-  border-radius: 12px;
+  border-radius: 999px;
 
   background:
     rgba(255,255,255,0.04);
@@ -881,6 +881,28 @@ p {
     1px solid rgba(255,255,255,0.08);
 
   color: var(--muted);
+
+  font-size: 1rem;
+
+  transition:
+    transform 0.18s ease,
+    background 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease;
+}
+
+.footer-socials a:hover {
+
+  transform:
+    translateY(-3px);
+
+  background:
+    rgba(99,102,241,0.14);
+
+  border-color:
+    rgba(99,102,241,0.28);
+
+  color: white;
 }
 
 /* =========================================================
