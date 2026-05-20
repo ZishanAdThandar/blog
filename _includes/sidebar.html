@@ -61,273 +61,117 @@
 </aside>
 
 <!-- =========================================================
-     TOC SCRIPT (FIXED - NO SCROLL FIGHTING)
+     TOC SCRIPT (SIMPLIFIED & WORKING)
 ========================================================= -->
 
 <script>
-
-document.addEventListener(
-  "DOMContentLoaded",
-  () => {
-
-    const toc =
-      document.getElementById(
-        "table-of-contents"
-      );
-
-    const content =
-      document.querySelector(
-        ".article-content"
-      );
-
-    if (
-      !toc ||
-      !content
-    ) return;
-
-    /* =====================================================
-       HEADINGS
-    ===================================================== */
-
-    const headings =
-      Array.from(
-
-        content.querySelectorAll(
-          "h1, h2, h3, h4"
-        )
-
-      ).filter(
-        (heading) => {
-
-          return (
-            heading.textContent
-              .trim()
-              .length > 0
-          );
-
-        }
-      );
-
-    /* =====================================================
-       EMPTY TOC
-    ===================================================== */
-
-    if (
-      headings.length === 0
-    ) {
-
-      toc.parentElement.style.display =
-        "none";
-
+(function() {
+  // Wait for everything to load
+  function initTOC() {
+    var toc = document.getElementById("table-of-contents");
+    if (!toc) return;
+    
+    // Clear any existing content
+    toc.innerHTML = "";
+    
+    // Find all headings inside article content
+    var content = document.querySelector(".article-content");
+    if (!content) {
+      console.log("TOC: .article-content not found");
       return;
     }
-
-    /* =====================================================
-       BUILD TOC
-    ===================================================== */
-
-    headings.forEach(
-      (
-        heading,
-        index
-      ) => {
-
-        if (
-          !heading.id
-        ) {
-
-          heading.id =
-            `heading-${index}`;
+    
+    // Get all headings
+    var headings = content.querySelectorAll("h1, h2, h3, h4");
+    if (headings.length === 0) {
+      toc.parentElement.style.display = "none";
+      return;
+    }
+    
+    // Build TOC links
+    for (var i = 0; i < headings.length; i++) {
+      var heading = headings[i];
+      var text = heading.textContent.trim();
+      if (text === "") continue;
+      
+      // Add ID if missing
+      if (!heading.id) {
+        heading.id = "heading-" + i;
+      }
+      
+      // Create link
+      var link = document.createElement("a");
+      link.href = "#" + heading.id;
+      link.textContent = text;
+      link.className = "toc-" + heading.tagName.toLowerCase();
+      
+      // Add click handler
+      link.onclick = function(e) {
+        e.preventDefault();
+        var targetId = this.getAttribute("href");
+        var target = document.querySelector(targetId);
+        if (target) {
+          target.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+          history.pushState(null, null, targetId);
         }
-
-        const link =
-          document.createElement(
-            "a"
-          );
-
-        link.href =
-          `#${heading.id}`;
-
-        link.textContent =
-          heading.textContent.trim();
-
-        link.classList.add(
-          `toc-${heading.tagName.toLowerCase()}`
-        );
-
-        toc.appendChild(
-          link
-        );
-
-      }
-    );
-
-    /* =====================================================
-       LINKS
-    ===================================================== */
-
-    const tocLinks =
-      toc.querySelectorAll(
-        "a"
-      );
-
-    /* =====================================================
-       CLICK HANDLER - SMOOTH SCROLL TO HEADING
-    ===================================================== */
-
-    tocLinks.forEach(
-      (link) => {
-
-        link.addEventListener(
-          "click",
-          (e) => {
-
-            e.preventDefault();
-
-            const targetId =
-              link.getAttribute("href");
-
-            const targetElement =
-              document.querySelector(targetId);
-
-            if (
-              targetElement
-            ) {
-
-              targetElement.scrollIntoView({
-
-                behavior: "smooth",
-
-                block: "start"
-
-              });
-
-              history.pushState(
-                null,
-                null,
-                targetId
-              );
-
-            }
-
-          }
-        );
-
-      }
-    );
-
-    /* =====================================================
-       ACTIVE LINK (FIXED - NO AUTO SCROLL)
-    ===================================================== */
-
-    let currentActiveId = null;
-
-    const setActiveLink =
-      (id) => {
-
-        if (currentActiveId === id) return;
-
-        currentActiveId = id;
-
-        tocLinks.forEach(
-          (link) => {
-
-            link.classList.remove(
-              "active"
-            );
-
-            if (
-              link.getAttribute(
-                "href"
-              ) === `#${id}`
-            ) {
-
-              link.classList.add(
-                "active"
-              );
-
-            }
-
-          }
-        );
-
-        /* ===============================================
-           FIXED: NO scrollIntoView HERE
-           This was causing the upward movement
-           TOC will NOT auto-scroll anymore
-        =============================================== */
-
       };
-
-    /* =====================================================
-       ACTIVE HEADING ON SCROLL
-    ===================================================== */
-
-    const updateActiveHeading =
-      () => {
-
-        let currentHeading =
-          headings[0];
-
-        for (
-          let i = headings.length - 1;
-          i >= 0;
-          i--
-        ) {
-
-          const heading =
-            headings[i];
-
-          const rect =
-            heading.getBoundingClientRect();
-
-          if (
-            rect.top <= 140
-          ) {
-
-            currentHeading =
-              heading;
-
-            break;
-
-          }
-
+      
+      toc.appendChild(link);
+    }
+    
+    // Update active heading on scroll
+    var tocLinks = toc.querySelectorAll("a");
+    if (tocLinks.length === 0) return;
+    
+    function updateActive() {
+      var scrollPos = window.scrollY + 150; // Offset for sticky header
+      var currentId = null;
+      
+      // Find which heading is currently in view
+      for (var i = headings.length - 1; i >= 0; i--) {
+        var heading = headings[i];
+        var headingTop = heading.offsetTop;
+        
+        if (headingTop <= scrollPos) {
+          currentId = heading.id;
+          break;
         }
-
-        if (
-          currentHeading &&
-          currentHeading.id !== currentActiveId
-        ) {
-
-          setActiveLink(
-            currentHeading.id
-          );
-
-        }
-
-      };
-
-    /* =====================================================
-       SCROLL EVENT (NO THROTTLE NEEDED, LIGHTWEIGHT)
-    ===================================================== */
-
-    window.addEventListener(
-      "scroll",
-      updateActiveHeading,
-      {
-
-        passive: true
-
       }
-    );
-
-    /* =====================================================
-       INITIAL ACTIVE HEADING
-    ===================================================== */
-
-    updateActiveHeading();
-
+      
+      // If no heading found, use first one
+      if (!currentId && headings.length > 0) {
+        currentId = headings[0].id;
+      }
+      
+      // Update active class on links
+      for (var j = 0; j < tocLinks.length; j++) {
+        var link = tocLinks[j];
+        link.classList.remove("active");
+        if (link.getAttribute("href") === "#" + currentId) {
+          link.classList.add("active");
+        }
+      }
+    }
+    
+    // Listen to scroll events
+    window.addEventListener("scroll", updateActive);
+    window.addEventListener("resize", updateActive);
+    
+    // Run once initially
+    updateActive();
   }
-);
-
+  
+  // Try on DOMContentLoaded
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initTOC);
+  } else {
+    initTOC();
+  }
+  
+  // Also try after a small delay (in case content loads async)
+  setTimeout(initTOC, 100);
+})();
 </script>
