@@ -144,7 +144,7 @@ p {
 
   margin: auto;
 
-  padding: 0 1rem;
+  padding: 0 1.25rem;
 }
 
 .blog-layout {
@@ -207,7 +207,10 @@ p {
 
   gap: 1rem;
 
-  min-height: 60px;
+  min-height: 72px;
+
+  padding:
+    0.45rem 0;
 }
 
 /* =========================================================
@@ -254,6 +257,8 @@ p {
   align-items: center;
 
   gap: 0.6rem;
+
+  height: 100%;
 }
 
 .nav-link {
@@ -274,11 +279,44 @@ p {
   font-size: 0.87rem;
 
   font-weight: 600;
+
+  transition: 0.18s ease;
 }
 
 .nav-link:hover {
 
   color: white;
+
+  background:
+    rgba(255,255,255,0.04);
+}
+
+/* =========================================================
+   DROPDOWN BUTTON FIX
+========================================================= */
+
+.dropdown-toggle {
+
+  appearance: none;
+
+  -webkit-appearance: none;
+
+  border: none;
+
+  outline: none;
+
+  background: transparent;
+
+  font: inherit;
+
+  color: inherit;
+
+  cursor: pointer;
+
+  margin: 0;
+}
+
+.dropdown-toggle:hover {
 
   background:
     rgba(255,255,255,0.04);
@@ -367,8 +405,6 @@ p {
 
   position: relative;
 }
-
-/* FIX HOVER GAP */
 
 .dropdown-menu {
 
@@ -533,7 +569,8 @@ p {
 }
 
 .post-tag,
-.tag {
+.tag,
+.post-category {
 
   display: inline-flex;
 
@@ -556,13 +593,18 @@ p {
 
   font-size: 0.72rem;
 
-  font-weight: 600;
+  font-weight: 700;
 
   line-height: 1;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.03em;
 }
 
 .post-tag:hover,
-.tag:hover {
+.tag:hover,
+.post-category:hover {
 
   background:
     rgba(99,102,241,0.2);
@@ -775,8 +817,6 @@ pre {
 
 @media (max-width: 900px) {
 
-  /* LAYOUT */
-
   .blog-layout {
 
     grid-template-columns:
@@ -789,14 +829,10 @@ pre {
       100% !important;
   }
 
-  /* HIDE SIDEBAR ONLY */
-
   aside.sidebar {
 
     display: none !important;
   }
-
-  /* NAVBAR */
 
   .navbar {
 
@@ -811,8 +847,6 @@ pre {
 
     justify-content: center;
   }
-
-  /* MOBILE MENU */
 
   .nav-menu {
 
@@ -855,8 +889,6 @@ pre {
     display: flex !important;
   }
 
-  /* SEARCH */
-
   .search-container {
 
     width: 100%;
@@ -866,8 +898,6 @@ pre {
 
     width: 100%;
   }
-
-  /* LINKS */
 
   .nav-link {
 
@@ -883,39 +913,35 @@ pre {
       rgba(255,255,255,0.03);
   }
 
-  /* MOBILE DROPDOWN */
-
   .nav-dropdown {
 
     width: 100%;
   }
 
-.dropdown-menu {
+  .dropdown-menu {
 
-  position: static !important;
+    position: static !important;
 
-  width: 100%;
+    width: 100%;
 
-  min-width: 100%;
+    min-width: 100%;
 
-  padding-top: 0;
+    padding-top: 0;
 
-  margin-top: 0.5rem;
+    margin-top: 0.5rem;
 
-  display: none;
-}
+    display: none;
+  }
 
-.dropdown-menu.show {
+  .dropdown-menu.show {
 
-  display: block !important;
-}
+    display: block !important;
+  }
 
   .dropdown-menu-inner {
 
     box-shadow: none;
   }
-
-  /* BUTTON */
 
   .btn,
   .btn-premium {
@@ -923,15 +949,11 @@ pre {
     width: 100%;
   }
 
-  /* POSTS */
-
   .posts-list {
 
     grid-template-columns:
       1fr;
   }
-
-  /* FOOTER */
 
   .footer-inline {
 
