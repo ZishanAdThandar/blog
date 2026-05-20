@@ -474,6 +474,150 @@ p {
 
   outline: none;
 }
+/* =========================================================
+   SEARCH RESULTS DROPDOWN (FIXED)
+========================================================= */
+
+.search-container {
+  position: relative;
+}
+
+#search-input {
+  width: 210px;
+  padding: 0.72rem 0.9rem;
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 12px;
+  background: rgba(255,255,255,0.05);
+  color: white;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+#search-input:focus {
+  border-color: rgba(99,102,241,0.5);
+  background: rgba(255,255,255,0.08);
+  box-shadow: 0 0 0 2px rgba(99,102,241,0.15);
+}
+
+#search-input::placeholder {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+#search-results {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  min-width: 320px;
+  background: rgba(17,24,39,0.98);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  max-height: 400px;
+  overflow-y: auto;
+  z-index: 10000;
+  display: none;
+  box-shadow: 0 20px 35px -12px rgba(0,0,0,0.5);
+}
+
+#search-results.show {
+  display: block;
+}
+
+#search-results::-webkit-scrollbar {
+  width: 5px;
+}
+
+#search-results::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.03);
+  border-radius: 10px;
+}
+
+#search-results::-webkit-scrollbar-thumb {
+  background: rgba(99,102,241,0.3);
+  border-radius: 10px;
+}
+
+#search-results::-webkit-scrollbar-thumb:hover {
+  background: rgba(99,102,241,0.5);
+}
+
+.search-result-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.search-result-item:last-child {
+  border-bottom: none;
+}
+
+.search-result-item:hover {
+  background: rgba(99,102,241,0.1);
+  transform: translateX(4px);
+}
+
+.search-result-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: white;
+  line-height: 1.4;
+}
+
+.search-result-meta {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 0.7rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.search-result-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.search-result-meta i {
+  font-size: 0.65rem;
+}
+
+/* Empty state */
+.search-empty {
+  padding: 1rem;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+/* Mobile search fix */
+@media (max-width: 900px) {
+  .search-container {
+    width: 100%;
+  }
+  
+  #search-input {
+    width: 100%;
+  }
+  
+  #search-results {
+    position: fixed;
+    top: auto;
+    left: 1rem;
+    right: 1rem;
+    width: auto;
+    min-width: auto;
+    max-height: 60vh;
+    margin-top: 0.5rem;
+  }
+}
 
 /* =========================================================
    DROPDOWN
