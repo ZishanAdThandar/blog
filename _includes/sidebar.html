@@ -19,242 +19,289 @@
 </aside>
 
 
-<script>
-document.addEventListener(
-  "DOMContentLoaded",
-  () => {
 
+
+<script>
+(function() {
+  // CRITICAL: Prevent multiple initialization
+  if (window.__tocFinalFixed === true) {
+    console.log("TOC already initialized, skipping");
+    return;
+  }
+  window.__tocFinalFixed = true;
+
+  function buildTOC() {
     /* =====================================================
        ELEMENTS
     ===================================================== */
+    const toc = document.getElementById("table-of-contents");
+    const content = document.querySelector(".article-markdown");
 
-    const toc =
-      document.getElementById(
-        "table-of-contents"
-      );
+    if (!toc || !content) return;
 
-    const content =
-      document.querySelector(
-        ".article-markdown"
-      );
-
-    if (
-      !toc ||
-      !content
-    ) return;
-
-    /* =====================================================
-       RESET - CLEAR EXISTING TOC
-    ===================================================== */
-    
+    // Clear existing TOC completely
     toc.innerHTML = "";
-
+    
+    // Also check if parent card needs to be shown/hidden
+    const sidebarCard = toc.closest('.toc-card');
+    
     /* =====================================================
-       GET ALL POTENTIAL HEADINGS
+       GET ALL HEADINGS FROM MAIN CONTENT ONLY
+       IMPORTANT: querySelectorAll returns LIVE collection
+       Convert to array immediately to avoid issues
     ===================================================== */
-
-    const rawHeadings =
-      Array.from(
-
-        content.querySelectorAll(
-          "h1, h2, h3, h4"
-        )
-
-      );
-
+    const allHeadings = Array.from(content.querySelectorAll("h1, h2, h3, h4"));
+    
     /* =====================================================
-       FILTER HEADINGS - EXCLUDE CARDS AND DUPLICATES
+       STRICT FILTERING - NO EXCEPTIONS
     ===================================================== */
-
     const validHeadings = [];
-
-    for (let i = 0; i < rawHeadings.length; i++) {
-      const heading = rawHeadings[i];
+    const seenContent = new Set(); // Track by normalized text + parent section
+    
+    for (let i = 0; i < allHeadings.length; i++) {
+      const heading = allHeadings[i];
       const text = heading.textContent.trim();
-
-      /* Skip empty headings */
-      if (text.length === 0) continue;
-
-      /* Skip if inside sidebar */
-      if (heading.closest(".sidebar")) continue;
-
-      /* Skip if inside toc-ignore */
-      if (heading.closest(".toc-ignore")) continue;
-
-      /* Skip if inside related-posts */
-      if (heading.closest(".related-posts")) continue;
-
-      /* CRITICAL FIX: Skip if inside post-item OR card */
-      if (heading.closest(".post-item")) continue;
-      if (heading.closest(".card")) continue;
-      if (heading.closest('[class*="card"]')) continue;
       
-      /* Skip hidden elements */
+      // Empty text check
+      if (text === "") continue;
+      
+      // CRITICAL: Check if heading is INSIDE any excluded container
+      let isExcluded = false;
+      
+      // List of selectors to exclude completely
+      const excludeSelectors = [
+        ".sidebar",
+        ".toc-ignore", 
+        ".related-posts",
+        ".post-item",
+        ".card",
+        "[class*='card']",
+        ".comment",
+        ".footer",
+        ".related",
+        ".recommendations",
+        ".similar-posts"
+      ];
+      
+      for (let selector of excludeSelectors) {
+        if (heading.closest(selector)) {
+          isExcluded = true;
+          break;
+        }
+      }
+      
+      if (isExcluded) continue;
+      
+      // Hidden element check
       if (heading.offsetParent === null) continue;
-
-      /* CRITICAL FIX: Check if this heading text already exists in validHeadings */
-      let isDuplicate = false;
-      for (let j = 0; j < validHeadings.length; j++) {
-        const existingText = validHeadings[j].textContent.trim();
-        if (existingText === text) {
-          isDuplicate = true;
+      
+      // Create unique key for deduplication
+      // Include parent article/section context to distinguish same text in different places
+      let context = "";
+      let parent = heading.parentElement;
+      let depth = 0;
+      while (parent && parent !== content && depth < 4) {
+        if (parent.id) {
+          context = parent.id + "|" + context;
           break;
         }
-      }
-      
-      /* Also check if this heading appears very close to same text (within 5 siblings) */
-      let nearDuplicate = false;
-      for (let k = Math.max(0, i - 10); k < i; k++) {
-        if (rawHeadings[k].textContent.trim() === text) {
-          nearDuplicate = true;
-          break;
+        if (parent.classList && parent.classList.length > 0) {
+          context = parent.classList[0] + "|" + context;
         }
+        parent = parent.parentElement;
+        depth++;
       }
       
-      if (!isDuplicate && !nearDuplicate) {
-        validHeadings.push(heading);
+      const normalizedText = text.toLowerCase().replace(/\s+/g, ' ').trim();
+      const uniqueKey = `${context}|${normalizedText}`;
+      
+      // Skip if we've seen this exact heading in same context
+      if (seenContent.has(uniqueKey)) {
+        continue;
       }
+      
+      // Also check for sequential duplicates (same heading appears back-to-back)
+      if (i > 0 && allHeadings[i-1].textContent.trim().toLowerCase() === normalizedText) {
+        continue;
+      }
+      
+      seenContent.add(uniqueKey);
+      validHeadings.push(heading);
     }
-
+    
     /* =====================================================
-       NO HEADINGS
+       NO HEADINGS FOUND
     ===================================================== */
-
     if (validHeadings.length === 0) {
-      if (toc.parentElement) {
-        toc.parentElement.style.display = "none";
+      if (sidebarCard) {
+        sidebarCard.style.display = "none";
       }
       return;
     }
-
+    
     /* =====================================================
-       ASSIGN UNIQUE IDS
+       SHOW THE TOC CARD IF IT WAS HIDDEN
     ===================================================== */
-
+    if (sidebarCard) {
+      sidebarCard.style.display = "";
+    }
+    
+    /* =====================================================
+       ASSIGN UNIQUE IDs - MORE ROBUST
+    ===================================================== */
     const usedIds = new Set();
-
-    validHeadings.forEach((heading, index) => {
-      /* Skip if heading already has a unique ID not used */
-      if (heading.id && !usedIds.has(heading.id)) {
+    
+    for (let i = 0; i < validHeadings.length; i++) {
+      const heading = validHeadings[i];
+      
+      // If heading already has a unique ID, use it
+      if (heading.id && heading.id.trim() !== "" && !usedIds.has(heading.id)) {
         usedIds.add(heading.id);
-        return;
+        continue;
       }
-
-      /* Generate base ID from text */
+      
+      // Generate clean ID from text
       let baseId = heading.textContent
         .trim()
         .toLowerCase()
-        .replace(/[^\w\u4e00-\u9fff]+/g, "-")
+        // Replace any non-word character with hyphen
+        .replace(/[^\w\u4e00-\u9fff\u3040-\u309f\u30a0-\u30ff]+/g, "-")
+        // Remove leading/trailing hyphens
         .replace(/^-+|-+$/g, "");
-
-      if (!baseId || baseId.length < 2) {
-        baseId = `heading-${index}`;
+      
+      // Fallback if empty
+      if (!baseId || baseId.length === 0) {
+        baseId = `toc-section`;
       }
-
-      /* Ensure uniqueness */
+      
+      // Ensure uniqueness
       let finalId = baseId;
       let counter = 1;
       while (usedIds.has(finalId)) {
         finalId = `${baseId}-${counter}`;
         counter++;
       }
-
+      
       heading.id = finalId;
       usedIds.add(finalId);
-    });
-
+    }
+    
     /* =====================================================
-       BUILD TOC
+       BUILD TOC LINKS
     ===================================================== */
-
-    validHeadings.forEach((heading) => {
+    for (let i = 0; i < validHeadings.length; i++) {
+      const heading = validHeadings[i];
       const link = document.createElement("a");
-
+      
       link.href = `#${heading.id}`;
       link.textContent = heading.textContent.trim();
       link.classList.add(`toc-${heading.tagName.toLowerCase()}`);
-
-      /* Click handler */
+      
+      // Click handler with proper scroll
       link.addEventListener("click", (e) => {
         e.preventDefault();
-
-        const offset = 110;
-        const top =
-          heading.getBoundingClientRect().top +
-          window.pageYOffset -
-          offset;
-
-        window.scrollTo({
-          top,
-          behavior: "smooth"
-        });
-
-        history.replaceState(null, "", `#${heading.id}`);
-      });
-
-      toc.appendChild(link);
-    });
-
-    /* =====================================================
-       ACTIVE LINK TRACKING
-    ===================================================== */
-
-    const tocLinks = Array.from(toc.querySelectorAll("a"));
-
-    function setActive(id) {
-      tocLinks.forEach((link) => {
-        const isActive = link.getAttribute("href") === `#${id}`;
-        link.classList.toggle("active", isActive);
+        e.stopPropagation();
         
-        if (isActive) {
-          link.scrollIntoView({
-            block: "nearest",
+        const targetId = link.getAttribute("href").substring(1);
+        const targetElement = document.getElementById(targetId);
+        
+        if (targetElement) {
+          const offset = 110;
+          const elementPosition = targetElement.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - offset;
+          
+          window.scrollTo({
+            top: offsetPosition,
             behavior: "smooth"
           });
+          
+          // Update URL without jumping
+          history.replaceState(null, "", `#${targetId}`);
         }
       });
+      
+      toc.appendChild(link);
     }
-
+    
+    /* =====================================================
+       ACTIVE LINK HIGHLIGHTING
+    ===================================================== */
+    const tocLinks = Array.from(toc.querySelectorAll("a"));
+    
+    function setActiveLink(id) {
+      for (let i = 0; i < tocLinks.length; i++) {
+        const link = tocLinks[i];
+        const href = link.getAttribute("href");
+        const isActive = (href === `#${id}`);
+        
+        if (isActive) {
+          link.classList.add("active");
+          // Scroll active link into view smoothly
+          link.scrollIntoView({ block: "nearest", behavior: "smooth" });
+        } else {
+          link.classList.remove("active");
+        }
+      }
+    }
+    
     function updateActiveHeading() {
       if (validHeadings.length === 0) return;
       
-      let current = validHeadings[0];
+      let currentId = validHeadings[0].id;
       const offset = 180;
-
-      for (let i = 0; i < validHeadings.length; i++) {
+      
+      // Find the last heading that is above the scroll position
+      for (let i = validHeadings.length - 1; i >= 0; i--) {
         const heading = validHeadings[i];
         const rect = heading.getBoundingClientRect();
         if (rect.top <= offset) {
-          current = heading;
+          currentId = heading.id;
+          break;
         }
       }
-
-      setActive(current.id);
+      
+      setActiveLink(currentId);
     }
-
-    /* Scroll listener with requestAnimationFrame */
-    let ticking = false;
-    window.addEventListener("scroll", () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          updateActiveHeading();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    }, { passive: true });
-
-    window.addEventListener("resize", updateActiveHeading);
     
-    /* Initial call */
-    updateActiveHeading();
-
-    /* =====================================================
-       DEBUG LOG (REMOVE IN PRODUCTION)
-    ===================================================== */
-    console.log("TOC Headings found:", validHeadings.length);
-    validHeadings.forEach(h => console.log(" -", h.textContent.trim()));
-
+    // Throttled scroll handler
+    let scrollTimeout = null;
+    window.addEventListener("scroll", () => {
+      if (scrollTimeout) {
+        window.cancelAnimationFrame(scrollTimeout);
+      }
+      scrollTimeout = window.requestAnimationFrame(() => {
+        updateActiveHeading();
+        scrollTimeout = null;
+      });
+    }, { passive: true });
+    
+    window.addEventListener("resize", () => {
+      updateActiveHeading();
+    });
+    
+    // Initial highlight
+    setTimeout(updateActiveHeading, 100);
+    
+    // Handle hash in URL on load
+    if (window.location.hash) {
+      setTimeout(() => {
+        const hashId = window.location.hash.substring(1);
+        const targetElement = document.getElementById(hashId);
+        if (targetElement) {
+          const offset = 110;
+          const elementPosition = targetElement.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - offset;
+          window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+        }
+      }, 150);
+    }
   }
-);
+  
+  // Wait for DOM to be ready
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", buildTOC);
+  } else {
+    buildTOC();
+  }
+})();
 </script>
