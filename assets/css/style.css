@@ -634,7 +634,7 @@ p {
 
   padding-bottom: 1rem;
 
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 
 #table-of-contents::-webkit-scrollbar {

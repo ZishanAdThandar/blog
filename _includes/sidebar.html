@@ -263,35 +263,100 @@ document.addEventListener(
     /* =====================================================
        STANDARD DOCS ACTIVE TRACKING
     ===================================================== */
+function updateActiveHeading() {
 
-    function updateActiveHeading() {
+  let current =
+    headings[0];
 
-      let current =
-        headings[0];
+  const viewportOffset =
+    180;
 
-      const scrollPosition =
-        window.scrollY + 160;
+  /* ===============================================
+     FIND CURRENT HEADING
+  =============================================== */
 
-      headings.forEach(
-        (heading) => {
+  headings.forEach(
+    (heading) => {
 
-          if (
-            heading.offsetTop <=
-            scrollPosition
-          ) {
+      const rect =
+        heading.getBoundingClientRect();
 
-            current =
-              heading;
-          }
+      if (
+        rect.top <=
+        viewportOffset
+      ) {
 
-        }
-      );
-
-      setActive(
-        current.id
-      );
+        current =
+          heading;
+      }
 
     }
+  );
+
+  /* ===============================================
+     SET ACTIVE
+  =============================================== */
+
+  setActive(
+    current.id
+  );
+
+  /* ===============================================
+     KEEP ACTIVE LINK VISIBLE
+  =============================================== */
+
+  const activeLink =
+    toc.querySelector(
+      ".active"
+    );
+
+  if (
+    !activeLink
+  ) return;
+
+  const linkTop =
+    activeLink.offsetTop;
+
+  const linkBottom =
+    linkTop +
+    activeLink.offsetHeight;
+
+  const visibleTop =
+    toc.scrollTop;
+
+  const visibleBottom =
+    visibleTop +
+    toc.clientHeight;
+
+  /* ===============================================
+     BELOW VIEW
+  =============================================== */
+
+  if (
+    linkBottom >
+    visibleBottom - 20
+  ) {
+
+    toc.scrollTop =
+      linkBottom -
+      toc.clientHeight +
+      40;
+  }
+
+  /* ===============================================
+     ABOVE VIEW
+  =============================================== */
+
+  else if (
+    linkTop <
+    visibleTop + 20
+  ) {
+
+    toc.scrollTop =
+      linkTop - 40;
+  }
+
+}
 
     /* =====================================================
        SCROLL EVENT
