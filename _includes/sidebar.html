@@ -26,6 +26,10 @@ document.addEventListener(
   "DOMContentLoaded",
   () => {
 
+    /* =====================================================
+       ELEMENTS
+    ===================================================== */
+
     const toc =
       document.getElementById(
         "table-of-contents"
@@ -64,6 +68,10 @@ document.addEventListener(
         }
       );
 
+    /* =====================================================
+       NO HEADINGS
+    ===================================================== */
+
     if (
       headings.length === 0
     ) {
@@ -75,6 +83,12 @@ document.addEventListener(
     }
 
     /* =====================================================
+       CLEAR TOC
+    ===================================================== */
+
+    toc.innerHTML = "";
+
+    /* =====================================================
        BUILD TOC
     ===================================================== */
 
@@ -84,6 +98,10 @@ document.addEventListener(
         index
       ) => {
 
+        /* ===============================================
+           AUTO ID
+        =============================================== */
+
         if (
           !heading.id
         ) {
@@ -91,6 +109,10 @@ document.addEventListener(
           heading.id =
             `heading-${index}`;
         }
+
+        /* ===============================================
+           CREATE LINK
+        =============================================== */
 
         const link =
           document.createElement(
@@ -121,10 +143,7 @@ document.addEventListener(
               110;
 
             const top =
-              heading
-                .getBoundingClientRect()
-                .top +
-              window.pageYOffset -
+              heading.offsetTop -
               offset;
 
             window.scrollTo({
@@ -157,8 +176,10 @@ document.addEventListener(
     ===================================================== */
 
     const tocLinks =
-      toc.querySelectorAll(
-        "a"
+      Array.from(
+        toc.querySelectorAll(
+          "a"
+        )
       );
 
     /* =====================================================
@@ -167,131 +188,164 @@ document.addEventListener(
 
     function setActive(id) {
 
+      let activeLink = null;
+
       tocLinks.forEach(
         (link) => {
 
-          link.classList.remove(
-            "active"
+          const isActive =
+            link.getAttribute(
+              "href"
+            ) === `#${id}`;
+
+          link.classList.toggle(
+            "active",
+            isActive
           );
 
           if (
-            link.getAttribute(
-              "href"
-            ) === `#${id}`
+            isActive
           ) {
 
-            link.classList.add(
-              "active"
-            );
-
-            /* =========================================
-               KEEP ACTIVE LINK VISIBLE
-            ========================================= */
-
-            const linkTop =
-              link.offsetTop;
-
-            const linkBottom =
-              linkTop +
-              link.offsetHeight;
-
-            const tocTop =
-              toc.scrollTop;
-
-            const tocBottom =
-              tocTop +
-              toc.clientHeight;
-
-            if (
-              linkBottom >
-              tocBottom
-            ) {
-
-              toc.scrollTop =
-  linkBottom -
-  toc.clientHeight +
-  20;
-
-            }
-
-            else if (
-              linkTop <
-              tocTop
-            ) {
-
-              toc.scrollTop =
-  linkTop - 20;
-
-            }
-
+            activeLink =
+              link;
           }
 
         }
       );
 
+      /* ===============================================
+         KEEP ACTIVE LINK VISIBLE
+      =============================================== */
+
+      if (
+        activeLink
+      ) {
+
+        const containerTop =
+          toc.scrollTop;
+
+        const containerBottom =
+          containerTop +
+          toc.clientHeight;
+
+        const linkTop =
+          activeLink.offsetTop;
+
+        const linkBottom =
+          linkTop +
+          activeLink.offsetHeight;
+
+        if (
+          linkBottom >
+          containerBottom
+        ) {
+
+          toc.scrollTop =
+            linkBottom -
+            toc.clientHeight +
+            24;
+        }
+
+        else if (
+          linkTop <
+          containerTop
+        ) {
+
+          toc.scrollTop =
+            linkTop - 24;
+        }
+
+      }
+
     }
 
     /* =====================================================
-       INTERSECTION OBSERVER
+       STANDARD DOCS ACTIVE TRACKING
     ===================================================== */
 
-    let currentActive =
-      headings[0].id;
+    function updateActiveHeading() {
 
-    const observer =
-      new IntersectionObserver(
+      let current =
+        headings[0];
 
-        (entries) => {
+      const scrollPosition =
+        window.scrollY + 160;
 
-          entries.forEach(
-            (entry) => {
+      headings.forEach(
+        (heading) => {
 
-              if (
-                entry.isIntersecting
-              ) {
+          if (
+            heading.offsetTop <=
+            scrollPosition
+          ) {
 
-                currentActive =
-                  entry.target.id;
+            current =
+              heading;
+          }
 
-                setActive(
-                  currentActive
-                );
+        }
+      );
 
-              }
+      setActive(
+        current.id
+      );
+
+    }
+
+    /* =====================================================
+       SCROLL EVENT
+    ===================================================== */
+
+    let ticking =
+      false;
+
+    window.addEventListener(
+      "scroll",
+      () => {
+
+        if (
+          !ticking
+        ) {
+
+          window.requestAnimationFrame(
+            () => {
+
+              updateActiveHeading();
+
+              ticking = false;
 
             }
           );
 
-        },
-
-        {
-
-          rootMargin:
-            "-120px 0px -70% 0px",
-
-          threshold: 0
+          ticking = true;
 
         }
 
-      );
+      },
 
-    headings.forEach(
-      (heading) => {
+      {
 
-        observer.observe(
-          heading
-        );
+        passive: true
 
       }
+
+    );
+
+    /* =====================================================
+       RESIZE
+    ===================================================== */
+
+    window.addEventListener(
+      "resize",
+      updateActiveHeading
     );
 
     /* =====================================================
        INITIAL
     ===================================================== */
 
-    setActive(
-      headings[0].id
-    );
+    updateActiveHeading();
 
   }
 );
