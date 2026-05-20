@@ -150,7 +150,7 @@ p {
 }
 
 /* =========================================================
-   ARTICLE RHYTHM
+   ARTICLE
 ========================================================= */
 
 .blog-content article {
@@ -190,6 +190,7 @@ p {
 
   margin-top: 1.8rem;
 }
+
 /* =========================================================
    LAYOUT
 ========================================================= */
@@ -213,7 +214,7 @@ p {
     minmax(0,1fr)
     290px;
 
-  gap: 1.4rem;
+  gap: 1.5rem;
 
   align-items: start;
 
@@ -225,11 +226,6 @@ p {
   width: 100%;
 
   min-width: 0;
-}
-
-.blog-content article {
-
-  width: 100%;
 }
 
 /* =========================================================
@@ -316,10 +312,6 @@ p {
   gap: 0.6rem;
 }
 
-/* =========================================================
-   NAVBAR PREMIUM BUTTONS
-========================================================= */
-
 .nav-menu .btn {
 
   padding:
@@ -330,27 +322,9 @@ p {
   border-radius: 12px;
 }
 
-/* =========================================================
-   LABS BUTTON
-========================================================= */
-
 .dropdown-toggle {
 
   gap: 0.6rem;
-}
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media (max-width: 900px) {
-
-  .nav-menu .btn {
-
-    width: 100%;
-
-    justify-content: space-between;
-  }
 }
 
 /* =========================================================
@@ -573,19 +547,14 @@ p {
 
 .sidebar {
 
+  position: relative;
+
   align-self: start;
 }
 
-.toc-card {
-
-  position: sticky;
-
-  top: 110px;
-
-  max-height:
-    calc(100vh - 130px);
-}
-
+/* =========================================================
+   SIDEBAR CARD
+========================================================= */
 
 .sidebar-card {
 
@@ -601,6 +570,25 @@ p {
 
   backdrop-filter: blur(14px);
 }
+
+/* =========================================================
+   STICKY TOC CARD
+========================================================= */
+
+.toc-card {
+
+  position: sticky;
+
+  top: 110px;
+
+  align-self: start;
+
+  overflow: hidden;
+}
+
+/* =========================================================
+   SIDEBAR HEADING
+========================================================= */
 
 .sidebar-heading {
 
@@ -618,67 +606,6 @@ p {
 }
 
 /* =========================================================
-   MINI BRAND
-========================================================= */
-
-.mini-brand {
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(99,102,241,0.12),
-      rgba(139,92,246,0.06)
-    );
-}
-
-.mini-brand-logo {
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 0.7rem;
-
-  margin-bottom: 0.9rem;
-
-  font-weight: 800;
-
-  font-size: 0.95rem;
-}
-
-.mini-brand-logo i {
-
-  color: var(--primary);
-
-  font-size: 1.1rem;
-}
-
-.mini-brand p {
-
-  font-size: 0.84rem;
-
-  line-height: 1.65;
-
-  color: var(--muted);
-
-  margin: 0;
-}
-
-/* =========================================================
-   STICKY TOC CARD
-========================================================= */
-
-.toc-card {
-
-  position: sticky;
-
-  top: 110px;
-
-  max-height:
-    calc(100vh - 130px);
-}
-
-/* =========================================================
    TOC
 ========================================================= */
 
@@ -693,11 +620,11 @@ p {
   width: 100%;
 
   max-height:
-    calc(100vh - 170px);
+    calc(100vh - 190px);
 
   overflow-y: auto;
 
-  padding-right: 0.4rem;
+  padding-right: 0.35rem;
 
   padding-bottom: 1rem;
 
@@ -705,7 +632,7 @@ p {
 }
 
 /* =========================================================
-   SCROLLBAR
+   TOC SCROLLBAR
 ========================================================= */
 
 #table-of-contents::-webkit-scrollbar {
@@ -755,15 +682,10 @@ p {
     background 0.18s ease,
     color 0.18s ease,
     border-color 0.18s ease,
-    transform 0.18s ease,
-    box-shadow 0.18s ease;
+    transform 0.18s ease;
 
   overflow: hidden;
 }
-
-/* =========================================================
-   ACTIVE BAR
-========================================================= */
 
 #table-of-contents a::before {
 
@@ -786,10 +708,6 @@ p {
   transition: 0.18s ease;
 }
 
-/* =========================================================
-   HOVER
-========================================================= */
-
 #table-of-contents a:hover {
 
   background:
@@ -799,14 +717,7 @@ p {
 
   transform:
     translateX(3px);
-
-  border-color:
-    rgba(255,255,255,0.08);
 }
-
-/* =========================================================
-   ACTIVE
-========================================================= */
 
 #table-of-contents a.active {
 
@@ -817,9 +728,6 @@ p {
     1px solid rgba(99,102,241,0.28);
 
   color: white;
-
-  box-shadow:
-    0 0 0 1px rgba(99,102,241,0.08);
 }
 
 #table-of-contents a.active::before {
@@ -831,10 +739,6 @@ p {
       #8b5cf6
     );
 }
-
-/* =========================================================
-   LEVELS
-========================================================= */
 
 #table-of-contents .toc-h1 {
 
@@ -946,6 +850,94 @@ p {
     rgba(99,102,241,0.28);
 
   color: white;
+}
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.btn {
+
+  position: relative;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 0.5rem;
+
+  padding:
+    0.78rem 1rem;
+
+  border-radius: 14px;
+
+  border:
+    1px solid rgba(255,255,255,0.08);
+
+  background:
+    rgba(255,255,255,0.04);
+
+  color: white;
+
+  font-size: 0.84rem;
+
+  font-weight: 700;
+
+  line-height: 1;
+
+  transition:
+    transform 0.18s ease,
+    background 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.18s ease;
+
+  backdrop-filter: blur(12px);
+}
+
+.btn:hover {
+
+  transform:
+    translateY(-2px);
+
+  background:
+    rgba(255,255,255,0.07);
+
+  border-color:
+    rgba(255,255,255,0.14);
+
+  box-shadow:
+    0 10px 24px rgba(0,0,0,0.22);
+}
+
+.btn-premium {
+
+  background:
+    linear-gradient(
+      135deg,
+      #6366f1,
+      #8b5cf6
+    );
+
+  border:
+    1px solid rgba(255,255,255,0.08);
+
+  box-shadow:
+    0 10px 30px rgba(99,102,241,0.28);
+}
+
+.btn-premium:hover {
+
+  background:
+    linear-gradient(
+      135deg,
+      #4f46e5,
+      #7c3aed
+    );
+
+  box-shadow:
+    0 14px 34px rgba(99,102,241,0.34);
 }
 
 /* =========================================================
@@ -1062,98 +1054,11 @@ p {
 
     display: block !important;
   }
+
+  .nav-menu .btn {
+
+    width: 100%;
+
+    justify-content: space-between;
+  }
 }
-/* =========================================================
-   BUTTONS
-========================================================= */
-
-.btn {
-
-  position: relative;
-
-  display: inline-flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  gap: 0.5rem;
-
-  padding:
-    0.78rem 1rem;
-
-  border-radius: 14px;
-
-  border:
-    1px solid rgba(255,255,255,0.08);
-
-  background:
-    rgba(255,255,255,0.04);
-
-  color: white;
-
-  font-size: 0.84rem;
-
-  font-weight: 700;
-
-  line-height: 1;
-
-  transition:
-    transform 0.18s ease,
-    background 0.18s ease,
-    border-color 0.18s ease,
-    box-shadow 0.18s ease;
-
-  backdrop-filter: blur(12px);
-}
-
-.btn:hover {
-
-  transform:
-    translateY(-2px);
-
-  background:
-    rgba(255,255,255,0.07);
-
-  border-color:
-    rgba(255,255,255,0.14);
-
-  box-shadow:
-    0 10px 24px rgba(0,0,0,0.22);
-}
-
-/* =========================================================
-   PRIMARY BUTTON
-========================================================= */
-
-.btn-premium {
-
-  background:
-    linear-gradient(
-      135deg,
-      #6366f1,
-      #8b5cf6
-    );
-
-  border:
-    1px solid rgba(255,255,255,0.08);
-
-  box-shadow:
-    0 10px 30px rgba(99,102,241,0.28);
-}
-
-.btn-premium:hover {
-
-  background:
-    linear-gradient(
-      135deg,
-      #4f46e5,
-      #7c3aed
-    );
-
-  box-shadow:
-    0 14px 34px rgba(99,102,241,0.34);
-}
-
-
-
