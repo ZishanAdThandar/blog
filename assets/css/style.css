@@ -556,11 +556,14 @@ p {
 
 .sidebar {
 
-  position: relative;
+  position: sticky;
+
+  top: 110px;
 
   align-self: start;
 
-  overflow: visible !important;
+  height:
+    calc(100vh - 130px);
 }
 
 .sidebar-card {
@@ -584,14 +587,7 @@ p {
 
 .toc-card {
 
-  position: sticky;
-
-  top: 110px;
-
-  align-self: start;
-
-  max-height:
-    calc(100vh - 130px);
+  height: 100%;
 }
 
 .sidebar-heading {
@@ -623,8 +619,7 @@ p {
 
   width: 100%;
 
-  max-height:
-    calc(100vh - 220px);
+  height: 100%;
 
   overflow-y: auto;
 
