@@ -245,39 +245,27 @@
         }
       );
 
-      tocLinks.forEach(
-        (link) => {
+tocLinks.forEach(
+  (link) => {
 
-          link.classList.remove(
-            "active"
-          );
+    link.classList.remove(
+      "active"
+    );
 
-          if (
-            link.getAttribute(
-              "href"
-            ) === `#${currentId}`
-          ) {
+    if (
+      link.getAttribute(
+        "href"
+      ) === `#${currentId}`
+    ) {
 
-            link.classList.add(
-              "active"
-            );
-
-            /* =========================================
-               KEEP ACTIVE LINK VISIBLE
-            ========================================= */
-
-            link.scrollIntoView({
-
-              block: "nearest",
-
-              behavior: "smooth"
-
-            });
-
-          }
-
-        }
+      link.classList.add(
+        "active"
       );
+
+    }
+
+  }
+);
 
     }
 
