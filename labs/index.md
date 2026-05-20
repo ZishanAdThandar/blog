@@ -9,21 +9,10 @@ permalink: /labs/
 
 <div class="article-category">
 
-<span>
-Hack The Box
-</span>
-
-<span>
-TryHackMe
-</span>
-
-<span>
-OffSec
-</span>
-
-<span>
-VulnHub
-</span>
+<span>Hack The Box</span>
+<span>TryHackMe</span>
+<span>OffSec</span>
+<span>VulnHub</span>
 
 </div>
 
@@ -35,10 +24,11 @@ Hands-On Offensive Security Labs
 
 <p class="hero-description">
 
-Practical exploitation walkthroughs,
-Active Directory labs,
-privilege escalation methodologies,
-and real-world attack path practice
+Practical lab walkthroughs,
+enumeration workflows,
+privilege escalation,
+Active Directory methodology,
+and exploitation-focused learning
 across multiple offensive security platforms.
 
 </p>
@@ -47,19 +37,15 @@ across multiple offensive security platforms.
 
 ---
 
-<div class="posts-list">
+## Lab Platforms
 
-<!-- =====================================================
-     HTB
-===================================================== -->
+<div class="posts-list">
 
 <article class="post-item">
 
-<div class="article-category">
+<div class="post-category">
 
-<span>
 HTB
-</span>
 
 </div>
 
@@ -73,14 +59,14 @@ Hack The Box
 
 </h2>
 
-<div class="post-excerpt">
+<p class="post-excerpt">
 
 Windows and Linux machine walkthroughs,
-enumeration methodologies,
+enumeration,
 privilege escalation,
-and exploitation workflows.
+and exploitation methodology.
 
-</div>
+</p>
 
 <div class="post-meta">
 
@@ -99,7 +85,7 @@ href="/blog/labs/htb/"
 class="read-more"
 >
 
-Explore HTB
+View Labs
 
 <i class="fas fa-arrow-right"></i>
 
@@ -107,17 +93,11 @@ Explore HTB
 
 </article>
 
-<!-- =====================================================
-     THM
-===================================================== -->
-
 <article class="post-item">
 
-<div class="article-category">
+<div class="post-category">
 
-<span>
 THM
-</span>
 
 </div>
 
@@ -131,14 +111,14 @@ TryHackMe
 
 </h2>
 
-<div class="post-excerpt">
+<p class="post-excerpt">
 
-Learning-focused offensive security labs,
+Learning-focused labs covering
 web exploitation,
 Active Directory,
-and foundational cybersecurity exercises.
+and foundational offensive security concepts.
 
-</div>
+</p>
 
 <div class="post-meta">
 
@@ -157,7 +137,7 @@ href="/blog/labs/thm/"
 class="read-more"
 >
 
-Explore THM
+View Labs
 
 <i class="fas fa-arrow-right"></i>
 
@@ -165,17 +145,11 @@ Explore THM
 
 </article>
 
-<!-- =====================================================
-     OFFSEC
-===================================================== -->
-
 <article class="post-item">
 
-<div class="article-category">
+<div class="post-category">
 
-<span>
 OffSec
-</span>
 
 </div>
 
@@ -189,13 +163,13 @@ OffSec Labs
 
 </h2>
 
-<div class="post-excerpt">
+<p class="post-excerpt">
 
-OSCP-style methodologies,
+OSCP-style labs,
 advanced exploitation workflows,
-and offensive security certification preparation.
+and certification-oriented offensive security practice.
 
-</div>
+</p>
 
 <div class="post-meta">
 
@@ -214,7 +188,7 @@ href="/blog/labs/offsec/"
 class="read-more"
 >
 
-Explore OffSec
+View Labs
 
 <i class="fas fa-arrow-right"></i>
 
@@ -222,17 +196,11 @@ Explore OffSec
 
 </article>
 
-<!-- =====================================================
-     VULNHUB
-===================================================== -->
-
 <article class="post-item">
 
-<div class="article-category">
+<div class="post-category">
 
-<span>
 VulnHub
-</span>
 
 </div>
 
@@ -246,13 +214,13 @@ VulnHub
 
 </h2>
 
-<div class="post-excerpt">
+<p class="post-excerpt">
 
 Classic vulnerable machines,
-manual exploitation methodologies,
-and practical penetration testing exercises.
+manual exploitation,
+and practical penetration testing methodology.
 
-</div>
+</p>
 
 <div class="post-meta">
 
@@ -271,7 +239,7 @@ href="/blog/labs/vulnhub/"
 class="read-more"
 >
 
-Explore VulnHub
+View Labs
 
 <i class="fas fa-arrow-right"></i>
 
