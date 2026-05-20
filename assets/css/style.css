@@ -23,9 +23,6 @@
   --border:
     rgba(255,255,255,0.08);
 
-  --border-hover:
-    rgba(99,102,241,0.28);
-
   --card:
     rgba(255,255,255,0.045);
 
@@ -39,8 +36,6 @@
   --radius: 16px;
 
   --container-width: 1220px;
-
-  --content-width: 760px;
 }
 
 /* =========================================================
@@ -218,7 +213,9 @@ p {
 
   align-items: start;
 
-  margin-bottom: 3rem;
+  position: relative;
+
+  overflow: visible !important;
 }
 
 .blog-content {
@@ -226,6 +223,18 @@ p {
   width: 100%;
 
   min-width: 0;
+
+  overflow: visible !important;
+}
+
+.blog-content article {
+
+  overflow: visible !important;
+}
+
+.article-content {
+
+  width: 100%;
 }
 
 /* =========================================================
@@ -550,11 +559,9 @@ p {
   position: relative;
 
   align-self: start;
-}
 
-/* =========================================================
-   SIDEBAR CARD
-========================================================= */
+  overflow: visible !important;
+}
 
 .sidebar-card {
 
@@ -583,12 +590,11 @@ p {
 
   align-self: start;
 
-  overflow: hidden;
-}
+  overflow: visible;
 
-/* =========================================================
-   SIDEBAR HEADING
-========================================================= */
+  max-height:
+    calc(100vh - 130px);
+}
 
 .sidebar-heading {
 
@@ -624,28 +630,13 @@ p {
 
   overflow-y: auto;
 
+  overflow-x: hidden;
+
   padding-right: 0.35rem;
 
   padding-bottom: 1rem;
 
   scroll-behavior: smooth;
-}
-
-/* =========================================================
-   TOC SCROLLBAR
-========================================================= */
-
-#table-of-contents::-webkit-scrollbar {
-
-  width: 5px;
-}
-
-#table-of-contents::-webkit-scrollbar-thumb {
-
-  background:
-    rgba(255,255,255,0.08);
-
-  border-radius: 999px;
 }
 
 /* =========================================================
