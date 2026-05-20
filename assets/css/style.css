@@ -139,14 +139,23 @@ h6 {
 
 p {
 
-  color: #dbe4ee;
+  color: #d6deeb;
 
-  margin-bottom: 1rem;
+  margin-bottom: 1.35rem;
+
+  line-height: 1.9;
+
+  font-size: 1rem;
 }
 
 /* =========================================================
    ARTICLE
 ========================================================= */
+
+.article-content {
+
+  max-width: 760px;
+}
 
 .blog-content article {
 
@@ -167,16 +176,24 @@ p {
 
 .blog-content h2 {
 
-  font-size: 1.7rem;
+  font-size: 1.8rem;
 
-  margin-top: 3rem;
+  line-height: 1.18;
+
+  margin-top: 4rem;
+
+  margin-bottom: 1.2rem;
 }
 
 .blog-content h3 {
 
-  font-size: 1.3rem;
+  font-size: 1.38rem;
 
-  margin-top: 2.2rem;
+  line-height: 1.28;
+
+  margin-top: 3rem;
+
+  margin-bottom: 1rem;
 }
 
 .blog-content h4 {
@@ -270,7 +287,7 @@ p {
 
   gap: 1rem;
 
-  min-height: 74px;
+  min-height: 82px;
 }
 
 /* =========================================================
@@ -559,11 +576,7 @@ p {
 .post-item {
 
   background:
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,0.05),
-      rgba(255,255,255,0.03)
-    );
+    rgba(255,255,255,0.028);
 
   border:
     1px solid rgba(255,255,255,0.08);
@@ -572,10 +585,8 @@ p {
 
   padding: 1.1rem;
 
-  backdrop-filter: blur(14px);
-
   box-shadow:
-    0 10px 30px rgba(0,0,0,0.22);
+    0 6px 18px rgba(0,0,0,0.16);
 }
 
 /* =========================================================
@@ -636,7 +647,7 @@ p {
 .sidebar-card {
 
   background:
-    rgba(255,255,255,0.045);
+  rgba(255,255,255,0.035);
 
   border:
     1px solid rgba(255,255,255,0.08);
@@ -645,7 +656,6 @@ p {
 
   padding: 1rem;
 
-  backdrop-filter: blur(14px);
 }
 
 /* =========================================================
@@ -778,9 +788,6 @@ p {
     rgba(255,255,255,0.06);
 
   color: white;
-
-  transform:
-    translateX(3px);
 }
 
 #table-of-contents a.active {
@@ -1063,7 +1070,8 @@ p {
     border-color 0.18s ease,
     box-shadow 0.18s ease;
 
-  backdrop-filter: blur(12px);
+  background:
+  rgba(255,255,255,0.05);
 }
 
 .btn:hover {
@@ -1232,3 +1240,36 @@ p {
     justify-content: space-between;
   }
 }
+
+section {
+
+  margin-top: 5rem;
+}
+.blog-content > * + * {
+
+  margin-top: 1.6rem;
+}
+
+pre {
+
+  padding: 1.2rem;
+
+  border-radius: 16px;
+
+  overflow-x: auto;
+
+  background:
+    rgba(255,255,255,0.03);
+
+  border:
+    1px solid rgba(255,255,255,0.06);
+}
+
+code {
+
+  font-family:
+    'JetBrains Mono',
+    monospace;
+}
+
+
