@@ -22,27 +22,24 @@
 
 <script>
 
-(function () {
-
-  function initTOC() {
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
 
     const toc =
       document.getElementById(
         "table-of-contents"
       );
 
-    if (!toc) return;
-
-    /* =====================================================
-       ARTICLE CONTENT ONLY
-    ===================================================== */
-
     const content =
       document.querySelector(
         ".article-content"
       );
 
-    if (!content) return;
+    if (
+      !toc ||
+      !content
+    ) return;
 
     /* =====================================================
        HEADINGS
@@ -67,10 +64,6 @@
         }
       );
 
-    /* =====================================================
-       EMPTY TOC
-    ===================================================== */
-
     if (
       headings.length === 0
     ) {
@@ -80,12 +73,6 @@
 
       return;
     }
-
-    /* =====================================================
-       CLEAR OLD TOC
-    ===================================================== */
-
-    toc.innerHTML = "";
 
     /* =====================================================
        BUILD TOC
@@ -102,7 +89,7 @@
         ) {
 
           heading.id =
-            `toc-heading-${index}`;
+            `heading-${index}`;
         }
 
         const link =
@@ -121,7 +108,7 @@
         );
 
         /* ===============================================
-           SMOOTH SCROLL
+           CLICK
         =============================================== */
 
         link.addEventListener(
@@ -130,7 +117,8 @@
 
             e.preventDefault();
 
-            const offset = 110;
+            const offset =
+              110;
 
             const top =
               heading
@@ -141,8 +129,7 @@
 
             window.scrollTo({
 
-              top: top,
-
+              top,
               behavior: "smooth"
 
             });
@@ -175,31 +162,10 @@
       );
 
     /* =====================================================
-       ACTIVE HEADING
+       SET ACTIVE
     ===================================================== */
 
-    function updateActive() {
-
-      let currentId =
-        headings[0].id;
-
-      headings.forEach(
-        (heading) => {
-
-          const rect =
-            heading.getBoundingClientRect();
-
-          if (
-            rect.top <= 160
-          ) {
-
-            currentId =
-              heading.id;
-
-          }
-
-        }
-      );
+    function setActive(id) {
 
       tocLinks.forEach(
         (link) => {
@@ -211,7 +177,7 @@
           if (
             link.getAttribute(
               "href"
-            ) === `#${currentId}`
+            ) === `#${id}`
           ) {
 
             link.classList.add(
@@ -219,7 +185,7 @@
             );
 
             /* =========================================
-               KEEP ACTIVE ITEM VISIBLE
+               KEEP ACTIVE LINK VISIBLE
             ========================================= */
 
             const linkTop =
@@ -235,10 +201,6 @@
             const tocBottom =
               tocTop +
               toc.clientHeight;
-
-            /* =========================================
-               SCROLL DOWN
-            ========================================= */
 
             if (
               linkBottom >
@@ -257,10 +219,6 @@
               });
 
             }
-
-            /* =========================================
-               SCROLL UP
-            ========================================= */
 
             else if (
               linkTop <
@@ -286,52 +244,68 @@
     }
 
     /* =====================================================
-       EVENTS
+       INTERSECTION OBSERVER
     ===================================================== */
 
-    window.addEventListener(
-      "scroll",
-      updateActive,
-      {
+    let currentActive =
+      headings[0].id;
 
-        passive: true
+    const observer =
+      new IntersectionObserver(
+
+        (entries) => {
+
+          entries.forEach(
+            (entry) => {
+
+              if (
+                entry.isIntersecting
+              ) {
+
+                currentActive =
+                  entry.target.id;
+
+                setActive(
+                  currentActive
+                );
+
+              }
+
+            }
+          );
+
+        },
+
+        {
+
+          rootMargin:
+            "-20% 0px -65% 0px",
+
+          threshold: 0
+
+        }
+
+      );
+
+    headings.forEach(
+      (heading) => {
+
+        observer.observe(
+          heading
+        );
 
       }
-    );
-
-    window.addEventListener(
-      "resize",
-      updateActive
     );
 
     /* =====================================================
        INITIAL
     ===================================================== */
 
-    updateActive();
-
-  }
-
-  /* =======================================================
-     DOM READY
-  ======================================================= */
-
-  if (
-    document.readyState ===
-    "loading"
-  ) {
-
-    document.addEventListener(
-      "DOMContentLoaded",
-      initTOC
+    setActive(
+      headings[0].id
     );
 
-  } else {
-
-    initTOC();
-
   }
-
-})();
+);
 
 </script>
