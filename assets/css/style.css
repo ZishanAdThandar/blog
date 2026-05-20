@@ -671,30 +671,9 @@ p {
 
   gap: 0.45rem;
 
-  max-height:
-    calc(100vh - 220px);
-
-  overflow-y: auto;
-
-  padding-right: 0.3rem;
+  width: 100%;
 }
 
-/* =========================================================
-   SCROLLBAR
-========================================================= */
-
-#table-of-contents::-webkit-scrollbar {
-
-  width: 4px;
-}
-
-#table-of-contents::-webkit-scrollbar-thumb {
-
-  background:
-    rgba(255,255,255,0.08);
-
-  border-radius: 999px;
-}
 
 /* =========================================================
    LINKS
