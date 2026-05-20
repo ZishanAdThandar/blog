@@ -61,7 +61,7 @@
 </aside>
 
 <!-- =========================================================
-     TOC SCRIPT
+     TOC SCRIPT (FIXED)
 ========================================================= -->
 
 <script>
@@ -172,100 +172,187 @@ document.addEventListener(
       );
 
     /* =====================================================
-       ACTIVE LINK
+       CLICK HANDLER - SMOOTH SCROLL TO HEADING
     ===================================================== */
-const setActiveLink =
-  (id) => {
-
-    let activeElement =
-      null;
 
     tocLinks.forEach(
       (link) => {
 
-        link.classList.remove(
-          "active"
-        );
+        link.addEventListener(
+          "click",
+          (e) => {
 
-        if (
-          link.getAttribute(
-            "href"
-          ) === `#${id}`
-        ) {
+            e.preventDefault();
 
-          link.classList.add(
-            "active"
-          );
+            const targetId =
+              link.getAttribute("href");
 
-          activeElement =
-            link;
-
-        }
-
-      }
-    );
-
-    /* ===============================================
-       KEEP ACTIVE LINK VISIBLE
-    =============================================== */
-
-    if (
-      activeElement
-    ) {
-
-      activeElement.scrollIntoView({
-
-        block: "nearest",
-
-        behavior: "smooth"
-
-      });
-
-    }
-
-  };
-    /* =====================================================
-       ACTIVE HEADING
-    ===================================================== */
-
-    const updateActiveHeading =
-      () => {
-
-        let currentHeading =
-          headings[0];
-
-        headings.forEach(
-          (heading) => {
-
-            const rect =
-              heading.getBoundingClientRect();
+            const targetElement =
+              document.querySelector(targetId);
 
             if (
-              rect.top <= 140
+              targetElement
             ) {
 
-              currentHeading =
-                heading;
+              targetElement.scrollIntoView({
+
+                behavior: "smooth",
+
+                block: "start"
+
+              });
+
+              history.pushState(
+                null,
+                null,
+                targetId
+              );
 
             }
 
           }
         );
 
+      }
+    );
+
+    /* =====================================================
+       ACTIVE LINK (FIXED - NO SCROLL FIGHTING)
+    ===================================================== */
+
+    let ticking = false;
+    let currentActiveId = null;
+
+    const setActiveLink =
+      (id) => {
+
+        if (currentActiveId === id) return;
+
+        currentActiveId = id;
+
+        let activeElement = null;
+
+        tocLinks.forEach(
+          (link) => {
+
+            link.classList.remove(
+              "active"
+            );
+
+            if (
+              link.getAttribute(
+                "href"
+              ) === `#${id}`
+            ) {
+
+              link.classList.add(
+                "active"
+              );
+
+              activeElement = link;
+
+            }
+
+          }
+        );
+
+        /* ===============================================
+           FIXED: Only scroll TOC if link is OUTSIDE view
+           No more fighting with main page scroll
+        =============================================== */
+
         if (
-          currentHeading
+          activeElement
         ) {
 
-          setActiveLink(
-            currentHeading.id
-          );
+          const tocContainer = toc;
+          const linkRect = activeElement.getBoundingClientRect();
+          const containerRect = tocContainer.getBoundingClientRect();
+
+          const isAbove = linkRect.top < containerRect.top;
+          const isBelow = linkRect.bottom > containerRect.bottom;
+
+          if (
+            isAbove ||
+            isBelow
+          ) {
+
+            activeElement.scrollIntoView({
+
+              block: "nearest",
+
+              behavior: "smooth"
+
+            });
+
+          }
 
         }
 
       };
 
     /* =====================================================
-       SCROLL
+       ACTIVE HEADING ON SCROLL (THROTTLED)
+    ===================================================== */
+
+    const updateActiveHeading =
+      () => {
+
+        if (ticking) return;
+
+        ticking = true;
+
+        requestAnimationFrame(
+          () => {
+
+            let currentHeading =
+              headings[0];
+
+            for (
+              let i = headings.length - 1;
+              i >= 0;
+              i--
+            ) {
+
+              const heading =
+                headings[i];
+
+              const rect =
+                heading.getBoundingClientRect();
+
+              if (
+                rect.top <= 140
+              ) {
+
+                currentHeading =
+                  heading;
+
+                break;
+
+              }
+
+            }
+
+            if (
+              currentHeading &&
+              currentHeading.id !== currentActiveId
+            ) {
+
+              setActiveLink(
+                currentHeading.id
+              );
+
+            }
+
+            ticking = false;
+
+          }
+        );
+
+      };
+
+    /* =====================================================
+       SCROLL EVENT (THROTTLED WITH RAF)
     ===================================================== */
 
     window.addEventListener(
@@ -279,10 +366,34 @@ const setActiveLink =
     );
 
     /* =====================================================
-       INITIAL
+       INITIAL ACTIVE HEADING
     ===================================================== */
 
     updateActiveHeading();
+
+    /* =====================================================
+       RESIZE OBSERVER (OPTIONAL - HANDLES DYNAMIC CONTENT)
+    ===================================================== */
+
+    let resizeTimeout;
+
+    window.addEventListener(
+      "resize",
+      () => {
+
+        if (resizeTimeout) {
+          clearTimeout(resizeTimeout);
+        }
+
+        resizeTimeout = setTimeout(
+          () => {
+            updateActiveHeading();
+          },
+          100
+        );
+
+      }
+    );
 
   }
 );
