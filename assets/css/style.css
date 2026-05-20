@@ -518,6 +518,62 @@ p {
 }
 
 /* =========================================================
+   TAGS
+========================================================= */
+
+.post-tags {
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 0.45rem;
+
+  margin-top: 0.9rem;
+}
+
+.post-tag,
+.tag {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 0.35rem;
+
+  padding:
+    0.35rem 0.7rem;
+
+  border-radius: 999px;
+
+  background:
+    rgba(99,102,241,0.12);
+
+  border:
+    1px solid rgba(99,102,241,0.18);
+
+  color: #c7d2fe;
+
+  font-size: 0.72rem;
+
+  font-weight: 600;
+
+  line-height: 1;
+}
+
+.post-tag:hover,
+.tag:hover {
+
+  background:
+    rgba(99,102,241,0.2);
+
+  border-color:
+    rgba(99,102,241,0.35);
+
+  color: white;
+}
+
+/* =========================================================
    SIDEBAR
 ========================================================= */
 
