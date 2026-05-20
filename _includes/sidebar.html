@@ -75,84 +75,41 @@ document.addEventListener(
         "table-of-contents"
       );
 
-    const article =
+    const content =
       document.querySelector(
-        ".blog-content article"
+        ".article-content"
       );
 
     if (
       !toc ||
-      !article
+      !content
     ) return;
 
     /* =====================================================
-       GET HEADINGS
-    ===================================================== */
-
-    const allHeadings =
-      article.querySelectorAll(
-        "h1, h2, h3, h4"
-      );
-
-    /* =====================================================
-       FILTER UI HEADINGS
+       HEADINGS
     ===================================================== */
 
     const headings =
       Array.from(
-        allHeadings
+
+        content.querySelectorAll(
+          "h1, h2, h3, h4"
+        )
+
       ).filter(
         (heading) => {
 
-          const text =
+          return (
             heading.textContent
-              .trim();
-
-          /* ===============================================
-             SKIP EMPTY
-          =============================================== */
-
-          if (
-            !text
-          ) {
-
-            return false;
-          }
-
-          /* ===============================================
-             SKIP UI HEADINGS
-          =============================================== */
-
-          const invalidTexts = [
-
-            "On This Page",
-
-            "Research",
-
-            "Labs",
-
-            "Bug Bounty",
-
-            "Resources"
-
-          ];
-
-          if (
-            invalidTexts.includes(
-              text
-            )
-          ) {
-
-            return false;
-          }
-
-          return true;
+              .trim()
+              .length > 0
+          );
 
         }
       );
 
     /* =====================================================
-       HIDE EMPTY TOC
+       EMPTY TOC
     ===================================================== */
 
     if (
@@ -175,10 +132,6 @@ document.addEventListener(
         index
       ) => {
 
-        /* ===============================================
-           AUTO ID
-        =============================================== */
-
         if (
           !heading.id
         ) {
@@ -186,10 +139,6 @@ document.addEventListener(
           heading.id =
             `heading-${index}`;
         }
-
-        /* ===============================================
-           CREATE LINK
-        =============================================== */
 
         const link =
           document.createElement(
@@ -202,16 +151,8 @@ document.addEventListener(
         link.textContent =
           heading.textContent.trim();
 
-        /* ===============================================
-           LEVEL CLASS
-        =============================================== */
-
-        const level =
-          heading.tagName
-            .toLowerCase();
-
         link.classList.add(
-          `toc-${level}`
+          `toc-${heading.tagName.toLowerCase()}`
         );
 
         toc.appendChild(
@@ -222,7 +163,7 @@ document.addEventListener(
     );
 
     /* =====================================================
-       TOC LINKS
+       LINKS
     ===================================================== */
 
     const tocLinks =
@@ -262,7 +203,7 @@ document.addEventListener(
       };
 
     /* =====================================================
-       ACTIVE SECTION TRACKING
+       ACTIVE HEADING
     ===================================================== */
 
     const updateActiveHeading =
@@ -302,7 +243,7 @@ document.addEventListener(
       };
 
     /* =====================================================
-       SCROLL LISTENER
+       SCROLL
     ===================================================== */
 
     window.addEventListener(
@@ -316,7 +257,7 @@ document.addEventListener(
     );
 
     /* =====================================================
-       INITIAL ACTIVE
+       INITIAL
     ===================================================== */
 
     updateActiveHeading();
