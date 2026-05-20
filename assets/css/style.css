@@ -512,7 +512,7 @@ p {
   border:
     1px solid rgba(255,255,255,0.08);
 
-  border-radius: 14px;
+  border-radius: 10px;
 
   padding: 0.45rem;
 
@@ -581,7 +581,7 @@ p {
   border:
     1px solid rgba(255,255,255,0.08);
 
-  border-radius: 18px;
+  border-radius: 14px;
 
   padding: 1.1rem;
 
@@ -652,7 +652,7 @@ p {
   border:
     1px solid rgba(255,255,255,0.08);
 
-  border-radius: 18px;
+  border-radius: 14px;
 
   padding: 1rem;
 
@@ -739,7 +739,7 @@ p {
   padding:
     0.82rem 1rem;
 
-  border-radius: 14px;
+  border-radius: 10px;
 
   color: var(--muted);
 
@@ -1048,7 +1048,7 @@ p {
   padding:
     0.78rem 1rem;
 
-  border-radius: 14px;
+  border-radius: 10px;
 
   border:
     1px solid rgba(255,255,255,0.08);
@@ -1158,7 +1158,7 @@ p {
 
     padding: 1rem;
 
-    border-radius: 18px;
+    border-radius: 14px;
 
     background:
       #111827;
@@ -1254,7 +1254,7 @@ pre {
 
   padding: 1.2rem;
 
-  border-radius: 16px;
+  border-radius: 12px;
 
   overflow-x: auto;
 
