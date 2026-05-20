@@ -86,30 +86,67 @@ document.addEventListener(
     ) return;
 
     /* =====================================================
-       FIND VALID ARTICLE HEADINGS ONLY
+       GET HEADINGS
+    ===================================================== */
+
+    const allHeadings =
+      article.querySelectorAll(
+        "h1, h2, h3, h4"
+      );
+
+    /* =====================================================
+       FILTER UI HEADINGS
     ===================================================== */
 
     const headings =
       Array.from(
-
-        article.querySelectorAll(
-          "h1, h2, h3, h4"
-        )
-
+        allHeadings
       ).filter(
         (heading) => {
 
-          return !heading.closest(
-            `
-            .post-item,
-            .sidebar-card,
-            .hero-section,
-            .posts-list,
-            .card,
-            .notice,
-            .callout
-            `
-          );
+          const text =
+            heading.textContent
+              .trim();
+
+          /* ===============================================
+             SKIP EMPTY
+          =============================================== */
+
+          if (
+            !text
+          ) {
+
+            return false;
+          }
+
+          /* ===============================================
+             SKIP UI HEADINGS
+          =============================================== */
+
+          const invalidTexts = [
+
+            "On This Page",
+
+            "Research",
+
+            "Labs",
+
+            "Bug Bounty",
+
+            "Resources"
+
+          ];
+
+          if (
+            invalidTexts.includes(
+              text
+            )
+          ) {
+
+            return false;
+          }
+
+          return true;
 
         }
       );
@@ -139,15 +176,7 @@ document.addEventListener(
       ) => {
 
         /* ===============================================
-           SKIP EMPTY HEADINGS
-        =============================================== */
-
-        if (
-          !heading.textContent.trim()
-        ) return;
-
-        /* ===============================================
-           AUTO GENERATE IDS
+           AUTO ID
         =============================================== */
 
         if (
@@ -159,7 +188,7 @@ document.addEventListener(
         }
 
         /* ===============================================
-           CREATE TOC LINK
+           CREATE LINK
         =============================================== */
 
         const link =
@@ -174,11 +203,12 @@ document.addEventListener(
           heading.textContent.trim();
 
         /* ===============================================
-           HEADING LEVEL CLASS
+           LEVEL CLASS
         =============================================== */
 
         const level =
-          heading.tagName.toLowerCase();
+          heading.tagName
+            .toLowerCase();
 
         link.classList.add(
           `toc-${level}`
@@ -201,7 +231,7 @@ document.addEventListener(
       );
 
     /* =====================================================
-       SET ACTIVE LINK
+       ACTIVE LINK
     ===================================================== */
 
     const setActiveLink =
@@ -232,85 +262,64 @@ document.addEventListener(
       };
 
     /* =====================================================
-       ACTIVE SECTION OBSERVER
+       ACTIVE SECTION TRACKING
     ===================================================== */
 
-    const observer =
-      new IntersectionObserver(
+    const updateActiveHeading =
+      () => {
 
-        () => {
+        let currentHeading =
+          headings[0];
 
-          let currentHeading =
-            null;
+        headings.forEach(
+          (heading) => {
 
-          headings.forEach(
-            (heading) => {
+            const rect =
+              heading.getBoundingClientRect();
 
-              const rect =
-                heading.getBoundingClientRect();
+            if (
+              rect.top <= 140
+            ) {
 
-              if (
-                rect.top <= 140
-              ) {
-
-                currentHeading =
-                  heading.id;
-
-              }
+              currentHeading =
+                heading;
 
             }
-          );
-
-          if (
-            currentHeading
-          ) {
-
-            setActiveLink(
-              currentHeading
-            );
 
           }
+        );
 
-        },
+        if (
+          currentHeading
+        ) {
 
-        {
+          setActiveLink(
+            currentHeading.id
+          );
 
-          rootMargin:
-            "-10% 0px -70% 0px",
-
-          threshold: 0
         }
 
-      );
+      };
 
     /* =====================================================
-       OBSERVE HEADINGS
+       SCROLL LISTENER
     ===================================================== */
 
-    headings.forEach(
-      (heading) => {
+    window.addEventListener(
+      "scroll",
+      updateActiveHeading,
+      {
 
-        observer.observe(
-          heading
-        );
+        passive: true
 
       }
     );
 
     /* =====================================================
-       INITIAL ACTIVE STATE
+       INITIAL ACTIVE
     ===================================================== */
 
-    setTimeout(
-      () => {
-
-        setActiveLink(
-          headings[0].id
-        );
-
-      },
-      50
-    );
+    updateActiveHeading();
 
   }
 );
