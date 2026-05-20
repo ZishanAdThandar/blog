@@ -10,7 +10,11 @@
 
       <i class="fas fa-stream"></i>
 
-      <span>On This Page</span>
+      <span>
+
+        On This Page
+
+      </span>
 
     </div>
 
@@ -19,18 +23,24 @@
   </div>
 
   <!-- =========================================================
-       MINI BRAND CARD
+       MINI BRAND
   ========================================================= -->
 
   <div class="sidebar-card mini-brand">
 
     <div class="mini-brand-logo">
 
-      <i class="fas fa-shield-alt"></i>
+      <i class="fas fa-shield-halved"></i>
 
       <span>
 
-        ZISHAN <span class="logo-highlight">HACK</span>
+        ZISHAN
+
+        <span class="logo-highlight">
+
+          HACK
+
+        </span>
 
       </span>
 
@@ -39,7 +49,9 @@
     <p>
 
       Offensive security research,
-      practical labs, methodologies,
+      practical labs,
+      Active Directory methodologies,
+      web exploitation,
       and technical cybersecurity notes.
 
     </p>
@@ -48,3 +60,163 @@
 
 </aside>
 
+<!-- =========================================================
+     TOC SCRIPT
+========================================================= -->
+
+<script>
+
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+
+    const toc =
+      document.getElementById(
+        "table-of-contents"
+      );
+
+    const article =
+      document.querySelector(
+        ".blog-content article"
+      );
+
+    if (
+      !toc ||
+      !article
+    ) return;
+
+    /* =====================================================
+       ONLY ARTICLE HEADINGS
+    ===================================================== */
+
+    const headings =
+      article.querySelectorAll(
+        "h1, h2, h3, h4"
+      );
+
+    if (
+      !headings.length
+    ) {
+
+      toc.style.display = "none";
+
+      return;
+    }
+
+    /* =====================================================
+       BUILD TOC
+    ===================================================== */
+
+    headings.forEach(
+      (
+        heading,
+        index
+      ) => {
+
+        if (
+          !heading.id
+        ) {
+
+          heading.id =
+            `heading-${index}`;
+        }
+
+        const link =
+          document.createElement(
+            "a"
+          );
+
+        link.href =
+          `#${heading.id}`;
+
+        link.textContent =
+          heading.textContent;
+
+        const level =
+          heading.tagName.toLowerCase();
+
+        link.classList.add(
+          `toc-${level}`
+        );
+
+        toc.appendChild(
+          link
+        );
+
+      }
+    );
+
+    /* =====================================================
+       ACTIVE SECTION
+    ===================================================== */
+
+    const tocLinks =
+      toc.querySelectorAll(
+        "a"
+      );
+
+    const observer =
+      new IntersectionObserver(
+
+        (entries) => {
+
+          entries.forEach(
+            (entry) => {
+
+              const id =
+                entry.target.id;
+
+              const activeLink =
+                toc.querySelector(
+                  `a[href="#${id}"]`
+                );
+
+              if (
+                entry.isIntersecting
+              ) {
+
+                tocLinks.forEach(
+                  (link) => {
+
+                    link.classList.remove(
+                      "active"
+                    );
+
+                  }
+                );
+
+                activeLink?.classList.add(
+                  "active"
+                );
+
+              }
+
+            }
+          );
+
+        },
+
+        {
+
+          rootMargin:
+            "-20% 0px -70% 0px",
+
+          threshold: 0
+        }
+
+      );
+
+    headings.forEach(
+      (heading) => {
+
+        observer.observe(
+          heading
+        );
+
+      }
+    );
+
+  }
+);
+
+</script>
