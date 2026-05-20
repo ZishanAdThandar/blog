@@ -915,7 +915,113 @@ p {
 
   color: white;
 }
+/* =========================================================
+   FOOTER LINKS
+========================================================= */
 
+.footer-links {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 1.2rem;
+
+  flex-wrap: wrap;
+}
+
+/* =========================================
+   FOOTER LINK
+========================================= */
+
+.footer-links a {
+
+  position: relative;
+
+  color: var(--muted);
+
+  font-size: 0.9rem;
+
+  font-weight: 600;
+
+  letter-spacing: 0.01em;
+
+  transition:
+    color 0.22s ease,
+    transform 0.22s ease;
+}
+
+/* =========================================
+   UNDERLINE
+========================================= */
+
+.footer-links a::after {
+
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+
+  bottom: -5px;
+
+  width: 0;
+
+  height: 2px;
+
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #6366f1,
+      #8b5cf6
+    );
+
+  transition:
+    width 0.25s ease;
+}
+
+/* =========================================
+   HOVER
+========================================= */
+
+.footer-links a:hover {
+
+  color: white;
+
+  transform:
+    translateY(-1px);
+}
+
+.footer-links a:hover::after {
+
+  width: 100%;
+}
+
+/* =========================================
+   COPYRIGHT
+========================================= */
+
+.footer-bottom {
+
+  width: 100%;
+
+  margin-top: 1.8rem;
+
+  padding-top: 1.4rem;
+
+  border-top:
+    1px solid rgba(255,255,255,0.06);
+
+  text-align: center;
+
+  color: rgba(255,255,255,0.55);
+
+  font-size: 0.82rem;
+
+  letter-spacing: 0.02em;
+}
 /* =========================================================
    BUTTONS
 ========================================================= */
