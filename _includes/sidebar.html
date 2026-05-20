@@ -18,20 +18,12 @@
 
 </aside>
 
-<script>
-(function() {
-  /* =====================================================
-     PREVENT DOUBLE INITIALIZATION
-  ===================================================== */
-  if (window.__tocInitialized) {
-    return;
-  }
-  window.__tocInitialized = true;
 
-  /* =====================================================
-     WAIT FOR DOM
-  ===================================================== */
-  function init() {
+<script>
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+
     /* =====================================================
        ELEMENTS
     ===================================================== */
@@ -52,414 +44,217 @@
     ) return;
 
     /* =====================================================
-       CHECK IF ALREADY POPULATED
+       RESET - CLEAR EXISTING TOC
     ===================================================== */
-    if (toc.children.length > 0) {
-      return;
-    }
+    
+    toc.innerHTML = "";
 
     /* =====================================================
-       FIND HEADINGS
+       GET ALL POTENTIAL HEADINGS
     ===================================================== */
 
-    const headings =
+    const rawHeadings =
       Array.from(
 
         content.querySelectorAll(
           "h1, h2, h3, h4"
         )
 
-      ).filter(
-        (heading) => {
-
-          const text =
-            heading.textContent
-              .trim();
-
-          /* =========================================
-             EMPTY
-          ========================================= */
-
-          if (
-            text.length === 0
-          ) {
-
-            return false;
-          }
-
-          /* =========================================
-             IGNORE TOC
-          ========================================= */
-
-          if (
-            heading.closest(
-              ".sidebar"
-            )
-          ) {
-
-            return false;
-          }
-
-          /* =========================================
-             IGNORE MANUAL EXCLUSIONS
-          ========================================= */
-
-          if (
-            heading.closest(
-              ".toc-ignore"
-            )
-          ) {
-
-            return false;
-          }
-
-          /* =========================================
-             IGNORE RELATED POSTS
-          ========================================= */
-
-          if (
-            heading.closest(
-              ".related-posts"
-            )
-          ) {
-
-            return false;
-          }
-
-          /* =========================================
-             IGNORE CARDS
-          ========================================= */
-
-          if (
-            heading.closest(
-              ".post-item"
-            )
-          ) {
-
-            return false;
-          }
-
-          /* =========================================
-             IGNORE HIDDEN
-          ========================================= */
-
-          if (
-            heading.offsetParent === null
-          ) {
-
-            return false;
-          }
-
-          return true;
-
-        }
       );
 
     /* =====================================================
-       REMOVE DUPLICATE HEADINGS (SAME TEXT + SAME PARENT SECTION)
+       FILTER HEADINGS - EXCLUDE CARDS AND DUPLICATES
     ===================================================== */
-    const uniqueHeadings = [];
-    const seenSignatures = new Set();
 
-    for (let i = 0; i < headings.length; i++) {
-      const heading = headings[i];
-      const text = heading.textContent.trim().toLowerCase();
+    const validHeadings = [];
+
+    for (let i = 0; i < rawHeadings.length; i++) {
+      const heading = rawHeadings[i];
+      const text = heading.textContent.trim();
+
+      /* Skip empty headings */
+      if (text.length === 0) continue;
+
+      /* Skip if inside sidebar */
+      if (heading.closest(".sidebar")) continue;
+
+      /* Skip if inside toc-ignore */
+      if (heading.closest(".toc-ignore")) continue;
+
+      /* Skip if inside related-posts */
+      if (heading.closest(".related-posts")) continue;
+
+      /* CRITICAL FIX: Skip if inside post-item OR card */
+      if (heading.closest(".post-item")) continue;
+      if (heading.closest(".card")) continue;
+      if (heading.closest('[class*="card"]')) continue;
       
-      // Find previous heading of same level to check for duplicates
+      /* Skip hidden elements */
+      if (heading.offsetParent === null) continue;
+
+      /* CRITICAL FIX: Check if this heading text already exists in validHeadings */
       let isDuplicate = false;
-      for (let j = 0; j < uniqueHeadings.length; j++) {
-        const existing = uniqueHeadings[j];
-        if (existing.textContent.trim().toLowerCase() === text) {
-          // Check if they are in different sections (distance between them > 5 headings)
-          let distance = Math.abs(i - headings.indexOf(existing));
-          if (distance < 10) {
-            isDuplicate = true;
-            break;
-          }
+      for (let j = 0; j < validHeadings.length; j++) {
+        const existingText = validHeadings[j].textContent.trim();
+        if (existingText === text) {
+          isDuplicate = true;
+          break;
         }
       }
       
-      if (!isDuplicate && !seenSignatures.has(text)) {
-        seenSignatures.add(text);
-        uniqueHeadings.push(heading);
+      /* Also check if this heading appears very close to same text (within 5 siblings) */
+      let nearDuplicate = false;
+      for (let k = Math.max(0, i - 10); k < i; k++) {
+        if (rawHeadings[k].textContent.trim() === text) {
+          nearDuplicate = true;
+          break;
+        }
+      }
+      
+      if (!isDuplicate && !nearDuplicate) {
+        validHeadings.push(heading);
       }
     }
-
-    const finalHeadings = uniqueHeadings.length > 0 ? uniqueHeadings : headings;
 
     /* =====================================================
        NO HEADINGS
     ===================================================== */
 
-    if (
-      finalHeadings.length === 0
-    ) {
-
-      toc.parentElement.style.display =
-        "none";
-
+    if (validHeadings.length === 0) {
+      if (toc.parentElement) {
+        toc.parentElement.style.display = "none";
+      }
       return;
     }
 
     /* =====================================================
-       UNIQUE IDS
+       ASSIGN UNIQUE IDS
     ===================================================== */
 
-    finalHeadings.forEach(
-      (
-        heading,
-        index
-      ) => {
+    const usedIds = new Set();
 
-        /* =========================================
-           KEEP EXISTING IDS
-        ========================================= */
-
-        if (
-          heading.id
-        ) return;
-
-        heading.id =
-
-          heading.textContent
-            .trim()
-            .toLowerCase()
-            .replace(/[^\w]+/g, "-")
-            .replace(/^-+|-+$/g, "") +
-
-          `-${index}`;
-
+    validHeadings.forEach((heading, index) => {
+      /* Skip if heading already has a unique ID not used */
+      if (heading.id && !usedIds.has(heading.id)) {
+        usedIds.add(heading.id);
+        return;
       }
-    );
+
+      /* Generate base ID from text */
+      let baseId = heading.textContent
+        .trim()
+        .toLowerCase()
+        .replace(/[^\w\u4e00-\u9fff]+/g, "-")
+        .replace(/^-+|-+$/g, "");
+
+      if (!baseId || baseId.length < 2) {
+        baseId = `heading-${index}`;
+      }
+
+      /* Ensure uniqueness */
+      let finalId = baseId;
+      let counter = 1;
+      while (usedIds.has(finalId)) {
+        finalId = `${baseId}-${counter}`;
+        counter++;
+      }
+
+      heading.id = finalId;
+      usedIds.add(finalId);
+    });
 
     /* =====================================================
        BUILD TOC
     ===================================================== */
 
-    finalHeadings.forEach(
-      (
-        heading
-      ) => {
+    validHeadings.forEach((heading) => {
+      const link = document.createElement("a");
 
-        const link =
-          document.createElement(
-            "a"
-          );
+      link.href = `#${heading.id}`;
+      link.textContent = heading.textContent.trim();
+      link.classList.add(`toc-${heading.tagName.toLowerCase()}`);
 
-        link.href =
-          `#${heading.id}`;
+      /* Click handler */
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
 
-        link.textContent =
-          heading.textContent
-            .trim();
+        const offset = 110;
+        const top =
+          heading.getBoundingClientRect().top +
+          window.pageYOffset -
+          offset;
 
-        link.classList.add(
-          `toc-${heading.tagName.toLowerCase()}`
-        );
+        window.scrollTo({
+          top,
+          behavior: "smooth"
+        });
 
-        /* =========================================
-           CLICK
-        ========================================= */
-
-        link.addEventListener(
-          "click",
-          (e) => {
-
-            e.preventDefault();
-
-            const offset =
-              110;
-
-            const top =
-
-              heading.getBoundingClientRect().top +
-
-              window.pageYOffset -
-
-              offset;
-
-            window.scrollTo({
-
-              top,
-              behavior: "smooth"
-
-            });
-
-            history.replaceState(
-
-              null,
-              "",
-              `#${heading.id}`
-
-            );
-
-          }
-        );
-
-        toc.appendChild(
-          link
-        );
-
-      }
-    );
-
-    /* =====================================================
-       TOC LINKS
-    ===================================================== */
-
-    const tocLinks =
-      Array.from(
-        toc.querySelectorAll(
-          "a"
-        )
-      );
-
-    /* =====================================================
-       ACTIVE LINK
-    ===================================================== */
-
-    function setActive(id) {
-
-      let activeLink =
-        null;
-
-      tocLinks.forEach(
-        (link) => {
-
-          const isActive =
-
-            link.getAttribute(
-              "href"
-            ) === `#${id}`;
-
-          link.classList.toggle(
-            "active",
-            isActive
-          );
-
-          if (
-            isActive
-          ) {
-
-            activeLink =
-              link;
-          }
-
-        }
-      );
-
-      /* =========================================
-         KEEP ACTIVE VISIBLE
-      ========================================= */
-
-      if (
-        !activeLink
-      ) return;
-
-      activeLink.scrollIntoView({
-
-        block: "nearest",
-        behavior: "smooth"
-
+        history.replaceState(null, "", `#${heading.id}`);
       });
 
-    }
+      toc.appendChild(link);
+    });
 
     /* =====================================================
-       ACTIVE TRACKING
+       ACTIVE LINK TRACKING
     ===================================================== */
+
+    const tocLinks = Array.from(toc.querySelectorAll("a"));
+
+    function setActive(id) {
+      tocLinks.forEach((link) => {
+        const isActive = link.getAttribute("href") === `#${id}`;
+        link.classList.toggle("active", isActive);
+        
+        if (isActive) {
+          link.scrollIntoView({
+            block: "nearest",
+            behavior: "smooth"
+          });
+        }
+      });
+    }
 
     function updateActiveHeading() {
+      if (validHeadings.length === 0) return;
+      
+      let current = validHeadings[0];
+      const offset = 180;
 
-      let current =
-        finalHeadings[0];
-
-      const offset =
-        180;
-
-      finalHeadings.forEach(
-        (heading) => {
-
-          const rect =
-            heading.getBoundingClientRect();
-
-          if (
-            rect.top <= offset
-          ) {
-
-            current =
-              heading;
-          }
-
+      for (let i = 0; i < validHeadings.length; i++) {
+        const heading = validHeadings[i];
+        const rect = heading.getBoundingClientRect();
+        if (rect.top <= offset) {
+          current = heading;
         }
-      );
-
-      setActive(
-        current.id
-      );
-
-    }
-
-    /* =====================================================
-       SCROLL
-    ===================================================== */
-
-    let ticking =
-      false;
-
-    window.addEventListener(
-      "scroll",
-      () => {
-
-        if (
-          !ticking
-        ) {
-
-          window.requestAnimationFrame(
-            () => {
-
-              updateActiveHeading();
-
-              ticking =
-                false;
-
-            }
-          );
-
-          ticking =
-            true;
-        }
-
-      },
-
-      {
-
-        passive: true
-
       }
 
-    );
+      setActive(current.id);
+    }
 
-    /* =====================================================
-       RESIZE
-    ===================================================== */
+    /* Scroll listener with requestAnimationFrame */
+    let ticking = false;
+    window.addEventListener("scroll", () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          updateActiveHeading();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
 
-    window.addEventListener(
-      "resize",
-      updateActiveHeading
-    );
-
-    /* =====================================================
-       INITIAL
-    ===================================================== */
-
+    window.addEventListener("resize", updateActiveHeading);
+    
+    /* Initial call */
     updateActiveHeading();
-  }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
+    /* =====================================================
+       DEBUG LOG (REMOVE IN PRODUCTION)
+    ===================================================== */
+    console.log("TOC Headings found:", validHeadings.length);
+    validHeadings.forEach(h => console.log(" -", h.textContent.trim()));
+
   }
-})();
+);
 </script>
