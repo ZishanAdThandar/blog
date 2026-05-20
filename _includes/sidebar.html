@@ -61,7 +61,7 @@
 </aside>
 
 <!-- =========================================================
-     TOC SCRIPT (FIXED)
+     TOC SCRIPT (FIXED - NO SCROLL FIGHTING)
 ========================================================= -->
 
 <script>
@@ -217,10 +217,9 @@ document.addEventListener(
     );
 
     /* =====================================================
-       ACTIVE LINK (FIXED - NO SCROLL FIGHTING)
+       ACTIVE LINK (FIXED - NO AUTO SCROLL)
     ===================================================== */
 
-    let ticking = false;
     let currentActiveId = null;
 
     const setActiveLink =
@@ -229,8 +228,6 @@ document.addEventListener(
         if (currentActiveId === id) return;
 
         currentActiveId = id;
-
-        let activeElement = null;
 
         tocLinks.forEach(
           (link) => {
@@ -249,110 +246,69 @@ document.addEventListener(
                 "active"
               );
 
-              activeElement = link;
-
             }
 
           }
         );
 
         /* ===============================================
-           FIXED: Only scroll TOC if link is OUTSIDE view
-           No more fighting with main page scroll
+           FIXED: NO scrollIntoView HERE
+           This was causing the upward movement
+           TOC will NOT auto-scroll anymore
         =============================================== */
 
-        if (
-          activeElement
+      };
+
+    /* =====================================================
+       ACTIVE HEADING ON SCROLL
+    ===================================================== */
+
+    const updateActiveHeading =
+      () => {
+
+        let currentHeading =
+          headings[0];
+
+        for (
+          let i = headings.length - 1;
+          i >= 0;
+          i--
         ) {
 
-          const tocContainer = toc;
-          const linkRect = activeElement.getBoundingClientRect();
-          const containerRect = tocContainer.getBoundingClientRect();
+          const heading =
+            headings[i];
 
-          const isAbove = linkRect.top < containerRect.top;
-          const isBelow = linkRect.bottom > containerRect.bottom;
+          const rect =
+            heading.getBoundingClientRect();
 
           if (
-            isAbove ||
-            isBelow
+            rect.top <= 140
           ) {
 
-            activeElement.scrollIntoView({
+            currentHeading =
+              heading;
 
-              block: "nearest",
-
-              behavior: "smooth"
-
-            });
+            break;
 
           }
+
+        }
+
+        if (
+          currentHeading &&
+          currentHeading.id !== currentActiveId
+        ) {
+
+          setActiveLink(
+            currentHeading.id
+          );
 
         }
 
       };
 
     /* =====================================================
-       ACTIVE HEADING ON SCROLL (THROTTLED)
-    ===================================================== */
-
-    const updateActiveHeading =
-      () => {
-
-        if (ticking) return;
-
-        ticking = true;
-
-        requestAnimationFrame(
-          () => {
-
-            let currentHeading =
-              headings[0];
-
-            for (
-              let i = headings.length - 1;
-              i >= 0;
-              i--
-            ) {
-
-              const heading =
-                headings[i];
-
-              const rect =
-                heading.getBoundingClientRect();
-
-              if (
-                rect.top <= 140
-              ) {
-
-                currentHeading =
-                  heading;
-
-                break;
-
-              }
-
-            }
-
-            if (
-              currentHeading &&
-              currentHeading.id !== currentActiveId
-            ) {
-
-              setActiveLink(
-                currentHeading.id
-              );
-
-            }
-
-            ticking = false;
-
-          }
-        );
-
-      };
-
-    /* =====================================================
-       SCROLL EVENT (THROTTLED WITH RAF)
+       SCROLL EVENT (NO THROTTLE NEEDED, LIGHTWEIGHT)
     ===================================================== */
 
     window.addEventListener(
@@ -370,30 +326,6 @@ document.addEventListener(
     ===================================================== */
 
     updateActiveHeading();
-
-    /* =====================================================
-       RESIZE OBSERVER (OPTIONAL - HANDLES DYNAMIC CONTENT)
-    ===================================================== */
-
-    let resizeTimeout;
-
-    window.addEventListener(
-      "resize",
-      () => {
-
-        if (resizeTimeout) {
-          clearTimeout(resizeTimeout);
-        }
-
-        resizeTimeout = setTimeout(
-          () => {
-            updateActiveHeading();
-          },
-          100
-        );
-
-      }
-    );
 
   }
 );
