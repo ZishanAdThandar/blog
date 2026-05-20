@@ -44,31 +44,32 @@ document.addEventListener(
     ) return;
 
     /* =====================================================
-       FIND HEADINGS
+       RESET
     ===================================================== */
 
-    const headingElements =
-      content.querySelectorAll(
-        "h1, h2, h3, h4"
-      );
+    toc.innerHTML = "";
 
     /* =====================================================
-       CLEAN HEADINGS
+       FIND HEADINGS
     ===================================================== */
 
     const headings =
       Array.from(
-        headingElements
+
+        content.querySelectorAll(
+          "h1, h2, h3, h4"
+        )
+
       ).filter(
         (heading) => {
-
-          /* =========================================
-             EMPTY
-          ========================================= */
 
           const text =
             heading.textContent
               .trim();
+
+          /* =========================================
+             EMPTY
+          ========================================= */
 
           if (
             text.length === 0
@@ -78,7 +79,7 @@ document.addEventListener(
           }
 
           /* =========================================
-             IGNORE SIDEBAR
+             IGNORE TOC
           ========================================= */
 
           if (
@@ -91,12 +92,38 @@ document.addEventListener(
           }
 
           /* =========================================
-             IGNORE TOC-IGNORE
+             IGNORE MANUAL EXCLUSIONS
           ========================================= */
 
           if (
             heading.closest(
               ".toc-ignore"
+            )
+          ) {
+
+            return false;
+          }
+
+          /* =========================================
+             IGNORE RELATED POSTS
+          ========================================= */
+
+          if (
+            heading.closest(
+              ".related-posts"
+            )
+          ) {
+
+            return false;
+          }
+
+          /* =========================================
+             IGNORE CARDS
+          ========================================= */
+
+          if (
+            heading.closest(
+              ".post-item"
             )
           ) {
 
@@ -143,27 +170,26 @@ document.addEventListener(
         index
       ) => {
 
-        const baseId =
+        /* =========================================
+           KEEP EXISTING IDS
+        ========================================= */
 
-          heading.id ||
+        if (
+          heading.id
+        ) return;
+
+        heading.id =
 
           heading.textContent
             .trim()
             .toLowerCase()
             .replace(/[^\w]+/g, "-")
-            .replace(/^-+|-+$/g, "");
+            .replace(/^-+|-+$/g, "") +
 
-        heading.id =
-          `${baseId}-${index}`;
+          `-${index}`;
 
       }
     );
-
-    /* =====================================================
-       CLEAR TOC
-    ===================================================== */
-
-    toc.innerHTML = "";
 
     /* =====================================================
        BUILD TOC
@@ -190,9 +216,9 @@ document.addEventListener(
           `toc-${heading.tagName.toLowerCase()}`
         );
 
-        /* ===============================================
+        /* =========================================
            CLICK
-        =============================================== */
+        ========================================= */
 
         link.addEventListener(
           "click",
@@ -221,7 +247,7 @@ document.addEventListener(
             history.replaceState(
 
               null,
-              null,
+              "",
               `#${heading.id}`
 
             );
@@ -248,7 +274,7 @@ document.addEventListener(
       );
 
     /* =====================================================
-       SET ACTIVE
+       ACTIVE LINK
     ===================================================== */
 
     function setActive(id) {
@@ -281,58 +307,20 @@ document.addEventListener(
         }
       );
 
-      /* ===============================================
-         KEEP ACTIVE LINK VISIBLE
-      =============================================== */
+      /* =========================================
+         KEEP ACTIVE VISIBLE
+      ========================================= */
 
       if (
         !activeLink
       ) return;
 
-      const linkTop =
-        activeLink.offsetTop;
+      activeLink.scrollIntoView({
 
-      const linkBottom =
-        linkTop +
-        activeLink.offsetHeight;
+        block: "nearest",
+        behavior: "smooth"
 
-      const visibleTop =
-        toc.scrollTop;
-
-      const visibleBottom =
-        visibleTop +
-        toc.clientHeight;
-
-      /* ===============================================
-         BELOW VIEW
-      =============================================== */
-
-      if (
-        linkBottom >
-        visibleBottom - 20
-      ) {
-
-        toc.scrollTop =
-
-          linkBottom -
-
-          toc.clientHeight +
-
-          40;
-      }
-
-      /* ===============================================
-         ABOVE VIEW
-      =============================================== */
-
-      else if (
-        linkTop <
-        visibleTop + 20
-      ) {
-
-        toc.scrollTop =
-          linkTop - 40;
-      }
+      });
 
     }
 
@@ -345,7 +333,7 @@ document.addEventListener(
       let current =
         headings[0];
 
-      const viewportOffset =
+      const offset =
         180;
 
       headings.forEach(
@@ -355,8 +343,7 @@ document.addEventListener(
             heading.getBoundingClientRect();
 
           if (
-            rect.top <=
-            viewportOffset
+            rect.top <= offset
           ) {
 
             current =
@@ -373,7 +360,7 @@ document.addEventListener(
     }
 
     /* =====================================================
-       SCROLL EVENT
+       SCROLL
     ===================================================== */
 
     let ticking =
