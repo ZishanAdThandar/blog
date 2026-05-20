@@ -801,25 +801,25 @@ pre {
     width: 100%;
   }
 
-  .dropdown-menu {
+.dropdown-menu {
 
-    position: static !important;
+  position: static !important;
 
-    width: 100%;
+  width: 100%;
 
-    min-width: 100%;
+  min-width: 100%;
 
-    padding-top: 0;
+  padding-top: 0;
 
-    margin-top: 0.5rem;
+  margin-top: 0.5rem;
 
-    display: none !important;
-  }
+  display: none;
+}
 
-  .dropdown-menu.show {
+.dropdown-menu.show {
 
-    display: block !important;
-  }
+  display: block !important;
+}
 
   .dropdown-menu-inner {
 
