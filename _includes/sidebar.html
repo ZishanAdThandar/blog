@@ -1,203 +1,123 @@
-<aside class="sidebar">
+<aside class="sidebar" aria-label="Sidebar">
 
-  <!-- =========================================================
-       TABLE OF CONTENTS
-  ========================================================= -->
-
-  <div class="sidebar-card toc-card">
-
+  <!-- TABLE OF CONTENTS -->
+  <div class="sidebar-card toc-card" id="tocCard">
     <div class="sidebar-heading">
-
       <i class="fas fa-stream"></i>
-
-      <span>
-
-        On This Page
-
-      </span>
-
+      <span>On This Page</span>
     </div>
-
-    <nav id="table-of-contents"></nav>
-
+    <nav id="table-of-contents" aria-label="Table of contents"></nav>
   </div>
 
-  <!-- =========================================================
-       MINI BRAND
-  ========================================================= -->
-
+  <!-- MINI BRAND -->
   <div class="sidebar-card mini-brand">
-
     <div class="mini-brand-logo">
-
       <i class="fas fa-shield-halved"></i>
-
-      <span>
-
-        ZISHAN
-
-        <span class="logo-highlight">
-
-          HACK
-
-        </span>
-
-      </span>
-
+      <span>ZISHAN<span class="logo-highlight">HACK</span></span>
     </div>
-
     <p>
-
-      Offensive security research,
-      practical labs,
+      Offensive security research, practical labs,
       Active Directory methodologies,
-      web exploitation,
-      and technical cybersecurity notes.
-
+      web exploitation, and technical cybersecurity notes.
     </p>
-
+    <a href="https://zishanhack.com/#resources" class="btn btn-premium sidebar-cta" target="_blank" rel="noopener noreferrer">
+      <i class="fas fa-gem"></i> Premium Resources
+    </a>
   </div>
 
 </aside>
 
-<!-- =========================================================
-     TOC SCRIPT (DEBUG VERSION)
-========================================================= -->
-
 <script>
-// Debug function to log what's happening
-function debugLog(msg) {
-  console.log("[TOC DEBUG] " + msg);
-}
+(function () {
+  "use strict";
 
-(function() {
-  debugLog("Script started");
-  
+  var initialized = false;
+
   function initTOC() {
-    debugLog("initTOC() called");
-    
+    if (initialized) return;
+
     var toc = document.getElementById("table-of-contents");
-    debugLog("toc element: " + (toc ? "FOUND" : "NOT FOUND"));
-    
+    var tocCard = document.getElementById("tocCard");
     if (!toc) return;
-    
-    // Clear existing content
-    toc.innerHTML = "";
-    toc.innerHTML = "<span style='color:#94a3b8; font-size:0.75rem;'>Loading TOC...</span>";
-    
-    // Try multiple selectors to find content
-    var content = document.querySelector(".article-content");
+
+    // Find the article content area
+    var content = (
+      document.querySelector(".article-content") ||
+      document.querySelector(".blog-content") ||
+      document.querySelector("article") ||
+      document.querySelector("main")
+    );
+
     if (!content) {
-      content = document.querySelector(".blog-content");
-    }
-    if (!content) {
-      content = document.querySelector("article");
-    }
-    if (!content) {
-      content = document.querySelector("main");
-    }
-    
-    debugLog("content element: " + (content ? "FOUND" : "NOT FOUND"));
-    if (content) {
-      debugLog("content class: " + content.className);
-    }
-    
-    if (!content) {
-      toc.innerHTML = "<span style='color:#94a3b8; font-size:0.75rem;'>No content found</span>";
+      tocCard && (tocCard.style.display = "none");
       return;
     }
-    
-    // Get all headings
-    var headings = content.querySelectorAll("h1, h2, h3, h4");
-    debugLog("headings found: " + headings.length);
-    
-    if (headings.length === 0) {
-      toc.innerHTML = "<span style='color:#94a3b8; font-size:0.75rem;'>No headings found</span>";
+
+    var headings = content.querySelectorAll("h2, h3, h4");
+
+    if (headings.length < 2) {
+      // Not enough headings — hide the TOC card
+      tocCard && (tocCard.style.display = "none");
       return;
     }
-    
-    // Clear loading message
+
+    initialized = true;
     toc.innerHTML = "";
-    
-    // Build TOC
-    for (var i = 0; i < headings.length; i++) {
-      var heading = headings[i];
-      var text = heading.textContent.trim();
-      
-      if (text === "") continue;
-      
-      // Add ID if missing
+
+    // Assign IDs and build links
+    headings.forEach(function (heading, i) {
       if (!heading.id) {
-        heading.id = "toc-heading-" + i;
+        heading.id = "heading-" + i + "-" + heading.tagName.toLowerCase();
       }
-      
-      debugLog("Adding heading " + i + ": " + text);
-      
-      var link = document.createElement("a");
-      link.href = "#" + heading.id;
-      link.textContent = text;
-      link.className = "toc-" + heading.tagName.toLowerCase();
-      
-      link.onclick = function(e) {
+
+      var a = document.createElement("a");
+      a.href = "#" + heading.id;
+      a.textContent = heading.textContent.trim();
+      a.className = "toc-" + heading.tagName.toLowerCase();
+
+      a.addEventListener("click", function (e) {
         e.preventDefault();
-        var targetId = this.getAttribute("href");
-        var target = document.querySelector(targetId);
+        var target = document.getElementById(heading.id);
         if (target) {
-          target.scrollIntoView({ behavior: "smooth", block: "start" });
-          history.pushState(null, null, targetId);
+          var offset = 80; // fixed header height
+          var top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+          window.scrollTo({ top: top, behavior: "smooth" });
+          history.replaceState(null, "", "#" + heading.id);
         }
-        return false;
-      };
-      
-      toc.appendChild(link);
-    }
-    
-    debugLog("TOC build complete. Links added: " + toc.children.length);
-    
-    // Active highlight
+      });
+
+      toc.appendChild(a);
+    });
+
+    // Active-link highlight on scroll
     var tocLinks = toc.querySelectorAll("a");
-    if (tocLinks.length > 0) {
-      function updateActive() {
-        var scrollPos = window.scrollY + 150;
-        var currentId = null;
-        
-        for (var i = headings.length - 1; i >= 0; i--) {
-          var heading = headings[i];
-          if (heading.offsetTop <= scrollPos) {
-            currentId = heading.id;
-            break;
-          }
-        }
-        
-        if (!currentId && headings.length > 0) {
-          currentId = headings[0].id;
-        }
-        
-        for (var j = 0; j < tocLinks.length; j++) {
-          var link = tocLinks[j];
-          link.classList.remove("active");
-          if (link.getAttribute("href") === "#" + currentId) {
-            link.classList.add("active");
-          }
-        }
-      }
-      
-      window.addEventListener("scroll", updateActive);
-      window.addEventListener("resize", updateActive);
-      updateActive();
-      debugLog("Active highlight enabled");
+    var HEADER_OFFSET = 100;
+
+    function markActive() {
+      var scrollY = window.pageYOffset + HEADER_OFFSET;
+      var activeId = null;
+
+      headings.forEach(function (h) {
+        if (h.offsetTop <= scrollY) activeId = h.id;
+      });
+
+      tocLinks.forEach(function (link) {
+        link.classList.toggle(
+          "active",
+          link.getAttribute("href") === "#" + activeId
+        );
+      });
     }
+
+    window.addEventListener("scroll", markActive, { passive: true });
+    markActive();
   }
-  
-  // Run on DOMContentLoaded
+
+  // Single init point — run after DOM is ready
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", initTOC);
   } else {
     initTOC();
   }
-  
-  // Fallback delay
-  setTimeout(initTOC, 200);
-  setTimeout(initTOC, 500);
 })();
 </script>

@@ -1,75 +1,67 @@
-<footer class="footer">
+<footer class="footer blog-footer">
+  <div class="container">
 
-  <div class="container footer-inline">
+    <div class="blog-footer-grid">
 
-    <!-- BRAND -->
+      <!-- BRAND -->
+      <div class="blog-footer-brand">
+        <a href="{{ site.baseurl }}/" class="logo">
+          <i class="fas fa-shield-halved"></i>
+          <span>ZISHAN<span class="logo-highlight">HACK</span></span>
+        </a>
+        <p class="footer-tagline">
+          Offensive security research, practical labs,<br>
+          Active Directory methodologies &amp; bug bounty.
+        </p>
+        <div class="blog-footer-socials">
+          <a href="https://github.com/ZishanAdThandar" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://linkedin.com/in/zishanadthandar" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a href="https://x.com/ZishanAdThandar" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter">
+            <i class="fab fa-x-twitter"></i>
+          </a>
+          <a href="{{ site.baseurl }}/feed.xml" aria-label="RSS Feed">
+            <i class="fas fa-rss"></i>
+          </a>
+        </div>
+      </div>
 
-    <a href="/blog/" class="footer-brand">
+      <!-- BLOG LINKS -->
+      <div class="blog-footer-links">
+        <h3>Blog</h3>
+        <a href="{{ site.baseurl }}/research/">Research</a>
+        <a href="{{ site.baseurl }}/labs/">Labs</a>
+        <a href="{{ site.baseurl }}/bug-bounty/">Bug Bounty</a>
+      </div>
 
-      <i class="fas fa-shield-halved"></i>
+      <!-- LABS LINKS -->
+      <div class="blog-footer-links">
+        <h3>Labs</h3>
+        <a href="{{ site.baseurl }}/labs/htb/">Hack The Box</a>
+        <a href="{{ site.baseurl }}/labs/thm/">TryHackMe</a>
+        <a href="{{ site.baseurl }}/labs/offsec/">OffSec</a>
+        <a href="{{ site.baseurl }}/labs/vulnhub/">VulnHub</a>
+      </div>
 
-      <span>
+      <!-- EXTERNAL -->
+      <div class="blog-footer-links">
+        <h3>ZishanHack</h3>
+        <a href="https://zishanhack.com/#resources" target="_blank" rel="noopener noreferrer">Resources</a>
+        <a href="{{ site.portfolio }}" target="_blank" rel="noopener noreferrer">About</a>
+        <a href="https://zishanhack.com/legal.html" target="_blank" rel="noopener noreferrer">Legal</a>
+        <a href="mailto:contact@zishanhack.com">Contact</a>
+      </div>
 
-        Zishan<span class="logo-highlight">Hack</span>
+    </div><!-- /blog-footer-grid -->
 
-      </span>
-
-    </a>
-
-    <!-- LINKS -->
-
-    <div class="footer-links">
-
-      <a href="/blog/research/">Research</a>
-
-      <a href="/blog/labs/">Labs</a>
-
-      <a href="/blog/bug-bounty/">Bug Bounty</a>
-
-      <a href="/blog/resources/">Resources</a>
-
-    </div>
-
-    <!-- SOCIALS -->
-
-    <div class="footer-socials">
-
-      <a
-        href="https://github.com/ZishanAdThandar"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="GitHub"
-      >
-        <i class="fab fa-github"></i>
-      </a>
-
-      <a
-        href="https://linkedin.com/in/zishanadthandar"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="LinkedIn"
-      >
-        <i class="fab fa-linkedin-in"></i>
-      </a>
-
-      <a
-        href="/blog/feed.xml"
-        aria-label="RSS Feed"
-      >
-        <i class="fas fa-rss"></i>
-      </a>
-
-    </div>
-
-    <!-- COPYRIGHT -->
-
-    <div class="footer-bottom">
-
-      © {{ site.time | date: "%Y" }}
-      Zishan Ahamed Thandar
-
+    <div class="blog-footer-bottom">
+      <span>&copy; {{ site.time | date: "%Y" }} Zishan Ahamed Thandar. All rights reserved.</span>
+      <span class="footer-sep">·</span>
+      <a href="{{ site.baseurl }}/feed.xml">RSS</a>
     </div>
 
   </div>
-
 </footer>
