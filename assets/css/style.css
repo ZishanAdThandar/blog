@@ -451,34 +451,6 @@ p {
 ========================================================= */
 
 .search-container {
-
-  position: relative;
-}
-
-#search-input {
-
-  width: 210px;
-
-  padding:
-    0.72rem 0.9rem;
-
-  border:
-    1px solid rgba(255,255,255,0.05);
-
-  border-radius: 12px;
-
-  background:
-    rgba(255,255,255,0.05);
-
-  color: white;
-
-  outline: none;
-}
-/* =========================================================
-   SEARCH RESULTS DROPDOWN (FIXED)
-========================================================= */
-
-.search-container {
   position: relative;
 }
 
@@ -504,6 +476,7 @@ p {
   font-size: 0.8rem;
 }
 
+/* Search Results Dropdown */
 #search-results {
   position: absolute;
   top: calc(100% + 8px);
