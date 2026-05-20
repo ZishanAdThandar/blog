@@ -37,7 +37,7 @@ document.addEventListener(
 
     const content =
       document.querySelector(
-        ".article-content"
+        ".article-markdown"
       );
 
     if (
@@ -49,24 +49,70 @@ document.addEventListener(
        HEADINGS
     ===================================================== */
 
-    const headings =
-      Array.from(
+const headings =
+  Array.from(
 
-        content.querySelectorAll(
-          "h1, h2, h3, h4"
+    content.querySelectorAll(
+      "h1, h2, h3, h4"
+    )
+
+  ).filter(
+    (heading) => {
+
+      /* =========================================
+         EMPTY
+      ========================================= */
+
+      if (
+        heading.textContent
+          .trim()
+          .length === 0
+      ) {
+
+        return false;
+      }
+
+      /* =========================================
+         IGNORE INSIDE CARDS
+      ========================================= */
+
+      if (
+        heading.closest(
+          ".post-item"
         )
+      ) {
 
-      ).filter(
-        (heading) => {
+        return false;
+      }
 
-          return (
-            heading.textContent
-              .trim()
-              .length > 0
-          );
+      /* =========================================
+         IGNORE TOC ITSELF
+      ========================================= */
 
-        }
-      );
+      if (
+        heading.closest(
+          ".sidebar"
+        )
+      ) {
+
+        return false;
+      }
+
+      /* =========================================
+         IGNORE HIDDEN
+      ========================================= */
+
+      if (
+        heading.offsetParent === null
+      ) {
+
+        return false;
+      }
+
+      return true;
+
+    }
+  );
 
     /* =====================================================
        NO HEADINGS
