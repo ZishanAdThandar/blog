@@ -216,6 +216,8 @@ p {
   gap: 1.4rem;
 
   align-items: start;
+
+  margin-bottom: 3rem;
 }
 
 .blog-content {
@@ -586,6 +588,7 @@ p {
   max-height:
     calc(100vh - 130px);
 
+  padding-bottom: 2rem;
 }
 
 .sidebar-card {
@@ -682,7 +685,7 @@ p {
   width: 100%;
 
   max-height:
-    calc(100vh - 220px);
+    calc(100vh - 260px);
 
   overflow-y: auto;
 
