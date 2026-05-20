@@ -7,9 +7,7 @@
       <i class="fas fa-stream"></i>
 
       <span>
-
         On This Page
-
       </span>
 
     </div>
@@ -46,84 +44,114 @@ document.addEventListener(
     ) return;
 
     /* =====================================================
-       HEADINGS
+       FIND HEADINGS
     ===================================================== */
 
-const headings =
-  Array.from(
-
-    content.children
-
-  ).filter(
-    (element) => {
-
-      return [
-        "H1",
-        "H2",
-        "H3",
-        "H4"
-      ].includes(
-        element.tagName
+    const headingElements =
+      content.querySelectorAll(
+        "h1, h2, h3, h4"
       );
 
-    }
-  ).filter(
-    (heading) => {
+    /* =====================================================
+       CLEAN HEADINGS
+    ===================================================== */
 
-      /* =========================================
-         EMPTY
-      ========================================= */
+    const seen =
+      new Set();
 
-      if (
-        heading.textContent
-          .trim()
-          .length === 0
-      ) {
+    const headings =
+      Array.from(
+        headingElements
+      ).filter(
+        (heading) => {
 
-        return false;
-      }
+          /* =========================================
+             EMPTY
+          ========================================= */
 
-      /* =========================================
-         IGNORE INSIDE CARDS
-      ========================================= */
+          const text =
+            heading.textContent
+              .trim();
 
-      if (
-        heading.closest(
-          ".post-item"
-        )
-      ) {
+          if (
+            text.length === 0
+          ) {
 
-        return false;
-      }
+            return false;
+          }
 
-      /* =========================================
-         IGNORE TOC ITSELF
-      ========================================= */
+          /* =========================================
+             IGNORE SIDEBAR
+          ========================================= */
 
-      if (
-        heading.closest(
-          ".sidebar"
-        )
-      ) {
+          if (
+            heading.closest(
+              ".sidebar"
+            )
+          ) {
 
-        return false;
-      }
+            return false;
+          }
 
-      /* =========================================
-         IGNORE HIDDEN
-      ========================================= */
+          /* =========================================
+             IGNORE CARDS
+          ========================================= */
 
-      if (
-        heading.offsetParent === null
-      ) {
+          if (
+            heading.closest(
+              ".post-item"
+            )
+          ) {
 
-        return false;
-      }
+            return false;
+          }
 
-      return true;
+          /* =========================================
+             IGNORE RELATED POSTS
+          ========================================= */
 
-    }
-  );
+          if (
+            heading.closest(
+              ".related-posts"
+            )
+          ) {
+
+            return false;
+          }
+
+          /* =========================================
+             IGNORE HIDDEN
+          ========================================= */
+
+          if (
+            heading.offsetParent === null
+          ) {
+
+            return false;
+          }
+
+          /* =========================================
+             DEDUPLICATE
+          ========================================= */
+
+          const key =
+            `${heading.tagName}-${text}`;
+
+          if (
+            seen.has(key)
+          ) {
+
+            return false;
+          }
+
+          seen.add(
+            key
+          );
+
+          return true;
+
+        }
+      );
 
     /* =====================================================
        NO HEADINGS
@@ -200,7 +228,8 @@ const headings =
               110;
 
             const top =
-              heading.offsetTop -
+              heading.getBoundingClientRect().top +
+              window.pageYOffset -
               offset;
 
             window.scrollTo({
@@ -245,7 +274,8 @@ const headings =
 
     function setActive(id) {
 
-      let activeLink = null;
+      let activeLink =
+        null;
 
       tocLinks.forEach(
         (link) => {
@@ -276,144 +306,88 @@ const headings =
       =============================================== */
 
       if (
-        activeLink
+        !activeLink
+      ) return;
+
+      const linkTop =
+        activeLink.offsetTop;
+
+      const linkBottom =
+        linkTop +
+        activeLink.offsetHeight;
+
+      const visibleTop =
+        toc.scrollTop;
+
+      const visibleBottom =
+        visibleTop +
+        toc.clientHeight;
+
+      /* ===============================================
+         BELOW VIEW
+      =============================================== */
+
+      if (
+        linkBottom >
+        visibleBottom - 20
       ) {
 
-        const containerTop =
-          toc.scrollTop;
+        toc.scrollTop =
+          linkBottom -
+          toc.clientHeight +
+          40;
+      }
 
-        const containerBottom =
-          containerTop +
-          toc.clientHeight;
+      /* ===============================================
+         ABOVE VIEW
+      =============================================== */
 
-        const linkTop =
-          activeLink.offsetTop;
+      else if (
+        linkTop <
+        visibleTop + 20
+      ) {
 
-        const linkBottom =
-          linkTop +
-          activeLink.offsetHeight;
-
-        if (
-          linkBottom >
-          containerBottom
-        ) {
-
-          toc.scrollTop =
-            linkBottom -
-            toc.clientHeight +
-            24;
-        }
-
-        else if (
-          linkTop <
-          containerTop
-        ) {
-
-          toc.scrollTop =
-            linkTop - 24;
-        }
-
+        toc.scrollTop =
+          linkTop - 40;
       }
 
     }
 
     /* =====================================================
-       STANDARD DOCS ACTIVE TRACKING
+       ACTIVE HEADING TRACKING
     ===================================================== */
-function updateActiveHeading() {
 
-  let current =
-    headings[0];
+    function updateActiveHeading() {
 
-  const viewportOffset =
-    180;
+      let current =
+        headings[0];
 
-  /* ===============================================
-     FIND CURRENT HEADING
-  =============================================== */
+      const viewportOffset =
+        180;
 
-  headings.forEach(
-    (heading) => {
+      headings.forEach(
+        (heading) => {
 
-      const rect =
-        heading.getBoundingClientRect();
+          const rect =
+            heading.getBoundingClientRect();
 
-      if (
-        rect.top <=
-        viewportOffset
-      ) {
+          if (
+            rect.top <=
+            viewportOffset
+          ) {
 
-        current =
-          heading;
-      }
+            current =
+              heading;
+          }
+
+        }
+      );
+
+      setActive(
+        current.id
+      );
 
     }
-  );
-
-  /* ===============================================
-     SET ACTIVE
-  =============================================== */
-
-  setActive(
-    current.id
-  );
-
-  /* ===============================================
-     KEEP ACTIVE LINK VISIBLE
-  =============================================== */
-
-  const activeLink =
-    toc.querySelector(
-      ".active"
-    );
-
-  if (
-    !activeLink
-  ) return;
-
-  const linkTop =
-    activeLink.offsetTop;
-
-  const linkBottom =
-    linkTop +
-    activeLink.offsetHeight;
-
-  const visibleTop =
-    toc.scrollTop;
-
-  const visibleBottom =
-    visibleTop +
-    toc.clientHeight;
-
-  /* ===============================================
-     BELOW VIEW
-  =============================================== */
-
-  if (
-    linkBottom >
-    visibleBottom - 20
-  ) {
-
-    toc.scrollTop =
-      linkBottom -
-      toc.clientHeight +
-      40;
-  }
-
-  /* ===============================================
-     ABOVE VIEW
-  =============================================== */
-
-  else if (
-    linkTop <
-    visibleTop + 20
-  ) {
-
-    toc.scrollTop =
-      linkTop - 40;
-  }
-
-}
 
     /* =====================================================
        SCROLL EVENT
@@ -435,13 +409,14 @@ function updateActiveHeading() {
 
               updateActiveHeading();
 
-              ticking = false;
+              ticking =
+                false;
 
             }
           );
 
-          ticking = true;
-
+          ticking =
+            true;
         }
 
       },
