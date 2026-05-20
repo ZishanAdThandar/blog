@@ -63,6 +63,7 @@
 <!-- =========================================================
      TOC SCRIPT
 ========================================================= -->
+
 <script>
 
 document.addEventListener(
@@ -113,6 +114,18 @@ document.addEventListener(
         index
       ) => {
 
+        /* ===============================================
+           SKIP EMPTY HEADINGS
+        =============================================== */
+
+        if (
+          !heading.textContent.trim()
+        ) return;
+
+        /* ===============================================
+           AUTO ID
+        =============================================== */
+
         if (
           !heading.id
         ) {
@@ -120,6 +133,10 @@ document.addEventListener(
           heading.id =
             `heading-${index}`;
         }
+
+        /* ===============================================
+           CREATE LINK
+        =============================================== */
 
         const link =
           document.createElement(
@@ -130,7 +147,11 @@ document.addEventListener(
           `#${heading.id}`;
 
         link.textContent =
-          heading.textContent;
+          heading.textContent.trim();
+
+        /* ===============================================
+           HEADING LEVEL
+        =============================================== */
 
         const level =
           heading.tagName.toLowerCase();
@@ -147,13 +168,17 @@ document.addEventListener(
     );
 
     /* =====================================================
-       ACTIVE EFFECT
+       TOC LINKS
     ===================================================== */
 
     const tocLinks =
       toc.querySelectorAll(
         "a"
       );
+
+    /* =====================================================
+       ACTIVE LINK
+    ===================================================== */
 
     const setActiveLink =
       (id) => {
@@ -183,52 +208,61 @@ document.addEventListener(
       };
 
     /* =====================================================
-       INTERSECTION OBSERVER
+       OBSERVER
     ===================================================== */
 
-const observer =
-  new IntersectionObserver(
+    const observer =
+      new IntersectionObserver(
 
-    (entries) => {
+        () => {
 
-      let visibleHeading = null;
+          let currentHeading =
+            null;
 
-      entries.forEach(
-        (entry) => {
+          headings.forEach(
+            (heading) => {
+
+              const rect =
+                heading.getBoundingClientRect();
+
+              if (
+                rect.top <= 140
+              ) {
+
+                currentHeading =
+                  heading.id;
+
+              }
+
+            }
+          );
 
           if (
-            entry.isIntersecting
+            currentHeading
           ) {
 
-            visibleHeading =
-              entry.target.id;
+            setActiveLink(
+              currentHeading
+            );
 
           }
 
+        },
+
+        {
+
+          rootMargin:
+            "-10% 0px -70% 0px",
+
+          threshold: 0
         }
+
       );
 
-      if (
-        visibleHeading
-      ) {
+    /* =====================================================
+       OBSERVE HEADINGS
+    ===================================================== */
 
-        setActiveLink(
-          visibleHeading
-        );
-
-      }
-
-    },
-
-    {
-
-      rootMargin:
-        "-12% 0px -72% 0px",
-
-      threshold: 0.2
-    }
-
-  );
     headings.forEach(
       (heading) => {
 
@@ -237,6 +271,21 @@ const observer =
         );
 
       }
+    );
+
+    /* =====================================================
+       INITIAL ACTIVE
+    ===================================================== */
+
+    setTimeout(
+      () => {
+
+        setActiveLink(
+          headings[0].id
+        );
+
+      },
+      50
     );
 
   }
