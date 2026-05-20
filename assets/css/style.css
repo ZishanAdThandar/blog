@@ -573,13 +573,17 @@ p {
 
 .sidebar {
 
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 1rem;
-
   align-self: start;
+}
+
+.toc-card {
+
+  position: sticky;
+
+  top: 110px;
+
+  max-height:
+    calc(100vh - 130px);
 }
 
 
@@ -689,7 +693,7 @@ p {
   width: 100%;
 
   max-height:
-    calc(100vh - 250px);
+    calc(100vh - 170px);
 
   overflow-y: auto;
 
