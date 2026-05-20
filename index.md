@@ -6,14 +6,6 @@ description: Offensive security research, Active Directory methodologies, bug bo
 
 <section class="hero-section">
 
-<div class="article-category">
-
-<span>Offensive Security</span>
-<span>Active Directory</span>
-<span>Bug Bounty</span>
-<span>Web Exploitation</span>
-
-</div>
 
 <h1 class="hero-title">
 
