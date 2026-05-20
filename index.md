@@ -15,15 +15,9 @@ Offensive Security Research Notes
 
 <p class="hero-description">
 
-ZishanHack is a cybersecurity research platform focused on:
-
-- Penetration Testing
-- Web Application Security
-- Active Directory Exploitation
-- Offensive Security Research
-- Red Teaming
-- Bug Bounty Hunting
-- Security Automation
+Hands-on offensive security research focused on Active Directory,
+web exploitation, privilege escalation, attack methodologies,
+bug bounty workflows, and practical lab-based learning.
 
 </p>
 
@@ -54,6 +48,7 @@ Labs & Walkthroughs
 </div>
 
 </section>
+
 
 
 
