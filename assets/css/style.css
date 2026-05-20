@@ -150,6 +150,47 @@ p {
 }
 
 /* =========================================================
+   ARTICLE RHYTHM
+========================================================= */
+
+.blog-content article {
+
+  font-size: 1rem;
+}
+
+.blog-content article > * + * {
+
+  margin-top: 1.2rem;
+}
+
+.blog-content h1 {
+
+  font-size: 2.3rem;
+
+  line-height: 1.08;
+}
+
+.blog-content h2 {
+
+  font-size: 1.7rem;
+
+  margin-top: 3rem;
+}
+
+.blog-content h3 {
+
+  font-size: 1.3rem;
+
+  margin-top: 2.2rem;
+}
+
+.blog-content h4 {
+
+  font-size: 1.05rem;
+
+  margin-top: 1.8rem;
+}
+/* =========================================================
    LAYOUT
 ========================================================= */
 
