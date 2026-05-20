@@ -9,9 +9,7 @@ description: Offensive security research, Active Directory methodologies, bug bo
 
 <h1 class="hero-title">
 
-Offensive Security Research,
-Tradecraft &
-Practical Cybersecurity Notes
+Offensive Security Research Notes
 
 </h1>
 
