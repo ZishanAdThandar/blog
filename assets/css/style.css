@@ -314,46 +314,41 @@ p {
   gap: 0.6rem;
 }
 
-.nav-link,
-.dropdown-toggle {
+/* =========================================================
+   NAVBAR PREMIUM BUTTONS
+========================================================= */
 
-  appearance: none;
-
-  border: none;
-
-  outline: none;
-
-  background: transparent;
-
-  display: inline-flex;
-
-  align-items: center;
-
-  gap: 0.45rem;
+.nav-menu .btn {
 
   padding:
-    0.68rem 0.9rem;
+    0.82rem 1.25rem;
+
+  font-size: 0.88rem;
 
   border-radius: 12px;
-
-  color: var(--muted);
-
-  font-size: 0.87rem;
-
-  font-weight: 600;
-
-  cursor: pointer;
-
-  transition: 0.18s ease;
 }
 
-.nav-link:hover,
-.dropdown-toggle:hover {
+/* =========================================================
+   LABS BUTTON
+========================================================= */
 
-  color: white;
+.dropdown-toggle {
 
-  background:
-    rgba(255,255,255,0.05);
+  gap: 0.6rem;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 900px) {
+
+  .nav-menu .btn {
+
+    width: 100%;
+
+    justify-content: space-between;
+  }
 }
 
 /* =========================================================
