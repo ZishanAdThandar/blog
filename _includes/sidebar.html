@@ -56,9 +56,6 @@ document.addEventListener(
        CLEAN HEADINGS
     ===================================================== */
 
-    const seen =
-      new Set();
-
     const headings =
       Array.from(
         headingElements
@@ -94,25 +91,12 @@ document.addEventListener(
           }
 
           /* =========================================
-             IGNORE CARDS
+             IGNORE TOC-IGNORE
           ========================================= */
 
           if (
             heading.closest(
-              ".post-item"
-            )
-          ) {
-
-            return false;
-          }
-
-          /* =========================================
-             IGNORE RELATED POSTS
-          ========================================= */
-
-          if (
-            heading.closest(
-              ".related-posts"
+              ".toc-ignore"
             )
           ) {
 
@@ -129,24 +113,6 @@ document.addEventListener(
 
             return false;
           }
-
-          /* =========================================
-             DEDUPLICATE
-          ========================================= */
-
-          const key =
-            `${heading.tagName}-${text}`;
-
-          if (
-            seen.has(key)
-          ) {
-
-            return false;
-          }
-
-          seen.add(
-            key
-          );
 
           return true;
 
@@ -168,6 +134,32 @@ document.addEventListener(
     }
 
     /* =====================================================
+       UNIQUE IDS
+    ===================================================== */
+
+    headings.forEach(
+      (
+        heading,
+        index
+      ) => {
+
+        const baseId =
+
+          heading.id ||
+
+          heading.textContent
+            .trim()
+            .toLowerCase()
+            .replace(/[^\w]+/g, "-")
+            .replace(/^-+|-+$/g, "");
+
+        heading.id =
+          `${baseId}-${index}`;
+
+      }
+    );
+
+    /* =====================================================
        CLEAR TOC
     ===================================================== */
 
@@ -179,25 +171,8 @@ document.addEventListener(
 
     headings.forEach(
       (
-        heading,
-        index
+        heading
       ) => {
-
-        /* ===============================================
-           AUTO ID
-        =============================================== */
-
-        if (
-          !heading.id
-        ) {
-
-          heading.id =
-            `heading-${index}`;
-        }
-
-        /* ===============================================
-           CREATE LINK
-        =============================================== */
 
         const link =
           document.createElement(
@@ -208,7 +183,8 @@ document.addEventListener(
           `#${heading.id}`;
 
         link.textContent =
-          heading.textContent.trim();
+          heading.textContent
+            .trim();
 
         link.classList.add(
           `toc-${heading.tagName.toLowerCase()}`
@@ -228,8 +204,11 @@ document.addEventListener(
               110;
 
             const top =
+
               heading.getBoundingClientRect().top +
+
               window.pageYOffset -
+
               offset;
 
             window.scrollTo({
@@ -281,6 +260,7 @@ document.addEventListener(
         (link) => {
 
           const isActive =
+
             link.getAttribute(
               "href"
             ) === `#${id}`;
@@ -333,8 +313,11 @@ document.addEventListener(
       ) {
 
         toc.scrollTop =
+
           linkBottom -
+
           toc.clientHeight +
+
           40;
       }
 
@@ -354,7 +337,7 @@ document.addEventListener(
     }
 
     /* =====================================================
-       ACTIVE HEADING TRACKING
+       ACTIVE TRACKING
     ===================================================== */
 
     function updateActiveHeading() {
