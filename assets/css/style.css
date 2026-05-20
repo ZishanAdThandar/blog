@@ -38,7 +38,7 @@
 
   --radius: 16px;
 
-  --container-width: 1360px;
+  --container-width: 1220px;
 
   --content-width: 760px;
 }
@@ -210,12 +210,10 @@ p {
   display: grid;
 
   grid-template-columns:
-    minmax(0,760px)
+    minmax(0,1fr)
     290px;
 
-  justify-content: center;
-
-  gap: 1.6rem;
+  gap: 1.4rem;
 
   align-items: start;
 }
