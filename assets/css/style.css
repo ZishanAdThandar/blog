@@ -573,10 +573,6 @@ p {
 
 .sidebar {
 
-  position: sticky;
-
-  top: 110px;
-
   display: flex;
 
   flex-direction: column;
@@ -584,12 +580,8 @@ p {
   gap: 1rem;
 
   align-self: start;
-
-  max-height:
-    calc(100vh - 130px);
-
-  padding-bottom: 2rem;
 }
+
 
 .sidebar-card {
 
@@ -685,7 +677,7 @@ p {
   width: 100%;
 
   max-height:
-    calc(100vh - 260px);
+    calc(100vh - 220px);
 
   overflow-y: auto;
 
