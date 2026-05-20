@@ -637,8 +637,6 @@ p {
 
   align-self: start;
 
-  max-height:
-    calc(100vh - 130px);
 }
 
 .sidebar-card {
@@ -693,7 +691,8 @@ p {
 
   width: 100%;
 
-  height: 100%;
+  max-height:
+    calc(100vh - 220px);
 
   overflow-y: auto;
 
