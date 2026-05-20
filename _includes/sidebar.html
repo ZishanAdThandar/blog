@@ -186,39 +186,49 @@ document.addEventListener(
        INTERSECTION OBSERVER
     ===================================================== */
 
-    const observer =
-      new IntersectionObserver(
+const observer =
+  new IntersectionObserver(
 
-        (entries) => {
+    (entries) => {
 
-          entries.forEach(
-            (entry) => {
+      let visibleHeading = null;
 
-              if (
-                entry.isIntersecting
-              ) {
+      entries.forEach(
+        (entry) => {
 
-                setActiveLink(
-                  entry.target.id
-                );
+          if (
+            entry.isIntersecting
+          ) {
 
-              }
+            visibleHeading =
+              entry.target.id;
 
-            }
-          );
+          }
 
-        },
-
-        {
-
-          rootMargin:
-            "-18% 0px -70% 0px",
-
-          threshold: 0.15
         }
-
       );
 
+      if (
+        visibleHeading
+      ) {
+
+        setActiveLink(
+          visibleHeading
+        );
+
+      }
+
+    },
+
+    {
+
+      rootMargin:
+        "-12% 0px -72% 0px",
+
+      threshold: 0.2
+    }
+
+  );
     headings.forEach(
       (heading) => {
 

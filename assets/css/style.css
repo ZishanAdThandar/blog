@@ -635,18 +635,18 @@ p {
 
   flex-direction: column;
 
-  gap: 0.35rem;
+  gap: 0.45rem;
 
   max-height:
     calc(100vh - 220px);
 
   overflow-y: auto;
 
-  padding-right: 0.25rem;
+  padding-right: 0.3rem;
 }
 
 /* =========================================================
-   TOC SCROLLBAR
+   SCROLLBAR
 ========================================================= */
 
 #table-of-contents::-webkit-scrollbar {
@@ -663,7 +663,7 @@ p {
 }
 
 /* =========================================================
-   TOC LINKS
+   LINKS
 ========================================================= */
 
 #table-of-contents a {
@@ -673,26 +673,28 @@ p {
   display: block;
 
   padding:
-    0.62rem 0.8rem;
+    0.7rem 0.9rem;
 
-  border-radius: 12px;
+  border-radius: 14px;
 
   color: var(--muted);
 
-  font-size: 0.82rem;
+  font-size: 0.81rem;
 
-  line-height: 1.45;
+  line-height: 1.5;
 
   transition:
     background 0.18s ease,
     color 0.18s ease,
-    border-color 0.18s ease;
+    border-color 0.18s ease,
+    transform 0.18s ease;
 
-  overflow: hidden;
+  border:
+    1px solid transparent;
 }
 
 /* =========================================================
-   LEFT ACTIVE BAR
+   ACTIVE BAR
 ========================================================= */
 
 #table-of-contents a::before {
@@ -711,8 +713,7 @@ p {
 
   border-radius: 999px;
 
-  background:
-    transparent;
+  background: transparent;
 
   transition: 0.18s ease;
 }
@@ -727,6 +728,9 @@ p {
     rgba(255,255,255,0.05);
 
   color: white;
+
+  transform:
+    translateX(2px);
 }
 
 /* =========================================================
@@ -739,7 +743,7 @@ p {
     rgba(99,102,241,0.12);
 
   border:
-    1px solid rgba(99,102,241,0.2);
+    1px solid rgba(99,102,241,0.22);
 
   color: white;
 }
@@ -755,7 +759,7 @@ p {
 }
 
 /* =========================================================
-   TOC LEVELS
+   LEVELS
 ========================================================= */
 
 #table-of-contents .toc-h1 {
@@ -772,18 +776,18 @@ p {
 
   padding-left: 2rem;
 
-  font-size: 0.78rem;
+  font-size: 0.77rem;
 
-  opacity: 0.96;
+  opacity: 0.95;
 }
 
 #table-of-contents .toc-h4 {
 
   padding-left: 2.8rem;
 
-  font-size: 0.76rem;
+  font-size: 0.74rem;
 
-  opacity: 0.85;
+  opacity: 0.8;
 }
 /* =========================================================
    FOOTER
