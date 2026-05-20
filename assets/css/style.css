@@ -580,6 +580,8 @@ p {
   flex-direction: column;
 
   gap: 1rem;
+
+  align-self: start;
 }
 
 .sidebar-card {
