@@ -209,7 +209,6 @@
 <!-- =========================================================
      NAVBAR SCRIPT
 ========================================================= -->
-
 <script>
 
 document.addEventListener(
@@ -237,47 +236,63 @@ document.addEventListener(
       );
 
     /* =========================================================
-         MOBILE MENU
+       MOBILE NAV
     ========================================================= */
 
-    navToggle.addEventListener(
-      "click",
-      function () {
+    if (
+      navToggle &&
+      navMenu
+    ) {
 
-        navMenu.classList.toggle(
-          "show"
-        );
-
-      }
-    );
-
-    /* =========================================================
-         MOBILE DROPDOWN
-    ========================================================= */
-
-    labsToggle.addEventListener(
-      "click",
-      function (e) {
-
-        if (
-          window.innerWidth <= 900
-        ) {
-
-          e.preventDefault();
+      navToggle.addEventListener(
+        "click",
+        function (e) {
 
           e.stopPropagation();
 
-          labsMenu.classList.toggle(
+          navMenu.classList.toggle(
             "show"
           );
 
         }
+      );
 
-      }
-    );
+    }
 
     /* =========================================================
-         CLOSE DROPDOWN
+       MOBILE LABS DROPDOWN
+    ========================================================= */
+
+    if (
+      labsToggle &&
+      labsMenu
+    ) {
+
+      labsToggle.addEventListener(
+        "click",
+        function (e) {
+
+          if (
+            window.innerWidth <= 900
+          ) {
+
+            e.preventDefault();
+
+            e.stopPropagation();
+
+            labsMenu.classList.toggle(
+              "show"
+            );
+
+          }
+
+        }
+      );
+
+    }
+
+    /* =========================================================
+       CLOSE OUTSIDE
     ========================================================= */
 
     document.addEventListener(
@@ -289,12 +304,21 @@ document.addEventListener(
         ) {
 
           if (
-            !labsToggle.contains(
-              e.target
-            ) &&
-            !labsMenu.contains(
-              e.target
-            )
+            navMenu &&
+            !navMenu.contains(e.target) &&
+            !navToggle.contains(e.target)
+          ) {
+
+            navMenu.classList.remove(
+              "show"
+            );
+
+          }
+
+          if (
+            labsMenu &&
+            !labsMenu.contains(e.target) &&
+            !labsToggle.contains(e.target)
           ) {
 
             labsMenu.classList.remove(
