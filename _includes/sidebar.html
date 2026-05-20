@@ -50,10 +50,10 @@ document.addEventListener(
     toc.innerHTML = "";
 
     /* =====================================================
-       FIND HEADINGS
+       FIND HEADINGS - DEDUPLICATED BY ID AND TEXT
     ===================================================== */
 
-    const headings =
+    const allHeadings =
       Array.from(
 
         content.querySelectorAll(
@@ -147,6 +147,46 @@ document.addEventListener(
       );
 
     /* =====================================================
+       DEDUPLICATE HEADINGS - FIX FOR REPEATING TWICE
+    ===================================================== */
+
+    const seenKeys = new Map();
+    const headings = [];
+
+    allHeadings.forEach(
+      (heading) => {
+        const text = heading.textContent.trim().toLowerCase();
+        const parentPath = getParentPath(heading);
+        const uniqueKey = `${parentPath}|${text}`;
+        
+        if (!seenKeys.has(uniqueKey)) {
+          seenKeys.set(uniqueKey, heading);
+          headings.push(heading);
+        }
+      }
+    );
+
+    /* Helper function to get parent element path for better deduplication */
+    function getParentPath(element) {
+      let path = [];
+      let current = element.parentElement;
+      let depth = 0;
+      while (current && current !== content && depth < 5) {
+        if (current.id) {
+          path.unshift(current.id);
+        } else if (current.className && typeof current.className === 'string') {
+          const classNames = current.className.split(' ').slice(0, 2);
+          if (classNames.length) {
+            path.unshift(classNames.join('.'));
+          }
+        }
+        current = current.parentElement;
+        depth++;
+      }
+      return path.join('>');
+    }
+
+    /* =====================================================
        NO HEADINGS
     ===================================================== */
 
@@ -161,8 +201,10 @@ document.addEventListener(
     }
 
     /* =====================================================
-       UNIQUE IDS
+       UNIQUE IDS - PREVENT DUPLICATE IDS
     ===================================================== */
+
+    const usedIds = new Set();
 
     headings.forEach(
       (
@@ -171,29 +213,47 @@ document.addEventListener(
       ) => {
 
         /* =========================================
-           KEEP EXISTING IDS
+           KEEP EXISTING IDS IF UNIQUE
         ========================================= */
 
-        if (
-          heading.id
-        ) return;
+        if (heading.id) {
+          if (!usedIds.has(heading.id)) {
+            usedIds.add(heading.id);
+            return;
+          }
+        }
 
-        heading.id =
-
+        /* Generate unique ID */
+        let baseId =
           heading.textContent
             .trim()
             .toLowerCase()
             .replace(/[^\w]+/g, "-")
-            .replace(/^-+|-+$/g, "") +
+            .replace(/^-+|-+$/g, "");
 
-          `-${index}`;
+        if (!baseId) {
+          baseId = "heading";
+        }
 
+        let finalId = baseId;
+        let counter = 1;
+
+        while (usedIds.has(finalId)) {
+          finalId = `${baseId}-${counter}`;
+          counter++;
+        }
+
+        heading.id = finalId;
+        usedIds.add(finalId);
       }
     );
 
     /* =====================================================
-       BUILD TOC
+       BUILD TOC - CLEAN BUILD WITHOUT DUPLICATES
     ===================================================== */
+
+    /* Clear again to ensure clean state */
+    toc.innerHTML = "";
 
     headings.forEach(
       (
@@ -353,9 +413,11 @@ document.addEventListener(
         }
       );
 
-      setActive(
-        current.id
-      );
+      if (current) {
+        setActive(
+          current.id
+        );
+      }
 
     }
 
@@ -416,5 +478,4 @@ document.addEventListener(
 
   }
 );
-
 </script>
