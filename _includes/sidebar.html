@@ -61,117 +61,143 @@
 </aside>
 
 <!-- =========================================================
-     TOC SCRIPT (SIMPLIFIED & WORKING)
+     TOC SCRIPT (DEBUG VERSION)
 ========================================================= -->
 
 <script>
+// Debug function to log what's happening
+function debugLog(msg) {
+  console.log("[TOC DEBUG] " + msg);
+}
+
 (function() {
-  // Wait for everything to load
+  debugLog("Script started");
+  
   function initTOC() {
+    debugLog("initTOC() called");
+    
     var toc = document.getElementById("table-of-contents");
+    debugLog("toc element: " + (toc ? "FOUND" : "NOT FOUND"));
+    
     if (!toc) return;
     
-    // Clear any existing content
+    // Clear existing content
     toc.innerHTML = "";
+    toc.innerHTML = "<span style='color:#94a3b8; font-size:0.75rem;'>Loading TOC...</span>";
     
-    // Find all headings inside article content
+    // Try multiple selectors to find content
     var content = document.querySelector(".article-content");
     if (!content) {
-      console.log("TOC: .article-content not found");
+      content = document.querySelector(".blog-content");
+    }
+    if (!content) {
+      content = document.querySelector("article");
+    }
+    if (!content) {
+      content = document.querySelector("main");
+    }
+    
+    debugLog("content element: " + (content ? "FOUND" : "NOT FOUND"));
+    if (content) {
+      debugLog("content class: " + content.className);
+    }
+    
+    if (!content) {
+      toc.innerHTML = "<span style='color:#94a3b8; font-size:0.75rem;'>No content found</span>";
       return;
     }
     
     // Get all headings
     var headings = content.querySelectorAll("h1, h2, h3, h4");
+    debugLog("headings found: " + headings.length);
+    
     if (headings.length === 0) {
-      toc.parentElement.style.display = "none";
+      toc.innerHTML = "<span style='color:#94a3b8; font-size:0.75rem;'>No headings found</span>";
       return;
     }
     
-    // Build TOC links
+    // Clear loading message
+    toc.innerHTML = "";
+    
+    // Build TOC
     for (var i = 0; i < headings.length; i++) {
       var heading = headings[i];
       var text = heading.textContent.trim();
+      
       if (text === "") continue;
       
       // Add ID if missing
       if (!heading.id) {
-        heading.id = "heading-" + i;
+        heading.id = "toc-heading-" + i;
       }
       
-      // Create link
+      debugLog("Adding heading " + i + ": " + text);
+      
       var link = document.createElement("a");
       link.href = "#" + heading.id;
       link.textContent = text;
       link.className = "toc-" + heading.tagName.toLowerCase();
       
-      // Add click handler
       link.onclick = function(e) {
         e.preventDefault();
         var targetId = this.getAttribute("href");
         var target = document.querySelector(targetId);
         if (target) {
-          target.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-          });
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
           history.pushState(null, null, targetId);
         }
+        return false;
       };
       
       toc.appendChild(link);
     }
     
-    // Update active heading on scroll
+    debugLog("TOC build complete. Links added: " + toc.children.length);
+    
+    // Active highlight
     var tocLinks = toc.querySelectorAll("a");
-    if (tocLinks.length === 0) return;
-    
-    function updateActive() {
-      var scrollPos = window.scrollY + 150; // Offset for sticky header
-      var currentId = null;
-      
-      // Find which heading is currently in view
-      for (var i = headings.length - 1; i >= 0; i--) {
-        var heading = headings[i];
-        var headingTop = heading.offsetTop;
+    if (tocLinks.length > 0) {
+      function updateActive() {
+        var scrollPos = window.scrollY + 150;
+        var currentId = null;
         
-        if (headingTop <= scrollPos) {
-          currentId = heading.id;
-          break;
+        for (var i = headings.length - 1; i >= 0; i--) {
+          var heading = headings[i];
+          if (heading.offsetTop <= scrollPos) {
+            currentId = heading.id;
+            break;
+          }
+        }
+        
+        if (!currentId && headings.length > 0) {
+          currentId = headings[0].id;
+        }
+        
+        for (var j = 0; j < tocLinks.length; j++) {
+          var link = tocLinks[j];
+          link.classList.remove("active");
+          if (link.getAttribute("href") === "#" + currentId) {
+            link.classList.add("active");
+          }
         }
       }
       
-      // If no heading found, use first one
-      if (!currentId && headings.length > 0) {
-        currentId = headings[0].id;
-      }
-      
-      // Update active class on links
-      for (var j = 0; j < tocLinks.length; j++) {
-        var link = tocLinks[j];
-        link.classList.remove("active");
-        if (link.getAttribute("href") === "#" + currentId) {
-          link.classList.add("active");
-        }
-      }
+      window.addEventListener("scroll", updateActive);
+      window.addEventListener("resize", updateActive);
+      updateActive();
+      debugLog("Active highlight enabled");
     }
-    
-    // Listen to scroll events
-    window.addEventListener("scroll", updateActive);
-    window.addEventListener("resize", updateActive);
-    
-    // Run once initially
-    updateActive();
   }
   
-  // Try on DOMContentLoaded
+  // Run on DOMContentLoaded
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", initTOC);
   } else {
     initTOC();
   }
   
-  // Also try after a small delay (in case content loads async)
-  setTimeout(initTOC, 100);
+  // Fallback delay
+  setTimeout(initTOC, 200);
+  setTimeout(initTOC, 500);
 })();
 </script>
