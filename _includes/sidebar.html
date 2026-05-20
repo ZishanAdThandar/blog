@@ -22,42 +22,6 @@
 
   </div>
 
-  <!-- =========================================================
-       MINI BRAND
-  ========================================================= -->
-
-  <div class="sidebar-card mini-brand">
-
-    <div class="mini-brand-logo">
-
-      <i class="fas fa-shield-halved"></i>
-
-      <span>
-
-        ZISHAN
-
-        <span class="logo-highlight">
-
-          HACK
-
-        </span>
-
-      </span>
-
-    </div>
-
-    <p>
-
-      Offensive security research,
-      practical labs,
-      Active Directory methodologies,
-      web exploitation,
-      and technical cybersecurity notes.
-
-    </p>
-
-  </div>
-
 </aside>
 
 <!-- =========================================================
@@ -126,7 +90,7 @@
     }
 
     /* =====================================================
-       CLEAR OLD TOC
+       CLEAR TOC
     ===================================================== */
 
     toc.innerHTML = "";
@@ -168,10 +132,6 @@
         link.textContent =
           heading.textContent.trim();
 
-        /* ===============================================
-           LEVEL CLASS
-        =============================================== */
-
         link.classList.add(
           `toc-${heading.tagName.toLowerCase()}`
         );
@@ -186,18 +146,30 @@
 
             e.preventDefault();
 
-            heading.scrollIntoView({
+            const offset =
+              110;
 
-              behavior: "smooth",
+            const top =
+              heading
+                .getBoundingClientRect()
+                .top +
+              window.pageYOffset -
+              offset;
 
-              block: "start"
+            window.scrollTo({
+
+              top: top,
+
+              behavior: "smooth"
 
             });
 
-            history.pushState(
+            history.replaceState(
+
               null,
               null,
               `#${heading.id}`
+
             );
 
           }
@@ -240,32 +212,93 @@
 
             currentId =
               heading.id;
+
           }
 
         }
       );
 
-tocLinks.forEach(
-  (link) => {
+      tocLinks.forEach(
+        (link) => {
 
-    link.classList.remove(
-      "active"
-    );
+          link.classList.remove(
+            "active"
+          );
 
-    if (
-      link.getAttribute(
-        "href"
-      ) === `#${currentId}`
-    ) {
+          if (
+            link.getAttribute(
+              "href"
+            ) === `#${currentId}`
+          ) {
 
-      link.classList.add(
-        "active"
+            link.classList.add(
+              "active"
+            );
+
+            /* =========================================
+               KEEP ACTIVE ITEM VISIBLE
+            ========================================= */
+
+            const linkTop =
+              link.offsetTop;
+
+            const linkBottom =
+              linkTop +
+              link.offsetHeight;
+
+            const tocTop =
+              toc.scrollTop;
+
+            const tocBottom =
+              tocTop +
+              toc.clientHeight;
+
+            /* =========================================
+               SCROLL DOWN
+            ========================================= */
+
+            if (
+              linkBottom >
+              tocBottom
+            ) {
+
+              toc.scrollTo({
+
+                top:
+                  linkBottom -
+                  toc.clientHeight +
+                  20,
+
+                behavior: "smooth"
+
+              });
+
+            }
+
+            /* =========================================
+               SCROLL UP
+            ========================================= */
+
+            else if (
+              linkTop <
+              tocTop
+            ) {
+
+              toc.scrollTo({
+
+                top:
+                  linkTop - 20,
+
+                behavior: "smooth"
+
+              });
+
+            }
+
+          }
+
+        }
       );
-
-    }
-
-  }
-);
 
     }
 
