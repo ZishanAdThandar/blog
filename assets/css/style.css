@@ -667,7 +667,7 @@ p {
 ========================================================= */
 
 #table-of-contents {
-
+  padding-bottom: 1rem;
   display: flex;
 
   flex-direction: column;
@@ -677,7 +677,7 @@ p {
   width: 100%;
 
   max-height:
-    calc(100vh - 220px);
+    calc(100vh - 250px);
 
   overflow-y: auto;
 
@@ -740,7 +740,6 @@ p {
     transform 0.18s ease,
     box-shadow 0.18s ease;
 
-  overflow: hidden;
 }
 
 /* =========================================================
