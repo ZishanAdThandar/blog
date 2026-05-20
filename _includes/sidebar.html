@@ -52,10 +52,21 @@ document.addEventListener(
 const headings =
   Array.from(
 
-    content.querySelectorAll(
-      "h1, h2, h3, h4"
-    )
+    content.children
 
+  ).filter(
+    (element) => {
+
+      return [
+        "H1",
+        "H2",
+        "H3",
+        "H4"
+      ].includes(
+        element.tagName
+      );
+
+    }
   ).filter(
     (heading) => {
 
