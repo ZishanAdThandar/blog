@@ -19,11 +19,19 @@
 </aside>
 
 <script>
+(function() {
+  /* =====================================================
+     PREVENT DOUBLE INITIALIZATION
+  ===================================================== */
+  if (window.__tocInitialized) {
+    return;
+  }
+  window.__tocInitialized = true;
 
-document.addEventListener(
-  "DOMContentLoaded",
-  () => {
-
+  /* =====================================================
+     WAIT FOR DOM
+  ===================================================== */
+  function init() {
     /* =====================================================
        ELEMENTS
     ===================================================== */
@@ -44,16 +52,17 @@ document.addEventListener(
     ) return;
 
     /* =====================================================
-       RESET
+       CHECK IF ALREADY POPULATED
     ===================================================== */
-
-    toc.innerHTML = "";
+    if (toc.children.length > 0) {
+      return;
+    }
 
     /* =====================================================
-       FIND HEADINGS - DEDUPLICATED BY ID AND TEXT
+       FIND HEADINGS
     ===================================================== */
 
-    const allHeadings =
+    const headings =
       Array.from(
 
         content.querySelectorAll(
@@ -147,51 +156,43 @@ document.addEventListener(
       );
 
     /* =====================================================
-       DEDUPLICATE HEADINGS - FIX FOR REPEATING TWICE
+       REMOVE DUPLICATE HEADINGS (SAME TEXT + SAME PARENT SECTION)
     ===================================================== */
+    const uniqueHeadings = [];
+    const seenSignatures = new Set();
 
-    const seenKeys = new Map();
-    const headings = [];
-
-    allHeadings.forEach(
-      (heading) => {
-        const text = heading.textContent.trim().toLowerCase();
-        const parentPath = getParentPath(heading);
-        const uniqueKey = `${parentPath}|${text}`;
-        
-        if (!seenKeys.has(uniqueKey)) {
-          seenKeys.set(uniqueKey, heading);
-          headings.push(heading);
-        }
-      }
-    );
-
-    /* Helper function to get parent element path for better deduplication */
-    function getParentPath(element) {
-      let path = [];
-      let current = element.parentElement;
-      let depth = 0;
-      while (current && current !== content && depth < 5) {
-        if (current.id) {
-          path.unshift(current.id);
-        } else if (current.className && typeof current.className === 'string') {
-          const classNames = current.className.split(' ').slice(0, 2);
-          if (classNames.length) {
-            path.unshift(classNames.join('.'));
+    for (let i = 0; i < headings.length; i++) {
+      const heading = headings[i];
+      const text = heading.textContent.trim().toLowerCase();
+      
+      // Find previous heading of same level to check for duplicates
+      let isDuplicate = false;
+      for (let j = 0; j < uniqueHeadings.length; j++) {
+        const existing = uniqueHeadings[j];
+        if (existing.textContent.trim().toLowerCase() === text) {
+          // Check if they are in different sections (distance between them > 5 headings)
+          let distance = Math.abs(i - headings.indexOf(existing));
+          if (distance < 10) {
+            isDuplicate = true;
+            break;
           }
         }
-        current = current.parentElement;
-        depth++;
       }
-      return path.join('>');
+      
+      if (!isDuplicate && !seenSignatures.has(text)) {
+        seenSignatures.add(text);
+        uniqueHeadings.push(heading);
+      }
     }
+
+    const finalHeadings = uniqueHeadings.length > 0 ? uniqueHeadings : headings;
 
     /* =====================================================
        NO HEADINGS
     ===================================================== */
 
     if (
-      headings.length === 0
+      finalHeadings.length === 0
     ) {
 
       toc.parentElement.style.display =
@@ -201,61 +202,41 @@ document.addEventListener(
     }
 
     /* =====================================================
-       UNIQUE IDS - PREVENT DUPLICATE IDS
+       UNIQUE IDS
     ===================================================== */
 
-    const usedIds = new Set();
-
-    headings.forEach(
+    finalHeadings.forEach(
       (
         heading,
         index
       ) => {
 
         /* =========================================
-           KEEP EXISTING IDS IF UNIQUE
+           KEEP EXISTING IDS
         ========================================= */
 
-        if (heading.id) {
-          if (!usedIds.has(heading.id)) {
-            usedIds.add(heading.id);
-            return;
-          }
-        }
+        if (
+          heading.id
+        ) return;
 
-        /* Generate unique ID */
-        let baseId =
+        heading.id =
+
           heading.textContent
             .trim()
             .toLowerCase()
             .replace(/[^\w]+/g, "-")
-            .replace(/^-+|-+$/g, "");
+            .replace(/^-+|-+$/g, "") +
 
-        if (!baseId) {
-          baseId = "heading";
-        }
+          `-${index}`;
 
-        let finalId = baseId;
-        let counter = 1;
-
-        while (usedIds.has(finalId)) {
-          finalId = `${baseId}-${counter}`;
-          counter++;
-        }
-
-        heading.id = finalId;
-        usedIds.add(finalId);
       }
     );
 
     /* =====================================================
-       BUILD TOC - CLEAN BUILD WITHOUT DUPLICATES
+       BUILD TOC
     ===================================================== */
 
-    /* Clear again to ensure clean state */
-    toc.innerHTML = "";
-
-    headings.forEach(
+    finalHeadings.forEach(
       (
         heading
       ) => {
@@ -391,12 +372,12 @@ document.addEventListener(
     function updateActiveHeading() {
 
       let current =
-        headings[0];
+        finalHeadings[0];
 
       const offset =
         180;
 
-      headings.forEach(
+      finalHeadings.forEach(
         (heading) => {
 
           const rect =
@@ -413,11 +394,9 @@ document.addEventListener(
         }
       );
 
-      if (current) {
-        setActive(
-          current.id
-        );
-      }
+      setActive(
+        current.id
+      );
 
     }
 
@@ -475,7 +454,12 @@ document.addEventListener(
     ===================================================== */
 
     updateActiveHeading();
-
   }
-);
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
 </script>
