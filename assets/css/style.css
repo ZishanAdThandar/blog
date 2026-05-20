@@ -660,14 +660,26 @@ p {
   margin: 0;
 }
 
+/* =========================================================
+   STICKY TOC CARD
+========================================================= */
 
+.toc-card {
+
+  position: sticky;
+
+  top: 110px;
+
+  max-height:
+    calc(100vh - 130px);
+}
 
 /* =========================================================
    TOC
 ========================================================= */
 
 #table-of-contents {
-  padding-bottom: 1rem;
+
   display: flex;
 
   flex-direction: column;
@@ -682,6 +694,8 @@ p {
   overflow-y: auto;
 
   padding-right: 0.4rem;
+
+  padding-bottom: 1rem;
 
   scroll-behavior: smooth;
 }
@@ -704,7 +718,7 @@ p {
 }
 
 /* =========================================================
-   LINKS
+   TOC LINKS
 ========================================================= */
 
 #table-of-contents a {
@@ -740,6 +754,7 @@ p {
     transform 0.18s ease,
     box-shadow 0.18s ease;
 
+  overflow: hidden;
 }
 
 /* =========================================================
