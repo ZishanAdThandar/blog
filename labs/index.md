@@ -7,15 +7,6 @@ permalink: /labs/
 
 <section class="hero-section">
 
-<div class="article-category">
-
-<span>Hack The Box</span>
-<span>TryHackMe</span>
-<span>OffSec</span>
-<span>VulnHub</span>
-
-</div>
-
 <h1 class="hero-title">
 
 Hands-On Offensive Security Labs
