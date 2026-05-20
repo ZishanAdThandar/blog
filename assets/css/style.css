@@ -737,6 +737,39 @@ pre {
 }
 
 /* =========================================================
+   FOOTER BRAND
+========================================================= */
+
+.footer-brand {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 0.55rem;
+
+  font-size: 1rem;
+
+  font-weight: 900;
+}
+
+.footer-brand i {
+
+  color: var(--primary);
+}
+
+.footer-brand .logo-highlight {
+
+  background: var(--gradient);
+
+  -webkit-background-clip: text;
+
+  background-clip: text;
+
+  color: transparent;
+}
+
+/* =========================================================
    MOBILE
 ========================================================= */
 
