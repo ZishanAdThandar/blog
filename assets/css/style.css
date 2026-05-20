@@ -900,8 +900,7 @@ pre {
 
   border-radius: 18px;
 
-  background:
-    rgba(10,14,23,0.985);
+  background: #0b1220;
 
   border:
     1px solid rgba(255,255,255,0.08);
@@ -943,6 +942,9 @@ pre {
 
     background:
       rgba(255,255,255,0.03);
+
+  border:
+    1px solid rgba(255,255,255,0.06);
   }
 
   .nav-dropdown {
