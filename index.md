@@ -8,50 +8,30 @@ description: Offensive security research, Active Directory methodologies, bug bo
 
 <div class="article-category">
 
-<span>
-Offensive Security
-</span>
-
-<span>
-Active Directory
-</span>
-
-<span>
-Bug Bounty
-</span>
-
-<span>
-Web Exploitation
-</span>
+<span>Offensive Security</span>
+<span>Active Directory</span>
+<span>Bug Bounty</span>
+<span>Web Exploitation</span>
 
 </div>
 
 <h1 class="hero-title">
 
 Offensive Security Research,
-Methodologies &
+Tradecraft &
 Practical Cybersecurity Notes
 
 </h1>
 
 <p class="hero-description">
 
-Active Directory tradecraft,
-web exploitation methodologies,
-offensive security workflows,
-practical lab writeups,
-and real-world technical research.
+Hands-on offensive security research focused on Active Directory,
+web exploitation, privilege escalation, attack methodologies,
+bug bounty workflows, and practical lab-based learning.
 
 </p>
 
-<div
-style="
-margin-top:2rem;
-display:flex;
-gap:1rem;
-flex-wrap:wrap;
-"
->
+<div class="hero-actions">
 
 <a
 href="/blog/research/"
@@ -60,7 +40,7 @@ class="btn btn-premium"
 
 <i class="fas fa-book"></i>
 
-Research
+Research Notes
 
 </a>
 
@@ -71,7 +51,7 @@ class="btn"
 
 <i class="fas fa-terminal"></i>
 
-Labs
+Labs & Walkthroughs
 
 </a>
 
@@ -81,7 +61,7 @@ Labs
 
 ---
 
-## Featured Technical Research
+## Featured Research
 
 <div class="posts-list">
 
@@ -92,19 +72,15 @@ site.posts | where: "pinned", true %}
 
 {% for post in featured_posts limit:3 %}
 
-<article class="post-item">
+<article class="post-item featured-post">
 
-<div class="article-category">
+<div class="post-category">
 
-{% for category in post.categories %}
-
-<span>
-
-{{ category }}
-
-</span>
-
-{% endfor %}
+{% if post.categories.size > 0 %}
+{{ post.categories[0] }}
+{% else %}
+Research
+{% endif %}
 
 </div>
 
@@ -118,7 +94,7 @@ site.posts | where: "pinned", true %}
 
 </h2>
 
-<div class="post-excerpt">
+<p class="post-excerpt">
 
 {% if post.description %}
 
@@ -132,7 +108,7 @@ site.posts | where: "pinned", true %}
 
 {% endif %}
 
-</div>
+</p>
 
 <div class="post-meta">
 
@@ -155,47 +131,24 @@ post.content | number_of_words %}
 words | divided_by: 180 %}
 
 {% if readtime < 1 %}
-
 1 min read
-
 {% else %}
-
 {{ readtime }} min read
-
 {% endif %}
 
 </span>
 
 </div>
 
-<a
-href="{{ post.url | relative_url }}"
-class="read-more"
->
+{% if post.tags %}
 
-Read Article
+<div class="post-tags">
 
-<i class="fas fa-arrow-right"></i>
+{% for tag in post.tags limit:4 %}
 
-</a>
+<span class="tag">
 
-</article>
-
-{% endfor %}
-
-{% else %}
-
-{% for post in site.posts limit:3 %}
-
-<article class="post-item">
-
-<div class="article-category">
-
-{% for category in post.categories %}
-
-<span>
-
-{{ category }}
+#{{ tag }}
 
 </span>
 
@@ -203,72 +156,14 @@ Read Article
 
 </div>
 
-<h2>
-
-<a href="{{ post.url | relative_url }}">
-
-{{ post.title }}
-
-</a>
-
-</h2>
-
-<div class="post-excerpt">
-
-{% if post.description %}
-
-{{ post.description }}
-
-{% else %}
-
-{{ post.excerpt
-| strip_html
-| truncate: 220 }}
-
 {% endif %}
-
-</div>
-
-<div class="post-meta">
-
-<span>
-
-<i class="fas fa-calendar"></i>
-
-{{ post.date | date: "%B %d, %Y" }}
-
-</span>
-
-<span>
-
-<i class="fas fa-clock"></i>
-
-{% assign words =
-post.content | number_of_words %}
-
-{% assign readtime =
-words | divided_by: 180 %}
-
-{% if readtime < 1 %}
-
-1 min read
-
-{% else %}
-
-{{ readtime }} min read
-
-{% endif %}
-
-</span>
-
-</div>
 
 <a
 href="{{ post.url | relative_url }}"
 class="read-more"
 >
 
-Read Article
+Read Research
 
 <i class="fas fa-arrow-right"></i>
 
@@ -284,17 +179,15 @@ Read Article
 
 ---
 
-## Explore Research Areas
+## Research Areas
 
 <div class="posts-list">
 
 <article class="post-item">
 
-<div class="article-category">
+<div class="post-category">
 
-<span>
 Research
-</span>
 
 </div>
 
@@ -302,21 +195,21 @@ Research
 
 <a href="/blog/research/">
 
-Research Notes
+Offensive Security Research
 
 </a>
 
 </h2>
 
-<div class="post-excerpt">
+<p class="post-excerpt">
 
-Technical methodologies,
-Active Directory research,
+Active Directory tradecraft,
 Windows internals,
 privilege escalation,
-and offensive security workflows.
+enumeration workflows,
+and practical offensive methodologies.
 
-</div>
+</p>
 
 <a
 href="/blog/research/"
@@ -333,11 +226,9 @@ Explore Research
 
 <article class="post-item">
 
-<div class="article-category">
+<div class="post-category">
 
-<span>
 Bug Bounty
-</span>
 
 </div>
 
@@ -345,20 +236,21 @@ Bug Bounty
 
 <a href="/blog/bug-bounty/">
 
-Bug Bounty
+Bug Bounty & Web Exploitation
 
 </a>
 
 </h2>
 
-<div class="post-excerpt">
+<p class="post-excerpt">
 
-Reconnaissance methodologies,
-web exploitation workflows,
-practical attack paths,
-and real-world findings.
+Reconnaissance workflows,
+web exploitation,
+authentication flaws,
+attack chains,
+and practical real-world methodologies.
 
-</div>
+</p>
 
 <a
 href="/blog/bug-bounty/"
@@ -375,11 +267,9 @@ Explore Bug Bounty
 
 <article class="post-item">
 
-<div class="article-category">
+<div class="post-category">
 
-<span>
 Labs
-</span>
 
 </div>
 
@@ -393,16 +283,17 @@ Labs & Walkthroughs
 
 </h2>
 
-<div class="post-excerpt">
+<p class="post-excerpt">
 
 Hack The Box,
 TryHackMe,
 OffSec,
 and VulnHub walkthroughs
-focused on methodology
-and exploitation.
+focused on methodology,
+enumeration,
+and exploitation workflows.
 
-</div>
+</p>
 
 <a
 href="/blog/labs/"
@@ -429,17 +320,13 @@ Explore Labs
 
 <article class="post-item">
 
-<div class="article-category">
+<div class="post-category">
 
-{% for category in post.categories %}
-
-<span>
-
-{{ category }}
-
-</span>
-
-{% endfor %}
+{% if post.categories.size > 0 %}
+{{ post.categories[0] }}
+{% else %}
+Research
+{% endif %}
 
 </div>
 
@@ -453,7 +340,7 @@ Explore Labs
 
 </h2>
 
-<div class="post-excerpt">
+<p class="post-excerpt">
 
 {% if post.description %}
 
@@ -467,7 +354,7 @@ Explore Labs
 
 {% endif %}
 
-</div>
+</p>
 
 <div class="post-meta">
 
@@ -490,13 +377,9 @@ post.content | number_of_words %}
 words | divided_by: 180 %}
 
 {% if readtime < 1 %}
-
 1 min read
-
 {% else %}
-
 {{ readtime }} min read
-
 {% endif %}
 
 </span>
@@ -505,14 +388,11 @@ words | divided_by: 180 %}
 
 {% if post.tags %}
 
-<div
-class="article-category"
-style="margin-top:1rem;"
->
+<div class="post-tags">
 
 {% for tag in post.tags limit:4 %}
 
-<span>
+<span class="tag">
 
 #{{ tag }}
 
