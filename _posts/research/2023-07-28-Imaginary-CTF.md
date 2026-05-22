@@ -2,6 +2,7 @@
 layout: default
 title: Imaginary CTF 2023 WriteUps
 category: research
+tags: [web, ctf, sqli, idor, lfi] 
 ---
 
 <h2>WEB</h2>
