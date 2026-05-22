@@ -2,6 +2,7 @@
 layout: default
 title: The Impossible Challenge - TryHackMe room Writeup
 category: thm
+tags: [ctf, thm, steg]
 ---
 
 # The Impossible Challenge

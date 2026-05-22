@@ -2,6 +2,7 @@
 layout: default
 title: Attacktive Directory -TryHackMe Active Directory Lab Solution
 category: thm
+tags: [thm, nmap, kerbrute, ad, hashcat, machine, ctf, winrm, smb]
 ---
 
 # Attacktive Directory

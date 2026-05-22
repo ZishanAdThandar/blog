@@ -2,6 +2,7 @@
 layout: default
 title: CrackTheHash Writeup - TryHackMe room to learn hash cracking
 category: thm
+tags: [thm, ctf, machine, crack, cryptography, hashcat]
 ---
 
 # CrackTheHash

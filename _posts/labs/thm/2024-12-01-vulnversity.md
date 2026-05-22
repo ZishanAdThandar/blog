@@ -2,6 +2,7 @@
 layout: default
 title: VulnUniversity THM - A detailed Writeup
 category: thm
+tags: [nmap, web, smb]
 ---
 
 # VulnUniversity

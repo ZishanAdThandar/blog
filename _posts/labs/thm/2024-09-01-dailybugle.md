@@ -2,6 +2,7 @@
 layout: default
 title: Daily Bugle - TryHackMe room writeup
 category: thm
+tags: [thm, ctf, nmap, machine, blue, rce]
 ---
 
 # Daily Bugle
