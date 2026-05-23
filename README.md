@@ -23,7 +23,8 @@
 
 ## About Me
 
-- [Linktree](https://zishanhack.com/links)
+- [About](https://zishanhack.com/about/)
+- [Linktree](https://zishanhack.com/links/)
 
 
 
