@@ -17,9 +17,11 @@
 </div>
 
 
-[![HackTheBox](https://www.hackthebox.com/badge/image/4477)](https://app.hackthebox.com/public/users/4477)
-
 [![TryHackMe](https://tryhackme-badges.s3.amazonaws.com/ZishanAdThandar.png)](https://tryhackme.com/p/ZishanAdThandar)
+
+
+[![HackTheBox](https://www.hackthebox.com/badge/image/4477)](https://app.hackthebox.com/public/users/4477)  
+
 
 ## About Me
 
