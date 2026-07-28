@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Attacktive Directory -TryHackMe Active Directory Lab Solution
+description: TryHackMe Attacktive Directory walkthrough — Kerbrute user enumeration, AS-REP Roasting, Kerberoasting, and DCSync attack to compromise an Active Directory domain.
 category: thm
 tags: [thm, nmap, kerbrute, ad, hashcat, machine, ctf, winrm, smb]
 ---

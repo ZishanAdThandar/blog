@@ -1,6 +1,7 @@
 ---
 layout: default
 title: FristiLeaks 1.3 vulnhub machine solved using nmap, dirb and netcat
+description: VulnHub FristiLeaks 1.3 walkthrough — web enumeration with dirb, exploiting a command injection vulnerability, and privilege escalation to root.
 category: vulnhub
 ---
 

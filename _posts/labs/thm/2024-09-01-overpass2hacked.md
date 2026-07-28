@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Overpass 2 - Hacked | TryHackMe Walkthrough
+description: TryHackMe Overpass 2 walkthrough — analyzing a pcap capture to find a backdoor SSH connection, then privilege escalation via a custom setuid binary.
 date: 2024-09-01
 categories: thm
 tags: [wireshark, john, hashcat, ssh-backdoor, privilege-escalation, thm, ctf]

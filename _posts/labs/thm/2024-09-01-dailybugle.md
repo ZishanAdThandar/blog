@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Daily Bugle - TryHackMe room writeup
+description: TryHackMe Daily Bugle walkthrough — exploiting a vulnerable Joomla instance with Metasploit and cracking a root password with John the Ripper.
 category: thm
 tags: [thm, ctf, nmap, machine, blue, rce]
 ---

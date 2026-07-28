@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Traversed - HackerDNA CTF with Git Exposed & Module Hijacking
+description: CTF writeup exploiting an exposed .git directory to recover leaked SSH credentials, then privilege escalation via Python module hijacking through a sudo-allowed script.
 category: hackerdna
 tags: [web, ctf, hackerdna, git-exposed, python, module-hijacking, sudo, privesc]
 ---
