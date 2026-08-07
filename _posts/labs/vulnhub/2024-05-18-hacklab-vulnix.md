@@ -1,11 +1,11 @@
 ---
-layout: default
-title: HackLAB Vulnix Vulnhub Machine manually solved sudo privilege escalation machine
+layout: post
+title: "HackLAB Vulnix - VulnHub Sudo Privilege Escalation"
 description: VulnHub HackLAB Vulnix walkthrough — exploiting sudo misconfigurations and Linux privilege escalation techniques to gain root on a vulnerable machine.
 category: vulnhub
 ---
 
-# HackLAB: Vulnix
+## HackLAB: Vulnix
 
 - [Tools](#tools)
 - [Gaining Access](#gaining-access)

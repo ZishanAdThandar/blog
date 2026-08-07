@@ -1,12 +1,11 @@
 ---
 title: "OSCP Commands – Obsidian Notes for Real Exam Execution"
-layout: default
+layout: post
 category: research
 description: "A clean, structured Obsidian vault with OSCP commands organized for real exam execution. Save hours during labs and exam with instant command recall."
 author: "Zishan Ahamed Thandar"
 date: 2025-12-24
 tags: [oscp, obsidian, commands, cheatsheet, penetration-testing]
-image: /assets/images/oscp-commands.png
 ---
 
 <div style="margin-bottom: 2rem;">
@@ -40,8 +39,6 @@ image: /assets/images/oscp-commands.png
 - **Post-Exploitation** – Cred dumping, persistence, evidence collection  
 
 
-
-
 ## ⚡ Why Obsidian
 
 
@@ -54,45 +51,6 @@ image: /assets/images/oscp-commands.png
 
 
 These are **not PDFs**. They're an Obsidian vault you can search, link, and build upon.
-
-
-
-
-## 🎁 What You Get
-
-
-- OSCP Commands Obsidian Vault  
-- Categorized command notes  
-- Linked attack flows  
-- Lifetime updates · Instant access  
-
-
-One-time payment. No subscriptions.
-
-
-
-
-## 🚀 Limited-Time Offer
-
-
-<div style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(239, 68, 68, 0.1)); border: 1px solid var(--accent); border-radius: 12px; padding: 2.5rem; text-align: center; margin: 2rem 0;">
-  
-  <div style="margin-bottom: 1.5rem;">
-    <span style="color: var(--gray); text-decoration: line-through; font-size: 1.2rem;">$997</span>
-    <span style="color: var(--accent); font-size: 2.5rem; font-weight: 800;"> $97</span>
-    <span style="background: var(--gradient-accent); color: white; padding: 0.2rem 1rem; border-radius: 50px; font-size: 1rem; margin-left: 1rem;">90% OFF</span>
-  </div>
-  
-  <a href="https://zishanhack.com/#resources" class="btn btn-premium" style="display: inline-block; padding: 1rem 3rem;">
-    GET INSTANT ACCESS
-  </a>
-  
-  <p style="margin-top: 1.5rem; font-size: 0.8rem; color: var(--gray);">
-    <i class="fas fa-lock"></i> Secure payment · Instant download · Lifetime updates
-  </p>
-</div>
-
-
 
 
 ## 💭 Final Thought

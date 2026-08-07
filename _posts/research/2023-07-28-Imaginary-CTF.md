@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: post
 title: Imaginary CTF 2023 WriteUps
 description: Imaginary CTF 2023 competition writeups — solutions for web exploitation, cryptography, and reverse engineering challenges from this CTF event.
 category: research

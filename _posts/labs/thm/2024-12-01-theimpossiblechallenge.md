@@ -1,12 +1,12 @@
 ---
-layout: default
+layout: post
 title: The Impossible Challenge - TryHackMe room Writeup
 description: TryHackMe Impossible Challenge walkthrough — steganography techniques to hidden data in images and extract flags using command-line tools.
 category: thm
 tags: [ctf, thm, steg]
 ---
 
-# The Impossible Challenge
+## The Impossible Challenge
 
 - [Overview](#overview)
 - [Tools](#tools)

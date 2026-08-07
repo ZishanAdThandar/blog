@@ -1,12 +1,11 @@
 ---
 title: "Web Security Checklist – Real Bug Hunting, Systematically"
-layout: default
+layout: post
 category: research
 description: "A systematic web security checklist for bug bounty hunters. Find more valid bugs with structured testing — not random guessing."
 author: "Zishan Ahamed Thandar"
 date: 2025-11-12
 tags: [bug-bounty, web-security, checklist, penetration-testing, hacking, methodology]
-image: /assets/images/web-security-checklist.png
 ---
 
 <div style="margin-bottom: 2rem;">
@@ -41,8 +40,6 @@ image: /assets/images/web-security-checklist.png
 - **High-Impact Bugs** – Chained vulnerabilities, WAF bypasses, misconfigurations  
 
 
-
-
 ## ⚡ Why This Checklist Works
 
 
@@ -56,47 +53,6 @@ image: /assets/images/web-security-checklist.png
 
 This is **not a list of vulnerability names**.  
 Each item tells you **what to test, why it matters, and what success looks like**.
-
-
-
-
-## 🎁 What You Get
-
-
-- Web Security Checklist (PDF + Markdown)  
-- Logic-driven testing methodology  
-- Real-world bug patterns that actually pay  
-- Program start-up checklist  
-- Pre-submission safety net  
-- Lifetime updates · Instant access  
-
-
-One-time payment. No subscriptions. No fluff.
-
-
-
-
-## 🚀 Limited-Time Offer
-
-
-<div style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(239, 68, 68, 0.1)); border: 1px solid var(--accent); border-radius: 12px; padding: 2.5rem; text-align: center; margin: 2rem 0;">
-  
-  <div style="margin-bottom: 1.5rem;">
-    <span style="color: var(--gray); text-decoration: line-through; font-size: 1.2rem;">$297</span>
-    <span style="color: var(--accent); font-size: 2.5rem; font-weight: 800;"> $27</span>
-    <span style="background: var(--gradient-accent); color: white; padding: 0.2rem 1rem; border-radius: 50px; font-size: 1rem; margin-left: 1rem;">90% OFF</span>
-  </div>
-  
-  <a href="https://zishanhack.com/#resources" class="btn btn-premium" style="display: inline-block; padding: 1rem 3rem;">
-    GET INSTANT ACCESS
-  </a>
-  
-  <p style="margin-top: 1.5rem; font-size: 0.8rem; color: var(--gray);">
-    <i class="fas fa-lock"></i> Secure payment · Instant download · Lifetime updates
-  </p>
-</div>
-
-
 
 
 ## 💭 Final Thought

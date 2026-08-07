@@ -1,12 +1,12 @@
 ---
-layout: default
-title: VulnUniversity THM - A detailed Writeup
+layout: post
+title: "VulnUniversity - TryHackMe Walkthrough"
 description: TryHackMe VulnUniversity walkthrough — exploiting a file upload vulnerability to get a reverse shell, then escalating privileges using SUID binaries on Linux.
 category: thm
 tags: [nmap, web, smb]
 ---
 
-# VulnUniversity
+## VulnUniversity
 
 - [Tools](#tools)
 - [Deploy the machine](#deploy-the-machine)

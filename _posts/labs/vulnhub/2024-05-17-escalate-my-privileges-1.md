@@ -1,11 +1,11 @@
 ---
-layout: default
+layout: post
 title: Escalate My Privileges 1 Vulnhub Machine solved manually
 description: VulnHub Escalate My Privileges 1 walkthrough — manual enumeration, exploitation, and privilege escalation without using automated tools.
 category: vulnhub
 ---
 
-# Escalate My Privileges: 1
+## Escalate My Privileges: 1
 
 - [Tools](#tools)
 - [Gaining Access](#gaining-access)

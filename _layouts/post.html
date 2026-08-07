@@ -1,0 +1,66 @@
+---
+layout: default
+---
+
+{% assign cat = page.categories | first %}
+{% assign cat_page = site.pages | where: "category", cat | first %}
+{% assign post_pos = 2 %}
+{% if cat_page %}{% assign post_pos = 3 %}{% endif %}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": "{{ site.url }}{{ site.baseurl }}{{ page.url }}#article",
+      "mainEntityOfPage": "{{ site.url }}{{ site.baseurl }}{{ page.url }}",
+      "headline": {{ page.title | jsonify }},
+      "description": {{ page.description | default: site.description | jsonify }},
+      "datePublished": "{{ page.date | date_to_xmlschema }}",
+      "dateModified": "{{ page.last_modified_at | default: page.date | date_to_xmlschema }}",
+      "author": {
+        "@type": "Person",
+        "name": {{ page.author | default: site.author | jsonify }}
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": {{ site.title | jsonify }},
+        "logo": {
+          "@type": "ImageObject",
+          "url": "{{ site.url }}{{ site.baseurl }}/assets/images/og-image.png"
+        }
+      },
+      "image": "{{ site.url }}{{ site.baseurl }}{{ page.image | default: '/assets/images/og-image.png' }}",
+      "url": "{{ site.url }}{{ site.baseurl }}{{ page.url }}"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "{{ site.url }}{{ site.baseurl }}/"
+        }
+        {% if cat_page %},
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": {{ cat_page.title | jsonify }},
+          "item": "{{ site.url }}{{ site.baseurl }}{{ cat_page.url }}"
+        }
+        {% endif %},
+        {
+          "@type": "ListItem",
+          "position": {{ post_pos }},
+          "name": {{ page.title | jsonify }},
+          "item": "{{ site.url }}{{ site.baseurl }}{{ page.url }}"
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+{{ content }}

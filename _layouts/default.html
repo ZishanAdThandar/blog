@@ -19,94 +19,18 @@
     content="IE=edge"
   >
 
-  <!-- =========================================================
-       TITLE
-  ========================================================= -->
-
-  <title>
-
-    {% if page.title %}
-
-      {{ page.title }} |
-
-    {% endif %}
-
-    {{ site.title }}
-
-  </title>
+  <meta
+    name="robots"
+    content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  >
 
   <!-- =========================================================
        SEO
+       (title, description, canonical, Open Graph, Twitter,
+       and JSON-LD are all rendered by jekyll-seo-tag)
   ========================================================= -->
 
   {% seo %}
-
-  <!-- =========================================================
-       DESCRIPTION
-  ========================================================= -->
-
-  <meta
-    name="description"
-    content="{{ page.description | default: site.description }}"
-  >
-
-  <!-- =========================================================
-       OPEN GRAPH
-  ========================================================= -->
-
-  <meta
-    property="og:type"
-    content="article"
-  >
-
-  <meta
-    property="og:site_name"
-    content="{{ site.title }}"
-  >
-
-  <meta
-    property="og:title"
-    content="{{ page.title }}"
-  >
-
-  <meta
-    property="og:description"
-    content="{{ page.description | default: site.description }}"
-  >
-
-  <meta
-    property="og:image"
-    content="{{ site.url }}{{ site.baseurl }}{{ page.image }}"
-  >
-
-  <meta
-    property="og:url"
-    content="{{ site.url }}{{ page.url }}"
-  >
-
-  <!-- =========================================================
-       TWITTER
-  ========================================================= -->
-
-  <meta
-    name="twitter:card"
-    content="summary_large_image"
-  >
-
-  <meta
-    name="twitter:title"
-    content="{{ page.title }}"
-  >
-
-  <meta
-    name="twitter:description"
-    content="{{ page.description | default: site.description }}"
-  >
-
-  <meta
-    name="twitter:image"
-    content="{{ site.url }}{{ site.baseurl }}{{ page.image }}"
-  >
 
   <!-- =========================================================
        THEME

@@ -1,12 +1,12 @@
 ---
-layout: default
-title: Compromised 1 - Apache Tomcat Default Credentials to WAR Deploy RCE
-description: CTF writeup exploiting default admin:admin credentials on Apache Tomcat 9.0.96 Manager to deploy a malicious WAR file for RCE, then privilege escalation via sudo-allowed find binary.
+layout: post
+title: "Compromised 1 - Tomcat Default Credentials to WAR Deploy RCE"
+description: "CTF writeup exploiting default admin:admin credentials on Apache Tomcat 9.0.96 Manager to deploy a WAR file for RCE, then privesc via sudo find."
 category: hackerdna
 tags: [web, ctf, hackerdna, tomcat, rce, war-deployment, sudo, privesc, gtfoBins]
 ---
 
-# Compromised 1 - CTF Writeup
+## Compromised 1 - CTF Writeup
 
 **Category:** WEB | **Flags:** 2 (User + Root)
 

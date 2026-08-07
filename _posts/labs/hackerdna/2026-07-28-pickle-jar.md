@@ -1,12 +1,12 @@
 ---
-layout: default
-title: Pickle Jar - Python Pickle Deserialization to RCE with Sudo Privesc
+layout: post
+title: "Pickle Jar - Python Pickle Deserialization to Sudo RCE"
 description: CTF writeup exploiting Python pickle deserialization vulnerability in a Flask app to achieve RCE, then escalating privileges via a sudo-allowed backup script.
 category: hackerdna
 tags: [web, ctf, hackerdna, pickle, deserialization, rce, flask, sudo, privesc]
 ---
 
-# Pickle Jar - CTF Writeup
+## Pickle Jar - CTF Writeup
 
 **Category:** WEB | **Flags:** 2 (User + Root)
 

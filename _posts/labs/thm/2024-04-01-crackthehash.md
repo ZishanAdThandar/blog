@@ -1,12 +1,12 @@
 ---
-layout: default
+layout: post
 title: CrackTheHash Writeup - TryHackMe room to learn hash cracking
 description: TryHackMe CrackTheHash walkthrough — identifying hash types and cracking MD5, SHA1, NTLM, and bcrypt hashes using hashcat and online tools.
 category: thm
 tags: [thm, ctf, machine, crack, cryptography, hashcat]
 ---
 
-# CrackTheHash
+## CrackTheHash
 
 - [Overview](#overview)
 - [Tools](#tools)

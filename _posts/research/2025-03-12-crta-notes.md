@@ -1,12 +1,11 @@
 ---
 title: "CRTA Notes – Real-World Active Directory Red Team Playbook"
-layout: default
+layout: post
 category: research
 description: "A complete Active Directory red team playbook for CRTA certification. Real-world attacks, privilege escalation, and domain dominance strategies."
 author: "Zishan Ahamed Thandar"
 date: 2025-03-12
 tags: [crta, active-directory, red-team, ad-attacks, pentesting, privilege-escalation]
-image: /assets/images/crta-notes.png
 ---
 
 <div style="margin-bottom: 2rem;">
@@ -41,8 +40,6 @@ image: /assets/images/crta-notes.png
 - **OPSEC** – Staying undetected, evasion techniques, real-world tradecraft  
 
 
-
-
 ## ⚡ Why These Notes Work
 
 
@@ -56,47 +53,6 @@ image: /assets/images/crta-notes.png
 
 Most AD resources work in perfect lab conditions.  
 These notes teach you **what actually works when defenders are watching**.
-
-
-
-
-## 🎁 What You Get
-
-
-- CRTA Notes (PDF + Markdown)  
-- Complete AD attack playbook  
-- Privilege escalation decision trees  
-- Lateral movement command reference  
-- Persistence techniques defenders miss  
-- Lifetime updates · Instant access  
-
-
-One-time payment. No subscriptions. No fluff.
-
-
-
-
-## 🚀 Limited-Time Offer
-
-
-<div style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(239, 68, 68, 0.1)); border: 1px solid var(--accent); border-radius: 12px; padding: 2.5rem; text-align: center; margin: 2rem 0;">
-  
-  <div style="margin-bottom: 1.5rem;">
-    <span style="color: var(--gray); text-decoration: line-through; font-size: 1.2rem;">$697</span>
-    <span style="color: var(--accent); font-size: 2.5rem; font-weight: 800;"> $67</span>
-    <span style="background: var(--gradient-accent); color: white; padding: 0.2rem 1rem; border-radius: 50px; font-size: 1rem; margin-left: 1rem;">90% OFF</span>
-  </div>
-  
-  <a href="https://zishanhack.com/#resources" class="btn btn-premium" style="display: inline-block; padding: 1rem 3rem;">
-    GET INSTANT ACCESS
-  </a>
-  
-  <p style="margin-top: 1.5rem; font-size: 0.8rem; color: var(--gray);">
-    <i class="fas fa-lock"></i> Secure payment · Instant download · Lifetime updates
-  </p>
-</div>
-
-
 
 
 ## 💭 Final Thought

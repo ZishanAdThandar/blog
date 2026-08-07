@@ -1,12 +1,12 @@
 ---
-layout: default
-title: Hidden CMS Breach - GetSimple CMS Unauthenticated Data Leak to RCE
-description: CTF writeup exploiting an information disclosure vulnerability in GetSimple CMS 3.3.16 to extract admin credentials, then gaining RCE via theme editor webshell injection and escalating privileges with a sudo-enabled find binary.
+layout: post
+title: "Hidden CMS Breach - GetSimple Unauthenticated Leak to RCE"
+description: "CTF writeup exploiting a GetSimple CMS 3.3.16 info disclosure to extract admin credentials, then RCE via theme editor webshell and privesc with sudo find."
 category: hackerdna
 tags: [web, ctf, hackerdna, getsimple-cms, cms, information-disclosure, rce, theme-editor, webshell, sudo, privesc, gtfoBins]
 ---
 
-# Hidden CMS Breach - CTF Writeup
+## Hidden CMS Breach - CTF Writeup
 
 **Category:** WEB | **Flags:** 2 (User + Root)
 

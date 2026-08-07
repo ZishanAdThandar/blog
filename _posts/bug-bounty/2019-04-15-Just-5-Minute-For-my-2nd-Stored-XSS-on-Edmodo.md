@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: post
 title: "Just 5 Minutes to My 2nd Stored XSS on Edmodo.com"
 date: 2019-04-15
 categories: bug-bounty
@@ -8,7 +8,7 @@ description: "How I found my second stored XSS on Edmodo.com in just 5 minutes b
 author: Zishan Ahamed Thandar
 ---
 
-# Just 5 Minutes to My 2nd Stored XSS on Edmodo.com
+## Just 5 Minutes to My 2nd Stored XSS on Edmodo.com
 
 - [How I Got the Bug?](#how-i-found-the-bug)
     - [The Accidental Discovery](#the-accidental-discovery)
