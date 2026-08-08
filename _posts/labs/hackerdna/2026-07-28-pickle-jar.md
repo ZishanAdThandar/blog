@@ -84,3 +84,15 @@ sudo /opt/vault/backup-util /root/flag-root.txt
 ## Root Flag
 
 **Root Flag:** `24ad4f06-90ad-41a2-9741-fedfc20f6dc3`
+
+## How the Attack Works
+
+Python's `pickle` is not a serialization format for untrusted data — it is a **remote code execution primitive**. A pickle file is a stack-based bytecode program that the `Unpickler` executes instruction-by-instruction during deserialization. When a class implements `__reduce__`, unpickling calls the returned callable with the returned arguments. In our payload, `__reduce__` returns `(subprocess.check_output, [...])`, so `pickle.loads()` executes `subprocess.check_output` on the victim's behalf. The Flask app treated the upload as a "configuration restore" and trusted the bytes without any signature or allowlist, which turned a feature into a shell.
+
+The privilege escalation chain is equally instructive. `backup-util` is a root-owned script that passes the user-supplied filename straight to `cat` with no validation, so `sudo` gives root a file read for any path. `sudo -l` showed `(root) NOPASSWD: /opt/vault/backup-util` — and the script happened to be designed to read whatever path it was given.
+
+## Key Takeaways
+
+- **Never unpickle untrusted data.** If an application must receive serialized objects, use a safe, explicit format like JSON and validate the schema before processing. If pickle is unavoidable, restrict it to authenticated, signed payloads.
+- **Validate arguments in privileged scripts.** A "backup utility" that blindly `cat`s an arbitrary path is a root file-read primitive. Restrict arguments to an allowlist (for example, only filenames inside the backup directory).
+- **Audit `sudo -l` entitlements.** `NOPASSWD` entries reduce friction but also reduce the barrier for an attacker who already has a low-privilege foothold. Grant the minimum command set needed.

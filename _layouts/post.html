@@ -37,3 +37,74 @@ layout: default
 </script>
 
 {{ content }}
+
+{% assign related = "" | split: "" %}
+{% for post in site.posts %}
+  {% if post.categories contains cat and post.url != page.url %}
+    {% assign related = related | push: post %}
+  {% endif %}
+{% endfor %}
+
+{% if related.size > 0 %}
+
+<section class="related-posts">
+
+  <h2>
+    More {{ cat | capitalize }} Writeups
+  </h2>
+
+  <div class="posts-list">
+
+    {% for post in related limit: 3 %}
+
+    <article class="post-card">
+
+      <h2 class="post-title">
+
+        <a href="{{ post.url | relative_url }}">
+
+          {{ post.title }}
+
+        </a>
+
+      </h2>
+
+      {% if post.description %}
+
+      <div class="post-excerpt">
+
+        {{ post.description }}
+
+      </div>
+
+      {% endif %}
+
+      <div class="post-meta">
+
+        <span class="post-date">
+
+          <i class="fas fa-calendar"></i>
+
+          {{ post.date | date: "%B %d, %Y" }}
+
+        </span>
+
+      </div>
+
+      <a href="{{ post.url | relative_url }}" class="btn read-more">
+
+        Read Article
+
+        <i class="fas fa-arrow-right"></i>
+
+      </a>
+
+    </article>
+
+    {% endfor %}
+
+  </div>
+
+</section>
+
+{% endif %}

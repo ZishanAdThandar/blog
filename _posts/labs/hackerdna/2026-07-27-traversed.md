@@ -122,3 +122,16 @@ cat /home/hackerdna/root_flag.txt
 ```
 
 **Root Flag:** `fce6a3ab-8bce-4f4d-9983-95025be84ad9`
+
+## How the Attack Works
+
+A publicly reachable `.git` directory leaks the entire development history of a web application. Because Git stores every commit, "removing" a file from the working tree does not remove it from the repository — the commit `eba1551` that added `credentials.txt` still exists in the object database, and the commit `94ad98f` that "redacted the password for security" only deleted it from a later snapshot. Tools like `git-dumper` reconstruct the full repo over HTTP, after which `git log` and `git show <commit>:<file>` recover any secret that was ever committed.
+
+The privilege escalation abuses **Python's module search order**. When `sudo /usr/bin/python3 /home/hackerdna/test.py` runs, the interpreter adds the directory of the script (`/home/hackerdna`) to the front of `sys.path`. The script does `import webbrowser`, and because the user can write files in that directory, placing a malicious `webbrowser.py` there shadows the real standard-library module. Sudo then executes the import as root, running our code at the highest privilege level.
+
+## Key Takeaways
+
+- **`.git` exposure is full source disclosure.** Block directory listings and access to dot-prefixed paths in your web server config, and use tooling that flags exposed `.git`/`.svn`/`.hg` during recon.
+- **Deleting a committed secret does not erase it.** Any credential that touches a Git history is compromised. Rotate it and rewrite history with `git filter-repo` if it was ever pushed.
+- **Writable script directories + sudo are a module-hijacking risk.** Do not grant `sudo` to interpreters running scripts from directories a user can write to. `sys.path` injection is a documented, reliable root primitive.
+- **`sudo -l` is the first step of every escalation.** Always enumerate exactly which binaries and scripts can be run as root before looking for kernel exploits.

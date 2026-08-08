@@ -141,3 +141,16 @@ curl -s "http://TARGET/new_website/index.php?cmd=sudo%20find%20.%20-exec%20cat%2
 ```
 
 **Root Flag:** `b114d2e4-512b-4eae-8350-d2e47047d65e`
+
+## How the Attack Works
+
+GetSimple CMS 3.3.16 is vulnerable to **CVE-2014-8722**, an unauthenticated information disclosure. The admin user database lives in XML files under `/data/users/`, and the vulnerable build served those files directly to anyone who requested the path — no session or authentication required. The XML stored the admin password as an **unsalted SHA1** hash, which makes it trivial to brute-force with a wordlist like `rockyou.txt`; `john --format=raw-sha1` recovered the plaintext `1234yellow` almost instantly because unsalted fast hashes can be computed billions of times per second.
+
+The second stage uses a standard CMS feature as the entry point. GetSimple's **Theme Editor** lets administrators edit template PHP files and saves them to disk. Logged in with the cracked credentials, injecting `passthru()` into `template.php` turns a cosmetic editor into a persistent web shell served from the main site.
+
+## Key Takeaways
+
+- **Never store passwords as unsalted fast hashes.** Use a slow, salted password hash (bcrypt, scrypt, Argon2id). An unsalted SHA1 hash of a weak password survives milliseconds against a GPU cluster.
+- **Update CMS software.** CVE-2014-8722 was patched in 2014; running a version from a decade ago guarantees known-disclosure and RCE chains.
+- **Treat "legitimate" admin features as attack surface.** Theme editors, plugin installers, and file managers that write to the webroot are RCE when credentials are weak.
+- **Combine file disclosure with user information.** The `robots.txt` hint (`/new_website/` and the `getsimple.hdna` hostname) plus the leak is a realistic recon-to-root chain: enumerate, read config, crack a hash, execute.

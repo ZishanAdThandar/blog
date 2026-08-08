@@ -114,3 +114,16 @@ curl -s "http://TARGET:8080/cmd/cmd.jsp?cmd=sudo%20/usr/bin/find%20-exec%20cat%2
 ```
 
 **Root Flag:** `28bc8d09-1a64-4a4b-3ec2-5eedbff89857`
+
+## How the Attack Works
+
+Apache Tomcat's **Manager** webapp is a powerful administrative interface: it can deploy, start, stop, and undeploy applications. That feature set is exactly what makes it dangerous. The Manager authenticates with HTTP Basic over the management port, and in this challenge the deployment accepted the vendor-default `admin:admin` credentials. Once inside, the standard Tomcat deployment feature becomes remote code execution — a WAR file is just a ZIP archive, and a JSP page inside it is executed by the container as soon as it is requested.
+
+The root escalation uses a classic **GTFOBins** pattern. `sudo -l` exposed `(ALL) NOPASSWD: /usr/bin/find`. The `find` binary supports `-exec`, which runs any command it is given, so a tool that is meant to search files becomes a wrapper for arbitrary root command execution.
+
+## Key Takeaways
+
+- **Change default credentials immediately.** Tomcat ships with documented default users and roles. Leave `admin:admin` in place and a management interface is a one-command foothold.
+- **Never expose management interfaces.** The Manager and Host Manager webapps should be bound to localhost or a management VLAN, never the public internet.
+- **`NOPASSWD` + a binary that can execute arguments is root.** Review `sudo` rules against GTFOBins. `find -exec`, `vim`, `less`, `git`, and scripting interpreters all become arbitrary command execution under sudo.
+- **CSRF tokens exist for a reason.** The Manager webapp requires a nonce for state-changing requests — a small mitigation that raises the bar for blind CSRF-style attacks.
