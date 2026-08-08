@@ -57,9 +57,11 @@ defaults:
 
     values:
       layout: post
-      author: Zishan Ahamed Thandar
+author:
+  name: Zishan Ahamed Thandar
+  twitter: ZishanAdThandar
 
-      image: /assets/images/og-image.png
+      image: /assets/images/og-image.jpg
 
       toc: true
 
@@ -70,7 +72,7 @@ defaults:
       path: ""
 
     values:
-      image: /assets/images/og-image.png
+      image: /assets/images/og-image.jpg
 
 # =========================================================
 # EXCLUDE
@@ -97,7 +99,7 @@ social:
     - https://x.com/ZishanAdThandar
     - https://linkedin.com/in/ZishanAdThandar
 
-logo: /assets/images/og-image.png
+logo: /assets/images/og-image.jpg
 
 # =========================================================
 # GOOGLE SEARCH CONSOLE

@@ -3,7 +3,6 @@ title: "OSCP Commands – Obsidian Notes for Real Exam Execution"
 layout: post
 category: research
 description: "A clean, structured Obsidian vault with OSCP commands organized for real exam execution. Save hours during labs and exam with instant command recall."
-author: "Zishan Ahamed Thandar"
 date: 2025-12-24
 tags: [oscp, obsidian, commands, cheatsheet, penetration-testing]
 ---

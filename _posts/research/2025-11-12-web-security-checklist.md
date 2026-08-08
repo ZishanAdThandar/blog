@@ -3,7 +3,6 @@ title: "Web Security Checklist – Real Bug Hunting, Systematically"
 layout: post
 category: research
 description: "A systematic web security checklist for bug bounty hunters. Find more valid bugs with structured testing — not random guessing."
-author: "Zishan Ahamed Thandar"
 date: 2025-11-12
 tags: [bug-bounty, web-security, checklist, penetration-testing, hacking, methodology]
 ---
