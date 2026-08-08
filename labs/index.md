@@ -240,4 +240,56 @@ View Labs
 
 </article>
 
+<article class="post-item">
+
+<div class="post-category">
+
+HackeR DNA
+
+</div>
+
+<h2>
+
+<a href="/blog/labs/hackerdna/">
+
+HackeR DNA
+
+</a>
+
+</h2>
+
+<p class="post-excerpt">
+
+CTF challenge walkthroughs,
+web exploitation,
+privilege escalation,
+and capture-the-flag methodology.
+
+</p>
+
+<div class="post-meta">
+
+<span>
+
+<i class="fas fa-flag"></i>
+
+{{ site.categories.hackerdna.size }} Articles
+
+</span>
+
+</div>
+
+<a
+href="/blog/labs/hackerdna/"
+class="read-more"
+>
+
+View Labs
+
+<i class="fas fa-arrow-right"></i>
+
+</a>
+
+</article>
+
 </div>
