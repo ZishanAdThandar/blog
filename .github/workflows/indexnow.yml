@@ -1,0 +1,41 @@
+name: IndexNow Submit
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+
+jobs:
+  indexnow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get IndexNow key
+        run: |
+          KEY=$(curl -s https://zishanhack.com/indexnow-key.txt)
+          if [ -z "$KEY" ]; then
+            echo "ERROR: could not fetch IndexNow key"
+            exit 1
+          fi
+          echo "key=$KEY" >> $GITHUB_ENV
+
+      - name: Wait for GitHub Pages build
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for i in $(seq 1 30); do
+            STATUS=$(gh api repos/${{ github.repository }}/pages/builds/latest --jq '.status' 2>/dev/null)
+            echo "attempt $i: pages build status = $STATUS"
+            if [ "$STATUS" = "built" ]; then
+              break
+            fi
+            sleep 10
+          done
+
+      - name: Submit sitemap to IndexNow
+        run: |
+          curl -s -o /dev/null -w "blog sitemap: HTTP %{http_code}\n" \
+            "https://api.indexnow.org/indexnow?url=https://zishanhack.com/blog/sitemap.xml&key=${{ env.key }}"
+          curl -s -o /dev/null -w "blog root: HTTP %{http_code}\n" \
+            "https://api.indexnow.org/indexnow?url=https://zishanhack.com/blog&key=${{ env.key }}"
