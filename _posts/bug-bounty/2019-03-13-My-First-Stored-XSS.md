@@ -72,7 +72,7 @@ Here's the payload I used:
 
 ## Twitter Status
 
-[![Twitter Status](https://raw.githubusercontent.com/ZishanAdThandar/blog/refs/heads/main/_posts/bug-bounty/img/1b.png)](https://x.com/ZishanAdThandar/status/1045959846535856128")
+[![Twitter Status](https://raw.githubusercontent.com/ZishanAdThandar/blog/refs/heads/main/_posts/bug-bounty/img/1b.jpg)](https://x.com/ZishanAdThandar/status/1045959846535856128")
 
 🔗 **Direct Link:** [View on X/Twitter](https://x.com/ZishanAdThandar/status/1045959846535856128)
 
