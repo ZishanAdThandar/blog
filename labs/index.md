@@ -244,7 +244,7 @@ View Labs
 
 <div class="post-category">
 
-HackeR DNA
+HackerDNA
 
 </div>
 
@@ -252,7 +252,7 @@ HackeR DNA
 
 <a href="/blog/labs/hackerdna/">
 
-HackeR DNA
+HackerDNA
 
 </a>
 
