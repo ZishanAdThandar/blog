@@ -114,11 +114,11 @@
 
             {% if page.categories %}
 
-            <div class="article-category">
+            <div class="post-tags">
 
               {% for category in page.categories %}
 
-              <span>
+              <span class="category">
                 {{ category }}
               </span>
 
@@ -198,13 +198,13 @@
             {% if page.tags %}
 
             <div
-              class="article-category"
+              class="post-tags"
               style="margin-top: 1.5rem;"
             >
 
               {% for tag in page.tags %}
 
-              <span>
+              <span class="tag">
 
                 #{{ tag }}
 
