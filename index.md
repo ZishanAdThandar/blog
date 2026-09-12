@@ -192,7 +192,7 @@ Explore Labs
 
 <div class="posts-list">
 
-{% for post in site.posts limit:6 %}
+{% for post in site.posts %}
 
 <article class="post-item">
 
