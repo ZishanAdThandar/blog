@@ -768,6 +768,13 @@ p {
   margin-top: 1rem;
 }
 
+/* .tag carries margins for inline use, but inside .post-tags the
+   container already supplies the gap. Keeping both doubled it to 16px
+   and pushed four tags onto four separate rows. */
+.post-tags > .tag {
+  margin: 0;
+}
+
 /* =========================================================
    POST METADATA (DATE, AUTHOR, ETC)
 ========================================================= */
@@ -799,7 +806,12 @@ p {
    POST TITLE & EXCERPT
 ========================================================= */
 
-.post-title {
+/* Scoped to .post-card on purpose: ".blog-content h2" is an
+   in-article heading rule (1.8rem, 4rem top margin) and at
+   (0,1,1) it out-specifies a bare .post-title, so every card title
+   inherited a 64px gap above it. Cards need the compact values here,
+   and .post-card .post-title is (0,2,0) so it wins. */
+.post-card .post-title {
   font-size: 1.25rem;
   font-weight: 700;
   margin: 0.75rem 0;

@@ -56,15 +56,19 @@ Labs & Walkthroughs
 
 <div class="posts-list">
 
-<article class="post-item">
+<article class="post-card">
 
-<div class="post-category">
+<div class="post-categories" style="margin-bottom: 1rem;">
+
+<span class="category">
 
 Research
 
+</span>
+
 </div>
 
-<h2>
+<h2 class="post-title">
 
 <a href="/blog/research/">
 
@@ -86,7 +90,8 @@ and practical offensive methodologies.
 
 <a
 href="/blog/research/"
-class="read-more"
+class="btn read-more"
+style="margin-top: 1rem;"
 >
 
 Explore Research
@@ -97,15 +102,19 @@ Explore Research
 
 </article>
 
-<article class="post-item">
+<article class="post-card">
 
-<div class="post-category">
+<div class="post-categories" style="margin-bottom: 1rem;">
+
+<span class="category">
 
 Bug Bounty
 
+</span>
+
 </div>
 
-<h2>
+<h2 class="post-title">
 
 <a href="/blog/bug-bounty/">
 
@@ -127,7 +136,8 @@ and practical real-world methodologies.
 
 <a
 href="/blog/bug-bounty/"
-class="read-more"
+class="btn read-more"
+style="margin-top: 1rem;"
 >
 
 Explore Bug Bounty
@@ -138,15 +148,19 @@ Explore Bug Bounty
 
 </article>
 
-<article class="post-item">
+<article class="post-card">
 
-<div class="post-category">
+<div class="post-categories" style="margin-bottom: 1rem;">
+
+<span class="category">
 
 Labs
 
+</span>
+
 </div>
 
-<h2>
+<h2 class="post-title">
 
 <a href="/blog/labs/">
 
@@ -171,7 +185,8 @@ and exploitation workflows.
 
 <a
 href="/blog/labs/"
-class="read-more"
+class="btn read-more"
+style="margin-top: 1rem;"
 >
 
 Explore Labs
@@ -194,19 +209,35 @@ Explore Labs
 
 {% for post in site.posts %}
 
-<article class="post-item">
+<article class="post-card">
 
-<div class="post-category">
+<div class="post-categories" style="margin-bottom: 1rem;">
 
 {% if post.categories.size > 0 %}
-{{ post.categories[0] }}
+
+{% for category in post.categories %}
+
+<span class="category">
+
+{{ category }}
+
+</span>
+
+{% endfor %}
+
 {% else %}
+
+<span class="category">
+
 Research
+
+</span>
+
 {% endif %}
 
 </div>
 
-<h2>
+<h2 class="post-title">
 
 <a href="{{ post.url | relative_url }}">
 
@@ -234,15 +265,15 @@ Research
 
 <div class="post-meta">
 
-<span>
+<div class="post-date">
 
 <i class="fas fa-calendar"></i>
 
 {{ post.date | date: "%B %d, %Y" }}
 
-</span>
+</div>
 
-<span>
+<div class="post-readtime">
 
 <i class="fas fa-clock"></i>
 
@@ -258,13 +289,13 @@ words | divided_by: 180 %}
 {{ readtime }} min read
 {% endif %}
 
-</span>
+</div>
 
 </div>
 
 {% if post.tags %}
 
-<div class="post-tags">
+<div class="post-tags" style="margin-top: 1rem;">
 
 {% for tag in post.tags limit:4 %}
 
@@ -282,7 +313,8 @@ words | divided_by: 180 %}
 
 <a
 href="{{ post.url | relative_url }}"
-class="read-more"
+class="btn read-more"
+style="margin-top: 1rem;"
 >
 
 Read Article
