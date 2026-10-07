@@ -5,6 +5,7 @@ description: TryHackMe Overpass 2 walkthrough — analyzing a pcap capture to fi
 date: 2024-09-01
 categories: thm
 tags: [wireshark, john, hashcat, ssh-backdoor, privilege-escalation, thm, ctf]
+last_modified_at: 2026-08-07
 ---
 
 ## Overpass 2 - Hacked: TryHackMe Walkthrough

@@ -4,4 +4,5 @@ title: Research
 description: Research notes, methodologies, offensive security workflows, and technical deep dives.
 category: research
 permalink: /research/
+last_modified_at: 2026-05-19
 ---

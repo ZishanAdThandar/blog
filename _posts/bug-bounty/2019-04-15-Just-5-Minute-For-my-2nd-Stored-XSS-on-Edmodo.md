@@ -5,6 +5,7 @@ date: 2019-04-15
 categories: bug-bounty
 tags: [edmodo, xss, bug-bounty, swag, notification-xss]
 description: "How I found my second stored XSS on Edmodo.com in just five minutes by testing notification systems — payload crafting, disclosure timeline, and key takeaways for bug hunters."
+last_modified_at: 2026-08-08
 ---
 
 ## Just 5 Minutes to My 2nd Stored XSS on Edmodo.com

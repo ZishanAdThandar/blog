@@ -4,4 +4,5 @@ title: OffSec
 description: OffSec PG Practice machines, certification preparation, and offensive security lab notes.
 category: offsec
 permalink: /labs/offsec/
+last_modified_at: 2026-05-19
 ---

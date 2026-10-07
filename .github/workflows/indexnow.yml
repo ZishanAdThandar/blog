@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Get IndexNow key
         run: |
-          KEY=$(curl -s https://zishanhack.com/indexnow-key.txt)
+          KEY=$(curl -s https://zishanhack.com/indexnow-key.txt | tr -d '[:space:]')
           if [ -z "$KEY" ]; then
             echo "ERROR: could not fetch IndexNow key"
             exit 1
@@ -33,9 +33,48 @@ jobs:
             sleep 10
           done
 
-      - name: Submit sitemap to IndexNow
+      - name: Verify key file is hosted
+        env:
+          KEY: ${{ env.key }}
         run: |
-          curl -s -o /dev/null -w "blog sitemap: HTTP %{http_code}\n" \
-            "https://api.indexnow.org/indexnow?url=https://zishanhack.com/blog/sitemap.xml&key=${{ env.key }}"
-          curl -s -o /dev/null -w "blog root: HTTP %{http_code}\n" \
-            "https://api.indexnow.org/indexnow?url=https://zishanhack.com/blog&key=${{ env.key }}"
+          KEYLOC="https://zishanhack.com/${KEY}.txt"
+          for i in $(seq 1 30); do
+            if curl -fsS "$KEYLOC" 2>/dev/null | tr -d '[:space:]' | grep -q "$KEY"; then
+              echo "key file OK: $KEYLOC"
+              exit 0
+            fi
+            echo "attempt $i: $KEYLOC not live yet"
+            sleep 10
+          done
+          echo "ERROR: key file not hosted at $KEYLOC"
+          exit 1
+
+      - name: Submit all blog URLs to IndexNow
+        env:
+          KEY: ${{ env.key }}
+        run: |
+          curl -fsS https://zishanhack.com/blog/sitemap.xml -o /tmp/blog-sitemap.xml
+          python3 - <<'PY' > /tmp/indexnow-payload.json
+          import json, os, re, sys
+          xml = open("/tmp/blog-sitemap.xml").read()
+          urls = sorted(set(re.findall(r"<loc>(.*?)</loc>", xml)))
+          key = os.environ["KEY"]
+          print(json.dumps({
+              "host": "zishanhack.com",
+              "key": key,
+              "keyLocation": f"https://zishanhack.com/{key}.txt",
+              "urlList": urls,
+          }))
+          print(f"submitting {len(urls)} URLs", file=sys.stderr)
+          PY
+          code=$(curl -s -o /tmp/indexnow-resp.txt -w "%{http_code}" -X POST \
+            -H "Content-Type: application/json; charset=utf-8" \
+            --data @/tmp/indexnow-payload.json \
+            https://api.indexnow.org/indexnow)
+          echo "IndexNow HTTP $code"
+          cat /tmp/indexnow-resp.txt
+          echo
+          if [ "$code" != "200" ] && [ "$code" != "202" ]; then
+            echo "ERROR: IndexNow rejected the submission"
+            exit 1
+          fi

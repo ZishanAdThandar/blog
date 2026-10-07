@@ -2,6 +2,7 @@
 layout: default
 title: Offensive Security Research
 description: Offensive security research, Active Directory methodologies, bug bounty workflows, practical lab writeups, and hands-on cybersecurity notes.
+last_modified_at: 2026-10-02
 ---
 
 <section class="hero-section">

@@ -5,6 +5,7 @@ category: research
 description: "A complete Active Directory red team playbook for CRTA certification. Real-world attacks, privilege escalation, and domain dominance strategies."
 date: 2025-03-12
 tags: [crta, active-directory, red-team, ad-attacks, pentesting, privilege-escalation]
+last_modified_at: 2026-08-08
 ---
 
 <div style="margin-bottom: 2rem;">

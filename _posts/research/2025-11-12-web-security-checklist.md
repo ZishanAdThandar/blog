@@ -5,6 +5,7 @@ category: research
 description: "A systematic web security checklist for bug bounty hunters. Find more valid bugs with structured testing — not random guessing."
 date: 2025-11-12
 tags: [bug-bounty, web-security, checklist, penetration-testing, hacking, methodology]
+last_modified_at: 2026-08-08
 ---
 
 <div style="margin-bottom: 2rem;">

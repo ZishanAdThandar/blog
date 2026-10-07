@@ -5,6 +5,7 @@ date: 2019-03-13
 description: "How I found my first stored XSS vulnerability on Edmodo.com using manual testing and subdomain enumeration. A beginner's journey to bug bounty."
 categories: bug-bounty
 tags: [edmodo, xss, bug-bounty, writeup]
+last_modified_at: 2026-08-08
 ---
 
 ## Hunting methodology and experience of my First Stored XSS on Edmodo.com

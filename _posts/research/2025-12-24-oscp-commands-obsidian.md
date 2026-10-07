@@ -5,6 +5,7 @@ category: research
 description: "A clean, structured Obsidian vault with OSCP commands organized for real exam execution. Save hours during labs and exam with instant command recall."
 date: 2025-12-24
 tags: [oscp, obsidian, commands, cheatsheet, penetration-testing]
+last_modified_at: 2026-08-08
 ---
 
 <div style="margin-bottom: 2rem;">

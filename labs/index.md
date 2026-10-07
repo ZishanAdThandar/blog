@@ -3,6 +3,7 @@ layout: default
 title: Labs
 description: Hands-on offensive security labs, walkthroughs, exploitation methodologies, and practical cybersecurity training environments.
 permalink: /labs/
+last_modified_at: 2026-08-08
 ---
 
 <section class="hero-section">
