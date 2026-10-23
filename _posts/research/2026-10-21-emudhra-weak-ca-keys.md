@@ -28,28 +28,6 @@ last_modified_at: 2026-10-23
   Browsers fixed this in hours. The harder question is everything else that trusts a certificate bundle on disk.
 </p>
 
-## Contents
-
-- [TL;DR](#tldr)
-- [What happened](#what-happened)
-- [The keys were not stolen, they were guessable](#the-keys-were-not-stolen-they-were-guessable)
-- [The key ceremony failure](#the-key-ceremony-failure)
-- [Why browsers moved fast and everything else did not](#why-browsers-moved-fast-and-everything-else-did-not)
-- [What was actually at risk](#what-was-actually-at-risk)
-- [What to update](#what-to-update)
-- [How to check your own stack](#how-to-check-your-own-stack)
-- [Lessons for defenders](#lessons-for-defenders)
-- [References](#references)
-
-## TL;DR
-
-- Eight eMudhra intermediate CA certificates had private keys that were effectively **single-byte values**. One key was literally `4`; the rest were whole numbers below 256.
-- The keys were not stolen. A flaw in a key generation ceremony in April 2025 produced a second, weak key set alongside the intended keys. The weak set was published in the certificates.
-- Anyone could recover the private keys from the public certificates. That gave a **17-month window** in which a forged certificate for any domain could have been created.
-- Chrome and Firefox blocked the certificates within hours of the report using CRLSets and OneCRL. Most non-browser TLS clients do not check either revocation or Certificate Transparency, so they stayed exposed until their trust store or binary was updated.
-- eMudhra's `emSign ECC Root CA - G3` has been removed or is being removed from major trust stores. Go, Node.js, Python `certifi`, Rust `webpki-roots`, NSS, Ubuntu, Debian, Homebrew, Composer and Cloudflare clients all shipped fixes.
-- **Action:** inventory every trust store you operate, rebuild containers from updated base images, rebuild Go binaries, and do not "fix" certificate errors by disabling verification.
-
 ## What happened
 
 On the evening of **17 October 2026**, an independent researcher reported to Apple, Google, Microsoft, Mozilla and eMudhra that the private keys for eight eMudhra intermediate CA certificates were compromised. The report was signed with each of the eight keys, which made the claim difficult to dismiss.

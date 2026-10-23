@@ -28,32 +28,6 @@ last_modified_at: 2026-10-23
   Two CVEs, one exploit chain, and a patch window measured in hours. This is the PHP2Shell incident.
 </p>
 
-## Contents
-
-- [TL;DR](#tldr)
-- [What happened](#what-happened)
-- [Affected and fixed versions](#affected-and-fixed-versions)
-- [The root cause: interrupted state treated as valid](#the-root-cause-interrupted-state-treated-as-valid)
-- [CVE-2026-109618: interrupted initialization after OOM](#cve-2026-109618-interrupted-initialization-after-oom)
-- [CVE-2026-109619: stale state across requests](#cve-2026-109619-stale-state-across-requests)
-- [How the PHP2Shell exploit works](#how-the-php2shell-exploit-works)
-- [Why authentication and WAFs are not enough](#why-authentication-and-wafs-are-not-enough)
-- [Exploitation in the wild](#exploitation-in-the-wild)
-- [How to detect exploitation](#how-to-detect-exploitation)
-- [Patch and mitigation guidance](#patch-and-mitigation-guidance)
-- [Incident response checklist](#incident-response-checklist)
-- [The bigger lesson: AI lowers the exploit barrier](#the-bigger-lesson-ai-lowers-the-exploit-barrier)
-- [References](#references)
-
-## TL;DR
-
-- **CVE-2026-109618** and **CVE-2026-109619** are critical memory-safety flaws in PHP core. Both are rated **CVSS v4.0 9.2**.
-- They allow unauthenticated remote code execution on default PHP deployments, independent of the application running on top. WordPress, Drupal and Joomla were demonstrated as targets, but a "Hello World" PHP script is equally in scope.
-- Every PHP release since at least **5.4** is affected by one or both flaws. Official fixes exist for **PHP 8.2.35, 8.3.36, 8.4.27 and 8.5.12**.
-- The exploit chain is called **PHP2Shell**. It combines memory corruption with a process-memory disclosure technique that leaks addresses through the `PHPSESSID` cookie.
-- Exploitation attempts were observed **before public disclosure**, as early as 17 October 2026.
-- Configuration changes reduce exposure but do not fix the bug. **Patching and restarting every worker is the only complete remediation.**
-
 ## What happened
 
 PHP gave advance notice on 20 October of an out-of-band security release scheduled for **21 October 2026 at 14:00 UTC**, then shipped on that schedule as details of the flaws began to leak.
