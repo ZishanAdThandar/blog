@@ -27,7 +27,7 @@ last_modified_at: 2026-10-27
   The Node.js project released security updates on October 21, 2026 addressing ten vulnerabilities across all currently supported release lines.
 </p>
 
-## TL;DR
+## Details
 
 - **Highest severity:** CVE-2026-111497 - Brotli decoder out-of-bounds write leading to RCE (High). Affects v22.x, v24.x, v26.x.
 - **High severity:** DNS NUL truncation (CVE-2026-105482), fullwidth digit IP TLS bypass (CVE-2026-105483), leading-zero/loose IP TLS bypass (CVE-2026-106069).
